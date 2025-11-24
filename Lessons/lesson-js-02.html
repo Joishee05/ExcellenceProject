@@ -3,55 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 2: Variables - JavaScript Tutorial</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
-    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+    <title>Lesson 2: Variables & Data Types - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
+        .navbar { position: relative !important; flex-shrink: 0; }
+        .page-wrapper { display: flex; flex-shrink: 0; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
+        .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
+        .sidebar a:hover { background: #f5f5f5; color: #f97316; }
+        .sidebar a.active { background: #e8f1ff; color: #f97316; border-left-color: #f97316; font-weight: 600; }
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #f97316; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .lesson-meta { font-size: 0.9rem; color: #999; }
+        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area h2:first-of-type { margin-top: 0; }
+        .content-area h3 { font-size: 1.15rem; color: #f97316; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
+        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
+        .highlight-box { background: #e8f4f8; border-left: 4px solid #f97316; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #f97316; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
+        .btn { padding: 10px 15px; background: #f97316; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
+        .btn:hover { background: #f97316cc; opacity: 0.9; }
+        .btn-secondary { background: #ddd; color: #666; }
+        .btn-secondary:hover { background: #ccc; }
+        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #f97316; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
+        footer p { margin: 0.2rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="../index.html" class="logo">
-                <span class="logo-bracket">&lt;</span>
-                <span class="logo-text">SLU LearnCode</span>
-                <span class="logo-bracket">/&gt;</span>
-            </a>
+            <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
-                <li><a href="../css-tutorials.html">CSS</a></li>
-                <li><a href="../js-tutorials.html">JavaScript</a></li>
-                <li><a href="../project-walkthroughs.html">Projects</a></li>
+                <li><a href="../css-tutorials.html" >CSS</a></li>
+                <li><a href="../js-tutorials.html" class="active">JavaScript</a></li>
+                <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
     </nav>
-
-    <div class="tutorial-container">
+    <div class="page-wrapper">
         <aside class="sidebar">
-            <h2>JavaScript Lessons</h2>
-            <div class="progress-section">
-                <h3>Your Progress</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 16.67%;"></div>
-                </div>
-            </div>
-            <ul class="lesson-list">
-                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
-                <li><a href="lesson-js-02.html" class="lesson-link active">Lesson 2: Variables</a></li>
-                <li><a href="lesson-js-03.html" class="lesson-link">Lesson 3: Data Types</a></li>
-                <li><a href="lesson-js-04.html" class="lesson-link">Lesson 4: Operators</a></li>
-                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
-                <li><a href="lesson-js-06.html" class="lesson-link">Lesson 6: Conditionals</a></li>
-                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
-                <li><a href="lesson-js-08.html" class="lesson-link">Lesson 8: Arrays</a></li>
-                <li><a href="lesson-js-09.html" class="lesson-link">Lesson 9: Objects</a></li>
-                <li><a href="lesson-js-10.html" class="lesson-link">Lesson 10: DOM Manipulation</a></li>
-                <li><a href="lesson-js-11.html" class="lesson-link">Lesson 11: Events</a></li>
-                <li><a href="lesson-js-12.html" class="lesson-link">Lesson 12: Async JavaScript</a></li>
-            </ul>
+            <div class="sidebar-title">JavaScript Lessons</div>
+            <a href="lesson-js-01.html">1. What is JavaScript?</a>
+            <a href="lesson-js-02.html" class="active">2. Variables & Data Types</a>
+            <a href="lesson-js-03.html">3. Operators</a>
+            <a href="lesson-js-04.html">4. Conditionals</a>
+            <a href="lesson-js-05.html">5. Loops</a>
+            <a href="lesson-js-06.html">6. Functions</a>
+            <a href="lesson-js-07.html">7. Arrays</a>
+            <a href="lesson-js-08.html">8. Objects</a>
+            <a href="lesson-js-09.html">9. DOM Manipulation</a>
+            <a href="lesson-js-10.html">10. Events</a>
+            <a href="lesson-js-11.html">11. ES6 Features</a>
+            <a href="lesson-js-12.html">12. Async & Promises</a>
+            <a href="lesson-js-13.html">13. Modules & Imports</a>
+            <a href="lesson-js-14.html">14. Error Handling</a>
+            <a href="lesson-js-15.html">15. Best Practices</a>
         </aside>
-
-        <main class="lesson-content">
+        <main class="main-content">
             <div class="lesson-header">
+                <h1>Variables & Data Types</h1>
+                <div class="lesson-meta">Lesson 2 of 15</div>
+            </div>
+            <div class="content-area">
+<div class="lesson-header">
                 <div class="lesson-number">Lesson 2 of 12</div>
                 <h1>Variables in JavaScript</h1>
             </div>
@@ -167,38 +196,12 @@ console.log("New Age:", studentAge);</textarea>
                 <a href="lesson-js-01.html" class="nav-button">← Previous Lesson</a>
                 <a href="lesson-js-03.html" class="nav-button">Next Lesson →</a>
             </div>
+            </div>
         </main>
     </div>
-
-    <script>
-        function runCode() {
-            const code = document.getElementById('codeInput').value;
-            const output = document.getElementById('console-output');
-            output.innerHTML = '';
-            
-            // Capture console.log output
-            const logs = [];
-            const originalLog = console.log;
-            console.log = function(...args) {
-                logs.push(args.map(arg => 
-                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-                ).join(' '));
-                originalLog.apply(console, args);
-            };
-            
-            try {
-                eval(code);
-                output.innerHTML = logs.join('\n') || 'Code executed successfully (no output)';
-                output.style.color = '#00b894';
-            } catch (error) {
-                output.innerHTML = 'Error: ' + error.message;
-                output.style.color = '#d63031';
-            }
-            
-            // Restore console.log
-            console.log = originalLog;
-        }
-    </script>
-    <script src="../scripts/practice.js?v=1000"></script>
+    <footer>
+        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+        <p>A helpful aid for Students working on the Digital Bones Box project</p>
+    </footer>
 </body>
 </html>

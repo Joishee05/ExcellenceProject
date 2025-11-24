@@ -3,90 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Lessons - SLU LearnCode</title>
-    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
-    <style>
-        .tutorial-overview {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-        
-        .overview-header h1 {
-            font-size: 2.5rem;
-            color: var(--slu-blue);
-            margin-bottom: 0.5rem;
-        }
-        
-        .overview-header p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-        
-        .lessons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .lesson-card {
-            background: var(--white);
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .lesson-card:hover {
-            border-color: var(--slu-blue);
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        .lesson-card h3 {
-            color: var(--slu-blue);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .lesson-card p {
-            color: var(--text-gray);
-            flex-grow: 1;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-        
-        .lesson-card .btn {
-            display: inline-block;
-            background: var(--slu-blue);
-            color: var(--white);
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            text-align: center;
-            transition: background 0.3s ease;
-        }
-        
-        .lesson-card .btn:hover {
-            background: #002570;
-        }
-        
-        .lesson-section-title {
-            font-size: 1.5rem;
-            color: var(--slu-blue);
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--slu-gold);
-        }
-    </style>
+    <title>JavaScript Tutorials - SLU LearnCode</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=2000">
 </head>
 <body>
     <nav class="navbar">
@@ -101,84 +19,129 @@
                 <li><a href="html-tutorials.html">HTML</a></li>
                 <li><a href="css-tutorials.html">CSS</a></li>
                 <li><a href="js-tutorials.html" class="active">JavaScript</a></li>
-                <li><a href="project-walkthrough.html">DigitalBonesBox Project</a></li>
+                <li><a href="project-walkthrough.html">Project</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="tutorial-overview">
+    <div class="lesson-overview">
         <div class="overview-header">
             <h1>JavaScript Lessons</h1>
-            <p>Learn programming with JavaScript. Master variables, functions, DOM manipulation, events, and build interactive web applications.</p>
+            <p>Master programming with JavaScript. Learn variables, functions, DOM manipulation, events, and build interactive web applications that respond to user actions.</p>
         </div>
 
-        <h2 class="lesson-section-title">Basics</h2>
+        <h2 class="lesson-section-title">Programming Basics</h2>
         <div class="lessons-grid">
-            <a href="Lessons/lesson-js-01.html" class="lesson-card">
+            <a href="Lessons/lesson-js-01.html" class="lesson-card card-orange">
                 <h3>1. What is JavaScript?</h3>
-                <p>Understand JavaScript fundamentals and how it makes websites interactive.</p>
+                <p>Understand JavaScript fundamentals and how it makes websites interactive and dynamic.</p>
                 <span class="btn">Start Lesson</span>
             </a>
-            <a href="Lessons/lesson-js-02.html" class="lesson-card">
+
+            <a href="Lessons/lesson-js-02.html" class="lesson-card card-orange">
                 <h3>2. Variables & Data Types</h3>
-                <p>Learn about variables, data types, and how to store information in JavaScript.</p>
+                <p>Learn about variables, data types, and how to store and manipulate information in JavaScript.</p>
                 <span class="btn">Start Lesson</span>
             </a>
-            <a href="Lessons/lesson-js-03.html" class="lesson-card">
+
+            <a href="Lessons/lesson-js-03.html" class="lesson-card card-orange">
                 <h3>3. Operators</h3>
-                <p>Master arithmetic, logical, and comparison operators.</p>
+                <p>Master arithmetic, logical, and comparison operators for calculations and logic.</p>
                 <span class="btn">Start Lesson</span>
             </a>
-            <a href="Lessons/lesson-js-04.html" class="lesson-card">
+
+            <a href="Lessons/lesson-js-04.html" class="lesson-card card-orange">
                 <h3>4. Conditionals</h3>
-                <p>Control program flow with if, else, and switch statements.</p>
-                <span class="btn">Start Lesson</span>
-            </a>
-            <a href="Lessons/lesson-js-05.html" class="lesson-card">
-                <h3>5. Loops</h3>
-                <p>Repeat code with for, while, and do-while loops.</p>
-                <span class="btn">Start Lesson</span>
-            </a>
-            <a href="Lessons/lesson-js-06.html" class="lesson-card">
-                <h3>6. Functions</h3>
-                <p>Create reusable code blocks with functions.</p>
+                <p>Control program flow with if, else, and switch statements for decision making.</p>
                 <span class="btn">Start Lesson</span>
             </a>
         </div>
 
-        <h2 class="lesson-section-title">Intermediate</h2>
+        <h2 class="lesson-section-title">Control Flow & Functions</h2>
         <div class="lessons-grid">
-            <a href="Lessons/lesson-js-07.html" class="lesson-card">
+            <a href="Lessons/lesson-js-05.html" class="lesson-card card-pink">
+                <h3>5. Loops</h3>
+                <p>Repeat code efficiently with for, while, and do-while loops for iterating over data.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+
+            <a href="Lessons/lesson-js-06.html" class="lesson-card card-pink">
+                <h3>6. Functions</h3>
+                <p>Create reusable code blocks with functions for organizing and optimizing your code.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+
+            <a href="Lessons/lesson-js-07.html" class="lesson-card card-pink">
                 <h3>7. Arrays</h3>
                 <p>Work with arrays and array methods to store and manipulate collections of data.</p>
                 <span class="btn">Start Lesson</span>
             </a>
-            <a href="Lessons/lesson-js-08.html" class="lesson-card">
+
+            <a href="Lessons/lesson-js-08.html" class="lesson-card card-pink">
                 <h3>8. Objects</h3>
-                <p>Create and work with objects to organize related data and functionality.</p>
+                <p>Create and work with objects to organize related data and functionality logically.</p>
                 <span class="btn">Start Lesson</span>
             </a>
-            <a href="Lessons/lesson-js-09.html" class="lesson-card">
+        </div>
+
+        <h2 class="lesson-section-title">DOM & Events</h2>
+        <div class="lessons-grid">
+            <a href="Lessons/lesson-js-09.html" class="lesson-card card-blue">
                 <h3>9. DOM Manipulation</h3>
-                <p>Select and modify HTML elements using JavaScript.</p>
+                <p>Select and modify HTML elements using JavaScript to create dynamic page updates.</p>
                 <span class="btn">Start Lesson</span>
             </a>
-            <a href="Lessons/lesson-js-10.html" class="lesson-card">
+
+            <a href="Lessons/lesson-js-10.html" class="lesson-card card-blue">
                 <h3>10. Events</h3>
-                <p>Respond to user interactions with event listeners and handlers.</p>
+                <p>Respond to user interactions like clicks and typing with event listeners and handlers.</p>
                 <span class="btn">Start Lesson</span>
             </a>
-            <a href="Lessons/lesson-js-11.html" class="lesson-card">
+
+            <a href="Lessons/lesson-js-11.html" class="lesson-card card-blue">
                 <h3>11. ES6 Features</h3>
                 <p>Learn modern JavaScript with arrow functions, destructuring, and spread operator.</p>
                 <span class="btn">Start Lesson</span>
             </a>
-            <a href="Lessons/lesson-js-12.html" class="lesson-card">
+
+            <a href="Lessons/lesson-js-12.html" class="lesson-card card-blue">
                 <h3>12. Async & Promises</h3>
-                <p>Master asynchronous programming with callbacks, promises, and async/await.</p>
+                <p>Master asynchronous programming with callbacks, promises, and async/await syntax.</p>
                 <span class="btn">Start Lesson</span>
             </a>
         </div>
+
+        <h2 class="lesson-section-title">Advanced Topics</h2>
+        <div class="lessons-grid">
+            <a href="Lessons/lesson-js-13.html" class="lesson-card card-green">
+                <h3>13. Fetch API</h3>
+                <p>Make HTTP requests to fetch data from servers and APIs dynamically.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+
+            <a href="Lessons/lesson-js-14.html" class="lesson-card card-green">
+                <h3>14. Error Handling</h3>
+                <p>Write robust code with try-catch blocks and error handling best practices.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+
+            <a href="Lessons/lesson-js-15.html" class="lesson-card card-green">
+                <h3>15. Debugging</h3>
+                <p>Master debugging techniques to find and fix errors in your JavaScript code.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+
+            <a href="Lessons/lesson-js-16.html" class="lesson-card card-green">
+                <h3>16. Project: Build an App</h3>
+                <p>Put it all together and build a complete interactive web application.</p>
+                <span class="btn">Start Project</span>
+            </a>
+        </div>
     </div>
+
+    <footer>
+        <p><strong>SLU LearnCode</strong> - JavaScript Tutorials</p>
+        <p>Interactive learning platform for Saint Louis University students</p>
+    </footer>
 </body>
 </html>
