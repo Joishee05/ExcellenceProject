@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 6: Borders & Spacing - SLU LearnCode</title>
+    <title>Lesson 15: Advanced Techniques - SLU LearnCode</title>
     <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -63,7 +63,7 @@
             <a href="lesson-css-03.html">3. Colors & Backgrounds</a>
             <a href="lesson-css-04.html">4. Text Styling</a>
             <a href="lesson-css-05.html">5. Box Model</a>
-            <a href="lesson-css-06.html" class="active">6. Borders & Spacing</a>
+            <a href="lesson-css-06.html">6. Borders & Spacing</a>
             <a href="lesson-css-07.html">7. Flexbox</a>
             <a href="lesson-css-08.html">8. Grid Layout</a>
             <a href="lesson-css-09.html">9. Positioning</a>
@@ -72,95 +72,80 @@
             <a href="lesson-css-12.html">12. Variables & Functions</a>
             <a href="lesson-css-13.html">13. Media Queries</a>
             <a href="lesson-css-14.html">14. Transform & Perspective</a>
-            <a href="lesson-css-15.html">15. Advanced Techniques</a>
+            <a href="lesson-css-15.html" class="active">15. Advanced Techniques</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Borders & Spacing</h1>
-                <div class="lesson-meta">Lesson 6 of 15</div>
+                <h1>Advanced Techniques</h1>
+                <div class="lesson-meta">Lesson 15 of 15</div>
             </div>
             <div class="content-area">
 <div class="lesson-header">
-                <div class="lesson-number">Lesson 6 of 10</div>
-                <h1>Borders & Spacing</h1>
+                <h1>What is CSS? - Advanced Techniques</h1>
+                <div class="lesson-meta">Lesson 15 of 15</div>
             </div>
-            <div class="lesson-text">
-                <p>Learn to control borders, margins, padding, and rounded corners.</p>
-                <h3>Border Properties:</h3>
+            <div class="content-area">
+                <h2>Introduction to HTML</h2>
+                <p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard markup language used to create web pages. Every website you visit on the internet is built with HTML at its core.</p>
+                <p>HTML works with two other technologies to create complete web experiences:</p>
                 <ul>
-                    <li><code>border-width</code> - Thickness</li>
-                    <li><code>border-style</code> - solid, dashed, dotted, double</li>
-                    <li><code>border-color</code> - Color of border</li>
-                    <li><code>border-radius</code> - Rounded corners</li>
+                    <li><strong>CSS</strong> - Handles styling and visual appearance</li>
+                    <li><strong>JavaScript</strong> - Adds interactivity and dynamic behavior</li>
                 </ul>
-                <h3>Shorthand:</h3>
-                <pre><code>border: 2px solid red; /* width style color */
-border-radius: 10px; /* rounded corners */</code></pre>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    .card {
-        width: 200px;
-        padding: 20px;
-        margin: 20px;
-        background: white;
-        display: inline-block;
-    }
-    
-    .solid-border {
-        border: 3px solid #3498db;
-    }
-    
-    .dashed-border {
-        border: 3px dashed #e74c3c;
-    }
-    
-    .rounded {
-        border: 3px solid #2ecc71;
-        border-radius: 15px;
-    }
-    
-    .circle {
-        width: 100px;
-        height: 100px;
-        border: 3px solid #9b59b6;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-</head>
-<body style="background: #ecf0f1; padding: 20px;">
-    <div class="card solid-border">Solid Border</div>
-    <div class="card dashed-border">Dashed Border</div>
-    <div class="card rounded">Rounded Corners</div>
-    <div class="card circle">Circle!</div>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+                <div class="highlight-box">
+                    <strong>Key Concept:</strong> HTML provides the structure and content of web pages. Think of HTML as the skeleton of a building - it creates the basic framework that everything else is built upon.
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
-            </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a card with:</p>
-                <ol>
-                    <li>A dotted border</li>
-                    <li>Rounded corners (border-radius: 20px)</li>
-                    <li>Padding and margin of your choice</li>
-                    <li>A nice background color</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-css-05.html" class="nav-button">← Previous</a>
-                <a href="lesson-css-07.html" class="nav-button">Next Lesson →</a>
+                <h2>What Does HTML Do?</h2>
+                <p>HTML tells web browsers how to structure and display content. Browsers like Chrome, Firefox, Safari, and Edge read HTML code and convert it into the visual web pages you see.</p>
+                <p>HTML does several important things:</p>
+                <ul>
+                    <li>Organizes content into logical sections</li>
+                    <li>Defines the meaning of different content types</li>
+                    <li>Creates links between pages</li>
+                    <li>Embeds images, audio, and video</li>
+                    <li>Creates forms for user input</li>
+                    <li>Provides metadata about the page</li>
+                </ul>
+                <h2>HTML Tags and Elements</h2>
+                <p>HTML uses tags to mark up content. Tags are keywords surrounded by angle brackets.</p>
+                <div class="code-block">&lt;tagname&gt;content&lt;/tagname&gt;</div>
+                <p>Most tags come in pairs:</p>
+                <ul>
+                    <li><strong>Opening tag</strong> - Example: <code>&lt;h1&gt;</code></li>
+                    <li><strong>Closing tag</strong> - Example: <code>&lt;/h1&gt;</code></li>
+                    <li><strong>Content</strong> - The text or elements between the tags</li>
+                </ul>
+                <h3>Example:</h3>
+                <div class="code-block">&lt;h1&gt;Welcome to Web Development&lt;/h1&gt;<br/>&lt;p&gt;This is my first web page.&lt;/p&gt;</div>
+                <div class="highlight-box">
+                    <strong>Important:</strong> The forward slash in the closing tag is what tells the browser where the element ends.
+                </div>
+                <h2>Why Learn HTML?</h2>
+                <ul>
+                    <li><strong>Foundation of Web:</strong> HTML is the foundation of all websites</li>
+                    <li><strong>Easy to Learn:</strong> HTML is simple and beginner-friendly</li>
+                    <li><strong>Gateway to Web Development:</strong> You need HTML to learn CSS and JavaScript</li>
+                    <li><strong>In-Demand Skill:</strong> HTML skills are valuable in the job market</li>
+                    <li><strong>Creative Expression:</strong> Build and publish your own web content</li>
+                </ul>
+                <h2>What You Will Learn</h2>
+                <p>In this 15-lesson course, we'll cover:</p>
+                <ul>
+                    <li>HTML structure and best practices</li>
+                    <li>Common HTML tags and their uses</li>
+                    <li>Text formatting and semantic HTML</li>
+                    <li>Links, images, and media</li>
+                    <li>Forms and user input</li>
+                    <li>Tables and data organization</li>
+                    <li>Accessibility and SEO</li>
+                </ul>
+                <div class="highlight-box">
+                    <strong>Next Lesson:</strong> In Lesson 2, we'll explore the basic structure of an HTML document and create our first web page.
+                </div>
+                <div class="nav-footer">
+                    <button class="btn btn-secondary" disabled>Previous Lesson</button>
+                    <a href="lesson-css-02.html" class="btn">Next Lesson</a>
+                </div>
             </div>
             </div>
         </main>
