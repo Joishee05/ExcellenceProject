@@ -1,0 +1,95 @@
+/* JavaScript Tutorial Specific Styles */
+
+.console-panel {
+    margin: 1.5rem 0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.console-header {
+    background-color: var(--darker-bg);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1.25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.clear-btn {
+    background-color: var(--error-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.clear-btn:hover {
+    background-color: #b91c1c;
+    box-shadow: var(--shadow-sm);
+}
+
+.console-output {
+    background-color: var(--darker-bg);
+    color: #e2e8f0;
+    padding: 1.5rem;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.console-output:empty::before {
+    content: "// Console output will appear here...";
+    color: #718096;
+    font-style: italic;
+}
+
+.console-output .error {
+    color: #fc8181;
+    font-weight: bold;
+}
+
+.console-output .warning {
+    color: #f6ad55;
+}
+
+.console-output .success {
+    color: #68d391;
+}
+
+.console-output .log {
+    color: #e2e8f0;
+}
+
+/* Scrollbar styling for console */
+.console-output::-webkit-scrollbar {
+    width: 8px;
+}
+
+.console-output::-webkit-scrollbar-track {
+    background: #2d3748;
+}
+
+.console-output::-webkit-scrollbar-thumb {
+    background: #4a5568;
+    border-radius: 4px;
+}
+
+.console-output::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+}

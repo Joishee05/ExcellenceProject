@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 2: style.css - DigitalBonesBox Walkthrough</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="styles/walkthrough.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html" class="active">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>DigitalBonesBox Files</h2>
+            <a href="project-walkthrough.html" class="back-link">← Back to Overview</a>
+            <div class="lesson-links">
+                <a href="walkthrough-boneset-html.html" class="lesson-link">
+                    <span class="lesson-number">File 1</span>
+                    <span class="lesson-title">boneset.html</span>
+                </a>
+                <a href="walkthrough-style-css.html" class="lesson-link active">
+                    <span class="lesson-number">File 2</span>
+                    <span class="lesson-title">style.css</span>
+                </a>
+                <a href="walkthrough-main-js.html" class="lesson-link">
+                    <span class="lesson-number">File 3</span>
+                    <span class="lesson-title">main.js</span>
+                </a>
+                <a href="walkthrough-api-js.html" class="lesson-link">
+                    <span class="lesson-number">File 4</span>
+                    <span class="lesson-title">api.js</span>
+                </a>
+                <a href="walkthrough-dropdowns-js.html" class="lesson-link">
+                    <span class="lesson-number">File 5</span>
+                    <span class="lesson-title">dropdowns.js</span>
+                </a>
+                <a href="walkthrough-viewer-js.html" class="lesson-link">
+                    <span class="lesson-number">File 6</span>
+                    <span class="lesson-title">viewer.js</span>
+                </a>
+                <a href="walkthrough-search-js.html" class="lesson-link">
+                    <span class="lesson-number">File 7</span>
+                    <span class="lesson-title">search.js</span>
+                </a>
+                <a href="walkthrough-server-js.html" class="lesson-link">
+                    <span class="lesson-number">File 8</span>
+                    <span class="lesson-title">server.js</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson active">
+                <div class="lesson-header">
+                    <span class="lesson-meta">File 2 of 8</span>
+                    <h1>style.css - The Complete Styling System</h1>
+                </div>
+
+                <div class="lesson-text">
+                    <h2>What is style.css?</h2>
+                    <p>This 1,926-line file is where all the visual magic happens. Every color, every spacing decision, every animation - it's all defined here. Without this file, the app would just be black text on a white background.</p>
+
+                    <div class="info-box">
+                        <h3>Think of it like this</h3>
+                        <p>If you're building a house:</p>
+                        <ul>
+                            <li><strong>HTML</strong> - The walls, floors, and basic structure</li>
+                            <li><strong>CSS</strong> - The paint, flooring, light fixtures, and furniture</li>
+                            <li><strong>JavaScript</strong> - The electrical wiring and plumbing that makes things work</li>
+                        </ul>
+                    </div>
+
+                    <h2>CSS Variables (Lines 2-60)</h2>
+                    <p>The file kicks off with CSS variables - these are like setting up a color palette before you start painting:</p>
+
+                    <div class="code-explanation">
+                        <pre>:root {
+    --slu-navy: #003366;
+    --slu-blue: #1e4a72;
+    --slu-gold: #FFD700;
+    --slu-white: #FFFFFF;
+    
+    --primary: var(--slu-navy);
+    --secondary: var(--slu-gold);
+    --background: #ffffff;
+    --text-primary: #1e293b;
+}</pre>
+                    </div>
+
+                    <h3>How CSS variables work</h3>
+                    <ul>
+                        <li>They let you store values and reuse them anywhere in your CSS</li>
+                        <li>Always start with two dashes like <code>--my-variable</code></li>
+                        <li>Access them using <code>var(--my-variable)</code></li>
+                        <li>Defined in <code>:root</code> so they're available everywhere</li>
+                    </ul>
+
+                    <h3>The SLU color scheme</h3>
+                    <ul>
+                        <li><code>--slu-navy: #003366</code> - The main dark blue you see throughout</li>
+                        <li><code>--slu-blue: #1e4a72</code> - A lighter blue for variety</li>
+                        <li><code>--slu-gold: #FFD700</code> - The gold accent that makes things pop</li>
+                        <li>These come straight from Saint Louis University's official brand colors</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Why Use CSS Variables?</h3>
+                        <p><strong>Without variables:</strong> If you want to change the primary color, you'd have to find and replace it in 50+ places.</p>
+                        <p><strong>With variables:</strong> Change <code>--primary</code> once, and it updates everywhere automatically!</p>
+                    </div>
+
+                    <h2>Box Shadows (Lines 31-38)</h2>
+                    <div class="code-explanation">
+                        <pre>--shadow-xs: 0 1px 2px 0 rgba(0, 51, 102, 0.05);
+--shadow-sm: 0 1px 3px 0 rgba(0, 51, 102, 0.1);
+--shadow-md: 0 4px 6px -1px rgba(0, 51, 102, 0.1);
+--shadow-lg: 0 10px 15px -3px rgba(0, 51, 102, 0.1);
+--shadow-xl: 0 20px 25px -5px rgba(0, 51, 102, 0.1);</pre>
+                    </div>
+
+                    <p>These create depth effects with different intensity levels:</p>
+                    <ul>
+                        <li><code>--shadow-xs</code> - Very subtle, barely visible</li>
+                        <li><code>--shadow-sm</code> - Small, for buttons and inputs</li>
+                        <li><code>--shadow-md</code> - Medium, for cards</li>
+                        <li><code>--shadow-lg</code> - Large, for modals</li>
+                        <li><code>--shadow-xl</code> - Extra large, for important elements</li>
+                    </ul>
+
+                    <h2>Typography (Lines 49-51)</h2>
+                    <div class="code-explanation">
+                        <pre>--font-primary: 'Inter', -apple-system, sans-serif;
+--font-display: 'Crimson Text', Georgia, serif;</pre>
+                    </div>
+
+                    <ul>
+                        <li><strong>Inter:</strong> Modern sans-serif font for body text (clean, readable)</li>
+                        <li><strong>Crimson Text:</strong> Elegant serif font for headings (traditional, academic)</li>
+                        <li>Fallbacks: If custom fonts fail to load, browser uses system fonts</li>
+                    </ul>
+
+                    <h2>Global Resets (Lines 54-85)</h2>
+                    <div class="code-explanation">
+                        <pre>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--background);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}</pre>
+                    </div>
+
+                    <h3>Why Reset Styles?</h3>
+                    <ul>
+                        <li>Different browsers have different default styles</li>
+                        <li>Resetting creates a consistent starting point</li>
+                        <li><code>box-sizing: border-box</code> makes width calculations easier</li>
+                        <li><code>-webkit-font-smoothing</code> makes text look smoother on Mac/iOS</li>
+                    </ul>
+
+                    <h2>Header Styling (Lines 100-180)</h2>
+                    <p>The header uses <strong>Flexbox</strong> for layout:</p>
+
+                    <div class="code-explanation">
+                        <pre>#badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--gradient-primary);
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow-md);
+}</pre>
+                    </div>
+
+                    <ul>
+                        <li><code>display: flex</code> - Enables flexbox layout</li>
+                        <li><code>justify-content: space-between</code> - Spreads items with space between</li>
+                        <li><code>align-items: center</code> - Vertically centers items</li>
+                        <li><code>background: var(--gradient-primary)</code> - Navy to blue gradient</li>
+                    </ul>
+
+                    <h2>Dropdown Styling (Lines 300-450)</h2>
+                    <p>The three cascading dropdowns (Boneset → Bone → Sub-bone) use custom styling:</p>
+
+                    <div class="code-explanation">
+                        <pre>select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--background);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    border-color: var(--primary);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}</pre>
+                    </div>
+
+                    <h3>Focus States for Accessibility</h3>
+                    <ul>
+                        <li><code>:hover</code> - Changes appearance when mouse hovers</li>
+                        <li><code>:focus</code> - Changes when keyboard user tabs to element</li>
+                        <li>Blue outline helps keyboard users see where they are</li>
+                        <li><strong>Never remove focus styles!</strong> Keyboard users need them</li>
+                    </ul>
+
+                    <h2>Content Grid Layout (Lines 600-750)</h2>
+                    <p>The side-by-side panels use <strong>CSS Grid</strong>:</p>
+
+                    <div class="code-explanation">
+                        <pre>.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}</pre>
+                    </div>
+
+                    <ul>
+                        <li><code>grid-template-columns: 1fr 1fr</code> - Two equal columns</li>
+                        <li><code>1fr</code> = "1 fraction" (equal space)</li>
+                        <li><code>gap: 2rem</code> - Space between columns</li>
+                        <li><strong>Responsive:</strong> On mobile, switches to single column</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Grid vs Flexbox</h3>
+                        <ul>
+                            <li><strong>Flexbox:</strong> One-dimensional (row OR column)</li>
+                            <li><strong>Grid:</strong> Two-dimensional (rows AND columns)</li>
+                            <li><strong>Use Flexbox for:</strong> Navigation bars, button groups</li>
+                            <li><strong>Use Grid for:</strong> Page layouts, card galleries</li>
+                        </ul>
+                    </div>
+
+                    <h2>Responsive Design (Lines 1700-1926)</h2>
+                    <p>The file ends with <strong>media queries</strong> for different screen sizes:</p>
+
+                    <div class="code-explanation">
+                        <pre>@media (max-width: 1024px) {
+    .container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #badge {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+}</pre>
+                    </div>
+
+                    <h3>Breakpoints Explained</h3>
+                    <ul>
+                        <li><strong>1024px</strong> - Tablets in landscape</li>
+                        <li><strong>768px</strong> - Tablets in portrait, large phones</li>
+                        <li><strong>480px</strong> - Small phones</li>
+                        <li>Styles "cascade down" - smaller screens inherit larger screen styles</li>
+                    </ul>
+
+                    <h2>Animations & Transitions</h2>
+                    <p>Smooth animations make the interface feel polished:</p>
+
+                    <div class="code-explanation">
+                        <pre>button {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}</pre>
+                    </div>
+
+                    <ul>
+                        <li><code>transition</code> - Smoothly animates changes over time</li>
+                        <li><code>transform: translateY(-2px)</code> - Lifts element up 2 pixels</li>
+                        <li><code>@keyframes</code> - Defines custom animations</li>
+                        <li><code>fadeIn</code> animation makes content appear smoothly</li>
+                    </ul>
+
+                    <h2>Key CSS Concepts Used</h2>
+                    <ul>
+                        <li><strong>CSS Variables:</strong> Reusable values for consistency</li>
+                        <li><strong>Flexbox:</strong> One-dimensional layouts (header, navigation)</li>
+                        <li><strong>Grid:</strong> Two-dimensional layouts (content panels)</li>
+                        <li><strong>Media Queries:</strong> Responsive design for all devices</li>
+                        <li><strong>Pseudo-classes:</strong> :hover, :focus, :active for interactivity</li>
+                        <li><strong>Transitions:</strong> Smooth property changes</li>
+                        <li><strong>Animations:</strong> Complex multi-step effects</li>
+                        <li><strong>Box Shadow:</strong> Depth and elevation</li>
+                        <li><strong>Border Radius:</strong> Rounded corners</li>
+                        <li><strong>Gradients:</strong> Color transitions</li>
+                    </ul>
+
+                    <h2>Professional Practices</h2>
+                    <ul>
+                        <li><strong>BEM Naming:</strong> Block__Element--Modifier pattern for class names</li>
+                        <li><strong>Mobile-First:</strong> Base styles for mobile, media queries add desktop features</li>
+                        <li><strong>Accessibility:</strong> Focus states, sufficient color contrast</li>
+                        <li><strong>Performance:</strong> Hardware-accelerated transforms, efficient selectors</li>
+                        <li><strong>Maintainability:</strong> Variables make updates easy</li>
+                        <li><strong>Consistency:</strong> Reusable spacing, color, shadow values</li>
+                    </ul>
+
+                    <p class="tutorial-link"><a href="css-tutorials.html">Review CSS Lessons 1-10</a> for foundational CSS concepts</p>
+                </div>
+
+                <div class="lesson-navigation">
+                    <a href="walkthrough-boneset-html.html" class="nav-btn secondary">← Previous: boneset.html</a>
+                    <a href="walkthrough-main-js.html" class="nav-btn">Next: main.js →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

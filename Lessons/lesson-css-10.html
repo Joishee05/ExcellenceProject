@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10: Transitions & Animations - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>CSS Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-css-01.html" class="lesson-link">1. What is CSS?</a></li>
+                <li><a href="lesson-css-02.html" class="lesson-link">2. Selectors</a></li>
+                <li><a href="lesson-css-03.html" class="lesson-link">3. Colors & Backgrounds</a></li>
+                <li><a href="lesson-css-04.html" class="lesson-link">4. Text Styling</a></li>
+                <li><a href="lesson-css-05.html" class="lesson-link">5. Box Model</a></li>
+                <li><a href="lesson-css-06.html" class="lesson-link">6. Borders & Spacing</a></li>
+                <li><a href="lesson-css-07.html" class="lesson-link">7. Flexbox</a></li>
+                <li><a href="lesson-css-08.html" class="lesson-link">8. Grid Layout</a></li>
+                <li><a href="lesson-css-09.html" class="lesson-link">9. Positioning</a></li>
+                <li><a href="lesson-css-10.html" class="lesson-link active">10. Transitions & Animations</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 10 of 10</div>
+                <h1>Transitions & Animations</h1>
+            </div>
+            <div class="lesson-text">
+                <p>Add motion and interactivity to your website with transitions and animations!</p>
+                <h3>Transitions:</h3>
+                <p>Smooth changes between property values:</p>
+                <ul>
+                    <li><code>transition-property</code> - What to animate</li>
+                    <li><code>transition-duration</code> - How long</li>
+                    <li><code>transition-timing-function</code> - ease, linear, ease-in, ease-out</li>
+                </ul>
+                <h3>Shorthand:</h3>
+                <pre><code>transition: all 0.3s ease;</code></pre>
+                <h3>Animations:</h3>
+                <p>Create complex, repeating animations with keyframes!</p>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <p>Hover over the boxes to see the effects!</p>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+    .box {
+        width: 150px;
+        height: 150px;
+        margin: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        border-radius: 10px;
+        color: white;
+    }
+    
+    .transition-box {
+        background-color: #3498db;
+        transition: all 0.3s ease;
+    }
+    
+    .transition-box:hover {
+        background-color: #e74c3c;
+        transform: scale(1.2) rotate(5deg);
+    }
+    
+    .animate-box {
+        background-color: #2ecc71;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    
+    .slide-box {
+        background-color: #9b59b6;
+        animation: slide 3s ease-in-out infinite;
+    }
+    
+    @keyframes slide {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(50px); }
+    }
+</style>
+</head>
+<body style="padding: 20px; text-align: center;">
+    <div class="box transition-box">Hover Me!</div>
+    <div class="box animate-box">Pulse</div>
+    <div class="box slide-box">Slide</div>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Final Challenge:</h3>
+                <p>Create a button with:</p>
+                <ol>
+                    <li>A transition that changes color on hover</li>
+                    <li>A scale transform on hover</li>
+                    <li>Smooth transition (0.3s)</li>
+                    <li>Bonus: Add a box-shadow on hover</li>
+                </ol>
+                <p><strong>🎉 Congratulations!</strong> You've completed the CSS course!</p>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-css-09.html" class="nav-button">← Previous</a>
+                <a href="../js-tutorials.html" class="nav-button">Start JavaScript Course →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

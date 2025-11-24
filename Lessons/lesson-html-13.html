@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 13: Meta Tags & SEO - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 86.67%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link active">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link">15. iframes</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 13 of 15</div>
+                <h1>HTML Meta Tags & SEO</h1>
+            </div>
+            <div class="lesson-text">
+                <h3>What are Meta Tags?</h3>
+                <p>Meta tags provide metadata about your HTML document. They're crucial for SEO (Search Engine Optimization).</p>
+                <h3>Essential Meta Tags</h3>
+                <pre><code>&lt;!-- Character encoding --&gt;
+&lt;meta charset="UTF-8"&gt;
+
+&lt;!-- Viewport for responsive design --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+&lt;!-- Page description for search engines --&gt;
+&lt;meta name="description" content="Learn web development at SLU"&gt;
+
+&lt;!-- Keywords for SEO --&gt;
+&lt;meta name="keywords" content="HTML, CSS, JavaScript, web development"&gt;
+
+&lt;!-- Author information --&gt;
+&lt;meta name="author" content="Your Name"&gt;</code></pre>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of SLU student showcasing web projects">
+    <meta name="keywords" content="portfolio, web design, SLU, student work">
+    <meta name="author" content="John Doe">
+    <title>John Doe - Web Developer Portfolio</title>
+</head>
+<body>
+    <h1>Welcome to My Portfolio</h1>
+    <p>This page is optimized for search engines!</p>
+    
+    <section>
+        <h2>About This Page</h2>
+        <p>Meta tags in the head section help search engines understand this page.</p>
+        <p>The viewport meta tag makes this page mobile-friendly.</p>
+    </section>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a well-optimized page with:</p>
+                <ol>
+                    <li>All essential meta tags</li>
+                    <li>A descriptive title and description</li>
+                    <li>Relevant keywords for your content</li>
+                    <li>Author information</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-html-12.html" class="nav-button">← Previous</a>
+                <a href="lesson-html-14.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

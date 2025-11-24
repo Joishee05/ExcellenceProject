@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Box Model - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>CSS Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 50%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-css-01.html" class="lesson-link">1. What is CSS?</a></li>
+                <li><a href="lesson-css-02.html" class="lesson-link">2. Selectors</a></li>
+                <li><a href="lesson-css-03.html" class="lesson-link">3. Colors & Backgrounds</a></li>
+                <li><a href="lesson-css-04.html" class="lesson-link">4. Text Styling</a></li>
+                <li><a href="lesson-css-05.html" class="lesson-link active">5. Box Model</a></li>
+                <li><a href="lesson-css-06.html" class="lesson-link">6. Borders & Spacing</a></li>
+                <li><a href="lesson-css-07.html" class="lesson-link">7. Flexbox</a></li>
+                <li><a href="lesson-css-08.html" class="lesson-link">8. Grid Layout</a></li>
+                <li><a href="lesson-css-09.html" class="lesson-link">9. Positioning</a></li>
+                <li><a href="lesson-css-10.html" class="lesson-link">10. Transitions & Animations</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 5 of 10</div>
+                <h1>The Box Model</h1>
+            </div>
+            <div class="lesson-text">
+                <p>The CSS Box Model is fundamental to understanding layout. Every element is a box!</p>
+                <h3>The Box Model has 4 parts:</h3>
+                <ul>
+                    <li><strong>Content:</strong> The actual content (text, images)</li>
+                    <li><strong>Padding:</strong> Space between content and border</li>
+                    <li><strong>Border:</strong> Line around the padding</li>
+                    <li><strong>Margin:</strong> Space outside the border</li>
+                </ul>
+                <pre><code>/* Box Model Properties */
+.box {
+    width: 200px; /* Content width */
+    padding: 20px; /* Space inside */
+    border: 2px solid; /* Border line */
+    margin: 10px; /* Space outside */
+}</code></pre>
+                <div class="info-box"><strong>Remember:</strong> Total width = width + padding + border + margin</div>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+    .box {
+        width: 200px;
+        padding: 20px;
+        border: 5px solid #3498db;
+        margin: 20px auto;
+        background-color: #ecf0f1;
+        text-align: center;
+    }
+    
+    .box-visual {
+        background-color: #e74c3c;
+        color: white;
+        padding: 30px;
+        margin: 30px;
+        border: 10px solid #c0392b;
+    }
+</style>
+</head>
+<body>
+    <div class="box">
+        <p>This is the content area</p>
+    </div>
+    
+    <div class="box-visual">
+        Content (red)<br>
+        + Padding (30px)<br>
+        + Border (10px dark red)<br>
+        + Margin (30px)
+    </div>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a box with:</p>
+                <ol>
+                    <li>Width of 250px</li>
+                    <li>Padding of 25px</li>
+                    <li>A solid green border (3px)</li>
+                    <li>Margin of 15px</li>
+                    <li>A background color</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-css-04.html" class="nav-button">← Previous</a>
+                <a href="lesson-css-06.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

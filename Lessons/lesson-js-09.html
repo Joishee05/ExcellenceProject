@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9: Objects - JavaScript Tutorial</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthroughs.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link">Lesson 2: Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link">Lesson 3: Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link">Lesson 4: Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link">Lesson 6: Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link">Lesson 8: Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link active">Lesson 9: Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link">Lesson 10: DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link">Lesson 11: Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link">Lesson 12: Async JavaScript</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 9 of 12</div>
+                <h1>JavaScript Objects</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>Objects are collections of key-value pairs. They allow you to group related data and functionality together.</p>
+
+                <h2>Creating Objects</h2>
+                <p>Use curly braces <code>{}</code> to create an object:</p>
+                <pre><code>// Empty object
+let emptyObj = {};
+
+// Object with properties
+let person = {
+    name: "John",
+    age: 25,
+    city: "St. Louis"
+};
+
+// Objects can hold any type of value
+let student = {
+    firstName: "Alice",
+    lastName: "Smith",
+    age: 20,
+    gpa: 3.8,
+    isEnrolled: true,
+    courses: ["HTML", "CSS", "JavaScript"]
+};
+
+console.log(student);</code></pre>
+
+                <h2>Accessing Object Properties</h2>
+
+                <h3>Dot Notation</h3>
+                <pre><code>let person = {
+    name: "John",
+    age: 25,
+    city: "St. Louis"
+};
+
+console.log(person.name);  // "John"
+console.log(person.age);   // 25
+console.log(person.city);  // "St. Louis"</code></pre>
+
+                <h3>Bracket Notation</h3>
+                <pre><code>let person = {
+    name: "John",
+    age: 25,
+    "favorite color": "blue"  // Property with spaces
+};
+
+console.log(person["name"]);  // "John"
+console.log(person["age"]);   // 25
+
+// Necessary for properties with spaces
+console.log(person["favorite color"]); // "blue"
+
+// Useful with variables
+let prop = "name";
+console.log(person[prop]); // "John"</code></pre>
+
+                <h2>Modifying Objects</h2>
+                <pre><code>let car = {
+    brand: "Toyota",
+    model: "Camry",
+    year: 2020
+};
+
+// Change existing property
+car.year = 2021;
+console.log(car.year); // 2021
+
+// Add new property
+car.color = "blue";
+console.log(car.color); // "blue"
+
+// Delete property
+delete car.model;
+console.log(car); // { brand: "Toyota", year: 2021, color: "blue" }</code></pre>
+
+                <h2>Object Methods</h2>
+                <p>Objects can contain functions, called methods:</p>
+                <pre><code>let person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 25,
+    
+    // Method using regular function
+    greet: function() {
+        console.log("Hello, my name is " + this.firstName);
+    },
+    
+    // Shorthand method syntax (ES6)
+    getFullName() {
+        return this.firstName + " " + this.lastName;
+    },
+    
+    haveBirthday() {
+        this.age++;
+        console.log("Happy birthday! Now " + this.age);
+    }
+};
+
+person.greet();           // "Hello, my name is John"
+console.log(person.getFullName()); // "John Doe"
+person.haveBirthday();    // "Happy birthday! Now 26"</code></pre>
+
+                <div class="info-box">
+                    <p><strong>Note:</strong> The <code>this</code> keyword refers to the object that the method belongs to. It allows methods to access other properties and methods of the same object.</p>
+                </div>
+
+                <h2>Nested Objects</h2>
+                <p>Objects can contain other objects:</p>
+                <pre><code>let student = {
+    name: "Alice",
+    age: 20,
+    address: {
+        street: "123 Main St",
+        city: "St. Louis",
+        state: "MO",
+        zip: "63103"
+    },
+    grades: {
+        math: 95,
+        english: 88,
+        science: 92
+    }
+};
+
+// Access nested properties
+console.log(student.address.city);      // "St. Louis"
+console.log(student.grades.math);       // 95
+console.log(student.address.street);    // "123 Main St"</code></pre>
+
+                <h2>Looping Through Objects</h2>
+
+                <h3>For...in Loop</h3>
+                <pre><code>let person = {
+    name: "John",
+    age: 25,
+    city: "St. Louis"
+};
+
+// Loop through all properties
+for (let key in person) {
+    console.log(key + ": " + person[key]);
+}
+// Output:
+// name: John
+// age: 25
+// city: St. Louis</code></pre>
+
+                <h3>Object.keys(), Object.values(), Object.entries()</h3>
+                <pre><code>let student = {
+    name: "Alice",
+    age: 20,
+    gpa: 3.8
+};
+
+// Get all keys
+let keys = Object.keys(student);
+console.log(keys); // ["name", "age", "gpa"]
+
+// Get all values
+let values = Object.values(student);
+console.log(values); // ["Alice", 20, 3.8]
+
+// Get key-value pairs
+let entries = Object.entries(student);
+console.log(entries);
+// [["name", "Alice"], ["age", 20], ["gpa", 3.8]]
+
+// Loop through entries
+Object.entries(student).forEach(([key, value]) => {
+    console.log(`${key}: ${value}`);
+});</code></pre>
+
+                <h2>Object Destructuring</h2>
+                <p>Extract properties into variables:</p>
+                <pre><code>let person = {
+    name: "John",
+    age: 25,
+    city: "St. Louis"
+};
+
+// Extract properties
+let { name, age, city } = person;
+
+console.log(name);  // "John"
+console.log(age);   // 25
+console.log(city);  // "St. Louis"
+
+// With different variable names
+let { name: personName, age: personAge } = person;
+console.log(personName); // "John"
+console.log(personAge);  // 25</code></pre>
+
+                <h2>Try It Yourself</h2>
+                <p>Practice working with objects:</p>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>JavaScript Editor</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="codeInput">// Create a student object
+let student = {
+    name: "Maria",
+    major: "Computer Science",
+    year: 3,
+    gpa: 3.9,
+    
+    introduce() {
+        return `Hi, I'm ${this.name}, a ${this.major} major.`;
+    },
+    
+    getStatus() {
+        if (this.gpa >= 3.5) {
+            return "Dean's List";
+        } else {
+            return "Good Standing";
+        }
+    }
+};
+
+// Access properties
+console.log("Name:", student.name);
+console.log("Major:", student.major);
+
+// Call methods
+console.log(student.introduce());
+console.log("Status:", student.getStatus());
+
+// Loop through properties
+console.log("\nAll properties:");
+for (let key in student) {
+    if (typeof student[key] !== 'function') {
+        console.log(`  ${key}: ${student[key]}`);
+    }
+}</textarea>
+                    <div class="preview-area">
+                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
+                    </div>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p>Create objects for these scenarios:</p>
+                    <ul>
+                        <li>A <code>book</code> object with title, author, pages, and a method that returns a description</li>
+                        <li>A <code>calculator</code> object with methods for add, subtract, multiply, and divide</li>
+                        <li>A <code>car</code> object with make, model, year, and a method to calculate the car's age</li>
+                        <li>Use nested objects to create a <code>university</code> object with location info and student count</li>
+                        <li>Loop through an object and log only the properties that are numbers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-js-08.html" class="nav-button">← Previous Lesson</a>
+                <a href="lesson-js-10.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const output = document.getElementById('console-output');
+            output.innerHTML = '';
+            
+            const logs = [];
+            const originalLog = console.log;
+            console.log = function(...args) {
+                logs.push(args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' '));
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                output.innerHTML = logs.join('\n') || 'Code executed successfully (no output)';
+                output.style.color = '#00b894';
+            } catch (error) {
+                output.innerHTML = 'Error: ' + error.message;
+                output.style.color = '#d63031';
+            }
+            
+            console.log = originalLog;
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

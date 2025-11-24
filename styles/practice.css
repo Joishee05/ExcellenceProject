@@ -1,0 +1,332 @@
+/**
+ * Practice Section Styling
+ * Enhanced interactive code editor and challenge feedback
+ */
+
+/* Code Editor Container */
+.interactive-section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid #e0e0e0;
+}
+
+.interactive-section h3 {
+    color: var(--slu-blue);
+    margin-top: 0;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.interactive-section p {
+    color: var(--text-gray);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* Code Editor */
+.code-editor {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.code-input {
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+    font-family: 'Monaco', 'Courier New', 'Courier', monospace;
+    font-size: 0.9rem;
+    border: none;
+    resize: vertical;
+    background: #fafafa;
+    color: #333;
+    line-height: 1.5;
+    tab-size: 4;
+}
+
+.code-input:focus {
+    outline: none;
+    background: white;
+    box-shadow: inset 0 0 0 2px var(--slu-blue);
+}
+
+/* Run Button */
+.run-button {
+    background: var(--slu-blue);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.run-button:hover {
+    background: #002570;
+    box-shadow: 0 2px 6px rgba(0, 51, 160, 0.2);
+    transform: translateY(-1px);
+}
+
+.run-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 51, 160, 0.2);
+}
+
+/* Execution Feedback */
+.execution-feedback {
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    display: none;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.execution-feedback.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #4caf50;
+}
+
+.execution-feedback.error {
+    background: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #f44336;
+}
+
+.execution-feedback.warning {
+    background: #fff3e0;
+    color: #e65100;
+    border-left: 4px solid #ff9800;
+}
+
+/* Preview/Output Area */
+.preview-area {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.output-frame {
+    width: 100%;
+    height: 300px;
+    border: none;
+    background: white;
+}
+
+.preview-label {
+    background: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+/* Challenge Section */
+.challenge {
+    background: #fffbf0;
+    border-left: 4px solid var(--slu-gold);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.challenge h3 {
+    color: var(--slu-blue);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.challenge h3::before {
+    content: '⚡';
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.challenge ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    color: var(--text-gray);
+}
+
+.challenge li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+/* Challenge Feedback */
+.challenge-feedback {
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    display: none;
+    animation: slideDown 0.3s ease;
+}
+
+.challenge-feedback.incomplete {
+    background: #fff9c4;
+    color: #f57f17;
+    border-left: 4px solid #fbc02d;
+}
+
+.challenge-feedback.success {
+    background: #c8e6c9;
+    color: #1b5e20;
+    border-left: 4px solid #4caf50;
+}
+
+/* Action Buttons */
+.code-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.code-action-btn {
+    padding: 0.5rem 1rem;
+    background: var(--slu-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.code-action-btn:hover {
+    background: #002570;
+    transform: translateY(-2px);
+}
+
+.code-action-btn.secondary {
+    background: #666;
+}
+
+.code-action-btn.secondary:hover {
+    background: #444;
+}
+
+/* Info Box */
+.info-box {
+    background: #e3f2fd;
+    border-left: 4px solid var(--slu-blue);
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #1565c0;
+}
+
+.info-box code {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .interactive-section {
+        padding: 1.5rem;
+    }
+    
+    .code-input {
+        min-height: 150px;
+        font-size: 0.85rem;
+    }
+    
+    .output-frame {
+        height: 200px;
+    }
+    
+    .editor-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: left;
+    }
+    
+    .code-actions {
+        flex-direction: column;
+    }
+    
+    .code-action-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Syntax Highlighting Hints */
+.code-input::placeholder {
+    color: #999;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .code-editor {
+        background: #2d2d2d;
+        border-color: #404040;
+    }
+    
+    .editor-header {
+        background: #3d3d3d;
+        border-bottom-color: #404040;
+        color: #e0e0e0;
+    }
+    
+    .code-input {
+        background: #1e1e1e;
+        color: #d4d4d4;
+    }
+    
+    .code-input:focus {
+        background: #252526;
+        box-shadow: inset 0 0 0 2px var(--slu-blue);
+    }
+    
+    .preview-area {
+        background: #1e1e1e;
+        border-color: #404040;
+    }
+    
+    .output-frame {
+        background: #1e1e1e;
+    }
+}

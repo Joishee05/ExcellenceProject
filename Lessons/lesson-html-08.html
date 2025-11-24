@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8: Tables - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 53.33%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link active">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link">15. iframes</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 8 of 15</div>
+                <h1>Tables</h1>
+            </div>
+            <div class="lesson-text">
+                <p>Tables organize data into rows and columns. Perfect for displaying structured information!</p>
+                <h3>Basic Table Structure:</h3>
+                <pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Header 1&lt;/th&gt;
+        &lt;th&gt;Header 2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Data 1&lt;/td&gt;
+        &lt;td&gt;Data 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                <h3>Table Elements:</h3>
+                <ul>
+                    <li><code>&lt;table&gt;</code> - Defines the table</li>
+                    <li><code>&lt;tr&gt;</code> - Table row</li>
+                    <li><code>&lt;th&gt;</code> - Table header cell (bold & centered)</li>
+                    <li><code>&lt;td&gt;</code> - Table data cell</li>
+                    <li><code>&lt;thead&gt;</code> - Groups header content</li>
+                    <li><code>&lt;tbody&gt;</code> - Groups body content</li>
+                    <li><code>&lt;tfoot&gt;</code> - Groups footer content</li>
+                </ul>
+                <h3>Table Attributes:</h3>
+                <ul>
+                    <li><code>colspan</code> - Spans across multiple columns</li>
+                    <li><code>rowspan</code> - Spans across multiple rows</li>
+                </ul>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+    th { background-color: #0033A0; color: white; }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    tr:hover { background-color: #e3f2fd; }
+</style>
+</head>
+<body>
+    <h2>Student Grades</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Math</th>
+                <th>Science</th>
+                <th>English</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alice</td>
+                <td>95</td>
+                <td>88</td>
+                <td>92</td>
+            </tr>
+            <tr>
+                <td>Bob</td>
+                <td>87</td>
+                <td>91</td>
+                <td>85</td>
+            </tr>
+            <tr>
+                <td>Charlie</td>
+                <td>92</td>
+                <td>89</td>
+                <td>94</td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a weekly schedule table with:</p>
+                <ol>
+                    <li>Days of the week as headers</li>
+                    <li>At least 3 time slots (rows)</li>
+                    <li>Your activities for each day/time</li>
+                    <li>Basic CSS styling (borders, colors)</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-html-07.html" class="nav-button">← Previous</a>
+                <a href="lesson-html-09.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

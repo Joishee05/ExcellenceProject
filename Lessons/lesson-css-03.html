@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: Colors & Backgrounds - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>CSS Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 30%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-css-01.html" class="lesson-link">1. What is CSS?</a></li>
+                <li><a href="lesson-css-02.html" class="lesson-link">2. Selectors</a></li>
+                <li><a href="lesson-css-03.html" class="lesson-link active">3. Colors & Backgrounds</a></li>
+                <li><a href="lesson-css-04.html" class="lesson-link">4. Text Styling</a></li>
+                <li><a href="lesson-css-05.html" class="lesson-link">5. Box Model</a></li>
+                <li><a href="lesson-css-06.html" class="lesson-link">6. Borders & Spacing</a></li>
+                <li><a href="lesson-css-07.html" class="lesson-link">7. Flexbox</a></li>
+                <li><a href="lesson-css-08.html" class="lesson-link">8. Grid Layout</a></li>
+                <li><a href="lesson-css-09.html" class="lesson-link">9. Positioning</a></li>
+                <li><a href="lesson-css-10.html" class="lesson-link">10. Transitions & Animations</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 3 of 10</div>
+                <h1>Colors & Backgrounds</h1>
+            </div>
+            <div class="lesson-text">
+                <p>CSS offers many ways to add colors and backgrounds to your elements.</p>
+                <h3>Color Values:</h3>
+                <ul>
+                    <li><strong>Named colors:</strong> <code>color: red;</code></li>
+                    <li><strong>Hex codes:</strong> <code>color: #FF0000;</code></li>
+                    <li><strong>RGB:</strong> <code>color: rgb(255, 0, 0);</code></li>
+                    <li><strong>RGBA (with transparency):</strong> <code>color: rgba(255, 0, 0, 0.5);</code></li>
+                </ul>
+                <h3>Background Properties:</h3>
+                <ul>
+                    <li><code>background-color</code> - Solid color</li>
+                    <li><code>background-image</code> - Image or gradient</li>
+                    <li><code>background-size</code> - Size of background</li>
+                    <li><code>background-position</code> - Position of background</li>
+                </ul>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+    body {
+        margin: 0;
+        padding: 20px;
+    }
+    
+    .box1 {
+        background-color: #3498db;
+        color: white;
+        padding: 20px;
+        margin: 10px 0;
+    }
+    
+    .box2 {
+        background-color: rgba(231, 76, 60, 0.7);
+        color: white;
+        padding: 20px;
+        margin: 10px 0;
+    }
+    
+    .gradient-box {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 20px;
+        margin: 10px 0;
+        border-radius: 10px;
+    }
+</style>
+</head>
+<body>
+    <div class="box1">Blue box with hex color</div>
+    <div class="box2">Semi-transparent red box</div>
+    <div class="gradient-box">Beautiful gradient box!</div>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a new box with:</p>
+                <ol>
+                    <li>A green background (any shade)</li>
+                    <li>White text</li>
+                    <li>20px padding</li>
+                    <li>Try using different color formats (hex, rgb, or rgba)</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-css-02.html" class="nav-button">← Previous</a>
+                <a href="lesson-css-04.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

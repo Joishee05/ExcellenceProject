@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2: Variables - JavaScript Tutorial</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthroughs.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 16.67%;"></div>
+                </div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link active">Lesson 2: Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link">Lesson 3: Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link">Lesson 4: Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link">Lesson 6: Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link">Lesson 8: Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link">Lesson 9: Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link">Lesson 10: DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link">Lesson 11: Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link">Lesson 12: Async JavaScript</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 2 of 12</div>
+                <h1>Variables in JavaScript</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>Variables are containers for storing data values. In JavaScript, you can declare variables using <code>let</code>, <code>const</code>, or <code>var</code>.</p>
+
+                <h2>Declaring Variables</h2>
+                
+                <h3>Using let</h3>
+                <p>The <code>let</code> keyword declares a block-scoped variable that can be reassigned:</p>
+                <pre><code>let name = "John";
+let age = 25;
+let isStudent = true;
+
+// You can reassign values
+age = 26;
+name = "Jane";</code></pre>
+
+                <h3>Using const</h3>
+                <p>The <code>const</code> keyword declares a block-scoped variable that cannot be reassigned:</p>
+                <pre><code>const PI = 3.14159;
+const SCHOOL = "Saint Louis University";
+
+// This would cause an error:
+// PI = 3.14; // Error!</code></pre>
+
+                <h3>Using var</h3>
+                <p>The <code>var</code> keyword is the old way of declaring variables (avoid using it in modern JavaScript):</p>
+                <pre><code>var oldStyle = "This is old";
+// var has function scope, not block scope</code></pre>
+
+                <div class="info-box">
+                    <p><strong>Best Practice:</strong> Use <code>const</code> by default. Only use <code>let</code> when you need to reassign the variable. Avoid <code>var</code>.</p>
+                </div>
+
+                <h2>Variable Naming Rules</h2>
+                <ul>
+                    <li>Variable names can contain letters, digits, underscores, and dollar signs</li>
+                    <li>Variable names must begin with a letter, $, or _</li>
+                    <li>Variable names are case sensitive (<code>myVar</code> and <code>myvar</code> are different)</li>
+                    <li>Reserved words (like JavaScript keywords) cannot be used as variable names</li>
+                </ul>
+
+                <pre><code>// Valid variable names
+let firstName = "John";
+let _privateVar = "secret";
+let $price = 19.99;
+let user123 = "user";
+
+// Invalid variable names
+// let 123user = "invalid";  // Can't start with number
+// let first-name = "John";  // Can't use hyphens
+// let let = "invalid";      // Can't use keywords</code></pre>
+
+                <h2>Variable Scope</h2>
+                <p><strong>Block Scope:</strong> Variables declared with <code>let</code> and <code>const</code> inside a block <code>{ }</code> are only accessible within that block:</p>
+                <pre><code>{
+    let blockVar = "I'm inside a block";
+    console.log(blockVar); // Works!
+}
+// console.log(blockVar); // Error! Not accessible here</code></pre>
+
+                <p><strong>Global Scope:</strong> Variables declared outside any function or block are global:</p>
+                <pre><code>let globalVar = "I'm global";
+
+function myFunction() {
+    console.log(globalVar); // Works! Can access global var
+}
+
+myFunction();</code></pre>
+
+                <h2>Try It Yourself</h2>
+                <p>Experiment with declaring and using variables:</p>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>JavaScript Editor</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="codeInput">// Declare variables
+let studentName = "Alex";
+let studentAge = 20;
+const university = "SLU";
+
+// Log the values
+console.log("Name:", studentName);
+console.log("Age:", studentAge);
+console.log("University:", university);
+
+// Reassign a variable
+studentAge = 21;
+console.log("New Age:", studentAge);</textarea>
+                    <div class="preview-area">
+                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
+                    </div>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p>Create variables to store information about yourself:</p>
+                    <ul>
+                        <li>Your name (use <code>let</code>)</li>
+                        <li>Your age (use <code>let</code>)</li>
+                        <li>Your birth year (use <code>const</code>)</li>
+                        <li>Whether you're a student (use <code>let</code>)</li>
+                    </ul>
+                    <p>Then log all these values to the console, and try changing your age by 1.</p>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-js-01.html" class="nav-button">← Previous Lesson</a>
+                <a href="lesson-js-03.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const output = document.getElementById('console-output');
+            output.innerHTML = '';
+            
+            // Capture console.log output
+            const logs = [];
+            const originalLog = console.log;
+            console.log = function(...args) {
+                logs.push(args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' '));
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                output.innerHTML = logs.join('\n') || 'Code executed successfully (no output)';
+                output.style.color = '#00b894';
+            } catch (error) {
+                output.innerHTML = 'Error: ' + error.message;
+                output.style.color = '#d63031';
+            }
+            
+            // Restore console.log
+            console.log = originalLog;
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

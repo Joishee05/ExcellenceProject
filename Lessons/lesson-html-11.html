@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 11: HTML Entities - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 73.33%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link active">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link">15. iframes</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 11 of 15</div>
+                <h1>HTML Entities & Special Characters</h1>
+            </div>
+            <div class="lesson-text">
+                <h3>What are HTML Entities?</h3>
+                <p>HTML entities are special codes used to display reserved characters, symbols, and characters that don't appear on your keyboard.</p>
+                <h3>Common HTML Entities</h3>
+                <ul>
+                    <li><code>&amp;lt;</code> - Less than (&lt;)</li>
+                    <li><code>&amp;gt;</code> - Greater than (&gt;)</li>
+                    <li><code>&amp;amp;</code> - Ampersand (&amp;)</li>
+                    <li><code>&amp;quot;</code> - Quotation mark (&quot;)</li>
+                    <li><code>&amp;copy;</code> - Copyright symbol (©)</li>
+                    <li><code>&amp;nbsp;</code> - Non-breaking space</li>
+                </ul>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+    <title>Special Characters</title>
+</head>
+<body>
+    <h1>HTML Entities Demo</h1>
+    
+    <p>This is a &lt;paragraph&gt; tag in HTML</p>
+    <p>Copyright &copy; 2025 SLU LearnCode</p>
+    <p>Price: $50 &amp; free shipping</p>
+    <p>&quot;Learning HTML is fun!&quot;</p>
+    
+    <h2>Math Symbols</h2>
+    <p>5 &times; 3 = 15</p>
+    <p>10 &divide; 2 = 5</p>
+    <p>1&frac12; cups of sugar</p>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a page that displays:</p>
+                <ol>
+                    <li>A heading with your company name and copyright symbol</li>
+                    <li>A paragraph showing HTML tags using entities</li>
+                    <li>A math equation using multiplication and division symbols</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-html-10.html" class="nav-button">← Previous</a>
+                <a href="lesson-html-12.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalBonesBox Project - SLU LearnCode</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <style>
+        .project-overview { max-width: 1400px; margin: 2rem auto; padding: 0 2rem; }
+        .overview-header h1 { font-size: 2.5rem; color: var(--slu-blue); margin-bottom: 0.5rem; }
+        .overview-header p { font-size: 1.1rem; color: var(--text-gray); line-height: 1.6; margin-bottom: 2rem; }
+        .intro-box { background: var(--off-white); border-left: 4px solid var(--slu-blue); padding: 2rem; border-radius: 6px; margin-bottom: 3rem; }
+        .intro-box h2 { font-size: 1.5rem; color: var(--slu-blue); margin: 0 0 1rem 0; }
+        .intro-box p, .intro-box li { color: var(--text-gray); font-size: 1rem; line-height: 1.6; }
+        .intro-box strong { color: var(--slu-blue); font-weight: 600; }
+        .project-section-title { font-size: 1.8rem; color: var(--slu-blue); margin: 3rem 0 1.5rem 0; padding-bottom: 0.75rem; border-bottom: 3px solid var(--slu-gold); }
+        .files-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .file-card { background: var(--white); border: 2px solid var(--border); border-radius: 8px; padding: 1.5rem; transition: all 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+        .file-card:hover { border-color: var(--slu-blue); box-shadow: 0 4px 12px rgba(0,51,160,0.15); transform: translateY(-2px); }
+        .file-type { display: inline-block; background: var(--slu-blue); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; width: fit-content; text-transform: uppercase; letter-spacing: 0.5px; }
+        .file-card h3 { color: var(--slu-blue); margin: 0.5rem 0; font-size: 1.2rem; font-family: 'Courier New', monospace; }
+        .file-card p { color: var(--text-gray); flex-grow: 1; margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.6; }
+        .file-card .btn { display: inline-block; background: var(--slu-blue); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: 600; text-align: center; transition: background 0.3s ease; }
+        .file-card .btn:hover { background: #002570; }
+        .learning-path { background: var(--off-white); border-left: 4px solid var(--slu-blue); padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem; }
+        .learning-path h3 { color: var(--slu-blue); margin-top: 0; }
+        .learning-path p, .learning-path li { color: var(--text-gray); line-height: 1.6; }
+        .key-concepts { background: var(--off-white); padding: 2rem; border-radius: 8px; margin: 2rem 0; }
+        .key-concepts h3 { color: var(--slu-blue); margin-top: 0; }
+        .concepts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .concept-item { background: white; padding: 1rem; border-radius: 6px; border-left: 3px solid var(--slu-gold); }
+        .concept-item strong { color: var(--slu-blue); display: block; margin-bottom: 0.5rem; }
+        .concept-item p { margin: 0; color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; }
+        @media (max-width: 768px) { .project-overview { padding: 0 1rem; } .overview-header h1 { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html" class="active">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-overview">
+        <div class="overview-header">
+            <h1>DigitalBonesBox Project</h1>
+            <p>Learn by exploring a real-world web application built with HTML, CSS, and JavaScript</p>
+        </div>
+
+        <div class="intro-box">
+            <h2>What is DigitalBonesBox?</h2>
+            <p>DigitalBonesBox is an <strong>interactive web application</strong> for studying human anatomy. Instead of static textbooks or PowerPoint slides, users can:</p>
+            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                <li>Search for specific bones by name</li>
+                <li>View detailed anatomical images</li>
+                <li>Read descriptions and learn about bone functions</li>
+                <li>Filter and organize information</li>
+            </ul>
+            <p><strong>Your Task:</strong> Learn how each file works together to create this application. Each file you explore teaches you real programming techniques used in production websites.</p>
+        </div>
+
+        <div class="learning-path">
+            <h3>Recommended Learning Order</h3>
+            <ol style="margin: 1rem 0; padding-left: 1.5rem;">
+                <li><strong>Start with boneset.html</strong> - Understand the HTML structure (the foundation of the app)</li>
+                <li><strong>Then explore style.css</strong> - See how CSS makes it look professional</li>
+                <li><strong>Learn main.js</strong> - Understand the main JavaScript logic</li>
+                <li><strong>Study api.js and server.js</strong> - See how data is managed</li>
+                <li><strong>Finally, viewer.js, search.js, dropdowns.js</strong> - Learn advanced features</li>
+            </ol>
+        </div>
+
+        <h2 class="project-section-title">Frontend Files (HTML, CSS, JavaScript)</h2>
+        <div class="files-grid">
+            <a href="walkthrough-boneset-html.html" class="file-card">
+                <span class="file-type">HTML</span>
+                <h3>boneset.html</h3>
+                <p>The main HTML structure. This file defines all the elements like buttons, search boxes, and containers. The foundation of the application.</p>
+                <span class="btn">Explore File</span>
+            </a>
+            <a href="walkthrough-style-css.html" class="file-card">
+                <span class="file-type">CSS</span>
+                <h3>style.css</h3>
+                <p>All the styling and layout. This file makes the application look professional with colors, spacing, fonts, and responsive design.</p>
+                <span class="btn">Explore File</span>
+            </a>
+            <a href="walkthrough-main-js.html" class="file-card">
+                <span class="file-type">JavaScript</span>
+                <h3>main.js</h3>
+                <p>The core logic of the application. This is where things happen when users interact - loading data, updating the display, handling clicks and typing.</p>
+                <span class="btn">Explore File</span>
+            </a>
+            <a href="walkthrough-api-js.html" class="file-card">
+                <span class="file-type">JavaScript</span>
+                <h3>api.js</h3>
+                <p>Manages communication with the backend server. This file handles requests and responses to fetch bone data from the database.</p>
+                <span class="btn">Explore File</span>
+            </a>
+            <a href="walkthrough-viewer-js.html" class="file-card">
+                <span class="file-type">JavaScript</span>
+                <h3>viewer.js</h3>
+                <p>Handles image viewing and display. When a user clicks on a bone, this file controls how the image is shown and formatted.</p>
+                <span class="btn">Explore File</span>
+            </a>
+            <a href="walkthrough-search-js.html" class="file-card">
+                <span class="file-type">JavaScript</span>
+                <h3>search.js</h3>
+                <p>Powers the search functionality. This file lets users find bones by typing names and filters results in real-time.</p>
+                <span class="btn">Explore File</span>
+            </a>
+            <a href="walkthrough-dropdowns-js.html" class="file-card">
+                <span class="file-type">JavaScript</span>
+                <h3>dropdowns.js</h3>
+                <p>Manages dropdown menus and filters. Organizes bones by categories so users can browse by body part, bone type, or other attributes.</p>
+                <span class="btn">Explore File</span>
+            </a>
+        </div>
+
+        <h2 class="project-section-title">Backend File (Node.js Server)</h2>
+        <div class="files-grid">
+            <a href="walkthrough-server-js.html" class="file-card">
+                <span class="file-type">Backend</span>
+                <h3>server.js</h3>
+                <p>The Node.js server that runs behind the scenes. This file handles requests from the frontend, manages the database, and sends data back to the application.</p>
+                <span class="btn">Explore File</span>
+            </a>
+        </div>
+
+        <h2 class="project-section-title">How It All Works Together</h2>
+        <div class="key-concepts">
+            <h3>The Architecture Flow</h3>
+            <div class="concepts-grid">
+                <div class="concept-item">
+                    <strong>Step 1: User Opens App</strong>
+                    <p>boneset.html loads in the browser with HTML structure and CSS styling</p>
+                </div>
+                <div class="concept-item">
+                    <strong>Step 2: JavaScript Starts</strong>
+                    <p>main.js, api.js, and other JS files load and initialize the application</p>
+                </div>
+                <div class="concept-item">
+                    <strong>Step 3: Request Data</strong>
+                    <p>api.js contacts server.js to fetch bone data from the database</p>
+                </div>
+                <div class="concept-item">
+                    <strong>Step 4: Display Data</strong>
+                    <p>The data is formatted with style.css and displayed on the page</p>
+                </div>
+                <div class="concept-item">
+                    <strong>Step 5: User Interacts</strong>
+                    <p>When users search, filter, or click, JavaScript files respond instantly</p>
+                </div>
+                <div class="concept-item">
+                    <strong>Step 6: Real-Time Updates</strong>
+                    <p>New data is fetched and displayed without refreshing the page</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="project-section-title">Key Programming Concepts You'll Learn</h2>
+        <div class="key-concepts">
+            <div class="concepts-grid">
+                <div class="concept-item"><strong>HTML Structure</strong><p>Semantic HTML, forms, buttons, containers, accessibility</p></div>
+                <div class="concept-item"><strong>CSS Styling</strong><p>Flexbox layouts, responsive design, animations, media queries</p></div>
+                <div class="concept-item"><strong>DOM Manipulation</strong><p>Selecting elements, changing content, adding/removing classes</p></div>
+                <div class="concept-item"><strong>Event Handling</strong><p>Click events, input events, event listeners, bubbling</p></div>
+                <div class="concept-item"><strong>API Requests</strong><p>Fetch API, HTTP requests, async/await, JSON data</p></div>
+                <div class="concept-item"><strong>Data Management</strong><p>Variables, arrays, objects, data structures, filtering</p></div>
+                <div class="concept-item"><strong>Image Handling</strong><p>Dynamic image loading, lazy loading, image optimization</p></div>
+                <div class="concept-item"><strong>Search and Filter</strong><p>String matching, array methods, real-time filtering</p></div>
+                <div class="concept-item"><strong>Backend Integration</strong><p>Server communication, databases, RESTful APIs</p></div>
+                <div class="concept-item"><strong>Responsive Design</strong><p>Mobile-friendly, touchscreen support, different screen sizes</p></div>
+            </div>
+        </div>
+
+        <h2 class="project-section-title">How This Connects to Your Tutorials</h2>
+        <div class="learning-path">
+            <h3>Level Up Your Learning</h3>
+            <p><strong>HTML Tutorials</strong> - Learn the basics, then see how boneset.html uses semantic HTML and forms</p>
+            <p><strong>CSS Tutorials</strong> - Learn styling fundamentals, then explore how style.css creates a professional design</p>
+            <p><strong>JavaScript Tutorials</strong> - Learn variables and functions, then see how main.js, api.js, and others use advanced JavaScript</p>
+            <p style="margin-top: 1.5rem; font-style: italic; color: var(--slu-blue);">Tip: After completing each tutorial section, explore the corresponding project file to see real-world applications!</p>
+        </div>
+    </div>
+</body>
+</html>

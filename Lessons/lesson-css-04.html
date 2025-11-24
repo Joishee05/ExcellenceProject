@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Text Styling - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>CSS Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-css-01.html" class="lesson-link">1. What is CSS?</a></li>
+                <li><a href="lesson-css-02.html" class="lesson-link">2. Selectors</a></li>
+                <li><a href="lesson-css-03.html" class="lesson-link">3. Colors & Backgrounds</a></li>
+                <li><a href="lesson-css-04.html" class="lesson-link active">4. Text Styling</a></li>
+                <li><a href="lesson-css-05.html" class="lesson-link">5. Box Model</a></li>
+                <li><a href="lesson-css-06.html" class="lesson-link">6. Borders & Spacing</a></li>
+                <li><a href="lesson-css-07.html" class="lesson-link">7. Flexbox</a></li>
+                <li><a href="lesson-css-08.html" class="lesson-link">8. Grid Layout</a></li>
+                <li><a href="lesson-css-09.html" class="lesson-link">9. Positioning</a></li>
+                <li><a href="lesson-css-10.html" class="lesson-link">10. Transitions & Animations</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 4 of 10</div>
+                <h1>Text Styling</h1>
+            </div>
+            <div class="lesson-text">
+                <p>CSS provides many properties to style text and make it look professional.</p>
+                <h3>Common Text Properties:</h3>
+                <ul>
+                    <li><code>font-family</code> - Font type</li>
+                    <li><code>font-size</code> - Size of text</li>
+                    <li><code>font-weight</code> - Boldness (normal, bold, 100-900)</li>
+                    <li><code>font-style</code> - Italic or normal</li>
+                    <li><code>text-align</code> - left, center, right, justify</li>
+                    <li><code>text-decoration</code> - underline, line-through, none</li>
+                    <li><code>text-transform</code> - uppercase, lowercase, capitalize</li>
+                    <li><code>line-height</code> - Space between lines</li>
+                    <li><code>letter-spacing</code> - Space between letters</li>
+                </ul>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+    .title {
+        font-family: Arial, sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        color: #2c3e50;
+    }
+    
+    .subtitle {
+        font-family: Georgia, serif;
+        font-size: 20px;
+        font-style: italic;
+        text-align: center;
+        color: #7f8c8d;
+    }
+    
+    .paragraph {
+        font-size: 16px;
+        line-height: 1.6;
+        text-align: justify;
+    }
+    
+    .uppercase {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <h1 class="title">Beautiful Typography</h1>
+    <p class="subtitle">Making text look amazing</p>
+    <p class="paragraph">
+        This is a paragraph with good line height and justified text.
+        CSS makes it easy to create professional-looking text layouts.
+    </p>
+    <p class="uppercase">This text is uppercase</p>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a styled quote with:</p>
+                <ol>
+                    <li>Italic font style</li>
+                    <li>Larger font size (24px)</li>
+                    <li>Centered text</li>
+                    <li>A subtle color of your choice</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-css-03.html" class="nav-button">← Previous</a>
+                <a href="lesson-css-05.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

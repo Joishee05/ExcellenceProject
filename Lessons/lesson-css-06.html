@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Borders & Spacing - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>CSS Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-css-01.html" class="lesson-link">1. What is CSS?</a></li>
+                <li><a href="lesson-css-02.html" class="lesson-link">2. Selectors</a></li>
+                <li><a href="lesson-css-03.html" class="lesson-link">3. Colors & Backgrounds</a></li>
+                <li><a href="lesson-css-04.html" class="lesson-link">4. Text Styling</a></li>
+                <li><a href="lesson-css-05.html" class="lesson-link">5. Box Model</a></li>
+                <li><a href="lesson-css-06.html" class="lesson-link active">6. Borders & Spacing</a></li>
+                <li><a href="lesson-css-07.html" class="lesson-link">7. Flexbox</a></li>
+                <li><a href="lesson-css-08.html" class="lesson-link">8. Grid Layout</a></li>
+                <li><a href="lesson-css-09.html" class="lesson-link">9. Positioning</a></li>
+                <li><a href="lesson-css-10.html" class="lesson-link">10. Transitions & Animations</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 6 of 10</div>
+                <h1>Borders & Spacing</h1>
+            </div>
+            <div class="lesson-text">
+                <p>Learn to control borders, margins, padding, and rounded corners.</p>
+                <h3>Border Properties:</h3>
+                <ul>
+                    <li><code>border-width</code> - Thickness</li>
+                    <li><code>border-style</code> - solid, dashed, dotted, double</li>
+                    <li><code>border-color</code> - Color of border</li>
+                    <li><code>border-radius</code> - Rounded corners</li>
+                </ul>
+                <h3>Shorthand:</h3>
+                <pre><code>border: 2px solid red; /* width style color */
+border-radius: 10px; /* rounded corners */</code></pre>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+    .card {
+        width: 200px;
+        padding: 20px;
+        margin: 20px;
+        background: white;
+        display: inline-block;
+    }
+    
+    .solid-border {
+        border: 3px solid #3498db;
+    }
+    
+    .dashed-border {
+        border: 3px dashed #e74c3c;
+    }
+    
+    .rounded {
+        border: 3px solid #2ecc71;
+        border-radius: 15px;
+    }
+    
+    .circle {
+        width: 100px;
+        height: 100px;
+        border: 3px solid #9b59b6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+</head>
+<body style="background: #ecf0f1; padding: 20px;">
+    <div class="card solid-border">Solid Border</div>
+    <div class="card dashed-border">Dashed Border</div>
+    <div class="card rounded">Rounded Corners</div>
+    <div class="card circle">Circle!</div>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a card with:</p>
+                <ol>
+                    <li>A dotted border</li>
+                    <li>Rounded corners (border-radius: 20px)</li>
+                    <li>Padding and margin of your choice</li>
+                    <li>A nice background color</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-css-05.html" class="nav-button">← Previous</a>
+                <a href="lesson-css-07.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

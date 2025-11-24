@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8: Arrays - JavaScript Tutorial</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthroughs.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 66.67%;"></div>
+                </div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link">Lesson 2: Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link">Lesson 3: Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link">Lesson 4: Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link">Lesson 6: Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link active">Lesson 8: Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link">Lesson 9: Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link">Lesson 10: DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link">Lesson 11: Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link">Lesson 12: Async JavaScript</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 8 of 12</div>
+                <h1>JavaScript Arrays</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>Arrays are used to store multiple values in a single variable. They're one of the most useful data structures in JavaScript.</p>
+
+                <h2>Creating Arrays</h2>
+                <pre><code>// Array of strings
+let fruits = ["apple", "banana", "orange"];
+
+// Array of numbers
+let numbers = [1, 2, 3, 4, 5];
+
+// Mixed types (not recommended, but possible)
+let mixed = ["text", 42, true, null];
+
+// Empty array
+let empty = [];
+
+console.log(fruits); // ["apple", "banana", "orange"]</code></pre>
+
+                <h2>Accessing Array Elements</h2>
+                <p>Arrays use zero-based indexing (first element is at index 0):</p>
+                <pre><code>let colors = ["red", "green", "blue"];
+
+console.log(colors[0]); // "red" (first element)
+console.log(colors[1]); // "green" (second element)
+console.log(colors[2]); // "blue" (third element)
+
+// Get array length
+console.log(colors.length); // 3
+
+// Access last element
+console.log(colors[colors.length - 1]); // "blue"</code></pre>
+
+                <h2>Modifying Arrays</h2>
+                <pre><code>let fruits = ["apple", "banana", "orange"];
+
+// Change an element
+fruits[1] = "grape";
+console.log(fruits); // ["apple", "grape", "orange"]
+
+// Add element at specific index
+fruits[3] = "mango";
+console.log(fruits); // ["apple", "grape", "orange", "mango"]</code></pre>
+
+                <h2>Array Methods</h2>
+
+                <h3>Push and Pop</h3>
+                <p>Add or remove elements from the end:</p>
+                <pre><code>let stack = [1, 2, 3];
+
+// push() - add to end
+stack.push(4);
+console.log(stack); // [1, 2, 3, 4]
+
+stack.push(5, 6);
+console.log(stack); // [1, 2, 3, 4, 5, 6]
+
+// pop() - remove from end
+let last = stack.pop();
+console.log(last);  // 6
+console.log(stack); // [1, 2, 3, 4, 5]</code></pre>
+
+                <h3>Shift and Unshift</h3>
+                <p>Add or remove elements from the beginning:</p>
+                <pre><code>let queue = [2, 3, 4];
+
+// unshift() - add to beginning
+queue.unshift(1);
+console.log(queue); // [1, 2, 3, 4]
+
+// shift() - remove from beginning
+let first = queue.shift();
+console.log(first); // 1
+console.log(queue); // [2, 3, 4]</code></pre>
+
+                <h3>Slice</h3>
+                <p>Extract a portion of an array (doesn't modify original):</p>
+                <pre><code>let numbers = [1, 2, 3, 4, 5];
+
+// slice(start, end) - end is exclusive
+let slice1 = numbers.slice(1, 4);
+console.log(slice1);   // [2, 3, 4]
+console.log(numbers);  // [1, 2, 3, 4, 5] (unchanged)
+
+// slice(start) - from start to end
+let slice2 = numbers.slice(2);
+console.log(slice2); // [3, 4, 5]
+
+// slice() - copy entire array
+let copy = numbers.slice();
+console.log(copy); // [1, 2, 3, 4, 5]</code></pre>
+
+                <h3>Splice</h3>
+                <p>Add or remove elements at any position (modifies original):</p>
+                <pre><code>let letters = ["a", "b", "c", "d", "e"];
+
+// splice(index, deleteCount, items...)
+// Remove 2 elements starting at index 1
+letters.splice(1, 2);
+console.log(letters); // ["a", "d", "e"]
+
+// Add elements at index 1
+letters.splice(1, 0, "b", "c");
+console.log(letters); // ["a", "b", "c", "d", "e"]
+
+// Replace elements
+letters.splice(2, 1, "x");
+console.log(letters); // ["a", "b", "x", "d", "e"]</code></pre>
+
+                <h3>IndexOf and Includes</h3>
+                <p>Search for elements in an array:</p>
+                <pre><code>let fruits = ["apple", "banana", "orange", "banana"];
+
+// indexOf() - returns first index, or -1 if not found
+console.log(fruits.indexOf("banana")); // 1
+console.log(fruits.indexOf("grape"));  // -1
+
+// lastIndexOf() - returns last index
+console.log(fruits.lastIndexOf("banana")); // 3
+
+// includes() - returns true/false
+console.log(fruits.includes("apple"));  // true
+console.log(fruits.includes("grape"));  // false</code></pre>
+
+                <h2>Looping Through Arrays</h2>
+
+                <h3>For Loop</h3>
+                <pre><code>let numbers = [10, 20, 30, 40];
+
+for (let i = 0; i < numbers.length; i++) {
+    console.log(numbers[i]);
+}</code></pre>
+
+                <h3>For...of Loop</h3>
+                <pre><code>let colors = ["red", "green", "blue"];
+
+for (let color of colors) {
+    console.log(color);
+}
+// Output: red, green, blue</code></pre>
+
+                <h3>ForEach Method</h3>
+                <pre><code>let fruits = ["apple", "banana", "orange"];
+
+fruits.forEach(function(fruit, index) {
+    console.log(index + ": " + fruit);
+});
+// Output:
+// 0: apple
+// 1: banana
+// 2: orange
+
+// Arrow function version
+fruits.forEach((fruit) => {
+    console.log(fruit);
+});</code></pre>
+
+                <h2>Try It Yourself</h2>
+                <p>Practice working with arrays:</p>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>JavaScript Editor</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="codeInput">// Create an array
+let courses = ["HTML", "CSS", "JavaScript"];
+console.log("Courses:", courses);
+
+// Add a course
+courses.push("Python");
+console.log("After push:", courses);
+
+// Remove first course
+courses.shift();
+console.log("After shift:", courses);
+
+// Check if array includes a course
+console.log("Has CSS?", courses.includes("CSS"));
+
+// Loop through courses
+console.log("\nAll courses:");
+courses.forEach((course, index) => {
+    console.log(`  ${index + 1}. ${course}`);
+});
+
+// Get slice of array
+let webCourses = courses.slice(0, 2);
+console.log("\nWeb courses:", webCourses);</textarea>
+                    <div class="preview-area">
+                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
+                    </div>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p>Complete these array tasks:</p>
+                    <ul>
+                        <li>Create an array of your top 5 favorite foods</li>
+                        <li>Add a new food to the end using push()</li>
+                        <li>Remove the first food using shift()</li>
+                        <li>Find the index of a specific food</li>
+                        <li>Create a new array with only the first 3 foods using slice()</li>
+                        <li>Use forEach to log each food with its position number</li>
+                        <li>Calculate the sum of this array: [10, 25, 30, 45, 50]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-js-07.html" class="nav-button">← Previous Lesson</a>
+                <a href="lesson-js-09.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const output = document.getElementById('console-output');
+            output.innerHTML = '';
+            
+            const logs = [];
+            const originalLog = console.log;
+            console.log = function(...args) {
+                logs.push(args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' '));
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                output.innerHTML = logs.join('\n') || 'Code executed successfully (no output)';
+                output.style.color = '#00b894';
+            } catch (error) {
+                output.innerHTML = 'Error: ' + error.message;
+                output.style.color = '#d63031';
+            }
+            
+            console.log = originalLog;
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

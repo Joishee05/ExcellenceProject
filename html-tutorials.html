@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Lessons - SLU LearnCode</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <style>
+        .tutorial-overview {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .overview-header {
+            margin-bottom: 3rem;
+        }
+        
+        .overview-header h1 {
+            font-size: 2.5rem;
+            color: var(--slu-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .overview-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .lesson-card {
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .lesson-card:hover {
+            border-color: var(--slu-blue);
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .lesson-card h3 {
+            color: var(--slu-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .lesson-card p {
+            color: var(--text-gray);
+            flex-grow: 1;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .lesson-card .btn {
+            display: inline-block;
+            background: var(--slu-blue);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .lesson-card .btn:hover {
+            background: #002570;
+        }
+        
+        .lesson-section-title {
+            font-size: 1.5rem;
+            color: var(--slu-blue);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--slu-gold);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html" class="active">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-overview">
+        <div class="overview-header">
+            <h1>HTML Lessons</h1>
+            <p>Learn the fundamentals of HTML, the language that structures all web pages. Start with the basics and work your way up to semantic HTML and advanced techniques.</p>
+        </div>
+
+        <h2 class="lesson-section-title">Basics</h2>
+        <div class="lessons-grid">
+            <a href="Lessons/lesson-html-01.html" class="lesson-card">
+                <h3>1. What is HTML?</h3>
+                <p>Understand what HTML is and why it's essential for web development. Learn about tags, elements, and basic structure.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-02.html" class="lesson-card">
+                <h3>2. HTML Structure</h3>
+                <p>Explore the basic structure of an HTML document including DOCTYPE, html, head, and body elements.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-03.html" class="lesson-card">
+                <h3>3. Headings & Paragraphs</h3>
+                <p>Learn how to use heading tags (h1-h6) and paragraph tags to structure your content.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-04.html" class="lesson-card">
+                <h3>4. Text Formatting</h3>
+                <p>Master text formatting with bold, italic, underline, and other text styling tags.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-05.html" class="lesson-card">
+                <h3>5. Links</h3>
+                <p>Create hyperlinks with the &lt;a&gt; tag. Learn about href, target, and navigation.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-06.html" class="lesson-card">
+                <h3>6. Images</h3>
+                <p>Embed images in your web pages using the &lt;img&gt; tag with src and alt attributes.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+        </div>
+
+        <h2 class="lesson-section-title">Intermediate</h2>
+        <div class="lessons-grid">
+            <a href="Lessons/lesson-html-07.html" class="lesson-card">
+                <h3>7. Lists</h3>
+                <p>Create ordered, unordered, and description lists to organize content effectively.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-08.html" class="lesson-card">
+                <h3>8. Tables</h3>
+                <p>Build data tables using &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, and learn table structure best practices.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-09.html" class="lesson-card">
+                <h3>9. Forms</h3>
+                <p>Create interactive forms with input fields, textareas, buttons, and form validation.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-10.html" class="lesson-card">
+                <h3>10. Semantic HTML</h3>
+                <p>Learn semantic tags like &lt;header&gt;, &lt;nav&gt;, &lt;article&gt;, &lt;footer&gt; for better structure and accessibility.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+        </div>
+
+        <h2 class="lesson-section-title">Advanced</h2>
+        <div class="lessons-grid">
+            <a href="Lessons/lesson-html-11.html" class="lesson-card">
+                <h3>11. HTML Entities</h3>
+                <p>Use HTML entities to display special characters and symbols correctly on web pages.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-12.html" class="lesson-card">
+                <h3>12. Comments</h3>
+                <p>Add comments to your HTML code to document and explain your markup.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-13.html" class="lesson-card">
+                <h3>13. Meta Tags & SEO</h3>
+                <p>Learn about meta tags and how to optimize your HTML for search engines.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-14.html" class="lesson-card">
+                <h3>14. Audio & Video</h3>
+                <p>Embed multimedia content using &lt;audio&gt; and &lt;video&gt; tags.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-html-15.html" class="lesson-card">
+                <h3>15. iframes</h3>
+                <p>Embed external content and other web pages using the &lt;iframe&gt; tag.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

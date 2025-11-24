@@ -1,0 +1,105 @@
+<!D    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: Introduction to JavaScript - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">PE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: What is JavaScript? - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 8.33%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link active">1. What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link">2. Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link">3. Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link">4. Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">5. Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link">6. Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">7. Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link">8. Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link">9. Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link">10. DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link">11. Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link">12. Async JavaScript</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 1 of 12</div>
+                <h1>What is JavaScript?</h1>
+            </div>
+            <div class="lesson-text">
+                <p><strong>JavaScript</strong> is a programming language that makes web pages interactive!</p>
+                <h3>What Can JavaScript Do?</h3>
+                <ul>
+                    <li>Respond to user actions (clicks, typing, etc.)</li>
+                    <li>Update content dynamically</li>
+                    <li>Validate forms</li>
+                    <li>Create animations and effects</li>
+                    <li>Fetch data from servers</li>
+                </ul>
+                <h3>Your First JavaScript:</h3>
+                <p>Let's start with the classic "Hello, World!" and see JavaScript in action!</p>
+                <div class="info-box"><strong>Note:</strong> Use <code>console.log()</code> to print output to the console!</div>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>JavaScript</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false">// Your first JavaScript program!
+console.log("Hello, World!");
+console.log("Welcome to JavaScript!");
+
+// Do some math
+let result = 10 + 5;
+console.log("10 + 5 = " + result);</textarea>
+                </div>
+                <div class="preview-area">
+                    <div style="padding: 20px; background: #1e1e1e; color: #d4d4d4; font-family: monospace; min-height: 150px; border-radius: 4px; white-space: pre-wrap;" id="console-output">Click "Run Code" to see output...</div>
+                </div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Modify the code to:</p>
+                <ol>
+                    <li>Print your name using console.log()</li>
+                    <li>Calculate and display your age in months (age × 12)</li>
+                    <li>Add a comment explaining your code</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="../js-tutorials.html" class="nav-button">← Back to Overview</a>
+                <a href="lesson-js-02.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const output=document.getElementById('console-output');let logs=[];const originalLog=console.log;console.log=function(...args){logs.push(args.join(' '));originalLog.apply(console,args);};try{eval(code);output.textContent=logs.join('\n')||'No output';}catch(e){output.textContent='Error: '+e.message;}finally{console.log=originalLog;}}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

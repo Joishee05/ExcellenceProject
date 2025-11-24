@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 8: server.js - DigitalBonesBox Walkthrough</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="styles/walkthrough.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html" class="active">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>DigitalBonesBox Files</h2>
+            <a href="project-walkthrough.html" class="back-link">← Back to Overview</a>
+            <div class="lesson-links">
+                <a href="walkthrough-boneset-html.html" class="lesson-link">
+                    <span class="lesson-number">File 1</span>
+                    <span class="lesson-title">boneset.html</span>
+                </a>
+                <a href="walkthrough-style-css.html" class="lesson-link">
+                    <span class="lesson-number">File 2</span>
+                    <span class="lesson-title">style.css</span>
+                </a>
+                <a href="walkthrough-main-js.html" class="lesson-link">
+                    <span class="lesson-number">File 3</span>
+                    <span class="lesson-title">main.js</span>
+                </a>
+                <a href="walkthrough-api-js.html" class="lesson-link">
+                    <span class="lesson-number">File 4</span>
+                    <span class="lesson-title">api.js</span>
+                </a>
+                <a href="walkthrough-dropdowns-js.html" class="lesson-link">
+                    <span class="lesson-number">File 5</span>
+                    <span class="lesson-title">dropdowns.js</span>
+                </a>
+                <a href="walkthrough-viewer-js.html" class="lesson-link">
+                    <span class="lesson-number">File 6</span>
+                    <span class="lesson-title">viewer.js</span>
+                </a>
+                <a href="walkthrough-search-js.html" class="lesson-link">
+                    <span class="lesson-number">File 7</span>
+                    <span class="lesson-title">search.js</span>
+                </a>
+                <a href="walkthrough-server-js.html" class="lesson-link active">
+                    <span class="lesson-number">File 8</span>
+                    <span class="lesson-title">server.js</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson active">
+                <div class="lesson-header">
+                    <span class="lesson-meta">File 8 of 8</span>
+                    <h1>server.js - Express Backend Server</h1>
+                </div>
+
+                <div class="lesson-text">
+                    <h2>What is server.js?</h2>
+                    <p>This is the backend - the part that runs on a server instead of in the browser. It's built with Express.js and handles all the behind-the-scenes work: fetching data from GitHub, managing search requests, and serving up information when the frontend asks for it.</p>
+
+                    <div class="info-box">
+                        <h3>Restaurant analogy</h3>
+                        <p>Think about how a restaurant works:</p>
+                        <ul>
+                            <li><strong>Dining room</strong> (Frontend) - Where customers sit and order from menus</li>
+                            <li><strong>Kitchen</strong> (Server.js) - Where the actual food prep happens</li>
+                            <li><strong>Menu items</strong> (API Endpoints) - The specific things customers can order</li>
+                            <li><strong>Ingredients</strong> (GitHub Data) - The raw materials we work with</li>
+                            <li><strong>Cooking equipment</strong> (Express.js) - The tools we use to make everything</li>
+                        </ul>
+                        <p>So when you click a dropdown, you're placing an order. The server cooks up the data and sends it back to your screen.</p>
+                    </div>
+
+                    <h2>Server Setup & Dependencies</h2>
+                    <div class="code-explanation">
+                        <pre>const express = require("express");
+const axios = require("axios");
+const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+const fs = require("fs").promises;
+const path = require("path");
+
+const app = express();
+const PORT = process.env.PORT || 8000;</pre>
+                    </div>
+
+                    <h3>Dependencies Explained</h3>
+                    <ul>
+                        <li><strong>express:</strong> Web framework for Node.js (like Flask for Python)</li>
+                        <li><strong>axios:</strong> HTTP client to fetch data from GitHub</li>
+                        <li><strong>cors:</strong> Allows frontend (port 8000) to talk to backend</li>
+                        <li><strong>express-rate-limit:</strong> Prevents abuse by limiting requests</li>
+                        <li><strong>fs.promises:</strong> File system operations with async/await</li>
+                        <li><strong>path:</strong> Cross-platform file path handling</li>
+                    </ul>
+
+                    <h3>Port Configuration</h3>
+                    <div class="code-explanation">
+                        <pre>const PORT = process.env.PORT || 8000;</pre>
+                    </div>
+                    <ul>
+                        <li><code>process.env.PORT</code>: Uses environment variable if set (for deployment)</li>
+                        <li><code>|| 8000</code>: Falls back to 8000 if no environment variable</li>
+                        <li><strong>Why 8000?</strong> Common development port, avoids conflicts with 3000, 5000</li>
+                    </ul>
+
+                    <h2>Middleware</h2>
+                    <div class="code-explanation">
+                        <pre>app.use(cors());
+app.use(express.json());</pre>
+                    </div>
+
+                    <h3>CORS (Cross-Origin Resource Sharing)</h3>
+                    <ul>
+                        <li><strong>Problem:</strong> Browsers block frontend (http://localhost:8000) from calling backend (http://localhost:8000/api)</li>
+                        <li><strong>Solution:</strong> <code>cors()</code> middleware adds headers to allow cross-origin requests</li>
+                        <li><strong>Header Added:</strong> <code>Access-Control-Allow-Origin: *</code></li>
+                        <li><strong>Security:</strong> In production, specify exact origins (not *)</li>
+                    </ul>
+
+                    <h3>JSON Parser</h3>
+                    <div class="code-explanation">
+                        <pre>app.use(express.json());</pre>
+                    </div>
+                    <ul>
+                        <li>Automatically parses JSON request bodies</li>
+                        <li>Makes data available in <code>req.body</code></li>
+                        <li>Essential for POST/PUT requests</li>
+                    </ul>
+
+                    <h2>Rate Limiting</h2>
+                    <div class="code-explanation">
+                        <pre>const searchLimiter = rateLimit({
+    windowMs: 60 * 1000,     // 1 minute window
+    max: 100,                 // Max 100 requests per window
+    standardHeaders: true,
+    legacyHeaders: false,
+});</pre>
+                    </div>
+
+                    <h3>Why Rate Limit?</h3>
+                    <div class="info-box">
+                        <h4>Without Rate Limiting:</h4>
+                        <p>Malicious user sends 10,000 search requests per second:</p>
+                        <ul>
+                            <li>Server crashes from overload</li>
+                            <li>GitHub API blocks your IP</li>
+                            <li>Legitimate users can't access site</li>
+                            <li>Hosting costs skyrocket</li>
+                        </ul>
+                        
+                        <h4>With Rate Limiting (100/min):</h4>
+                        <ul>
+                            <li>Normal users unaffected (< 100 searches/min)</li>
+                            <li>Attackers blocked after 100 requests</li>
+                            <li>Server stays healthy</li>
+                            <li>Response: <code>429 Too Many Requests</code></li>
+                        </ul>
+                    </div>
+
+                    <h2>Security: Input Validation</h2>
+                    <div class="code-explanation">
+                        <pre>function isValidBoneId(boneId) {
+    // Ensure boneId is a string
+    if (typeof boneId !== "string") {
+        return false;
+    }
+    
+    // Only allow alphanumeric and underscores
+    const validBoneIdPattern = /^[a-z0-9_]+$/i;
+    return validBoneIdPattern.test(boneId) && 
+           boneId.length > 0 && 
+           boneId.length <= 100;
+}</pre>
+                    </div>
+
+                    <h3>Security Threats Prevented</h3>
+
+                    <h4>1. Path Traversal Attack</h4>
+                    <div class="code-explanation">
+                        <pre>// Malicious input
+boneId = "../../../etc/passwd"
+
+// Without validation: reads system files!
+// With validation: rejected (contains "/")
+</pre>
+                    </div>
+
+                    <h4>2. URL Injection</h4>
+                    <div class="code-explanation">
+                        <pre>// Malicious input
+boneId = "bone@evilsite.com/steal-data"
+
+// Without validation: fetches from attacker's server!
+// With validation: rejected (contains "@", "/")
+</pre>
+                    </div>
+
+                    <h4>3. Buffer Overflow</h4>
+                    <div class="code-explanation">
+                        <pre>// Malicious input
+boneId = "a".repeat(1000000) // 1 million characters
+
+// Without validation: crashes server!
+// With validation: rejected (length > 100)
+</pre>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Golden Rule of Backend Security</h3>
+                        <p><strong>NEVER trust user input. Always validate!</strong></p>
+                        <ul>
+                            <li>Check type (string, number, etc.)</li>
+                            <li>Check format (regex pattern)</li>
+                            <li>Check length (min/max)</li>
+                            <li>Sanitize special characters</li>
+                            <li>Use allowlists (not blocklists)</li>
+                        </ul>
+                    </div>
+
+                    <h2>Search Cache</h2>
+                    <div class="code-explanation">
+                        <pre>let searchCache = null;
+
+async function initializeSearchCache() {
+    const bonesetData = await fetchJSON(BONESET_JSON_URL);
+    const searchData = [];
+    
+    // Add boneset
+    searchData.push({
+        id: bonesetData.id,
+        name: bonesetData.name,
+        type: "boneset"
+    });
+    
+    // Add all bones and sub-bones
+    for (const boneId of bonesetData.bones || []) {
+        const boneData = await fetchJSON(`${BONES_DIR_URL}${boneId}.json`);
+        searchData.push({
+            id: boneData.id,
+            name: boneData.name,
+            type: "bone"
+        });
+        
+        // Add sub-bones
+        for (const subBoneId of boneData.subBones || []) {
+            searchData.push({
+                id: subBoneId,
+                name: subBoneId.replace(/_/g, " "),
+                type: "subbone"
+            });
+        }
+    }
+    
+    searchCache = searchData;
+    console.log(`Search cache initialized with ${searchData.length} items`);
+}</pre>
+                    </div>
+
+                    <h3>Why Cache?</h3>
+                    <ul>
+                        <li><strong>Without cache:</strong> Every search fetches from GitHub = slow (500ms+)</li>
+                        <li><strong>With cache:</strong> Search in memory = instant (< 1ms)</li>
+                        <li><strong>When:</strong> Initialize once at server startup</li>
+                        <li><strong>Trade-off:</strong> Uses more memory, but way faster</li>
+                    </ul>
+
+                    <h2>Search Algorithm</h2>
+                    <div class="code-explanation">
+                        <pre>function searchItems(query, limit = 20) {
+    const q = query.toLowerCase().trim();
+    const results = [];
+    
+    // First pass: prefix matches (higher priority)
+    for (const item of searchCache) {
+        if (item.name.toLowerCase().startsWith(q)) {
+            results.push({ ...item, priority: 1 });
+        }
+    }
+    
+    // Second pass: substring matches (lower priority)
+    for (const item of searchCache) {
+        const name = item.name.toLowerCase();
+        if (!name.startsWith(q) && name.includes(q)) {
+            results.push({ ...item, priority: 2 });
+        }
+    }
+    
+    // Sort by priority, then by name
+    results.sort((a, b) => {
+        if (a.priority !== b.priority) {
+            return a.priority - b.priority;
+        }
+        return a.name.localeCompare(b.name);
+    });
+    
+    return results.slice(0, limit);
+}</pre>
+                    </div>
+
+                    <h3>Search Ranking Explained</h3>
+                    <div class="info-box">
+                        <p><strong>Query: "fron"</strong></p>
+                        
+                        <h4>Priority 1 (Prefix Matches):</h4>
+                        <ul>
+                            <li>"Frontal Bone" (starts with "fron") ✓</li>
+                            <li>"Frontal Process" (starts with "fron") ✓</li>
+                        </ul>
+                        
+                        <h4>Priority 2 (Substring Matches):</h4>
+                        <ul>
+                            <li>"Zygomatic Frontal Process" (contains "fron") ✓</li>
+                        </ul>
+                        
+                        <h4>Not Returned:</h4>
+                        <ul>
+                            <li>"Temporal Bone" (no match) ✗</li>
+                        </ul>
+                        
+                        <p><strong>Result order:</strong> Priority 1 items first, then Priority 2, alphabetically within each priority.</p>
+                    </div>
+
+                    <h2>API Endpoints</h2>
+
+                    <h3>1. Root Endpoint</h3>
+                    <div class="code-explanation">
+                        <pre>app.get("/", (req, res) => {
+    res.json({ message: "Welcome to the Boneset API" });
+});</pre>
+                    </div>
+                    <ul>
+                        <li><strong>URL:</strong> <code>http://localhost:8000/</code></li>
+                        <li><strong>Purpose:</strong> Health check, confirms server running</li>
+                        <li><strong>Response:</strong> <code>{"message": "Welcome to the Boneset API"}</code></li>
+                    </ul>
+
+                    <h3>2. Combined Data Endpoint</h3>
+                    <div class="code-explanation">
+                        <pre>app.get("/combined-data", async (req, res) => {
+    const bonesetData = await fetchJSON(BONESET_JSON_URL);
+    const bonesets = [{id: bonesetData.id, name: bonesetData.name}];
+    const bones = [];
+    const subbones = [];
+    
+    // Fetch all bones and sub-bones
+    for (const boneId of bonesetData.bones || []) {
+        const boneData = await fetchJSON(`${BONES_DIR_URL}${boneId}.json`);
+        bones.push({
+            id: boneData.id, 
+            name: boneData.name, 
+            boneset: bonesetData.id
+        });
+        
+        for (const subBoneId of boneData.subBones || []) {
+            subbones.push({
+                id: subBoneId, 
+                name: subBoneId.replace(/_/g, " "), 
+                bone: boneData.id
+            });
+        }
+    }
+    
+    res.json({ bonesets, bones, subbones });
+});</pre>
+                    </div>
+                    <ul>
+                        <li><strong>URL:</strong> <code>http://localhost:8000/combined-data</code></li>
+                        <li><strong>Purpose:</strong> Populate all dropdowns at once</li>
+                        <li><strong>Called by:</strong> <code>main.js</code> on page load</li>
+                        <li><strong>Response:</strong> Object with bonesets, bones, subbones arrays</li>
+                    </ul>
+
+                    <h3>3. Search Endpoint</h3>
+                    <div class="code-explanation">
+                        <pre>app.get("/api/search", searchLimiter, (req, res) => {
+    const query = req.query.q;
+    
+    if (!query || query.trim().length < 2) {
+        return res.json([]);
+    }
+    
+    const results = searchItems(query, 20);
+    res.json(results);
+});</pre>
+                    </div>
+                    <ul>
+                        <li><strong>URL:</strong> <code>http://localhost:8000/api/search?q=frontal</code></li>
+                        <li><strong>Rate Limited:</strong> Max 100 requests/minute</li>
+                        <li><strong>Purpose:</strong> Search for bones by name</li>
+                        <li><strong>Query Param:</strong> <code>q</code> (search query)</li>
+                        <li><strong>Response:</strong> Array of matching bones</li>
+                    </ul>
+
+                    <h2>Error Handling</h2>
+                    <div class="code-explanation">
+                        <pre>app.get("/api/description/", async (req, res) => {
+    const { boneId } = req.query;
+    
+    if (!boneId) {
+        return res.send(" ");
+    }
+    
+    // Validate input
+    if (!isValidBoneId(boneId)) {
+        return res.send("&lt;li&gt;Invalid bone ID.&lt;/li&gt;");
+    }
+    
+    try {
+        const response = await axios.get(descriptionUrl, { timeout: 10_000 });
+        // Process data...
+    } catch (error) {
+        console.error("Error fetching description:", error.message);
+        return res.send("&lt;li&gt;Description not available.&lt;/li&gt;");
+    }
+});</pre>
+                    </div>
+
+                    <h3>Error Handling Layers</h3>
+                    <ul>
+                        <li><strong>Input validation:</strong> Check before processing</li>
+                        <li><strong>Try-catch:</strong> Catch unexpected errors</li>
+                        <li><strong>Timeout:</strong> 10 second limit prevents hanging</li>
+                        <li><strong>Graceful fallback:</strong> Return friendly message, not crash</li>
+                        <li><strong>Logging:</strong> <code>console.error()</code> for debugging</li>
+                    </ul>
+
+                    <h2>Starting the Server</h2>
+                    <div class="code-explanation">
+                        <pre>async function startServer() {
+    await initializeSearchCache();
+    
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
+
+startServer();</pre>
+                    </div>
+
+                    <h3>Startup Sequence</h3>
+                    <ol>
+                        <li><code>startServer()</code> called</li>
+                        <li><code>initializeSearchCache()</code> runs (fetches all data from GitHub)</li>
+                        <li><code>app.listen()</code> starts server on port 8000</li>
+                        <li>Console logs "Server running..."</li>
+                        <li>Server ready to handle requests!</li>
+                    </ol>
+
+                    <h2>Key Programming Concepts</h2>
+                    <ul>
+                        <li><strong>Express.js:</strong> Node.js web framework</li>
+                        <li><strong>Middleware:</strong> Functions that run before route handlers</li>
+                        <li><strong>REST API:</strong> HTTP endpoints (GET, POST, PUT, DELETE)</li>
+                        <li><strong>Async/Await:</strong> Handle asynchronous operations</li>
+                        <li><strong>Rate Limiting:</strong> Prevent abuse</li>
+                        <li><strong>CORS:</strong> Cross-origin resource sharing</li>
+                        <li><strong>Input Validation:</strong> Security best practice</li>
+                        <li><strong>Caching:</strong> Store data in memory for speed</li>
+                        <li><strong>Error Handling:</strong> Try-catch, graceful degradation</li>
+                        <li><strong>Environment Variables:</strong> Configuration management</li>
+                    </ul>
+
+                    <h2>Professional Practices</h2>
+                    <ul>
+                        <li><strong>Security First:</strong> Validate all user input</li>
+                        <li><strong>Rate Limiting:</strong> Protect against abuse</li>
+                        <li><strong>Error Handling:</strong> Never crash, always respond gracefully</li>
+                        <li><strong>Logging:</strong> Console.log for debugging</li>
+                        <li><strong>Timeouts:</strong> Prevent hanging requests</li>
+                        <li><strong>CORS:</strong> Enable cross-origin requests safely</li>
+                        <li><strong>Caching:</strong> Optimize performance</li>
+                        <li><strong>Environment Variables:</strong> Don't hardcode configuration</li>
+                        <li><strong>HTTP Status Codes:</strong> 200 (OK), 400 (Bad Request), 429 (Too Many Requests), 500 (Server Error)</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Backend vs Frontend</h3>
+                        <table style="width:100%; text-align:left;">
+                            <tr>
+                                <th style="padding:8px; border:1px solid #ccc;">Aspect</th>
+                                <th style="padding:8px; border:1px solid #ccc;">Frontend (HTML/CSS/JS)</th>
+                                <th style="padding:8px; border:1px solid #ccc;">Backend (server.js)</th>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px; border:1px solid #ccc;">Runs On</td>
+                                <td style="padding:8px; border:1px solid #ccc;">User's browser</td>
+                                <td style="padding:8px; border:1px solid #ccc;">Server (Node.js)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px; border:1px solid #ccc;">Purpose</td>
+                                <td style="padding:8px; border:1px solid #ccc;">Display UI, handle clicks</td>
+                                <td style="padding:8px; border:1px solid #ccc;">Process data, API endpoints</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px; border:1px solid #ccc;">Security</td>
+                                <td style="padding:8px; border:1px solid #ccc;">User can see all code</td>
+                                <td style="padding:8px; border:1px solid #ccc;">Code is hidden, secure</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px; border:1px solid #ccc;">Data Access</td>
+                                <td style="padding:8px; border:1px solid #ccc;">Limited by CORS</td>
+                                <td style="padding:8px; border:1px solid #ccc;">Can access any API</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <p class="tutorial-link"><a href="js-tutorials.html#lesson-12">Review JavaScript Lesson 12: Fetch API & AJAX</a></p>
+
+                    <div class="info-box" style="background-color: var(--accent-color); color: var(--dark-bg); border-left: 4px solid var(--primary-color);">
+                        <h3>Congratulations!</h3>
+                        <p>You've completed all 8 files of the DigitalBonesBox walkthrough! You now understand:</p>
+                        <ul>
+                            <li>HTML structure and HTMX integration</li>
+                            <li>Advanced CSS with variables and responsive design</li>
+                            <li>JavaScript modules and orchestration</li>
+                            <li>Fetch API and async communication</li>
+                            <li>Dependent dropdowns and user interactions</li>
+                            <li>Image loading and error handling</li>
+                            <li>Search with debouncing and ranking</li>
+                            <li>Express backend with security and rate limiting</li>
+                        </ul>
+                        <p><strong>Next Steps:</strong> Try building your own full-stack application using these patterns!</p>
+                    </div>
+                </div>
+
+                <div class="lesson-navigation">
+                    <a href="walkthrough-search-js.html" class="nav-btn secondary">← Previous: search.js</a>
+                    <a href="project-walkthrough.html" class="nav-btn">Back to Overview</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

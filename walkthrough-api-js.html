@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 4: api.js - DigitalBonesBox Walkthrough</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="styles/walkthrough.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html" class="active">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>DigitalBonesBox Files</h2>
+            <a href="project-walkthrough.html" class="back-link">← Back to Overview</a>
+            <div class="lesson-links">
+                <a href="walkthrough-boneset-html.html" class="lesson-link">
+                    <span class="lesson-number">File 1</span>
+                    <span class="lesson-title">boneset.html</span>
+                </a>
+                <a href="walkthrough-style-css.html" class="lesson-link">
+                    <span class="lesson-number">File 2</span>
+                    <span class="lesson-title">style.css</span>
+                </a>
+                <a href="walkthrough-main-js.html" class="lesson-link">
+                    <span class="lesson-number">File 3</span>
+                    <span class="lesson-title">main.js</span>
+                </a>
+                <a href="walkthrough-api-js.html" class="lesson-link active">
+                    <span class="lesson-number">File 4</span>
+                    <span class="lesson-title">api.js</span>
+                </a>
+                <a href="walkthrough-dropdowns-js.html" class="lesson-link">
+                    <span class="lesson-number">File 5</span>
+                    <span class="lesson-title">dropdowns.js</span>
+                </a>
+                <a href="walkthrough-viewer-js.html" class="lesson-link">
+                    <span class="lesson-number">File 6</span>
+                    <span class="lesson-title">viewer.js</span>
+                </a>
+                <a href="walkthrough-search-js.html" class="lesson-link">
+                    <span class="lesson-number">File 7</span>
+                    <span class="lesson-title">search.js</span>
+                </a>
+                <a href="walkthrough-server-js.html" class="lesson-link">
+                    <span class="lesson-number">File 8</span>
+                    <span class="lesson-title">server.js</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson active">
+                <div class="lesson-header">
+                    <span class="lesson-meta">File 4 of 8</span>
+                    <h1>api.js - Server Communication</h1>
+                </div>
+
+                <div class="lesson-text">
+                    <h2>What is api.js?</h2>
+                    <p><code>api.js</code> handles all <strong>communication with the backend server</strong>. It's the bridge between the frontend (what users see) and the backend (where data lives).</p>
+
+                    <div class="info-box">
+                        <h3>Real-World Analogy</h3>
+                        <p>Think of api.js as a <strong>waiter in a restaurant</strong>:</p>
+                        <ul>
+                            <li><strong>Customer (User):</strong> Selects bone from menu (dropdown)</li>
+                            <li><strong>Waiter (api.js):</strong> Takes order to kitchen, brings food back</li>
+                            <li><strong>Kitchen (Server):</strong> Prepares the data/images</li>
+                            <li><strong>Food (Response):</strong> Bone data, images, descriptions</li>
+                        </ul>
+                        <p>The waiter doesn't cook food - they just communicate between customer and kitchen!</p>
+                    </div>
+
+                    <h2>API Base URL Configuration</h2>
+                    <div class="code-explanation">
+                        <pre>const API_BASE_URL = "http://127.0.0.1:8000/api";</pre>
+                    </div>
+
+                    <ul>
+                        <li><code>127.0.0.1</code> - Localhost (your own computer)</li>
+                        <li><code>8000</code> - Port number where server runs</li>
+                        <li><code>/api</code> - Base path for all API endpoints</li>
+                        <li>Stored as constant so changing server location is easy</li>
+                    </ul>
+
+                    <h2>The Fetch API</h2>
+                    <p>Modern JavaScript uses <code>fetch()</code> to make HTTP requests:</p>
+
+                    <div class="code-explanation">
+                        <pre>async function fetchCombinedData() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/combined`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return { bonesets: [], bones: [], subbones: [] };
+    }
+}</pre>
+                    </div>
+
+                    <h3>Understanding This Function Step-by-Step</h3>
+
+                    <h4>1. Function Declaration</h4>
+                    <ul>
+                        <li><code>async</code> keyword allows using <code>await</code> inside</li>
+                        <li>Returns a Promise automatically</li>
+                        <li>No parameters needed - fetches everything</li>
+                    </ul>
+
+                    <h4>2. Try-Catch Block</h4>
+                    <ul>
+                        <li><code>try { }</code> - Attempt this code</li>
+                        <li><code>catch (error) { }</code> - If anything fails, handle it here</li>
+                        <li>Prevents app from crashing on network errors</li>
+                    </ul>
+
+                    <h4>3. Making the Request</h4>
+                    <div class="code-explanation">
+                        <pre>const response = await fetch(`${API_BASE_URL}/combined`);</pre>
+                    </div>
+                    <ul>
+                        <li><code>fetch()</code> sends HTTP GET request</li>
+                        <li><code>await</code> pauses until response arrives</li>
+                        <li>Template literal <code>`${}`code> inserts base URL</li>
+                        <li>Full URL: <code>http://127.0.0.1:8000/api/combined</code></li>
+                    </ul>
+
+                    <h4>4. Checking Response Status</h4>
+                    <div class="code-explanation">
+                        <pre>if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+}</pre>
+                    </div>
+                    <ul>
+                        <li><code>response.ok</code> is true for status 200-299 (success)</li>
+                        <li><code>!</code> means "not" - checks if NOT okay</li>
+                        <li><code>throw new Error()</code> jumps to catch block</li>
+                        <li><code>response.status</code> could be 404, 500, etc.</li>
+                    </ul>
+
+                    <h4>5. Parsing JSON</h4>
+                    <div class="code-explanation">
+                        <pre>const data = await response.json();</pre>
+                    </div>
+                    <ul>
+                        <li>Server sends data as JSON (JavaScript Object Notation)</li>
+                        <li><code>.json()</code> converts JSON string to JavaScript object</li>
+                        <li>Another async operation - needs <code>await</code></li>
+                    </ul>
+
+                    <h4>6. Error Handling</h4>
+                    <div class="code-explanation">
+                        <pre>catch (error) {
+    console.error("Error fetching data:", error);
+    return { bonesets: [], bones: [], subbones: [] };
+}</pre>
+                    </div>
+                    <ul>
+                        <li>If anything fails, log error to console</li>
+                        <li>Return empty arrays so app doesn't crash</li>
+                        <li><strong>Graceful degradation:</strong> App works even if API fails</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>What is JSON?</h3>
+                        <p>JSON (JavaScript Object Notation) is a format for sending data:</p>
+                        <div class="code-explanation">
+                            <pre>{
+    "bonesets": [
+        { "id": "skull", "name": "Skull" },
+        { "id": "spine", "name": "Spine" }
+    ],
+    "bones": [
+        { "id": "frontal", "name": "Frontal Bone", "boneset": "skull" }
+    ]
+}</pre>
+                        </div>
+                        <p>Looks like JavaScript objects but sent as text!</p>
+                    </div>
+
+                    <h2>Fetching Individual Bone Data</h2>
+                    <div class="code-explanation">
+                        <pre>async function fetchBoneData(boneId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/bone/${boneId}`);
+        
+        if (!response.ok) {
+            return null;
+        }
+        
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error fetching bone ${boneId}:`, error);
+        return null;
+    }
+}</pre>
+                    </div>
+
+                    <h3>Key Differences from Previous Function</h3>
+                    <ul>
+                        <li>Takes <code>boneId</code> parameter</li>
+                        <li>URL includes bone ID: <code>/api/bone/frontal</code></li>
+                        <li>Returns <code>null</code> on error instead of empty object</li>
+                        <li>Allows caller to check: <code>if (data === null) { ... }</code></li>
+                    </ul>
+
+                    <h2>HTTP Methods Explained</h2>
+                    <div class="info-box">
+                        <p><strong>GET:</strong> Retrieve data (what we use here)</p>
+                        <p><strong>POST:</strong> Send new data to server</p>
+                        <p><strong>PUT:</strong> Update existing data</p>
+                        <p><strong>DELETE:</strong> Remove data</p>
+                        <p>This app only uses GET - we're just reading data, not modifying it!</p>
+                    </div>
+
+                    <h2>Exporting Functions</h2>
+                    <div class="code-explanation">
+                        <pre>export { fetchCombinedData, fetchBoneData };</pre>
+                    </div>
+
+                    <ul>
+                        <li>Makes functions available to other modules</li>
+                        <li>main.js imports these with <code>import { ... } from "./api.js"</code></li>
+                        <li>Named exports - must import with same names</li>
+                    </ul>
+
+                    <h2>Common API Patterns</h2>
+
+                    <h3>Loading States</h3>
+                    <div class="code-explanation">
+                        <pre>async function loadData() {
+    showLoadingSpinner();  // Show spinner
+    const data = await fetchCombinedData();  // Wait for data
+    hideLoadingSpinner();  // Hide spinner
+    displayData(data);  // Show data
+}</pre>
+                    </div>
+
+                    <h3>Retry Logic</h3>
+                    <div class="code-explanation">
+                        <pre>async function fetchWithRetry(url, retries = 3) {
+    for (let i = 0; i < retries; i++) {
+        try {
+            return await fetch(url);
+        } catch (error) {
+            if (i === retries - 1) throw error;
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+    }
+}</pre>
+                    </div>
+
+                    <h3>Request Cancellation</h3>
+                    <div class="code-explanation">
+                        <pre>const controller = new AbortController();
+fetch(url, { signal: controller.signal });
+
+// Cancel if needed:
+controller.abort();</pre>
+                    </div>
+
+                    <h2>Error Types & Handling</h2>
+                    <ul>
+                        <li><strong>Network Error:</strong> No internet connection</li>
+                        <li><strong>404 Not Found:</strong> Endpoint doesn't exist</li>
+                        <li><strong>500 Server Error:</strong> Backend crashed</li>
+                        <li><strong>Timeout:</strong> Request took too long</li>
+                        <li><strong>CORS Error:</strong> Server blocks cross-origin requests</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>What is CORS?</h3>
+                        <p><strong>CORS (Cross-Origin Resource Sharing)</strong> is a security feature:</p>
+                        <ul>
+                            <li>Browsers block requests to different domains by default</li>
+                            <li>Example: <code>localhost:3000</code> can't access <code>api.example.com</code></li>
+                            <li>Server must explicitly allow cross-origin requests</li>
+                            <li>Our server.js has CORS middleware to enable this</li>
+                        </ul>
+                    </div>
+
+                    <h2>Request/Response Cycle</h2>
+                    <div class="info-box">
+                        <p><strong>1. User Action:</strong> Selects "Skull" from dropdown</p>
+                        <p><strong>2. Event Listener:</strong> Detects change, calls fetchBoneData("skull")</p>
+                        <p><strong>3. HTTP Request:</strong> Browser sends GET request to server</p>
+                        <p><strong>4. Server Processing:</strong> Finds skull data in database</p>
+                        <p><strong>5. HTTP Response:</strong> Server sends JSON data back</p>
+                        <p><strong>6. Parsing:</strong> .json() converts to JavaScript object</p>
+                        <p><strong>7. Display:</strong> viewer.js shows the bone data</p>
+                    </div>
+
+                    <h2>Key Programming Concepts</h2>
+                    <ul>
+                        <li><strong>Async/Await:</strong> Handle asynchronous operations</li>
+                        <li><strong>Fetch API:</strong> Modern way to make HTTP requests</li>
+                        <li><strong>Promises:</strong> Represent future values</li>
+                        <li><strong>Try-Catch:</strong> Error handling</li>
+                        <li><strong>JSON:</strong> Data format for APIs</li>
+                        <li><strong>Template Literals:</strong> String interpolation with <code>${}</code></li>
+                        <li><strong>ES6 Modules:</strong> Export/import functions</li>
+                        <li><strong>HTTP Status Codes:</strong> 200 (OK), 404 (Not Found), 500 (Error)</li>
+                    </ul>
+
+                    <h2>Professional Practices</h2>
+                    <ul>
+                        <li><strong>Error Handling:</strong> Always wrap API calls in try-catch</li>
+                        <li><strong>Status Checking:</strong> Verify response.ok before parsing</li>
+                        <li><strong>Fallback Values:</strong> Return empty arrays/null on errors</li>
+                        <li><strong>Console Logging:</strong> Log errors for debugging</li>
+                        <li><strong>Separation of Concerns:</strong> API logic separate from UI logic</li>
+                        <li><strong>Configuration:</strong> Store API URL in constant for easy changes</li>
+                    </ul>
+
+                    <p class="tutorial-link"><a href="js-tutorials.html#lesson-11">Review JavaScript Lesson 11: AJAX & Fetch API</a></p>
+                </div>
+
+                <div class="lesson-navigation">
+                    <a href="walkthrough-main-js.html" class="nav-btn secondary">← Previous: main.js</a>
+                    <a href="walkthrough-dropdowns-js.html" class="nav-btn">Next: dropdowns.js →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

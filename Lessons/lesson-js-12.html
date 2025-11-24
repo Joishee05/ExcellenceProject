@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 12: Async JavaScript - JavaScript Tutorial</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthroughs.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link">Lesson 2: Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link">Lesson 3: Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link">Lesson 4: Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link">Lesson 6: Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link">Lesson 8: Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link">Lesson 9: Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link">Lesson 10: DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link">Lesson 11: Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link active">Lesson 12: Async JavaScript</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 12 of 12</div>
+                <h1>Asynchronous JavaScript</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>Asynchronous JavaScript allows code to run without blocking other operations. This is essential for tasks like fetching data from servers, timers, and animations.</p>
+
+                <h2>What is Asynchronous Code?</h2>
+                <p>Synchronous code runs line by line, waiting for each operation to complete. Asynchronous code can start an operation and continue running other code while waiting for it to finish.</p>
+                <pre><code>// Synchronous (blocking)
+console.log("First");
+console.log("Second");
+console.log("Third");
+// Output: First, Second, Third (in order)
+
+// Asynchronous (non-blocking)
+console.log("First");
+setTimeout(() => {
+    console.log("Second (after delay)");
+}, 1000);
+console.log("Third");
+// Output: First, Third, Second (after delay)</code></pre>
+
+                <h2>setTimeout()</h2>
+                <p>Execute code after a delay:</p>
+                <pre><code>// Basic syntax
+setTimeout(function() {
+    console.log("This runs after 2 seconds");
+}, 2000);
+
+// With arrow function
+setTimeout(() => {
+    console.log("Hello after 1 second!");
+}, 1000);
+
+// Passing arguments
+function greet(name) {
+    console.log("Hello, " + name);
+}
+setTimeout(greet, 1500, "Alice");
+
+// Save timer reference (to cancel it)
+let timer = setTimeout(() => {
+    console.log("This might not run");
+}, 3000);
+
+// Cancel the timer
+clearTimeout(timer);</code></pre>
+
+                <h2>setInterval()</h2>
+                <p>Execute code repeatedly at regular intervals:</p>
+                <pre><code>// Runs every second
+let counter = 0;
+let interval = setInterval(() => {
+    counter++;
+    console.log("Count: " + counter);
+    
+    // Stop after 5 counts
+    if (counter === 5) {
+        clearInterval(interval);
+        console.log("Stopped!");
+    }
+}, 1000);
+
+// Countdown timer example
+let seconds = 10;
+let countdown = setInterval(() => {
+    console.log(seconds + " seconds remaining");
+    seconds--;
+    
+    if (seconds < 0) {
+        clearInterval(countdown);
+        console.log("Time's up!");
+    }
+}, 1000);</code></pre>
+
+                <h2>Promises</h2>
+                <p>Promises represent the eventual result of an asynchronous operation:</p>
+                <pre><code>// Creating a promise
+let myPromise = new Promise((resolve, reject) => {
+    let success = true;
+    
+    setTimeout(() => {
+        if (success) {
+            resolve("Operation succeeded!");
+        } else {
+            reject("Operation failed!");
+        }
+    }, 1000);
+});
+
+// Using a promise
+myPromise
+    .then((result) => {
+        console.log(result); // "Operation succeeded!"
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+// Practical example: Simulating data fetch
+function fetchUserData(userId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (userId > 0) {
+                resolve({ id: userId, name: "John Doe" });
+            } else {
+                reject("Invalid user ID");
+            }
+        }, 1000);
+    });
+}
+
+fetchUserData(123)
+    .then(user => {
+        console.log("User:", user.name);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });</code></pre>
+
+                <h2>Async/Await</h2>
+                <p>Modern syntax for working with promises (cleaner and easier to read):</p>
+                <pre><code>// Function must be declared as async
+async function getData() {
+    try {
+        // await pauses execution until promise resolves
+        let result = await fetchUserData(123);
+        console.log("User:", result.name);
+        
+        // Can use multiple awaits
+        let result2 = await fetchUserData(456);
+        console.log("User 2:", result2.name);
+        
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+getData();
+
+// Arrow function version
+const loadData = async () => {
+    try {
+        let data = await fetchUserData(789);
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+};</code></pre>
+
+                <h2>Fetch API</h2>
+                <p>Fetch data from servers using promises:</p>
+                <pre><code>// Basic fetch (returns a promise)
+fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+// Using async/await (cleaner)
+async function loadData() {
+    try {
+        let response = await fetch('https://api.example.com/data');
+        let data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+loadData();
+
+// POST request
+async function sendData() {
+    try {
+        let response = await fetch('https://api.example.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: 'John', age: 25 })
+        });
+        
+        let result = await response.json();
+        console.log('Success:', result);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}</code></pre>
+
+                <div class="info-box">
+                    <p><strong>Note:</strong> <code>async</code> functions always return a promise. The <code>await</code> keyword can only be used inside <code>async</code> functions.</p>
+                </div>
+
+                <h2>Promise.all()</h2>
+                <p>Wait for multiple promises to complete:</p>
+                <pre><code>let promise1 = fetch('https://api.example.com/user/1');
+let promise2 = fetch('https://api.example.com/user/2');
+let promise3 = fetch('https://api.example.com/user/3');
+
+// Wait for all to complete
+Promise.all([promise1, promise2, promise3])
+    .then(responses => {
+        return Promise.all(responses.map(r => r.json()));
+    })
+    .then(users => {
+        console.log('All users:', users);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+// Using async/await
+async function loadAllUsers() {
+    try {
+        let [user1, user2, user3] = await Promise.all([
+            fetch('https://api.example.com/user/1').then(r => r.json()),
+            fetch('https://api.example.com/user/2').then(r => r.json()),
+            fetch('https://api.example.com/user/3').then(r => r.json())
+        ]);
+        
+        console.log(user1, user2, user3);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}</code></pre>
+
+                <h2>Try It Yourself</h2>
+                <p>Practice with asynchronous code:</p>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>JavaScript Editor</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="codeInput">// setTimeout example
+console.log("Starting...");
+
+setTimeout(() => {
+    console.log("After 1 second");
+}, 1000);
+
+setTimeout(() => {
+    console.log("After 2 seconds");
+}, 2000);
+
+console.log("Code continues running...");
+
+// Promise example
+function delayedMessage(message, delay) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(message);
+        }, delay);
+    });
+}
+
+// Using the promise
+delayedMessage("Hello from promise!", 1500)
+    .then(msg => {
+        console.log(msg);
+    });
+
+// Async/await example
+async function runAsync() {
+    console.log("Async function started");
+    let msg = await delayedMessage("Async/await works!", 2500);
+    console.log(msg);
+}
+
+runAsync();</textarea>
+                    <div class="preview-area">
+                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
+                    </div>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p>Practice async JavaScript:</p>
+                    <ul>
+                        <li>Create a countdown timer using setInterval()</li>
+                        <li>Write a promise that resolves after 3 seconds with a success message</li>
+                        <li>Create an async function that waits for multiple promises</li>
+                        <li>Build a simple loading indicator that shows for 2 seconds then displays data</li>
+                        <li>Use fetch to get data from a public API (like JSONPlaceholder)</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #0033A0 0%, #FFD700 100%); padding: 3rem; border-radius: 12px; text-align: center; margin-top: 3rem;">
+                    <h2 style="color: white; font-size: 2rem; margin-bottom: 1rem;">🎉 Congratulations!</h2>
+                    <p style="color: white; font-size: 1.25rem; margin-bottom: 2rem;">You've completed all 12 JavaScript lessons!</p>
+                    <p style="color: white; font-size: 1.125rem; margin-bottom: 2rem;">You've learned variables, data types, functions, loops, arrays, objects, DOM manipulation, events, and async JavaScript. You're now ready to build interactive web applications!</p>
+                    <a href="../project-walkthroughs.html" style="display: inline-block; background: white; color: #0033A0; padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1.125rem; margin-top: 1rem;">Build Real Projects →</a>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-js-11.html" class="nav-button">← Previous Lesson</a>
+                <a href="../project-walkthroughs.html" class="nav-button">View Projects →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const output = document.getElementById('console-output');
+            output.innerHTML = 'Running async code... (check console for timed output)\n\n';
+            
+            const logs = [];
+            const originalLog = console.log;
+            console.log = function(...args) {
+                const msg = args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' ');
+                logs.push(msg);
+                output.innerHTML += msg + '\n';
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+            } catch (error) {
+                output.innerHTML += '\nError: ' + error.message;
+                output.style.color = '#d63031';
+            }
+            
+            console.log = originalLog;
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

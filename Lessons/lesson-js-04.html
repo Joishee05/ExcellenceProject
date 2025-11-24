@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Operators - JavaScript Tutorial</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthroughs.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 33.33%;"></div>
+                </div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link">Lesson 2: Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link">Lesson 3: Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link active">Lesson 4: Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link">Lesson 6: Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link">Lesson 8: Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link">Lesson 9: Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link">Lesson 10: DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link">Lesson 11: Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link">Lesson 12: Async JavaScript</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 4 of 12</div>
+                <h1>JavaScript Operators</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>Operators are symbols that perform operations on values and variables. JavaScript has several types of operators.</p>
+
+                <h2>Arithmetic Operators</h2>
+                <p>Used to perform mathematical calculations:</p>
+                <pre><code>let a = 10;
+let b = 3;
+
+console.log(a + b);  // Addition: 13
+console.log(a - b);  // Subtraction: 7
+console.log(a * b);  // Multiplication: 30
+console.log(a / b);  // Division: 3.333...
+console.log(a % b);  // Modulus (remainder): 1
+console.log(a ** b); // Exponentiation: 1000 (10^3)</code></pre>
+
+                <h3>Increment and Decrement</h3>
+                <pre><code>let count = 5;
+
+count++;  // Increment by 1 (count = 6)
+console.log(count); // 6
+
+count--;  // Decrement by 1 (count = 5)
+console.log(count); // 5</code></pre>
+
+                <h2>Assignment Operators</h2>
+                <p>Used to assign values to variables:</p>
+                <pre><code>let x = 10;
+
+x += 5;  // Same as: x = x + 5  (x becomes 15)
+x -= 3;  // Same as: x = x - 3  (x becomes 12)
+x *= 2;  // Same as: x = x * 2  (x becomes 24)
+x /= 4;  // Same as: x = x / 4  (x becomes 6)
+x %= 4;  // Same as: x = x % 4  (x becomes 2)
+
+console.log(x); // 2</code></pre>
+
+                <h2>Comparison Operators</h2>
+                <p>Used to compare values and return true or false:</p>
+                <pre><code>let age = 20;
+
+console.log(age == 20);   // Equal to: true
+console.log(age === 20);  // Strict equal to: true
+console.log(age != 18);   // Not equal to: true
+console.log(age !== "20"); // Strict not equal: true
+console.log(age > 18);    // Greater than: true
+console.log(age < 25);    // Less than: true
+console.log(age >= 20);   // Greater than or equal: true
+console.log(age <= 19);   // Less than or equal: false</code></pre>
+
+                <div class="info-box">
+                    <p><strong>Important:</strong> Use <code>===</code> (strict equality) instead of <code>==</code>. Strict equality checks both value and type, while <code>==</code> performs type conversion.</p>
+                    <pre><code>console.log(5 == "5");   // true (converts string to number)
+console.log(5 === "5");  // false (different types)</code></pre>
+                </div>
+
+                <h2>Logical Operators</h2>
+                <p>Used to combine or invert boolean values:</p>
+                <pre><code>let age = 20;
+let hasID = true;
+
+// AND (&&) - both must be true
+console.log(age >= 18 && hasID);  // true
+
+// OR (||) - at least one must be true
+console.log(age >= 21 || hasID);  // true
+
+// NOT (!) - inverts the value
+console.log(!hasID);  // false
+console.log(!(age < 18)); // true</code></pre>
+
+                <h3>Logical Operator Examples</h3>
+                <pre><code>let isStudent = true;
+let hasDiscount = false;
+
+// Check if eligible for student discount
+let eligible = isStudent && hasDiscount;
+console.log(eligible); // false
+
+// Check if any discount applies
+let anyDiscount = isStudent || hasDiscount;
+console.log(anyDiscount); // true</code></pre>
+
+                <h2>String Operators</h2>
+                <p>The <code>+</code> operator can also concatenate (join) strings:</p>
+                <pre><code>let firstName = "John";
+let lastName = "Doe";
+
+let fullName = firstName + " " + lastName;
+console.log(fullName); // "John Doe"
+
+// You can also use += with strings
+let message = "Hello";
+message += " World";
+console.log(message); // "Hello World"</code></pre>
+
+                <h2>Try It Yourself</h2>
+                <p>Experiment with different operators:</p>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>JavaScript Editor</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="codeInput">// Arithmetic operators
+let num1 = 15;
+let num2 = 4;
+console.log("15 + 4 =", num1 + num2);
+console.log("15 - 4 =", num1 - num2);
+console.log("15 * 4 =", num1 * num2);
+console.log("15 / 4 =", num1 / num2);
+console.log("15 % 4 =", num1 % num2);
+
+// Comparison operators
+let age = 21;
+console.log("\nAge checks:");
+console.log("age >= 18:", age >= 18);
+console.log("age < 21:", age < 21);
+
+// Logical operators
+let isStudent = true;
+let hasID = true;
+console.log("\nLogical checks:");
+console.log("isStudent AND hasID:", isStudent && hasID);
+console.log("NOT isStudent:", !isStudent);</textarea>
+                    <div class="preview-area">
+                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
+                    </div>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p>Write code that:</p>
+                    <ul>
+                        <li>Calculates the area of a rectangle (length × width)</li>
+                        <li>Checks if a number is even using the modulus operator</li>
+                        <li>Determines if someone can vote (age >= 18)</li>
+                        <li>Checks if a student qualifies for honors (GPA >= 3.5 AND attendance >= 90%)</li>
+                        <li>Concatenates your first and last name with a space</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-js-03.html" class="nav-button">← Previous Lesson</a>
+                <a href="lesson-js-05.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const output = document.getElementById('console-output');
+            output.innerHTML = '';
+            
+            const logs = [];
+            const originalLog = console.log;
+            console.log = function(...args) {
+                logs.push(args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' '));
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                output.innerHTML = logs.join('\n') || 'Code executed successfully (no output)';
+                output.style.color = '#00b894';
+            } catch (error) {
+                output.innerHTML = 'Error: ' + error.message;
+                output.style.color = '#d63031';
+            }
+            
+            console.log = originalLog;
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

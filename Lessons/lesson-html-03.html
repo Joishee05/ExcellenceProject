@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: Headings & Paragraphs - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 20%"></div>
+                </div>
+            </div>
+
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link active">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link">15. iframes</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 3 of 15</div>
+                <h1>Headings & Paragraphs</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>Headings and paragraphs are fundamental HTML elements for organizing text content.</p>
+                
+                <h3>Headings (h1 - h6):</h3>
+                <p>HTML has 6 levels of headings, from <code>&lt;h1&gt;</code> (most important) to <code>&lt;h6&gt;</code> (least important):</p>
+                
+                <div class="info-box">
+                    <p>
+                        <code>&lt;h1&gt;</code> - Main heading (use only once per page)<br>
+                        <code>&lt;h2&gt;</code> - Section heading<br>
+                        <code>&lt;h3&gt;</code> - Sub-section heading<br>
+                        <code>&lt;h4&gt;</code> - Minor heading<br>
+                        <code>&lt;h5&gt;</code> - Even smaller heading<br>
+                        <code>&lt;h6&gt;</code> - Smallest heading
+                    </p>
+                </div>
+
+                <h3>Paragraphs:</h3>
+                <p>The <code>&lt;p&gt;</code> tag defines a paragraph. Browsers automatically add space before and after paragraphs.</p>
+            </div>
+
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>HTML</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<body>
+    <h1>My Blog</h1>
+    <h2>About Web Development</h2>
+    <p>Web development is the process of creating websites.</p>
+    
+    <h2>Why Learn HTML?</h2>
+    <p>HTML is the foundation of all websites.</p>
+    <p>It's easy to learn and very powerful!</p>
+    
+    <h3>Getting Started</h3>
+    <p>You're already on your way!</p>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                
+                <div class="preview-area">
+                    <iframe class="output-frame" id="output-frame"></iframe>
+                </div>
+            </div>
+
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a simple blog post structure with:</p>
+                <ol>
+                    <li>An h1 main title</li>
+                    <li>Two h2 sections with different topics</li>
+                    <li>At least one paragraph under each section</li>
+                </ol>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-html-02.html" class="nav-button">← Previous</a>
+                <a href="lesson-html-04.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('code-input').value;
+            const iframe = document.getElementById('output-frame');
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(code);
+            iframeDoc.close();
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

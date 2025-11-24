@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 12: Comments - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 80%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link active">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link">15. iframes</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 12 of 15</div>
+                <h1>HTML Comments & Code Organization</h1>
+            </div>
+            <div class="lesson-text">
+                <h3>Why Use Comments?</h3>
+                <p>Comments help you and other developers understand your code. They're not displayed in the browser.</p>
+                <h3>Comment Syntax</h3>
+                <pre><code>&lt;!-- This is a single-line comment --&gt;
+
+&lt;!--
+This is a
+multi-line comment
+--&gt;</code></pre>
+                <h3>Best Practices</h3>
+                <ul>
+                    <li>Use comments to explain complex sections</li>
+                    <li>Mark sections of your page (header, main, footer)</li>
+                    <li>Document why code exists, not what it does</li>
+                    <li>Keep comments up-to-date with code changes</li>
+                </ul>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+    <title>Well-Organized Code</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>My Portfolio</h1>
+        <nav>
+            <!-- Main navigation links -->
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <!-- Main Content Area -->
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Web developer and designer.</p>
+        </section>
+        
+        <!-- Project showcase section -->
+        <section id="projects">
+            <h2>My Projects</h2>
+            <p>Coming soon!</p>
+        </section>
+    </main>
+    
+    <!-- Footer with contact info -->
+    <footer>
+        <p>Contact: email@example.com</p>
+    </footer>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Add comments to organize this code:</p>
+                <ol>
+                    <li>Add section comments for header, main, and footer</li>
+                    <li>Comment each major content block</li>
+                    <li>Add a comment explaining any complex structure</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-html-11.html" class="nav-button">← Previous</a>
+                <a href="lesson-html-13.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

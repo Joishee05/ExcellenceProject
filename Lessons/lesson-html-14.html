@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 14: Audio & Video - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 93.33%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link active">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link">15. iframes</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 14 of 15</div>
+                <h1>HTML Audio & Video</h1>
+            </div>
+            <div class="lesson-text">
+                <h3>Embedding Media</h3>
+                <p>HTML5 makes it easy to add audio and video to your web pages without plugins.</p>
+                <h3>Video Tag</h3>
+                <pre><code>&lt;video width="640" height="360" controls&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    Your browser doesn't support video.
+&lt;/video&gt;</code></pre>
+                <h3>Audio Tag</h3>
+                <pre><code>&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+    Your browser doesn't support audio.
+&lt;/audio&gt;</code></pre>
+                <h3>Common Attributes</h3>
+                <ul>
+                    <li><code>controls</code> - Shows play/pause buttons</li>
+                    <li><code>autoplay</code> - Starts playing automatically</li>
+                    <li><code>loop</code> - Repeats the media</li>
+                    <li><code>muted</code> - Starts muted</li>
+                    <li><code>poster</code> - Thumbnail image for video</li>
+                </ul>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+    <title>Media Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        video, audio {
+            margin: 20px 0;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Media Examples</h1>
+    
+    <h2>Video Example</h2>
+    <video width="640" height="360" controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <h2>Audio Example</h2>
+    <audio controls>
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+    
+    <p>Note: Media files are hosted externally for demo purposes.</p>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a media page with:</p>
+                <ol>
+                    <li>A video element with controls</li>
+                    <li>An audio player</li>
+                    <li>Descriptive text explaining each media element</li>
+                    <li>Proper fallback text for unsupported browsers</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-html-13.html" class="nav-button">← Previous</a>
+                <a href="lesson-html-15.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

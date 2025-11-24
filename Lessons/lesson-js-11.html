@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 11: Events - JavaScript Tutorial</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthroughs.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 91.67%;"></div>
+                </div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link">Lesson 2: Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link">Lesson 3: Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link">Lesson 4: Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link">Lesson 6: Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link">Lesson 8: Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link">Lesson 9: Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link">Lesson 10: DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link active">Lesson 11: Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link">Lesson 12: Async JavaScript</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 11 of 12</div>
+                <h1>JavaScript Events</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>Events are actions that happen in the browser, like clicking a button, moving the mouse, or pressing a key. JavaScript allows you to respond to these events.</p>
+
+                <h2>What are Events?</h2>
+                <p>Events are things that happen to HTML elements. Common events include:</p>
+                <ul>
+                    <li><strong>click</strong> - User clicks an element</li>
+                    <li><strong>mouseover</strong> - Mouse moves over an element</li>
+                    <li><strong>mouseout</strong> - Mouse leaves an element</li>
+                    <li><strong>keydown</strong> - User presses a key</li>
+                    <li><strong>submit</strong> - Form is submitted</li>
+                    <li><strong>change</strong> - Input value changes</li>
+                    <li><strong>load</strong> - Page finishes loading</li>
+                </ul>
+
+                <h2>addEventListener()</h2>
+                <p>The modern way to handle events:</p>
+                <pre><code>// HTML: &lt;button id="myButton"&gt;Click Me&lt;/button&gt;
+
+let button = document.getElementById("myButton");
+
+button.addEventListener("click", function() {
+    console.log("Button was clicked!");
+});
+
+// Can also use arrow functions
+button.addEventListener("click", () => {
+    console.log("Clicked with arrow function!");
+});</code></pre>
+
+                <h2>Click Events</h2>
+                <pre><code>let button = document.querySelector("#actionButton");
+let counter = 0;
+
+button.addEventListener("click", function() {
+    counter++;
+    console.log("Button clicked " + counter + " times");
+    
+    // Change button text
+    button.textContent = "Clicked " + counter + " times";
+});
+
+// Multiple elements
+let buttons = document.querySelectorAll(".btn");
+buttons.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        console.log("A button was clicked!");
+    });
+});</code></pre>
+
+                <h2>Mouse Events</h2>
+                <pre><code>let box = document.querySelector(".box");
+
+// Mouse over
+box.addEventListener("mouseover", function() {
+    box.style.backgroundColor = "lightblue";
+    console.log("Mouse entered!");
+});
+
+// Mouse out
+box.addEventListener("mouseout", function() {
+    box.style.backgroundColor = "white";
+    console.log("Mouse left!");
+});
+
+// Mouse move (tracks position)
+box.addEventListener("mousemove", function(event) {
+    console.log("X: " + event.clientX + ", Y: " + event.clientY);
+});</code></pre>
+
+                <h2>Keyboard Events</h2>
+                <pre><code>let input = document.querySelector("#textInput");
+
+// Key down
+input.addEventListener("keydown", function(event) {
+    console.log("Key pressed: " + event.key);
+});
+
+// Specific key detection
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        console.log("Enter key pressed!");
+    }
+    
+    if (event.key === "Escape") {
+        console.log("Escape key pressed!");
+    }
+});
+
+// Key up
+input.addEventListener("keyup", function() {
+    console.log("Current value: " + input.value);
+});</code></pre>
+
+                <h2>Form Events</h2>
+                <pre><code>let form = document.querySelector("#myForm");
+let emailInput = document.querySelector("#email");
+
+// Form submit
+form.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent page reload
+    
+    console.log("Form submitted!");
+    // Process form data here
+});
+
+// Input change
+emailInput.addEventListener("change", function() {
+    console.log("Email changed to: " + emailInput.value);
+});
+
+// Input (fires on every keystroke)
+emailInput.addEventListener("input", function() {
+    console.log("Current input: " + emailInput.value);
+});</code></pre>
+
+                <h2>Event Object</h2>
+                <p>Event handlers receive an event object with information about the event:</p>
+                <pre><code>button.addEventListener("click", function(event) {
+    // What element was clicked?
+    console.log(event.target);
+    
+    // What type of event?
+    console.log(event.type); // "click"
+    
+    // Mouse position
+    console.log("X: " + event.clientX);
+    console.log("Y: " + event.clientY);
+    
+    // Prevent default behavior
+    event.preventDefault();
+    
+    // Stop event from bubbling
+    event.stopPropagation();
+});</code></pre>
+
+                <h2>Event Delegation</h2>
+                <p>Handle events on parent elements to catch events from children:</p>
+                <pre><code>// Instead of adding listeners to each button:
+let list = document.querySelector("#itemList");
+
+list.addEventListener("click", function(event) {
+    // Check if a list item was clicked
+    if (event.target.tagName === "LI") {
+        console.log("Clicked: " + event.target.textContent);
+        event.target.classList.toggle("selected");
+    }
+});
+
+// This works for dynamically added items too!</code></pre>
+
+                <h2>Removing Event Listeners</h2>
+                <pre><code>// Named function required for removal
+function handleClick() {
+    console.log("Button clicked!");
+}
+
+let button = document.querySelector("button");
+
+// Add listener
+button.addEventListener("click", handleClick);
+
+// Remove listener
+button.removeEventListener("click", handleClick);</code></pre>
+
+                <div class="info-box">
+                    <p><strong>Tip:</strong> Use <code>event.preventDefault()</code> to stop default behaviors like form submissions or link navigation. Use <code>event.stopPropagation()</code> to prevent events from bubbling up to parent elements.</p>
+                </div>
+
+                <h2>Try It Yourself</h2>
+                <p>Practice handling events with these interactive demos:</p>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>Interactive Demo</span>
+                    </div>
+                    <div class="preview-area">
+                        <div id="event-demo" style="padding: 20px;">
+                            <button id="clickBtn" style="background: #0033A0; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Click Me</button>
+                            <button id="hoverBtn" style="background: #0033A0; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Hover Me</button>
+                            <div id="output" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 4px; min-height: 50px;"></div>
+                            <input type="text" id="keyInput" placeholder="Type something..." style="margin-top: 15px; padding: 10px; width: 100%; border: 1px solid #dee2e6; border-radius: 4px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p>Create event handlers for these scenarios:</p>
+                    <ul>
+                        <li>A button that changes color when clicked</li>
+                        <li>A div that shows its coordinates when you move the mouse over it</li>
+                        <li>An input field that displays character count as you type</li>
+                        <li>A form that validates email format before submission</li>
+                        <li>A "dark mode" toggle button that changes page colors</li>
+                        <li>A list where clicking items toggles a "completed" style</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-js-10.html" class="nav-button">← Previous Lesson</a>
+                <a href="lesson-js-12.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Demo event handlers
+        let clickBtn = document.getElementById('clickBtn');
+        let hoverBtn = document.getElementById('hoverBtn');
+        let keyInput = document.getElementById('keyInput');
+        let output = document.getElementById('output');
+        let clickCount = 0;
+
+        clickBtn.addEventListener('click', function() {
+            clickCount++;
+            output.innerHTML = `<strong>Click Event!</strong> Button clicked ${clickCount} time(s)`;
+        });
+
+        hoverBtn.addEventListener('mouseover', function() {
+            output.innerHTML = '<strong>Mouse Over Event!</strong> You are hovering over the button';
+            hoverBtn.style.background = '#FFD700';
+        });
+
+        hoverBtn.addEventListener('mouseout', function() {
+            hoverBtn.style.background = '#0033A0';
+        });
+
+        keyInput.addEventListener('input', function(e) {
+            let text = e.target.value;
+            output.innerHTML = `<strong>Input Event!</strong> You typed: "${text}" (${text.length} characters)`;
+        });
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

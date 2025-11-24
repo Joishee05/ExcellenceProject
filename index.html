@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLU LearnCode - Web Development Tutorials</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <style>
+        body { background: var(--off-white); }
+        
+        .home-hero { background: var(--slu-blue); color: white; padding: 4rem 2rem; text-align: center; }
+        .home-hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 900; }
+        .home-hero p { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95; }
+        .home-hero .cta-button { display: inline-block; background: var(--slu-gold); color: var(--slu-blue); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; transition: all 0.3s ease; }
+        .home-hero .cta-button:hover { background: #f0e68c; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,51,160,0.3); }
+        
+        .learning-paths { max-width: 1400px; margin: 3rem auto; padding: 0 2rem; }
+        .learning-paths h2 { font-size: 2.2rem; color: var(--slu-blue); margin-bottom: 2rem; text-align: center; }
+        
+        .path-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        
+        .path-card { background: white; border: 2px solid var(--border); border-radius: 8px; padding: 2rem; transition: all 0.3s ease; text-decoration: none; color: inherit; }
+        .path-card:hover { border-color: var(--slu-blue); box-shadow: 0 6px 16px rgba(0,51,160,0.15); transform: translateY(-4px); }
+        
+        .path-card-icon { width: 60px; height: 60px; background: var(--slu-blue); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin-bottom: 1rem; }
+        
+        .path-card h3 { color: var(--slu-blue); font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .path-card .level { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 1rem; }
+        .path-card p { color: var(--text-gray); line-height: 1.6; margin-bottom: 1rem; }
+        
+        .path-card ul { margin: 1rem 0; padding-left: 1.5rem; }
+        .path-card li { color: var(--text-gray); margin: 0.5rem 0; line-height: 1.5; }
+        
+        .path-card .btn { display: inline-block; background: var(--slu-blue); color: white; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: 600; margin-top: 1rem; transition: background 0.3s ease; }
+        .path-card .btn:hover { background: #002570; }
+        
+        .features { background: var(--off-white); padding: 3rem 2rem; }
+        .features h2 { font-size: 2rem; color: var(--slu-blue); text-align: center; margin-bottom: 2rem; }
+        
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1400px; margin: 0 auto; }
+        
+        .feature { background: white; padding: 2rem; border-radius: 8px; border-left: 4px solid var(--slu-gold); text-align: center; }
+        .feature-label { font-size: 2.5rem; color: var(--slu-blue); font-weight: bold; margin-bottom: 0.5rem; }
+        .feature h3 { color: var(--slu-blue); margin: 1rem 0 0.5rem 0; }
+        .feature p { color: var(--text-gray); line-height: 1.6; }
+        
+        .footer { background: var(--slu-blue); color: white; padding: 2rem; text-align: center; }
+        .footer p { margin: 0.5rem 0; }
+        
+        @media (max-width: 768px) { .home-hero h1 { font-size: 2rem; } .learning-paths h2 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="home-hero">
+        <h1>SLU Web Development</h1>
+        <p>Master HTML, CSS, and JavaScript through interactive lessons</p>
+        <p style="font-size: 1.1rem; opacity: 0.9;">Learn web development the Saint Louis University way - From beginner to intermediate developer!</p>
+        <a href="#learning-paths" class="cta-button">Start Learning</a>
+    </section>
+
+    <section id="learning-paths" class="learning-paths">
+        <h2>Choose Your Learning Path</h2>
+        <div class="path-grid">
+            <a href="html-tutorials.html" class="path-card">
+                <div class="path-card-icon">HTML</div>
+                <h3>HTML</h3>
+                <p class="level">Beginner to Intermediate</p>
+                <p>Learn the structure of web pages. Master tags, attributes, forms, and semantic HTML.</p>
+                <ul>
+                    <li>HTML Basics & Structure</li>
+                    <li>Text Formatting & Links</li>
+                    <li>Forms & Input Elements</li>
+                    <li>Semantic HTML & SEO</li>
+                </ul>
+                <span class="btn">Start HTML Course</span>
+            </a>
+
+            <a href="css-tutorials.html" class="path-card">
+                <div class="path-card-icon">CSS</div>
+                <h3>CSS</h3>
+                <p class="level">Beginner to Intermediate</p>
+                <p>Style and design beautiful websites. Master selectors, layouts, and animations.</p>
+                <ul>
+                    <li>CSS Fundamentals</li>
+                    <li>Box Model & Positioning</li>
+                    <li>Flexbox & Grid Layouts</li>
+                    <li>Animations & Transitions</li>
+                </ul>
+                <span class="btn">Start CSS Course</span>
+            </a>
+
+            <a href="js-tutorials.html" class="path-card">
+                <div class="path-card-icon">JS</div>
+                <h3>JavaScript</h3>
+                <p class="level">Beginner to Intermediate</p>
+                <p>Add interactivity to your websites. Master programming fundamentals and DOM manipulation.</p>
+                <ul>
+                    <li>JavaScript Basics</li>
+                    <li>Functions & Control Flow</li>
+                    <li>DOM Manipulation</li>
+                    <li>Events & Async Programming</li>
+                </ul>
+                <span class="btn">Start JavaScript Course</span>
+            </a>
+
+            <a href="project-walkthrough.html" class="path-card">
+                <div class="path-card-icon">PRJ</div>
+                <h3>DigitalBonesBox Project</h3>
+                <p class="level">Real-World Application</p>
+                <p>See how HTML, CSS, and JavaScript work together in a complete web application.</p>
+                <ul>
+                    <li>Project Architecture</li>
+                    <li>Frontend & Backend Code</li>
+                    <li>File-by-File Explanations</li>
+                    <li>Best Practices Applied</li>
+                </ul>
+                <span class="btn">Explore Project</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Why Learn With Us?</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-label">Code</div>
+                <h3>Interactive Learning</h3>
+                <p>Write code directly in your browser and see results instantly</p>
+            </div>
+            <div class="feature">
+                <div class="feature-label">Practice</div>
+                <h3>Hands-On Practice</h3>
+                <p>Learn by doing with real coding challenges and exercises</p>
+            </div>
+            <div class="feature">
+                <div class="feature-label">Explore</div>
+                <h3>Real Projects</h3>
+                <p>See how professional code works in actual web applications</p>
+            </div>
+            <div class="feature">
+                <div class="feature-label">Learn</div>
+                <h3>From Basics</h3>
+                <p>No prior experience needed - we start from the very basics</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 SLU LearnCode - Saint Louis University</p>
+        <p>Interactive Web Development Tutorials for SLU Students</p>
+    </footer>
+</body>
+</html>

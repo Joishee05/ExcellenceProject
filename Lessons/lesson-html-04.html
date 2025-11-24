@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Text Formatting - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 26.67%"></div>
+                </div>
+            </div>
+
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link active">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link">15. iframes</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 4 of 15</div>
+                <h1>Text Formatting</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>HTML provides several tags to format text and add emphasis:</p>
+                
+                <h3>Common Formatting Tags:</h3>
+                <ul>
+                    <li><code>&lt;strong&gt;</code> - <strong>Bold text (important)</strong></li>
+                    <li><code>&lt;em&gt;</code> - <em>Italic text (emphasis)</em></li>
+                    <li><code>&lt;b&gt;</code> - <b>Bold text (stylistic)</b></li>
+                    <li><code>&lt;i&gt;</code> - <i>Italic text (stylistic)</i></li>
+                    <li><code>&lt;u&gt;</code> - <u>Underlined text</u></li>
+                    <li><code>&lt;mark&gt;</code> - <mark>Highlighted text</mark></li>
+                    <li><code>&lt;small&gt;</code> - <small>Smaller text</small></li>
+                    <li><code>&lt;del&gt;</code> - <del>Deleted text</del></li>
+                    <li><code>&lt;ins&gt;</code> - <ins>Inserted text</ins></li>
+                </ul>
+
+                <div class="info-box">
+                    <p><strong>Note:</strong> Use <code>&lt;strong&gt;</code> instead of <code>&lt;b&gt;</code> and <code>&lt;em&gt;</code> instead of <code>&lt;i&gt;</code> for better semantics and accessibility.</p>
+                </div>
+            </div>
+
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>HTML</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<body>
+    <h1>Text Formatting Examples</h1>
+    
+    <p>This is <strong>very important</strong> information!</p>
+    <p>This text has <em>emphasis</em> on it.</p>
+    <p>You can <mark>highlight</mark> important parts.</p>
+    <p>Price: <del>$100</del> <ins>$80</ins></p>
+    
+    <p><small>Terms and conditions apply.</small></p>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                
+                <div class="preview-area">
+                    <iframe class="output-frame" id="output-frame"></iframe>
+                </div>
+            </div>
+
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a product announcement with:</p>
+                <ol>
+                    <li>A heading with the product name</li>
+                    <li>A paragraph with <strong>bold</strong> features</li>
+                    <li>Original price with strikethrough and new price</li>
+                    <li>Highlighted special offer text</li>
+                </ol>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-html-03.html" class="nav-button">← Previous</a>
+                <a href="lesson-html-05.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('code-input').value;
+            const iframe = document.getElementById('output-frame');
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(code);
+            iframeDoc.close();
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

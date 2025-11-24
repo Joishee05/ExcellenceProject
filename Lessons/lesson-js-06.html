@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Conditionals - JavaScript Tutorial</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthroughs.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50%;"></div>
+                </div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link">Lesson 2: Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link">Lesson 3: Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link">Lesson 4: Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link active">Lesson 6: Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link">Lesson 8: Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link">Lesson 9: Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link">Lesson 10: DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link">Lesson 11: Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link">Lesson 12: Async JavaScript</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 6 of 12</div>
+                <h1>Conditional Statements</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>Conditional statements allow your code to make decisions and execute different code based on conditions.</p>
+
+                <h2>If Statement</h2>
+                <p>The <code>if</code> statement executes code only if a condition is true:</p>
+                <pre><code>let age = 20;
+
+if (age >= 18) {
+    console.log("You are an adult.");
+}
+// Output: "You are an adult."
+
+let temperature = 15;
+
+if (temperature < 0) {
+    console.log("It's freezing!");
+}
+// No output (condition is false)</code></pre>
+
+                <h2>If...Else Statement</h2>
+                <p>Execute one block if condition is true, another if false:</p>
+                <pre><code>let score = 85;
+
+if (score >= 60) {
+    console.log("You passed!");
+} else {
+    console.log("You failed.");
+}
+// Output: "You passed!"
+
+let hour = 14;
+
+if (hour < 12) {
+    console.log("Good morning!");
+} else {
+    console.log("Good afternoon!");
+}
+// Output: "Good afternoon!"</code></pre>
+
+                <h2>If...Else If...Else</h2>
+                <p>Test multiple conditions in sequence:</p>
+                <pre><code>let grade = 85;
+
+if (grade >= 90) {
+    console.log("Grade: A");
+} else if (grade >= 80) {
+    console.log("Grade: B");
+} else if (grade >= 70) {
+    console.log("Grade: C");
+} else if (grade >= 60) {
+    console.log("Grade: D");
+} else {
+    console.log("Grade: F");
+}
+// Output: "Grade: B"</code></pre>
+
+                <h3>Multiple Conditions Example</h3>
+                <pre><code>let age = 20;
+let hasLicense = true;
+
+if (age >= 18 && hasLicense) {
+    console.log("You can drive!");
+} else if (age >= 18 && !hasLicense) {
+    console.log("You need to get a license first.");
+} else {
+    console.log("You're too young to drive.");
+}
+// Output: "You can drive!"</code></pre>
+
+                <h2>Switch Statement</h2>
+                <p>The <code>switch</code> statement is useful when checking a variable against many values:</p>
+                <pre><code>let day = 3;
+let dayName;
+
+switch (day) {
+    case 1:
+        dayName = "Monday";
+        break;
+    case 2:
+        dayName = "Tuesday";
+        break;
+    case 3:
+        dayName = "Wednesday";
+        break;
+    case 4:
+        dayName = "Thursday";
+        break;
+    case 5:
+        dayName = "Friday";
+        break;
+    case 6:
+        dayName = "Saturday";
+        break;
+    case 7:
+        dayName = "Sunday";
+        break;
+    default:
+        dayName = "Invalid day";
+}
+
+console.log(dayName); // "Wednesday"</code></pre>
+
+                <div class="info-box">
+                    <p><strong>Important:</strong> Don't forget the <code>break</code> statement! Without it, the code will continue executing the next cases (called "fall-through").</p>
+                </div>
+
+                <h3>Switch with Strings</h3>
+                <pre><code>let fruit = "apple";
+
+switch (fruit) {
+    case "banana":
+        console.log("Bananas are $0.50");
+        break;
+    case "apple":
+        console.log("Apples are $0.75");
+        break;
+    case "orange":
+        console.log("Oranges are $0.60");
+        break;
+    default:
+        console.log("We don't have that fruit");
+}
+// Output: "Apples are $0.75"</code></pre>
+
+                <h2>Ternary Operator</h2>
+                <p>A shorthand for simple if...else statements:</p>
+                <pre><code>// Syntax: condition ? valueIfTrue : valueIfFalse
+
+let age = 20;
+let status = age >= 18 ? "adult" : "minor";
+console.log(status); // "adult"
+
+// Traditional if...else equivalent:
+let status2;
+if (age >= 18) {
+    status2 = "adult";
+} else {
+    status2 = "minor";
+}
+
+// Another example
+let score = 85;
+let result = score >= 60 ? "Pass" : "Fail";
+console.log(result); // "Pass"</code></pre>
+
+                <h2>Nested Conditionals</h2>
+                <p>You can put if statements inside other if statements:</p>
+                <pre><code>let age = 20;
+let hasTicket = true;
+
+if (age >= 18) {
+    if (hasTicket) {
+        console.log("Welcome to the concert!");
+    } else {
+        console.log("You need to buy a ticket.");
+    }
+} else {
+    console.log("You must be 18 or older.");
+}
+// Output: "Welcome to the concert!"</code></pre>
+
+                <h2>Try It Yourself</h2>
+                <p>Practice using conditional statements:</p>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>JavaScript Editor</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="codeInput">// If...else example
+let temperature = 25;
+
+if (temperature > 30) {
+    console.log("It's hot!");
+} else if (temperature > 20) {
+    console.log("It's nice!");
+} else {
+    console.log("It's cold!");
+}
+
+// Switch statement
+let semester = 2;
+
+switch (semester) {
+    case 1:
+        console.log("First semester");
+        break;
+    case 2:
+        console.log("Second semester");
+        break;
+    default:
+        console.log("Invalid semester");
+}
+
+// Ternary operator
+let gpa = 3.8;
+let honors = gpa >= 3.5 ? "Yes" : "No";
+console.log("Dean's List:", honors);</textarea>
+                    <div class="preview-area">
+                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
+                    </div>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p>Write conditional statements for the following scenarios:</p>
+                    <ul>
+                        <li>Check if a number is positive, negative, or zero</li>
+                        <li>Determine ticket price based on age: children (< 12) = $5, adults = $10, seniors (>= 65) = $7</li>
+                        <li>Use a switch statement to convert a number (1-12) to a month name</li>
+                        <li>Use a ternary operator to check if a number is even or odd</li>
+                        <li>Check if a student passes (score >= 60) AND has good attendance (>= 75%)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-js-05.html" class="nav-button">← Previous Lesson</a>
+                <a href="lesson-js-07.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const output = document.getElementById('console-output');
+            output.innerHTML = '';
+            
+            const logs = [];
+            const originalLog = console.log;
+            console.log = function(...args) {
+                logs.push(args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' '));
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                output.innerHTML = logs.join('\n') || 'Code executed successfully (no output)';
+                output.style.color = '#00b894';
+            } catch (error) {
+                output.innerHTML = 'Error: ' + error.message;
+                output.style.color = '#d63031';
+            }
+            
+            console.log = originalLog;
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

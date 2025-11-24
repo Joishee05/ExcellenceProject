@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10: DOM Manipulation - JavaScript Tutorial</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthroughs.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 83.33%;"></div>
+                </div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link">Lesson 2: Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link">Lesson 3: Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link">Lesson 4: Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link">Lesson 6: Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link">Lesson 8: Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link">Lesson 9: Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link active">Lesson 10: DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link">Lesson 11: Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link">Lesson 12: Async JavaScript</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 10 of 12</div>
+                <h1>DOM Manipulation</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>The Document Object Model (DOM) is a programming interface for HTML documents. JavaScript can manipulate the DOM to change the content, structure, and style of web pages.</p>
+
+                <h2>What is the DOM?</h2>
+                <p>The DOM represents your HTML document as a tree of objects. Each HTML element becomes a node that JavaScript can access and modify.</p>
+                <pre><code>// HTML:
+// &lt;div id="container"&gt;
+//     &lt;h1&gt;Title&lt;/h1&gt;
+//     &lt;p class="text"&gt;Paragraph&lt;/p&gt;
+// &lt;/div&gt;
+
+// JavaScript can access and modify all of this!</code></pre>
+
+                <h2>Selecting Elements</h2>
+
+                <h3>getElementById()</h3>
+                <p>Select an element by its ID:</p>
+                <pre><code>// HTML: &lt;div id="myDiv"&gt;Hello&lt;/div&gt;
+
+let element = document.getElementById("myDiv");
+console.log(element); // &lt;div id="myDiv"&gt;Hello&lt;/div&gt;</code></pre>
+
+                <h3>querySelector()</h3>
+                <p>Select the first element that matches a CSS selector:</p>
+                <pre><code>// Select by ID
+let byId = document.querySelector("#myDiv");
+
+// Select by class
+let byClass = document.querySelector(".myClass");
+
+// Select by tag
+let byTag = document.querySelector("p");
+
+// Complex selector
+let complex = document.querySelector("div.container p.text");</code></pre>
+
+                <h3>querySelectorAll()</h3>
+                <p>Select all elements that match a selector:</p>
+                <pre><code>// Get all paragraphs
+let allParagraphs = document.querySelectorAll("p");
+
+// Get all elements with class "item"
+let allItems = document.querySelectorAll(".item");
+
+// Loop through results
+allParagraphs.forEach(function(p) {
+    console.log(p.textContent);
+});</code></pre>
+
+                <h2>Modifying Content</h2>
+
+                <h3>textContent</h3>
+                <p>Get or set the text content of an element:</p>
+                <pre><code>let heading = document.querySelector("h1");
+
+// Get text
+console.log(heading.textContent); // "Original Title"
+
+// Set text
+heading.textContent = "New Title";</code></pre>
+
+                <h3>innerHTML</h3>
+                <p>Get or set the HTML content (can include tags):</p>
+                <pre><code>let div = document.querySelector("#myDiv");
+
+// Set HTML content
+div.innerHTML = "&lt;p&gt;New &lt;strong&gt;HTML&lt;/strong&gt; content&lt;/p&gt;";
+
+// Get HTML content
+console.log(div.innerHTML);</code></pre>
+
+                <div class="info-box">
+                    <p><strong>Security Note:</strong> Be careful with <code>innerHTML</code> when using user input, as it can create security vulnerabilities (XSS attacks). Use <code>textContent</code> for plain text.</p>
+                </div>
+
+                <h2>Modifying Styles</h2>
+                <pre><code>let box = document.querySelector(".box");
+
+// Change individual styles
+box.style.backgroundColor = "blue";
+box.style.color = "white";
+box.style.padding = "20px";
+box.style.fontSize = "18px";
+
+// Note: CSS properties with hyphens become camelCase
+// background-color → backgroundColor
+// font-size → fontSize</code></pre>
+
+                <h2>Working with Classes</h2>
+                <pre><code>let element = document.querySelector(".item");
+
+// Add a class
+element.classList.add("active");
+
+// Remove a class
+element.classList.remove("hidden");
+
+// Toggle a class (add if not present, remove if present)
+element.classList.toggle("highlighted");
+
+// Check if class exists
+if (element.classList.contains("active")) {
+    console.log("Element is active");
+}
+
+// Add multiple classes
+element.classList.add("large", "bold", "blue");</code></pre>
+
+                <h2>Modifying Attributes</h2>
+                <pre><code>let image = document.querySelector("img");
+let link = document.querySelector("a");
+
+// Get attribute
+let src = image.getAttribute("src");
+console.log(src);
+
+// Set attribute
+image.setAttribute("src", "new-image.jpg");
+image.setAttribute("alt", "New description");
+
+// Direct access to common attributes
+link.href = "https://slu.edu";
+image.src = "photo.jpg";
+
+// Remove attribute
+image.removeAttribute("title");</code></pre>
+
+                <h2>Creating and Adding Elements</h2>
+                <pre><code>// Create a new element
+let newParagraph = document.createElement("p");
+
+// Add content
+newParagraph.textContent = "This is a new paragraph";
+
+// Add classes/styles
+newParagraph.classList.add("new-text");
+newParagraph.style.color = "blue";
+
+// Add to the page
+let container = document.querySelector("#container");
+container.appendChild(newParagraph);
+
+// Create and add in one flow
+let newDiv = document.createElement("div");
+newDiv.innerHTML = "&lt;h2&gt;New Section&lt;/h2&gt;&lt;p&gt;Content&lt;/p&gt;";
+document.body.appendChild(newDiv);</code></pre>
+
+                <h2>Removing Elements</h2>
+                <pre><code>let element = document.querySelector(".remove-me");
+
+// Remove the element
+element.remove();
+
+// Alternative (older method)
+// element.parentNode.removeChild(element);</code></pre>
+
+                <h2>Try It Yourself</h2>
+                <p>Practice DOM manipulation with this interactive demo:</p>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>JavaScript Editor</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="codeInput">// Try manipulating the DOM!
+// Use the output area below as your playground
+
+let output = document.getElementById('dom-output');
+
+// Clear previous content
+output.innerHTML = '';
+
+// Create a heading
+let heading = document.createElement('h3');
+heading.textContent = 'DOM Manipulation Demo';
+heading.style.color = '#0033A0';
+output.appendChild(heading);
+
+// Create a paragraph
+let para = document.createElement('p');
+para.textContent = 'This was created with JavaScript!';
+para.style.padding = '10px';
+para.style.backgroundColor = '#f0f0f0';
+output.appendChild(para);
+
+// Create a list
+let list = document.createElement('ul');
+['HTML', 'CSS', 'JavaScript'].forEach(tech => {
+    let item = document.createElement('li');
+    item.textContent = tech;
+    list.appendChild(item);
+});
+output.appendChild(list);</textarea>
+                    <div class="preview-area">
+                        <div id="dom-output" style="min-height: 150px; padding: 10px; border: 1px solid #dee2e6; border-radius: 4px;"></div>
+                    </div>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p>Use DOM manipulation to:</p>
+                    <ul>
+                        <li>Create a button element and add it to the page</li>
+                        <li>Change the background color of all paragraphs on a page</li>
+                        <li>Create a list of your top 5 favorite movies and add it to the DOM</li>
+                        <li>Toggle a "dark-mode" class on the body element</li>
+                        <li>Create a card element with a title, description, and image</li>
+                        <li>Find all elements with class "highlight" and change their text color to gold</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-js-09.html" class="nav-button">← Previous Lesson</a>
+                <a href="lesson-js-11.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            
+            try {
+                eval(code);
+            } catch (error) {
+                const output = document.getElementById('dom-output');
+                output.innerHTML = '<p style="color: #d63031;">Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

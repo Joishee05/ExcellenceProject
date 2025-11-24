@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 15: iframes - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link active">15. iframes</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 15 of 15</div>
+                <h1>HTML iframes & Embedding Content</h1>
+            </div>
+            <div class="lesson-text">
+                <h3>What is an iframe?</h3>
+                <p>An iframe (inline frame) allows you to embed another HTML document within your current page.</p>
+                <h3>Basic Iframe Syntax</h3>
+                <pre><code>&lt;iframe src="https://www.example.com" 
+        width="800" 
+        height="600"
+        title="Description"&gt;
+&lt;/iframe&gt;</code></pre>
+                <h3>Common Uses</h3>
+                <ul>
+                    <li>Embedding YouTube videos</li>
+                    <li>Displaying Google Maps</li>
+                    <li>Showing external content</li>
+                    <li>Embedding social media posts</li>
+                </ul>
+                <h3>Important Attributes</h3>
+                <ul>
+                    <li><code>src</code> - URL of the page to embed</li>
+                    <li><code>width</code> and <code>height</code> - Frame dimensions</li>
+                    <li><code>title</code> - Accessibility description</li>
+                    <li><code>frameborder</code> - Border around iframe (0 or 1)</li>
+                    <li><code>allowfullscreen</code> - Allow fullscreen mode</li>
+                </ul>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+    <title>Embedded Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        iframe {
+            margin: 20px 0;
+            border: 2px solid #0033A0;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #0033A0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Embedded Content Examples</h1>
+    
+    <h2>YouTube Video</h2>
+    <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allowfullscreen>
+    </iframe>
+    
+    <h2>Google Maps</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.920838768469!2d-90.23603448464886!3d38.63689697960825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87df3578c1e88863%3A0x8c1e0cf9f6d5c3af!2sSaint%20Louis%20University!5e0!3m2!1sen!2sus!4v1234567890123"
+            width="600" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+    </iframe>
+    
+    <p>Note: iframes load external content within your page.</p>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Final Challenge:</h3>
+                <p>Create a comprehensive resource page with:</p>
+                <ol>
+                    <li>An embedded YouTube video tutorial</li>
+                    <li>A Google Maps location (SLU campus)</li>
+                    <li>Proper titles for accessibility</li>
+                    <li>Styled iframes with CSS</li>
+                </ol>
+                <p><strong>Congratulations!</strong> You've completed all 15 HTML lessons!</p>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-html-14.html" class="nav-button">← Previous</a>
+                <a href="../css-tutorials.html" class="nav-button">Start CSS Course →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

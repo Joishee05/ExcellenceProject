@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Images - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link active">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link">15. iframes</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 6 of 15</div>
+                <h1>Images</h1>
+            </div>
+            <div class="lesson-text">
+                <p>Images make your website visually appealing. Let's learn how to add them!</p>
+                <h3>The Image Tag:</h3>
+                <pre><code>&lt;img src="image.jpg" alt="Description"&gt;</code></pre>
+                <div class="info-box"><p><strong>Important:</strong> The <code>&lt;img&gt;</code> tag is self-closing (no closing tag needed)!</p></div>
+                <h3>Image Attributes:</h3>
+                <ul>
+                    <li><code>src</code> - Image source (URL or file path) - <strong>Required</strong></li>
+                    <li><code>alt</code> - Alternative text (for accessibility) - <strong>Required</strong></li>
+                    <li><code>width</code> - Image width in pixels</li>
+                    <li><code>height</code> - Image height in pixels</li>
+                    <li><code>title</code> - Tooltip on hover</li>
+                </ul>
+                <h3>Image Sources:</h3>
+                <ul>
+                    <li><strong>Local:</strong> <code>src="images/photo.jpg"</code></li>
+                    <li><strong>Online:</strong> <code>src="https://example.com/image.jpg"</code></li>
+                </ul>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<body>
+    <h1>My Photo Gallery</h1>
+    <img src="https://via.placeholder.com/300x200/4CAF50/ffffff?text=Nature" 
+         alt="Beautiful nature landscape" width="300">
+    <p>A beautiful landscape photo</p>
+    <img src="https://via.placeholder.com/300x200/2196F3/ffffff?text=Ocean" 
+         alt="Ocean view" width="300" title="Click to see more">
+    <p>Ocean waves at sunset</p>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a simple photo gallery with:</p>
+                <ol>
+                    <li>A heading for your gallery</li>
+                    <li>Three different placeholder images</li>
+                    <li>A caption (paragraph) under each image</li>
+                    <li>Meaningful alt text for each image</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-html-05.html" class="nav-button">← Previous</a>
+                <a href="lesson-html-07.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

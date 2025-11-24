@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Flexbox - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>CSS Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 70%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-css-01.html" class="lesson-link">1. What is CSS?</a></li>
+                <li><a href="lesson-css-02.html" class="lesson-link">2. Selectors</a></li>
+                <li><a href="lesson-css-03.html" class="lesson-link">3. Colors & Backgrounds</a></li>
+                <li><a href="lesson-css-04.html" class="lesson-link">4. Text Styling</a></li>
+                <li><a href="lesson-css-05.html" class="lesson-link">5. Box Model</a></li>
+                <li><a href="lesson-css-06.html" class="lesson-link">6. Borders & Spacing</a></li>
+                <li><a href="lesson-css-07.html" class="lesson-link active">7. Flexbox</a></li>
+                <li><a href="lesson-css-08.html" class="lesson-link">8. Grid Layout</a></li>
+                <li><a href="lesson-css-09.html" class="lesson-link">9. Positioning</a></li>
+                <li><a href="lesson-css-10.html" class="lesson-link">10. Transitions & Animations</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 7 of 10</div>
+                <h1>Flexbox</h1>
+            </div>
+            <div class="lesson-text">
+                <p>Flexbox is a powerful layout tool that makes arranging elements easy!</p>
+                <h3>Flexbox Container Properties:</h3>
+                <ul>
+                    <li><code>display: flex;</code> - Enable flexbox</li>
+                    <li><code>flex-direction</code> - row, column, row-reverse, column-reverse</li>
+                    <li><code>justify-content</code> - Horizontal alignment (flex-start, center, space-between, etc.)</li>
+                    <li><code>align-items</code> - Vertical alignment (flex-start, center, stretch, etc.)</li>
+                    <li><code>gap</code> - Space between items</li>
+                </ul>
+                <div class="info-box"><strong>Flexbox Concept:</strong> The container is the parent, and items inside are the children!</div>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #3498db;
+        padding: 20px;
+        margin: 10px 0;
+    }
+    
+    .flex-item {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+        background-color: #e74c3c;
+        color: white;
+        font-size: 24px;
+    }
+    
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+        background-color: #2ecc71;
+    }
+</style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+    
+    <div class="flex-center">
+        Centered Content!
+    </div>
+    
+    <div class="flex-column">
+        <div style="background: white; padding: 10px; border-radius: 5px;">Column Item 1</div>
+        <div style="background: white; padding: 10px; border-radius: 5px;">Column Item 2</div>
+        <div style="background: white; padding: 10px; border-radius: 5px;">Column Item 3</div>
+    </div>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Create a navigation bar using flexbox with:</p>
+                <ol>
+                    <li>Items centered horizontally</li>
+                    <li>Space between items</li>
+                    <li>Different background colors for container and items</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="lesson-css-06.html" class="nav-button">← Previous</a>
+                <a href="lesson-css-08.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

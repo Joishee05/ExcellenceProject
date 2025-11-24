@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: What is HTML? - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>HTML Lessons</h2>
+            
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 6.67%"></div>
+                </div>
+            </div>
+
+            <ul class="lesson-list">
+                <li><a href="lesson-html-01.html" class="lesson-link active">1. What is HTML?</a></li>
+                <li><a href="lesson-html-02.html" class="lesson-link">2. HTML Structure</a></li>
+                <li><a href="lesson-html-03.html" class="lesson-link">3. Headings & Paragraphs</a></li>
+                <li><a href="lesson-html-04.html" class="lesson-link">4. Text Formatting</a></li>
+                <li><a href="lesson-html-05.html" class="lesson-link">5. Links</a></li>
+                <li><a href="lesson-html-06.html" class="lesson-link">6. Images</a></li>
+                <li><a href="lesson-html-07.html" class="lesson-link">7. Lists</a></li>
+                <li><a href="lesson-html-08.html" class="lesson-link">8. Tables</a></li>
+                <li><a href="lesson-html-09.html" class="lesson-link">9. Forms</a></li>
+                <li><a href="lesson-html-10.html" class="lesson-link">10. Semantic HTML</a></li>
+                <li><a href="lesson-html-11.html" class="lesson-link">11. HTML Entities</a></li>
+                <li><a href="lesson-html-12.html" class="lesson-link">12. Comments</a></li>
+                <li><a href="lesson-html-13.html" class="lesson-link">13. Meta Tags & SEO</a></li>
+                <li><a href="lesson-html-14.html" class="lesson-link">14. Audio & Video</a></li>
+                <li><a href="lesson-html-15.html" class="lesson-link">15. iframes</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 1 of 15</div>
+                <h1>What is HTML?</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p><strong>HTML</strong> stands for <strong>HyperText Markup Language</strong>. It's the standard language used to create web pages.</p>
+                
+                <h3>Key Concepts:</h3>
+                <ul>
+                    <li>HTML provides the <strong>structure</strong> of web pages</li>
+                    <li>HTML uses <strong>tags</strong> to mark up content</li>
+                    <li>HTML files have a <code>.html</code> extension</li>
+                    <li>Browsers read HTML and display it as web pages</li>
+                </ul>
+
+                <h3>HTML Tags:</h3>
+                <p>HTML tags are keywords surrounded by angle brackets:</p>
+                <div class="info-box">
+                    <p><code>&lt;tagname&gt;content&lt;/tagname&gt;</code></p>
+                </div>
+                
+                <p>Most HTML tags come in pairs:</p>
+                <ul>
+                    <li>An <strong>opening tag</strong>: <code>&lt;h1&gt;</code></li>
+                    <li>A <strong>closing tag</strong>: <code>&lt;/h1&gt;</code></li>
+                </ul>
+            </div>
+
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <p>Type your HTML code below and click "Run Code" to see it in action. Try changing the text inside the tags!</p>
+                
+                <div class="code-actions">
+                    <button class="code-action-btn" onclick="runCode()">▶ Run Code</button>
+                    <button class="code-action-btn secondary" onclick="resetCode()" title="Reset to initial example">↻ Reset</button>
+                    <button class="code-action-btn secondary" onclick="showHint()" title="Get a hint">💡 Hint</button>
+                    <button class="code-action-btn secondary" onclick="copyCode()" title="Copy to clipboard">📋 Copy</button>
+                </div>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>HTML</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="code-input" data-initial="<h1>Hello, World!</h1>&#10;<p>This is my first HTML page!</p>" spellcheck="false"><h1>Hello, World!</h1>
+<p>This is my first HTML page!</p></textarea>
+                </div>
+                
+                <div class="preview-area" id="preview">
+                    <div class="preview-label">Preview - How it looks in a browser:</div>
+                    <iframe class="output-frame" id="output-frame"></iframe>
+                </div>
+            </div>
+
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Modify the code above to:</p>
+                <ol>
+                    <li>Change the heading text to your name</li>
+                    <li>Change the paragraph to describe yourself in one sentence</li>
+                    <li>Add another paragraph with your favorite hobby</li>
+                </ol>
+                <div id="challenge-feedback" class="challenge-feedback" style="display: none;"></div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="#" class="nav-button disabled">← Previous</a>
+                <a href="lesson-html-02.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

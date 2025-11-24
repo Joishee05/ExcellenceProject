@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: Data Types - JavaScript Tutorial</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthroughs.html">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>JavaScript Lessons</h2>
+            <div class="progress-section">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%;"></div>
+                </div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-js-01.html" class="lesson-link">Lesson 1: What is JavaScript?</a></li>
+                <li><a href="lesson-js-02.html" class="lesson-link">Lesson 2: Variables</a></li>
+                <li><a href="lesson-js-03.html" class="lesson-link active">Lesson 3: Data Types</a></li>
+                <li><a href="lesson-js-04.html" class="lesson-link">Lesson 4: Operators</a></li>
+                <li><a href="lesson-js-05.html" class="lesson-link">Lesson 5: Functions</a></li>
+                <li><a href="lesson-js-06.html" class="lesson-link">Lesson 6: Conditionals</a></li>
+                <li><a href="lesson-js-07.html" class="lesson-link">Lesson 7: Loops</a></li>
+                <li><a href="lesson-js-08.html" class="lesson-link">Lesson 8: Arrays</a></li>
+                <li><a href="lesson-js-09.html" class="lesson-link">Lesson 9: Objects</a></li>
+                <li><a href="lesson-js-10.html" class="lesson-link">Lesson 10: DOM Manipulation</a></li>
+                <li><a href="lesson-js-11.html" class="lesson-link">Lesson 11: Events</a></li>
+                <li><a href="lesson-js-12.html" class="lesson-link">Lesson 12: Async JavaScript</a></li>
+            </ul>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 3 of 12</div>
+                <h1>Data Types in JavaScript</h1>
+            </div>
+
+            <div class="lesson-text">
+                <p>JavaScript has several data types that allow you to work with different kinds of values. Understanding data types is crucial for writing effective code.</p>
+
+                <h2>Primitive Data Types</h2>
+
+                <h3>1. String</h3>
+                <p>Strings represent text and are enclosed in quotes:</p>
+                <pre><code>let firstName = "John";
+let lastName = 'Doe';
+let message = `Hello, ${firstName}!`; // Template literal
+
+console.log(firstName); // "John"
+console.log(message);   // "Hello, John!"</code></pre>
+
+                <h3>2. Number</h3>
+                <p>Numbers can be integers or decimals:</p>
+                <pre><code>let age = 25;
+let price = 19.99;
+let negative = -10;
+
+console.log(age + 5);      // 30
+console.log(price * 2);    // 39.98</code></pre>
+
+                <h3>3. Boolean</h3>
+                <p>Booleans represent true or false values:</p>
+                <pre><code>let isStudent = true;
+let hasGraduated = false;
+
+console.log(isStudent);     // true
+console.log(hasGraduated);  // false</code></pre>
+
+                <h3>4. Undefined</h3>
+                <p>A variable that has been declared but not assigned a value:</p>
+                <pre><code>let notAssigned;
+console.log(notAssigned); // undefined</code></pre>
+
+                <h3>5. Null</h3>
+                <p>Represents an intentional absence of value:</p>
+                <pre><code>let emptyValue = null;
+console.log(emptyValue); // null</code></pre>
+
+                <h2>The typeof Operator</h2>
+                <p>You can check the type of a value using the <code>typeof</code> operator:</p>
+                <pre><code>console.log(typeof "Hello");    // "string"
+console.log(typeof 42);         // "number"
+console.log(typeof true);       // "boolean"
+console.log(typeof undefined);  // "undefined"
+console.log(typeof null);       // "object" (historical bug!)</code></pre>
+
+                <div class="info-box">
+                    <p><strong>Note:</strong> <code>typeof null</code> returns "object" due to a historical bug in JavaScript. null is actually a primitive type, not an object.</p>
+                </div>
+
+                <h2>Template Literals</h2>
+                <p>Template literals (backticks) allow you to embed expressions in strings:</p>
+                <pre><code>let name = "Alice";
+let age = 25;
+let school = "SLU";
+
+// Old way (concatenation)
+let message1 = "My name is " + name + " and I'm " + age;
+
+// New way (template literal)
+let message2 = `My name is ${name} and I'm ${age}`;
+let message3 = `I study at ${school}`;
+
+console.log(message2); // "My name is Alice and I'm 25"
+console.log(message3); // "I study at SLU"</code></pre>
+
+                <h2>Type Conversion</h2>
+                <p>JavaScript can automatically or explicitly convert between types:</p>
+                <pre><code>// String to Number
+let str = "123";
+let num = Number(str);
+console.log(num);        // 123
+console.log(typeof num); // "number"
+
+// Number to String
+let age = 25;
+let ageStr = String(age);
+console.log(ageStr);        // "25"
+console.log(typeof ageStr); // "string"
+
+// To Boolean
+console.log(Boolean(1));      // true
+console.log(Boolean(0));      // false
+console.log(Boolean("text")); // true
+console.log(Boolean(""));     // false</code></pre>
+
+                <h2>Try It Yourself</h2>
+                <p>Experiment with different data types:</p>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span>JavaScript Editor</span>
+                        <button class="run-button" onclick="runCode()">Run Code</button>
+                    </div>
+                    <textarea class="code-input" id="codeInput">// Different data types
+let studentName = "Maria";
+let studentAge = 22;
+let isEnrolled = true;
+let grade = null;
+
+// Check types
+console.log(typeof studentName);  // string
+console.log(typeof studentAge);   // number
+console.log(typeof isEnrolled);   // boolean
+console.log(typeof grade);        // object
+
+// Template literal
+let intro = `Hi, I'm ${studentName} and I'm ${studentAge} years old.`;
+console.log(intro);
+
+// Type conversion
+let numStr = "100";
+let num = Number(numStr);
+console.log(num + 50); // 150</textarea>
+                    <div class="preview-area">
+                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
+                    </div>
+                </div>
+
+                <div class="challenge">
+                    <h3>Challenge</h3>
+                    <p>Create variables with the following data types and log them to the console:</p>
+                    <ul>
+                        <li>A string with your favorite subject</li>
+                        <li>A number representing your graduation year</li>
+                        <li>A boolean indicating if you like programming</li>
+                        <li>Use a template literal to create a sentence combining all three</li>
+                        <li>Use <code>typeof</code> to check the type of each variable</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <a href="lesson-js-02.html" class="nav-button">← Previous Lesson</a>
+                <a href="lesson-js-04.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const output = document.getElementById('console-output');
+            output.innerHTML = '';
+            
+            const logs = [];
+            const originalLog = console.log;
+            console.log = function(...args) {
+                logs.push(args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' '));
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                eval(code);
+                output.innerHTML = logs.join('\n') || 'Code executed successfully (no output)';
+                output.style.color = '#00b894';
+            } catch (error) {
+                output.innerHTML = 'Error: ' + error.message;
+                output.style.color = '#d63031';
+            }
+            
+            console.log = originalLog;
+        }
+    </script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+/* SLU Walkthrough Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --slu-blue: #0033A0;
+    --slu-gold: #FFD700;
+    --white: #fff;
+    --off-white: #f8f9fa;
+    --text-dark: #212529;
+    --text-gray: #6c757d;
+    --border: #dee2e6;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: var(--off-white);
+}
+
+/* Navigation */
+.navbar {
+    background: var(--slu-blue);
+    border-bottom: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.logo-bracket { color: var(--slu-gold); font-weight: 700; }
+.logo-text { color: var(--white); }
+
+.nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+}
+
+.nav-links li a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.625rem 1rem;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: all 0.2s;
+    border-radius: 6px;
+}
+
+.nav-links li a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Layout */
+.tutorial-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: calc(100vh - 57px);
+    background-color: var(--off-white);
+}
+
+/* Sidebar */
+.sidebar {
+    background: var(--white);
+    color: var(--text-dark);
+    padding: 2rem 0;
+    position: sticky;
+    top: 57px;
+    height: calc(100vh - 57px);
+    overflow-y: auto;
+    border-right: 1px solid var(--border);
+}
+
+.sidebar h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 1.5rem 1.5rem;
+    color: var(--slu-blue);
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    color: var(--slu-blue);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    font-size: 0.9375rem;
+}
+
+.back-link:hover {
+    background: var(--off-white);
+    color: var(--slu-blue);
+}
+
+.lesson-links {
+    padding: 0;
+}
+
+.lesson-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-gray);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 0.25rem;
+    transition: all 0.2s;
+    position: relative;
+    border-left: 3px solid transparent;
+}
+
+.lesson-link::before {
+    display: none;
+}
+
+.lesson-link:hover {
+    background: var(--off-white);
+    color: var(--slu-blue);
+}
+
+.lesson-link.active {
+    background: #e7f3ff;
+    color: var(--slu-blue);
+    font-weight: 600;
+    border-left: 3px solid var(--slu-blue);
+}
+
+.lesson-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    background: var(--slu-gold);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--text-dark);
+}
+
+.lesson-link.active .lesson-number {
+    background: var(--slu-blue);
+    color: var(--white);
+}
+
+.lesson-title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+/* Scrollbar Styling for Sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: var(--off-white);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--slu-blue);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #002d8f;
+}
+
+/* Main Content Area */
+.lesson-content {
+    background-color: white;
+    padding: 3rem;
+    overflow-y: auto;
+    animation: fadeIn 0.5s ease;
+    margin: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.lesson.active {
+    display: block;
+    animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Header Section */
+.lesson-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid var(--slu-blue);
+    position: relative;
+}
+
+.lesson-header::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--slu-gold), var(--slu-gold));
+    animation: expandWidth 0.8s ease;
+}
+
+.lesson-meta {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--slu-gold), var(--slu-gold));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.lesson h1 {
+    background: linear-gradient(135deg, var(--slu-blue), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.75rem;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+}
+
+/* Content Typography */
+.lesson-text {
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.lesson-text h2 {
+    color: var(--text-dark);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 3rem 0 1.5rem;
+    padding: 0 0 0 1.5rem;
+    border-left: 4px solid var(--slu-blue);
+    letter-spacing: -0.025em;
+}
+
+.lesson-text h2:first-of-type {
+    margin-top: 0;
+}
+
+.lesson-text h3 {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
+}
+
+.lesson-text h4 {
+    color: var(--slu-blue);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+}
+
+.lesson-text p {
+    margin-bottom: 1.25rem;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+}
+
+.lesson-text ul, .lesson-text ol {
+    margin: 1.25rem 0 1.25rem 1.5rem;
+}
+
+.lesson-text li {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.lesson-text code {
+    background: linear-gradient(135deg, rgba(0, 51, 160, 0.05), rgba(9, 132, 227, 0.05));
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    color: var(--slu-blue);
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
+    font-size: 0.875em;
+    border: 1px solid rgba(0, 51, 160, 0.2);
+    font-weight: 500;
+}
+
+.lesson-text strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* Info Boxes */
+.info-box {
+    background: linear-gradient(135deg, rgba(0, 51, 160, 0.05), rgba(9, 132, 227, 0.05));
+    border-left: 4px solid var(--slu-blue);
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 51, 160, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 51, 160, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.5s ease;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.info-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 51, 160, 0.15);
+}
+
+.info-box h3 {
+    color: var(--slu-blue);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.info-box h4 {
+    color: var(--slu-blue);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 1.25rem 0 0.75rem;
+}
+
+.info-box p {
+    color: var(--text-gray);
+}
+
+.info-box ul {
+    margin-left: 1.5rem;
+}
+
+.info-box li {
+    color: var(--text-gray);
+}
+
+.info-box code {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 51, 160, 0.2);
+}
+
+/* Code Blocks */
+.code-explanation {
+    background: var(--text-dark);
+    color: #e2e8f0;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+    overflow-x: auto;
+    border: 3px solid var(--slu-blue);
+    box-shadow: 0 4px 12px rgba(0, 51, 160, 0.2);
+    position: relative;
+    animation: slideIn 0.5s ease;
+}
+
+.code-explanation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--slu-blue), var(--blue));
+}
+
+.code-explanation pre {
+    margin: 0;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
+    line-height: 1.7;
+    font-size: 0.9375rem;
+    color: #f7fafc;
+}
+
+.code-explanation::-webkit-scrollbar {
+    height: 8px;
+}
+
+.code-explanation::-webkit-scrollbar-track {
+    background: rgba(0, 51, 160, 0.1);
+    border-radius: 4px;
+}
+
+.code-explanation::-webkit-scrollbar-thumb {
+    background: var(--slu-blue);
+    border-radius: 4px;
+}
+
+.code-explanation::-webkit-scrollbar-thumb:hover {
+    background: var(--blue);
+}
+
+/* Tutorial Link */
+.tutorial-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, rgba(0, 51, 160, 0.05), rgba(9, 132, 227, 0.05));
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+    border: 2px solid var(--slu-blue);
+    box-shadow: 0 2px 8px rgba(0, 51, 160, 0.1);
+    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--slu-blue);
+    font-weight: 600;
+}
+
+.tutorial-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 51, 160, 0.2);
+    background: linear-gradient(135deg, rgba(0, 51, 160, 0.1), rgba(9, 132, 227, 0.1));
+}
+
+/* Navigation Buttons */
+.lesson-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(0, 51, 160, 0.2);
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--slu-blue), var(--blue));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
+    border: none;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 51, 160, 0.4);
+}
+
+.nav-btn.secondary {
+    background: linear-gradient(135deg, var(--text-gray), var(--text-dark));
+    box-shadow: 0 4px 12px rgba(45, 52, 54, 0.2);
+}
+
+.nav-btn.secondary:hover {
+    box-shadow: 0 6px 20px rgba(45, 52, 54, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .tutorial-container {
+        grid-template-columns: 260px 1fr;
+    }
+    
+    .lesson-content {
+        padding: 3rem 4rem;
+        margin: 2rem 2rem 2rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .tutorial-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        position: relative;
+        top: 0;
+        height: auto;
+        border-right: none;
+        border-bottom: 3px solid var(--slu-blue);
+    }
+    
+    .lesson-content {
+        margin: 1.5rem;
+        border-radius: 16px;
+        padding: 2rem 1.5rem;
+    }
+    
+    .lesson h1 {
+        font-size: 2rem;
+    }
+    
+    .lesson-navigation {
+        flex-direction: column;
+    }
+    
+    .nav-btn {
+        justify-content: center;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar, .lesson-navigation, .tutorial-link {
+        display: none;
+    }
+    
+    .lesson-content {
+        padding: 0;
+    }
+}

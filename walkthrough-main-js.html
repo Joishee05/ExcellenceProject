@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 3: main.js - DigitalBonesBox Walkthrough</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="styles/walkthrough.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html" class="active">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>DigitalBonesBox Files</h2>
+            <a href="project-walkthrough.html" class="back-link">← Back to Overview</a>
+            <div class="lesson-links">
+                <a href="walkthrough-boneset-html.html" class="lesson-link">
+                    <span class="lesson-number">File 1</span>
+                    <span class="lesson-title">boneset.html</span>
+                </a>
+                <a href="walkthrough-style-css.html" class="lesson-link">
+                    <span class="lesson-number">File 2</span>
+                    <span class="lesson-title">style.css</span>
+                </a>
+                <a href="walkthrough-main-js.html" class="lesson-link active">
+                    <span class="lesson-number">File 3</span>
+                    <span class="lesson-title">main.js</span>
+                </a>
+                <a href="walkthrough-api-js.html" class="lesson-link">
+                    <span class="lesson-number">File 4</span>
+                    <span class="lesson-title">api.js</span>
+                </a>
+                <a href="walkthrough-dropdowns-js.html" class="lesson-link">
+                    <span class="lesson-number">File 5</span>
+                    <span class="lesson-title">dropdowns.js</span>
+                </a>
+                <a href="walkthrough-viewer-js.html" class="lesson-link">
+                    <span class="lesson-number">File 6</span>
+                    <span class="lesson-title">viewer.js</span>
+                </a>
+                <a href="walkthrough-search-js.html" class="lesson-link">
+                    <span class="lesson-number">File 7</span>
+                    <span class="lesson-title">search.js</span>
+                </a>
+                <a href="walkthrough-server-js.html" class="lesson-link">
+                    <span class="lesson-number">File 8</span>
+                    <span class="lesson-title">server.js</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson active">
+                <div class="lesson-header">
+                    <span class="lesson-meta">File 3 of 8</span>
+                    <h1>main.js - The Orchestrator</h1>
+                </div>
+
+                <div class="lesson-text">
+                    <h2>What is main.js?</h2>
+                    <p>This 119-line file is the brain of the operation. It doesn't do everything itself, but it coordinates all the other JavaScript files and makes sure they work together smoothly.</p>
+
+                    <div class="info-box">
+                        <h3>A good way to picture it</h3>
+                        <p>Imagine an orchestra conductor:</p>
+                        <ul>
+                            <li>They don't play the instruments themselves</li>
+                            <li>But they tell everyone when to start, when to stop, and how loud to play</li>
+                            <li>Without them, all the musicians would be doing their own thing</li>
+                            <li>That's exactly what main.js does for api.js, dropdowns.js, viewer.js, and the rest</li>
+                        </ul>
+                    </div>
+
+                    <h2>Importing other modules (Lines 1-7)</h2>
+                    <div class="code-explanation">
+                        <pre>import { fetchCombinedData, fetchBoneData } from "./api.js";
+import { populateBonesetDropdown, setupDropdownListeners } from "./dropdowns.js";
+import { initializeSidebar } from "./sidebar.js";
+import { setupNavigation, setBoneAndSubbones } from "./navigation.js";
+import { loadDescription } from "./description.js";
+import { displayBoneData, clearViewer } from "./viewer.js";
+import { initializeSearch } from "./search.js";</pre>
+                    </div>
+
+                    <h3>How JavaScript modules work</h3>
+                    <ul>
+                        <li><strong>Modules</strong> are just separate JS files that contain specific functions</li>
+                        <li>You use <code>import { functionName } from "./file.js"</code> to pull in what you need</li>
+                        <li>The curly braces <code>{}</code> let you grab specific functions by name</li>
+                        <li><code>./</code> means look in the current folder</li>
+                        <li>This keeps your code organized instead of having one massive 5,000-line file</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Why Use Modules?</h3>
+                        <p><strong>Without modules:</strong> All code in one 3000+ line file = hard to find bugs, impossible to reuse code</p>
+                        <p><strong>With modules:</strong> Small focused files = easy to understand, test, and debug. Want to fix search? Look in search.js!</p>
+                    </div>
+
+                    <h2>Global State Variable (Line 9)</h2>
+                    <div class="code-explanation">
+                        <pre>let combinedData = { bonesets: [], bones: [], subbones: [] };</pre>
+                    </div>
+
+                    <ul>
+                        <li>Stores all the bone data fetched from the server</li>
+                        <li>Shared across multiple functions</li>
+                        <li>Starts as empty arrays <code>[]</code>, filled after API call</li>
+                        <li><strong>Object structure:</strong>
+                            <ul>
+                                <li><code>bonesets</code> - Array of bone sets (Skull, Spine, etc.)</li>
+                                <li><code>bones</code> - Array of individual bones</li>
+                                <li><code>subbones</code> - Array of bone sub-parts</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h2>DOMContentLoaded Event (Line 16)</h2>
+                    <div class="code-explanation">
+                        <pre>document.addEventListener("DOMContentLoaded", async () => {
+    // All initialization code goes here
+});</pre>
+                    </div>
+
+                    <h3>What is DOMContentLoaded?</h3>
+                    <ul>
+                        <li>An event that fires when HTML is fully loaded and parsed</li>
+                        <li><strong>Critical:</strong> Can't manipulate elements until they exist!</li>
+                        <li>Ensures all <code>&lt;div&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;button&gt;</code> elements are ready</li>
+                        <li><code>async</code> keyword allows using <code>await</code> inside</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Common Beginner Mistake</h3>
+                        <p><strong>Bad:</strong> <code>document.getElementById("my-button")</code> before HTML loads = null (button doesn't exist yet)</p>
+                        <p><strong>Good:</strong> Wait for DOMContentLoaded, then access elements safely</p>
+                    </div>
+
+                    <h2>Initialization Sequence</h2>
+                    <p>main.js follows a specific order to initialize the application:</p>
+
+                    <h3>Step 1: Initialize Search (Line 18)</h3>
+                    <div class="code-explanation">
+                        <pre>initializeSearch();</pre>
+                    </div>
+                    <ul>
+                        <li>Sets up the search bar event listeners</li>
+                        <li>Enables debouncing (waits for user to stop typing)</li>
+                        <li>Defined in search.js module</li>
+                    </ul>
+
+                    <h3>Step 2: Initialize Sidebar (Line 21)</h3>
+                    <div class="code-explanation">
+                        <pre>initializeSidebar();</pre>
+                    </div>
+                    <ul>
+                        <li>Sets up mobile menu toggle button</li>
+                        <li>Handles showing/hiding sidebar on mobile</li>
+                    </ul>
+
+                    <h3>Step 3: Fetch Data from Server (Line 26)</h3>
+                    <div class="code-explanation">
+                        <pre>combinedData = await fetchCombinedData();
+populateBonesetDropdown(combinedData.bonesets);
+setupDropdownListeners(combinedData);</pre>
+                    </div>
+
+                    <h4>Understanding async/await</h4>
+                    <ul>
+                        <li><code>await</code> pauses execution until promise resolves</li>
+                        <li><code>fetchCombinedData()</code> returns a Promise (asynchronous operation)</li>
+                        <li>Without <code>await</code>, code would continue before data arrives</li>
+                        <li>Like saying "wait for the waiter to bring food before eating"</li>
+                    </ul>
+
+                    <h3>Step 4: Disable Empty Dropdowns (Lines 30-38)</h3>
+                    <div class="code-explanation">
+                        <pre>const boneSelectEl = document.getElementById("bone-select");
+const subboneSelectEl = document.getElementById("subbone-select");
+if (boneSelectEl) boneSelectEl.disabled = true;
+if (subboneSelectEl) subboneSelectEl.disabled = true;</pre>
+                    </div>
+
+                    <ul>
+                        <li>Bone and Sub-bone dropdowns start disabled</li>
+                        <li>Prevents user from selecting before data is ready</li>
+                        <li>Creates guided flow: Boneset → Bone → Sub-bone</li>
+                        <li><code>if</code> checks prevent errors if element doesn't exist</li>
+                    </ul>
+
+                    <h3>Step 5: Clear Description Container (Lines 40-42)</h3>
+                    <div class="code-explanation">
+                        <pre>const descContainer = document.getElementById("description-Container");
+if (descContainer) descContainer.innerHTML = "";</pre>
+                    </div>
+                    <ul>
+                        <li>Ensures no stale data displays on page load</li>
+                        <li><code>innerHTML = ""</code> removes all content</li>
+                        <li>User sees empty state until they make a selection</li>
+                    </ul>
+
+                    <h2>Event Listener Setup (Lines 58-83)</h2>
+                    <div class="code-explanation">
+                        <pre>boneDropdown.addEventListener("change", (event) => {
+    const selectedBone = event.target.value;
+    
+    const relatedSubbones = combinedData.subbones
+        .filter(sb => sb.bone === selectedBone)
+        .map(sb => sb.id);
+    
+    setBoneAndSubbones(selectedBone, relatedSubbones);
+    
+    if (selectedBone) {
+        (async () => {
+            const boneData = await fetchBoneData(selectedBone);
+            displayBoneData(boneData);
+        })();
+    }
+});</pre>
+                    </div>
+
+                    <h3>Breaking Down the Logic</h3>
+                    <ul>
+                        <li><code>addEventListener("change", ...)</code> - Runs when dropdown value changes</li>
+                        <li><code>event.target.value</code> - Gets the selected option's value</li>
+                        <li><code>.filter()</code> - Finds all sub-bones belonging to selected bone</li>
+                        <li><code>.map()</code> - Extracts just the IDs</li>
+                        <li><strong>IIFE:</strong> <code>(async () => {...})()</code> - Immediately invoked function expression</li>
+                        <li>Fetches and displays bone data asynchronously</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Array Methods Explained</h3>
+                        <p><strong>.filter():</strong> Creates new array with elements that pass a test</p>
+                        <div class="code-explanation">
+                            <pre>// Example: Get all bones from "Skull" boneset
+const skullBones = bones.filter(bone => bone.boneset === "Skull");
+// Returns: [Frontal, Parietal, Occipital, ...]</pre>
+                        </div>
+
+                        <p><strong>.map():</strong> Creates new array by transforming each element</p>
+                        <div class="code-explanation">
+                            <pre>// Example: Get just the names
+const boneNames = bones.map(bone => bone.name);
+// Returns: ["Frontal", "Parietal", "Occipital", ...]</pre>
+                        </div>
+                    </div>
+
+                    <h2>Helper Function (Lines 92-100)</h2>
+                    <div class="code-explanation">
+                        <pre>function populateSubboneDropdown(dropdown, subbones) {
+    dropdown.innerHTML = "";
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "--Please choose a Sub-Bone--";
+    dropdown.appendChild(placeholder);
+    
+    subbones.forEach(sb => {
+        const option = document.createElement("option");
+        option.value = sb.id;
+        option.textContent = sb.name;
+        dropdown.appendChild(option);
+    });
+}</pre>
+                    </div>
+
+                    <h3>DOM Manipulation Steps</h3>
+                    <ul>
+                        <li><code>dropdown.innerHTML = ""</code> - Clear existing options</li>
+                        <li><code>document.createElement("option")</code> - Create new &lt;option&gt; element</li>
+                        <li><code>option.value = ...</code> - Set the value attribute</li>
+                        <li><code>option.textContent = ...</code> - Set visible text</li>
+                        <li><code>dropdown.appendChild(option)</code> - Add option to dropdown</li>
+                        <li><code>forEach()</code> - Loop through each sub-bone</li>
+                    </ul>
+
+                    <h2>Key Programming Concepts</h2>
+                    <ul>
+                        <li><strong>ES6 Modules:</strong> import/export for code organization</li>
+                        <li><strong>Async/Await:</strong> Handle asynchronous operations cleanly</li>
+                        <li><strong>Event Listeners:</strong> Respond to user actions</li>
+                        <li><strong>DOM Manipulation:</strong> Dynamically update HTML</li>
+                        <li><strong>Array Methods:</strong> filter(), map(), forEach()</li>
+                        <li><strong>Promises:</strong> Handle operations that take time</li>
+                        <li><strong>Error Handling:</strong> Check if elements exist before using</li>
+                        <li><strong>State Management:</strong> combinedData stores application state</li>
+                    </ul>
+
+                    <h2>Data Flow</h2>
+                    <div class="info-box">
+                        <p><strong>1.</strong> Page loads → DOMContentLoaded fires</p>
+                        <p><strong>2.</strong> main.js fetches data from server via api.js</p>
+                        <p><strong>3.</strong> Data populates Boneset dropdown via dropdowns.js</p>
+                        <p><strong>4.</strong> User selects boneset → Bone dropdown enables</p>
+                        <p><strong>5.</strong> User selects bone → Sub-bone dropdown enables + image loads via viewer.js</p>
+                        <p><strong>6.</strong> User selects sub-bone → Description updates via description.js</p>
+                    </div>
+
+                    <h2>Professional Practices</h2>
+                    <ul>
+                        <li><strong>Separation of Concerns:</strong> Each module has one job</li>
+                        <li><strong>Error Prevention:</strong> Check if elements exist before using</li>
+                        <li><strong>User Experience:</strong> Disable unavailable options</li>
+                        <li><strong>Performance:</strong> Only fetch data when needed</li>
+                        <li><strong>Maintainability:</strong> Clear function names, logical flow</li>
+                        <li><strong>Debugging:</strong> console.debug() for troubleshooting</li>
+                    </ul>
+
+                    <p class="tutorial-link"><a href="js-tutorials.html">Review JavaScript Lessons 1-12</a> for core concepts</p>
+                </div>
+
+                <div class="lesson-navigation">
+                    <a href="walkthrough-style-css.html" class="nav-btn secondary">← Previous: style.css</a>
+                    <a href="walkthrough-api-js.html" class="nav-btn">Next: api.js →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

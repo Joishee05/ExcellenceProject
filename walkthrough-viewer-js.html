@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 6: viewer.js - DigitalBonesBox Walkthrough</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="styles/walkthrough.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html" class="active">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>DigitalBonesBox Files</h2>
+            <a href="project-walkthrough.html" class="back-link">← Back to Overview</a>
+            <div class="lesson-links">
+                <a href="walkthrough-boneset-html.html" class="lesson-link">
+                    <span class="lesson-number">File 1</span>
+                    <span class="lesson-title">boneset.html</span>
+                </a>
+                <a href="walkthrough-style-css.html" class="lesson-link">
+                    <span class="lesson-number">File 2</span>
+                    <span class="lesson-title">style.css</span>
+                </a>
+                <a href="walkthrough-main-js.html" class="lesson-link">
+                    <span class="lesson-number">File 3</span>
+                    <span class="lesson-title">main.js</span>
+                </a>
+                <a href="walkthrough-api-js.html" class="lesson-link">
+                    <span class="lesson-number">File 4</span>
+                    <span class="lesson-title">api.js</span>
+                </a>
+                <a href="walkthrough-dropdowns-js.html" class="lesson-link">
+                    <span class="lesson-number">File 5</span>
+                    <span class="lesson-title">dropdowns.js</span>
+                </a>
+                <a href="walkthrough-viewer-js.html" class="lesson-link active">
+                    <span class="lesson-number">File 6</span>
+                    <span class="lesson-title">viewer.js</span>
+                </a>
+                <a href="walkthrough-search-js.html" class="lesson-link">
+                    <span class="lesson-number">File 7</span>
+                    <span class="lesson-title">search.js</span>
+                </a>
+                <a href="walkthrough-server-js.html" class="lesson-link">
+                    <span class="lesson-number">File 8</span>
+                    <span class="lesson-title">server.js</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson">
+                <div class="lesson-header">
+                    <span class="lesson-meta">File 6 of 8</span>
+                    <h1>viewer.js - Image Display</h1>
+                </div>
+
+                <div class="lesson-text">
+                    <h2>What is viewer.js?</h2>
+                    <p><code>viewer.js</code> handles <strong>displaying bone images and information</strong> in the visual reference panel. It manages loading states, error handling, and image presentation.</p>
+
+                    <div class="info-box">
+                        <h3>Real-World Analogy</h3>
+                        <p>Think of viewer.js as a <strong>museum curator</strong>:</p>
+                        <ul>
+                            <li><strong>Curator:</strong> Carefully displays artifacts (images)</li>
+                            <li><strong>Lighting:</strong> Ensures proper presentation</li>
+                            <li><strong>Labels:</strong> Shows descriptions and titles</li>
+                            <li><strong>Empty Case:</strong> Shows placeholder when nothing to display</li>
+                        </ul>
+                    </div>
+
+                    <h2>Displaying Bone Data</h2>
+                    <div class="code-explanation">
+                        <pre>export function displayBoneData(boneData) {
+    const container = document.getElementById("bone-image-container");
+    
+    if (!boneData || !boneData.images || boneData.images.length === 0) {
+        showPlaceholder(container);
+        return;
+    }
+    
+    // Clear previous content
+    container.innerHTML = "";
+    
+    // Create image elements
+    boneData.images.forEach(imagePath => {
+        const img = document.createElement("img");
+        img.src = imagePath;
+        img.alt = `${boneData.name} - Anatomical View`;
+        img.classList.add("bone-image");
+        
+        // Show loading state
+        img.addEventListener("load", () => {
+            img.classList.add("loaded");
+        });
+        
+        // Handle errors
+        img.addEventListener("error", () => {
+            img.src = "images/placeholder.png";
+            img.alt = "Image not available";
+        });
+        
+        container.appendChild(img);
+    });
+}</pre>
+                    </div>
+
+                    <h3>Step-by-Step Breakdown</h3>
+
+                    <h4>1. Validation Check</h4>
+                    <div class="code-explanation">
+                        <pre>if (!boneData || !boneData.images || boneData.images.length === 0) {
+    showPlaceholder(container);
+    return;
+}</pre>
+                    </div>
+                    <ul>
+                        <li><code>!boneData</code> - Checks if data exists</li>
+                        <li><code>!boneData.images</code> - Checks if images property exists</li>
+                        <li><code>length === 0</code> - Checks if images array is empty</li>
+                        <li><code>||</code> means "OR" - if ANY condition is true, show placeholder</li>
+                        <li><code>return</code> exits function early</li>
+                    </ul>
+
+                    <h4>2. Creating Image Elements</h4>
+                    <div class="code-explanation">
+                        <pre>const img = document.createElement("img");
+img.src = imagePath;
+img.alt = `${boneData.name} - Anatomical View`;
+img.classList.add("bone-image");</pre>
+                    </div>
+                    <ul>
+                        <li><code>document.createElement("img")</code> - Creates <code>&lt;img&gt;</code> element</li>
+                        <li><code>src</code> - Sets image URL</li>
+                        <li><code>alt</code> - Alternative text for accessibility (screen readers)</li>
+                        <li><code>classList.add()</code> - Adds CSS class for styling</li>
+                    </ul>
+
+                    <h4>3. Load Event Listener</h4>
+                    <div class="code-explanation">
+                        <pre>img.addEventListener("load", () => {
+    img.classList.add("loaded");
+});</pre>
+                    </div>
+                    <ul>
+                        <li>Fires when image successfully loads</li>
+                        <li>Adds "loaded" class to trigger fade-in animation</li>
+                        <li>Prevents showing broken/partial images</li>
+                    </ul>
+
+                    <h4>4. Error Event Listener</h4>
+                    <div class="code-explanation">
+                        <pre>img.addEventListener("error", () => {
+    img.src = "images/placeholder.png";
+    img.alt = "Image not available";
+});</pre>
+                    </div>
+                    <ul>
+                        <li>Fires when image fails to load (404, network error)</li>
+                        <li>Replaces with placeholder image</li>
+                        <li>Updates alt text to reflect error</li>
+                        <li><strong>Graceful degradation</strong> - app doesn't break!</li>
+                    </ul>
+
+                    <h2>Showing Placeholder</h2>
+                    <div class="code-explanation">
+                        <pre>function showPlaceholder(container) {
+    container.innerHTML = `
+        &lt;div class="image-placeholder"&gt;
+            &lt;svg class="placeholder-icon" viewBox="0 0 24 24"&gt;
+                &lt;path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/&gt;
+            &lt;/svg&gt;
+            &lt;p&gt;Select a bone to view images&lt;/p&gt;
+        &lt;/div&gt;
+    `;
+}</pre>
+                    </div>
+
+                    <ul>
+                        <li>Shows friendly message when no bone selected</li>
+                        <li>Uses SVG icon for visual interest</li>
+                        <li>Template literal <code>``</code> allows multi-line HTML</li>
+                        <li>Better UX than showing empty div</li>
+                    </ul>
+
+                    <h2>Clearing the Viewer</h2>
+                    <div class="code-explanation">
+                        <pre>export function clearViewer() {
+    const container = document.getElementById("bone-image-container");
+    const descContainer = document.getElementById("description-Container");
+    
+    if (container) {
+        showPlaceholder(container);
+    }
+    
+    if (descContainer) {
+        descContainer.innerHTML = "";
+    }
+}</pre>
+                    </div>
+
+                    <ul>
+                        <li>Resets both image and description panels</li>
+                        <li>Called when user deselects or clears selection</li>
+                        <li>Prevents showing stale data</li>
+                    </ul>
+
+                    <h2>Image Loading States</h2>
+                    <p>The CSS works with JavaScript to create smooth loading:</p>
+
+                    <div class="code-explanation">
+                        <pre>/* CSS */
+.bone-image {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bone-image.loaded {
+    opacity: 1;
+}</pre>
+                    </div>
+
+                    <ul>
+                        <li>Images start invisible (<code>opacity: 0</code>)</li>
+                        <li>When loaded, "loaded" class is added</li>
+                        <li>Opacity transitions to 1 (visible)</li>
+                        <li>Creates smooth fade-in effect</li>
+                    </ul>
+
+                    <h2>Multiple Images Handling</h2>
+                    <div class="info-box">
+                        <p>Some bones have multiple views (anterior, posterior, lateral):</p>
+                        <div class="code-explanation">
+                            <pre>boneData.images = [
+    "/images/skull-anterior.jpg",
+    "/images/skull-posterior.jpg",
+    "/images/skull-lateral.jpg"
+];</pre>
+                        </div>
+                        <p>The <code>forEach()</code> loop creates an <code>&lt;img&gt;</code> for each, displayed in a grid via CSS.</p>
+                    </div>
+
+                    <h2>Accessibility Features</h2>
+                    <div class="code-explanation">
+                        <pre>img.alt = `${boneData.name} - Anatomical View`;</pre>
+                    </div>
+
+                    <ul>
+                        <li><strong>Alt text</strong> describes image content</li>
+                        <li>Screen readers read this aloud to blind users</li>
+                        <li><strong>Never leave alt empty!</strong> Use meaningful descriptions</li>
+                        <li>Good: "Frontal Bone - Anatomical View"</li>
+                        <li>Bad: "image1.jpg" or empty</li>
+                    </ul>
+
+                    <h2>Error Handling Best Practices</h2>
+                    <ul>
+                        <li><strong>Check if data exists:</strong> Prevent "undefined" errors</li>
+                        <li><strong>Fallback images:</strong> Show placeholder on 404</li>
+                        <li><strong>Graceful degradation:</strong> App works even if images fail</li>
+                        <li><strong>User feedback:</strong> Show helpful messages</li>
+                        <li><strong>Log errors:</strong> console.error() for debugging</li>
+                    </ul>
+
+                    <h2>Performance Considerations</h2>
+                    <div class="info-box">
+                        <h3>Lazy Loading (Not Implemented Here)</h3>
+                        <p>For better performance, you could add:</p>
+                        <div class="code-explanation">
+                            <pre>img.loading = "lazy";</pre>
+                        </div>
+                        <p>This tells the browser to only load images when they're about to appear on screen!</p>
+                        
+                        <h3>Image Optimization</h3>
+                        <ul>
+                            <li>Use WebP format (smaller files)</li>
+                            <li>Compress images (reduce quality slightly)</li>
+                            <li>Serve responsive images (different sizes for mobile/desktop)</li>
+                        </ul>
+                    </div>
+
+                    <h2>Key Programming Concepts</h2>
+                    <ul>
+                        <li><strong>DOM Manipulation:</strong> Creating and inserting elements</li>
+                        <li><strong>Event Listeners:</strong> load, error events</li>
+                        <li><strong>Conditional Logic:</strong> Validation checks</li>
+                        <li><strong>Array Iteration:</strong> forEach() for multiple images</li>
+                        <li><strong>Template Literals:</strong> Multi-line HTML strings</li>
+                        <li><strong>CSS Classes:</strong> Dynamic styling with classList</li>
+                        <li><strong>Error Handling:</strong> Graceful fallbacks</li>
+                    </ul>
+
+                    <h2>User Experience Patterns</h2>
+                    <ul>
+                        <li><strong>Loading States:</strong> Fade-in animation prevents flash</li>
+                        <li><strong>Empty States:</strong> Friendly placeholder with icon</li>
+                        <li><strong>Error States:</strong> Show placeholder instead of broken image</li>
+                        <li><strong>Progressive Enhancement:</strong> Basic image, enhanced with animations</li>
+                    </ul>
+
+                    <h2>Professional Practices</h2>
+                    <ul>
+                        <li><strong>Null Checks:</strong> Verify data exists before using</li>
+                        <li><strong>Accessibility First:</strong> Always include alt text</li>
+                        <li><strong>Error Recovery:</strong> Fallback to placeholder images</li>
+                        <li><strong>Smooth Transitions:</strong> Fade-in improves perceived performance</li>
+                        <li><strong>Clear Function Names:</strong> displayBoneData, clearViewer</li>
+                        <li><strong>Separation of Concerns:</strong> View logic separate from data logic</li>
+                    </ul>
+
+                    <p class="tutorial-link"><a href="js-tutorials.html#lesson-8">Review JavaScript Lesson 8: DOM Manipulation</a></p>
+                </div>
+
+                <div class="lesson-navigation">
+                    <a href="walkthrough-dropdowns-js.html" class="nav-btn secondary">← Previous: dropdowns.js</a>
+                    <a href="walkthrough-search-js.html" class="nav-btn">Next: search.js →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

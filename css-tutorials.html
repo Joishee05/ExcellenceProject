@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Lessons - SLU LearnCode</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <style>
+        .tutorial-overview {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .overview-header h1 {
+            font-size: 2.5rem;
+            color: var(--slu-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .overview-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .lesson-card {
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .lesson-card:hover {
+            border-color: var(--slu-blue);
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .lesson-card h3 {
+            color: var(--slu-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .lesson-card p {
+            color: var(--text-gray);
+            flex-grow: 1;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .lesson-card .btn {
+            display: inline-block;
+            background: var(--slu-blue);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .lesson-card .btn:hover {
+            background: #002570;
+        }
+        
+        .lesson-section-title {
+            font-size: 1.5rem;
+            color: var(--slu-blue);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--slu-gold);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html" class="active">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-overview">
+        <div class="overview-header">
+            <h1>CSS Lessons</h1>
+            <p>Learn styling and design with CSS. Master selectors, layouts, animations, and create beautiful responsive websites.</p>
+        </div>
+
+        <h2 class="lesson-section-title">Basics</h2>
+        <div class="lessons-grid">
+            <a href="Lessons/lesson-css-01.html" class="lesson-card">
+                <h3>1. What is CSS?</h3>
+                <p>Understand CSS fundamentals and how stylesheets control the appearance of web pages.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-css-02.html" class="lesson-card">
+                <h3>2. Selectors</h3>
+                <p>Learn different types of CSS selectors to target HTML elements effectively.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-css-03.html" class="lesson-card">
+                <h3>3. Colors & Backgrounds</h3>
+                <p>Master color properties and background styling techniques.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-css-04.html" class="lesson-card">
+                <h3>4. Text Styling</h3>
+                <p>Control fonts, sizes, weights, and other text properties.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-css-05.html" class="lesson-card">
+                <h3>5. Box Model</h3>
+                <p>Understand margins, padding, borders, and the CSS box model.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-css-06.html" class="lesson-card">
+                <h3>6. Borders & Spacing</h3>
+                <p>Work with borders, padding, and margins to create spacing and layout.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+        </div>
+
+        <h2 class="lesson-section-title">Intermediate</h2>
+        <div class="lessons-grid">
+            <a href="Lessons/lesson-css-07.html" class="lesson-card">
+                <h3>7. Flexbox</h3>
+                <p>Create flexible and responsive layouts with CSS Flexbox.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-css-08.html" class="lesson-card">
+                <h3>8. Grid Layout</h3>
+                <p>Build powerful two-dimensional layouts with CSS Grid.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-css-09.html" class="lesson-card">
+                <h3>9. Positioning</h3>
+                <p>Learn absolute, relative, fixed, and sticky positioning.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+            <a href="Lessons/lesson-css-10.html" class="lesson-card">
+                <h3>10. Transitions & Animations</h3>
+                <p>Create smooth animations and transitions for interactive effects.</p>
+                <span class="btn">Start Lesson</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

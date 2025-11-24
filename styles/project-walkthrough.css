@@ -1,0 +1,197 @@
+/* Project Walkthrough CSS */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --slu-blue: #0033A0;
+    --slu-gold: #FFD700;
+    --white: #fff;
+    --off-white: #f8f9fa;
+    --text-dark: #212529;
+    --text-gray: #6c757d;
+    --border: #dee2e6;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: var(--off-white);
+}
+
+.project-header {
+    background: var(--slu-blue);
+    color: var(--white);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.project-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.project-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-badge {
+    display: inline-block;
+    background: var(--slu-gold);
+    color: var(--text-dark);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.walkthrough-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.intro-section {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.intro-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.info-box {
+    background: #e7f3ff;
+    border-left: 4px solid var(--slu-blue);
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-top: 2rem;
+}
+
+.info-box h3 {
+    color: var(--slu-blue);
+    margin-bottom: 1rem;
+}
+
+.info-box ul {
+    list-style: none;
+}
+
+.info-box li::before {
+    content: '→';
+    color: var(--slu-blue);
+    font-weight: 700;
+    margin-right: 0.75rem;
+}
+
+.files-section h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.section-description {
+    text-align: center;
+    color: var(--text-gray);
+    margin-bottom: 2.5rem;
+}
+
+.files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.file-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.file-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.file-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.file-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.file-type {
+    display: inline-block;
+    background: var(--slu-blue);
+    color: var(--white);
+    padding: 0.375rem 0.875rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.view-link {
+    color: var(--slu-blue);
+    font-weight: 600;
+}
+
+.nav-section {
+    background: var(--white);
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.nav-section h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.nav-btn.primary {
+    background: var(--slu-blue);
+    color: var(--white);
+}
+
+.nav-btn.primary:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .files-grid {
+        grid-template-columns: 1fr;
+    }
+}

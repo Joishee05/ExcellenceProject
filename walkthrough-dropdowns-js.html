@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 5: dropdowns.js - DigitalBonesBox Walkthrough</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="styles/walkthrough.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html" class="active">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>DigitalBonesBox Files</h2>
+            <a href="project-walkthrough.html" class="back-link">← Back to Overview</a>
+            <div class="lesson-links">
+                <a href="walkthrough-boneset-html.html" class="lesson-link">
+                    <span class="lesson-number">File 1</span>
+                    <span class="lesson-title">boneset.html</span>
+                </a>
+                <a href="walkthrough-style-css.html" class="lesson-link">
+                    <span class="lesson-number">File 2</span>
+                    <span class="lesson-title">style.css</span>
+                </a>
+                <a href="walkthrough-main-js.html" class="lesson-link">
+                    <span class="lesson-number">File 3</span>
+                    <span class="lesson-title">main.js</span>
+                </a>
+                <a href="walkthrough-api-js.html" class="lesson-link">
+                    <span class="lesson-number">File 4</span>
+                    <span class="lesson-title">api.js</span>
+                </a>
+                <a href="walkthrough-dropdowns-js.html" class="lesson-link active">
+                    <span class="lesson-number">File 5</span>
+                    <span class="lesson-title">dropdowns.js</span>
+                </a>
+                <a href="walkthrough-viewer-js.html" class="lesson-link">
+                    <span class="lesson-number">File 6</span>
+                    <span class="lesson-title">viewer.js</span>
+                </a>
+                <a href="walkthrough-search-js.html" class="lesson-link">
+                    <span class="lesson-number">File 7</span>
+                    <span class="lesson-title">search.js</span>
+                </a>
+                <a href="walkthrough-server-js.html" class="lesson-link">
+                    <span class="lesson-number">File 8</span>
+                    <span class="lesson-title">server.js</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson active">
+                <div class="lesson-header">
+                    <span class="lesson-meta">File 5 of 8</span>
+                    <h1>dropdowns.js - Dependent Dropdowns</h1>
+                </div>
+
+                <div class="lesson-text">
+                    <h2>What is dropdowns.js?</h2>
+                    <p><code>dropdowns.js</code> manages the three cascading dropdown menus: <strong>Boneset → Bone → Sub-bone</strong>. It creates a guided selection flow where each dropdown depends on the previous one.</p>
+
+                    <div class="info-box">
+                        <h3>Real-World Analogy</h3>
+                        <p>Think of dependent dropdowns like choosing a <strong>pizza delivery address</strong>:</p>
+                        <ul>
+                            <li><strong>Step 1:</strong> Select State → Shows available cities</li>
+                            <li><strong>Step 2:</strong> Select City → Shows available neighborhoods</li>
+                            <li><strong>Step 3:</strong> Select Neighborhood → Shows streets</li>
+                        </ul>
+                        <p>Similarly: Boneset → Bone → Sub-bone creates a logical flow!</p>
+                    </div>
+
+                    <h2>Populating the Boneset Dropdown</h2>
+                    <div class="code-explanation">
+                        <pre>export function populateBonesetDropdown(bonesets) {
+    const dropdown = document.getElementById("boneset-select");
+    
+    // Clear existing options
+    dropdown.innerHTML = "";
+    
+    // Add placeholder option
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Select a boneset";
+    dropdown.appendChild(placeholder);
+    
+    // Add each boneset as an option
+    bonesets.forEach(boneset => {
+        const option = document.createElement("option");
+        option.value = boneset.id;
+        option.textContent = boneset.name;
+        dropdown.appendChild(option);
+    });
+}</pre>
+                    </div>
+
+                    <h3>Step-by-Step Breakdown</h3>
+
+                    <h4>1. Get the Dropdown Element</h4>
+                    <div class="code-explanation">
+                        <pre>const dropdown = document.getElementById("boneset-select");</pre>
+                    </div>
+                    <ul>
+                        <li>Finds the <code>&lt;select id="boneset-select"&gt;</code> element</li>
+                        <li>Stores reference in <code>dropdown</code> variable</li>
+                    </ul>
+
+                    <h4>2. Clear Existing Options</h4>
+                    <div class="code-explanation">
+                        <pre>dropdown.innerHTML = "";</pre>
+                    </div>
+                    <ul>
+                        <li>Removes all <code>&lt;option&gt;</code> elements inside</li>
+                        <li>Prevents duplicate options on reload</li>
+                        <li>Starts with clean slate</li>
+                    </ul>
+
+                    <h4>3. Create Placeholder Option</h4>
+                    <div class="code-explanation">
+                        <pre>const placeholder = document.createElement("option");
+placeholder.value = "";
+placeholder.textContent = "Select a boneset";
+dropdown.appendChild(placeholder);</pre>
+                    </div>
+                    <ul>
+                        <li><code>document.createElement()</code> creates new element in memory</li>
+                        <li><code>value = ""</code> makes it empty (no actual selection)</li>
+                        <li><code>textContent</code> sets visible text</li>
+                        <li><code>appendChild()</code> adds it to the dropdown</li>
+                    </ul>
+
+                    <h4>4. Loop Through Bonesets</h4>
+                    <div class="code-explanation">
+                        <pre>bonesets.forEach(boneset => {
+    const option = document.createElement("option");
+    option.value = boneset.id;       // e.g., "skull"
+    option.textContent = boneset.name; // e.g., "Skull"
+    dropdown.appendChild(option);
+});</pre>
+                    </div>
+                    <ul>
+                        <li><code>forEach()</code> runs for each boneset in array</li>
+                        <li>Creates one <code>&lt;option&gt;</code> per boneset</li>
+                        <li><code>value</code> is the ID (sent to server)</li>
+                        <li><code>textContent</code> is the display name (what users see)</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Result in HTML</h3>
+                        <div class="code-explanation">
+                            <pre>&lt;select id="boneset-select"&gt;
+    &lt;option value=""&gt;Select a boneset&lt;/option&gt;
+    &lt;option value="skull"&gt;Skull&lt;/option&gt;
+    &lt;option value="spine"&gt;Spine&lt;/option&gt;
+    &lt;option value="upper-limb"&gt;Upper Limb&lt;/option&gt;
+&lt;/select&gt;</pre>
+                        </div>
+                    </div>
+
+                    <h2>Setting Up Event Listeners</h2>
+                    <div class="code-explanation">
+                        <pre>export function setupDropdownListeners(combinedData) {
+    const bonesetDropdown = document.getElementById("boneset-select");
+    const boneDropdown = document.getElementById("bone-select");
+    const subboneDropdown = document.getElementById("subbone-select");
+    
+    // When boneset changes
+    bonesetDropdown.addEventListener("change", () => {
+        const selectedBoneset = bonesetDropdown.value;
+        
+        if (selectedBoneset) {
+            // Filter bones belonging to this boneset
+            const filteredBones = combinedData.bones
+                .filter(bone => bone.boneset === selectedBoneset);
+            
+            // Populate bone dropdown
+            populateBoneDropdown(boneDropdown, filteredBones);
+            
+            // Enable bone dropdown
+            boneDropdown.disabled = false;
+            
+            // Reset and disable subbone dropdown
+            subboneDropdown.innerHTML = 
+                '&lt;option value=""&gt;Select a sub-bone&lt;/option&gt;';
+            subboneDropdown.disabled = true;
+        } else {
+            // No boneset selected - disable everything
+            boneDropdown.disabled = true;
+            subboneDropdown.disabled = true;
+        }
+    });
+    
+    // Similar logic for bone dropdown...
+}</pre>
+                    </div>
+
+                    <h3>Understanding the Logic</h3>
+
+                    <h4>Event Listener</h4>
+                    <ul>
+                        <li><code>addEventListener("change", ...)</code> runs when selection changes</li>
+                        <li>Fires when user picks different option</li>
+                        <li>Arrow function <code>() => {}</code> contains the logic</li>
+                    </ul>
+
+                    <h4>Filtering Data</h4>
+                    <div class="code-explanation">
+                        <pre>const filteredBones = combinedData.bones
+    .filter(bone => bone.boneset === selectedBoneset);</pre>
+                    </div>
+                    <ul>
+                        <li><strong>Example:</strong> User selects "Skull"</li>
+                        <li><code>.filter()</code> keeps only bones where <code>bone.boneset === "skull"</code></li>
+                        <li>Result: Array of skull bones only</li>
+                        <li><code>===</code> means "strictly equal"</li>
+                    </ul>
+
+                    <h4>Enabling/Disabling Dropdowns</h4>
+                    <div class="code-explanation">
+                        <pre>boneDropdown.disabled = false;  // Enable
+subboneDropdown.disabled = true; // Disable</pre>
+                    </div>
+                    <ul>
+                        <li><code>disabled = false</code> makes dropdown clickable</li>
+                        <li><code>disabled = true</code> grays it out (can't interact)</li>
+                        <li>Creates guided flow - can't skip steps!</li>
+                    </ul>
+
+                    <h2>Data Flow Visualization</h2>
+                    <div class="info-box">
+                        <h3>Step 1: User Selects "Skull"</h3>
+                        <p><strong>Action:</strong> Boneset dropdown changes</p>
+                        <p><strong>Filter:</strong> bones.filter(b => b.boneset === "skull")</p>
+                        <p><strong>Result:</strong> [Frontal, Parietal, Occipital, Temporal, ...]</p>
+                        <p><strong>Effect:</strong> Bone dropdown populates and enables</p>
+                        
+                        <h3>Step 2: User Selects "Frontal Bone"</h3>
+                        <p><strong>Action:</strong> Bone dropdown changes</p>
+                        <p><strong>Filter:</strong> subbones.filter(sb => sb.bone === "frontal")</p>
+                        <p><strong>Result:</strong> [Squamous Part, Orbital Part, Nasal Part]</p>
+                        <p><strong>Effect:</strong> Sub-bone dropdown populates and enables</p>
+                        
+                        <h3>Step 3: User Selects "Squamous Part"</h3>
+                        <p><strong>Action:</strong> Sub-bone dropdown changes</p>
+                        <p><strong>Effect:</strong> Image loads, description displays</p>
+                    </div>
+
+                    <h2>Resetting Dropdowns</h2>
+                    <div class="code-explanation">
+                        <pre>function resetDropdown(dropdown, placeholder = "Select an option") {
+    dropdown.innerHTML = `&lt;option value=""&gt;${placeholder}&lt;/option&gt;`;
+    dropdown.disabled = true;
+    dropdown.selectedIndex = 0;
+}</pre>
+                    </div>
+
+                    <ul>
+                        <li>Clears all options except placeholder</li>
+                        <li>Disables the dropdown</li>
+                        <li><code>selectedIndex = 0</code> selects first option (placeholder)</li>
+                        <li>Used when parent selection changes</li>
+                    </ul>
+
+                    <h2>Error Prevention</h2>
+                    <div class="code-explanation">
+                        <pre>if (!bonesetDropdown) {
+    console.error("Boneset dropdown not found!");
+    return;
+}</pre>
+                    </div>
+
+                    <ul>
+                        <li>Checks if element exists before using it</li>
+                        <li>Prevents "Cannot read property of null" errors</li>
+                        <li>Early return stops function if element missing</li>
+                    </ul>
+
+                    <h2>Key Programming Concepts</h2>
+                    <ul>
+                        <li><strong>DOM Manipulation:</strong> Creating and modifying HTML elements</li>
+                        <li><strong>Event Listeners:</strong> Responding to user actions</li>
+                        <li><strong>Array Methods:</strong> filter(), forEach(), map()</li>
+                        <li><strong>Conditional Logic:</strong> if/else for flow control</li>
+                        <li><strong>Template Literals:</strong> String interpolation with <code>${}</code></li>
+                        <li><strong>Element Properties:</strong> value, textContent, disabled</li>
+                        <li><strong>Parent-Child Relationships:</strong> Data dependencies</li>
+                    </ul>
+
+                    <h2>User Experience Patterns</h2>
+                    <ul>
+                        <li><strong>Progressive Disclosure:</strong> Show options only when relevant</li>
+                        <li><strong>Disabled State:</strong> Visual feedback that option unavailable</li>
+                        <li><strong>Reset on Change:</strong> Clear child dropdowns when parent changes</li>
+                        <li><strong>Placeholder Text:</strong> Clear instructions for users</li>
+                        <li><strong>Graceful Degradation:</strong> Works even if some data missing</li>
+                    </ul>
+
+                    <h2>Common Pitfalls & Solutions</h2>
+                    <div class="info-box">
+                        <h3>Problem: Dropdown still shows old options</h3>
+                        <p><strong>Cause:</strong> Forgot to clear with <code>innerHTML = ""</code></p>
+                        <p><strong>Solution:</strong> Always clear before populating</p>
+                        
+                        <h3>Problem: Can select bone without boneset</h3>
+                        <p><strong>Cause:</strong> Didn't disable dependent dropdowns</p>
+                        <p><strong>Solution:</strong> Set <code>disabled = true</code> initially</p>
+                        
+                        <h3>Problem: Selected value disappears</h3>
+                        <p><strong>Cause:</strong> Resetting dropdown while user is selecting</p>
+                        <p><strong>Solution:</strong> Only reset when parent dropdown changes</p>
+                    </div>
+
+                    <h2>Professional Practices</h2>
+                    <ul>
+                        <li><strong>Null Checks:</strong> Verify elements exist before using</li>
+                        <li><strong>Consistent Naming:</strong> Clear variable names (filteredBones, not data1)</li>
+                        <li><strong>Separation of Concerns:</strong> One file handles all dropdown logic</li>
+                        <li><strong>Reusable Functions:</strong> populateDropdown() works for any dropdown</li>
+                        <li><strong>User Feedback:</strong> Disabled states show what's unavailable</li>
+                        <li><strong>Data Filtering:</strong> Efficient array methods for performance</li>
+                    </ul>
+
+                    <p class="tutorial-link"><a href="js-tutorials.html#lesson-8">Review JavaScript Lesson 8: DOM Manipulation</a></p>
+                </div>
+
+                <div class="lesson-navigation">
+                    <a href="walkthrough-api-js.html" class="nav-btn secondary">← Previous: api.js</a>
+                    <a href="walkthrough-viewer-js.html" class="nav-btn">Next: viewer.js →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

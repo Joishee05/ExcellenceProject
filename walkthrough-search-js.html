@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 7: search.js - DigitalBonesBox Walkthrough</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="styles/walkthrough.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html" class="active">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>DigitalBonesBox Files</h2>
+            <a href="project-walkthrough.html" class="back-link">← Back to Overview</a>
+            <div class="lesson-links">
+                <a href="walkthrough-boneset-html.html" class="lesson-link">
+                    <span class="lesson-number">File 1</span>
+                    <span class="lesson-title">boneset.html</span>
+                </a>
+                <a href="walkthrough-style-css.html" class="lesson-link">
+                    <span class="lesson-number">File 2</span>
+                    <span class="lesson-title">style.css</span>
+                </a>
+                <a href="walkthrough-main-js.html" class="lesson-link">
+                    <span class="lesson-number">File 3</span>
+                    <span class="lesson-title">main.js</span>
+                </a>
+                <a href="walkthrough-api-js.html" class="lesson-link">
+                    <span class="lesson-number">File 4</span>
+                    <span class="lesson-title">api.js</span>
+                </a>
+                <a href="walkthrough-dropdowns-js.html" class="lesson-link">
+                    <span class="lesson-number">File 5</span>
+                    <span class="lesson-title">dropdowns.js</span>
+                </a>
+                <a href="walkthrough-viewer-js.html" class="lesson-link">
+                    <span class="lesson-number">File 6</span>
+                    <span class="lesson-title">viewer.js</span>
+                </a>
+                <a href="walkthrough-search-js.html" class="lesson-link active">
+                    <span class="lesson-number">File 7</span>
+                    <span class="lesson-title">search.js</span>
+                </a>
+                <a href="walkthrough-server-js.html" class="lesson-link">
+                    <span class="lesson-number">File 8</span>
+                    <span class="lesson-title">server.js</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="lesson-content">
+            <div class="lesson active">
+                <div class="lesson-header">
+                    <span class="lesson-meta">File 7 of 8</span>
+                    <h1>search.js - Search Functionality</h1>
+                </div>
+
+                <div class="lesson-text">
+                    <h2>What is search.js?</h2>
+                    <p>This file powers the search bar at the top of the page. Type in a bone name, and it finds matching results fast. The trick is doing it efficiently so we're not hammering the server with requests every single keystroke.</p>
+
+                    <div class="info-box">
+                        <h3>Picture this scenario</h3>
+                        <p>You're in a library looking for a book:</p>
+                        <ul>
+                            <li><strong>You</strong> start typing "fron..." in the search box</li>
+                            <li><strong>The librarian</strong> (search.js) waits a moment to see if you're done typing</li>
+                            <li><strong>The card catalog</strong> gets searched once you pause</li>
+                            <li><strong>Results appear:</strong> "Frontal Bone", "Frontal Process", and so on</li>
+                        </ul>
+                    </div>
+
+                    <h2>Debouncing - why we wait before searching</h2>
+                    <p>Here's the smartest part of this file. Instead of searching after every single letter, we wait 300 milliseconds after you stop typing:</p>
+
+                    <div class="code-explanation">
+                        <pre>let searchTimeout;
+
+function debounceSearch(query, delay = 300) {
+    // Clear previous timeout
+    clearTimeout(searchTimeout);
+    
+    // Set new timeout
+    searchTimeout = setTimeout(() => {
+        performSearch(query);
+    }, delay);
+}</pre>
+                    </div>
+
+                    <h3>Why Debounce?</h3>
+                    <div class="info-box">
+                        <p><strong>Without debouncing:</strong></p>
+                        <p>User types "frontal" (7 letters) = 7 API requests:</p>
+                        <ul>
+                            <li>"f" → search</li>
+                            <li>"fr" → search</li>
+                            <li>"fro" → search</li>
+                            <li>"fron" → search</li>
+                            <li>"front" → search</li>
+                            <li>"fronta" → search</li>
+                            <li>"frontal" → search</li>
+                        </ul>
+                        <p><strong>With debouncing (300ms):</strong></p>
+                        <p>Waits 300ms after last keystroke = 1 API request!</p>
+                        <p><strong>Result:</strong> 85% fewer requests = faster, cheaper, better!</p>
+                    </div>
+
+                    <h2>Initialize Search</h2>
+                    <div class="code-explanation">
+                        <pre>export function initializeSearch() {
+    const searchInput = document.getElementById("search-bar");
+    const resultsContainer = document.getElementById("search-results");
+    const loadingIndicator = document.getElementById("search-loading");
+    
+    if (!searchInput) {
+        console.error("Search input not found!");
+        return;
+    }
+    
+    searchInput.addEventListener("input", (event) => {
+        const query = event.target.value.trim();
+        
+        // Minimum 2 characters to search
+        if (query.length < 2) {
+            resultsContainer.innerHTML = "";
+            return;
+        }
+        
+        // Show loading indicator
+        loadingIndicator.style.display = "block";
+        
+        // Debounce the search
+        debounceSearch(query, 300);
+    });
+}</pre>
+                    </div>
+
+                    <h3>Step-by-Step Breakdown</h3>
+
+                    <h4>1. Get Elements</h4>
+                    <ul>
+                        <li>Finds search input, results container, loading indicator</li>
+                        <li>Null check prevents errors if elements missing</li>
+                    </ul>
+
+                    <h4>2. Input Event Listener</h4>
+                    <ul>
+                        <li><code>"input"</code> event fires on every keystroke</li>
+                        <li><code>event.target.value</code> gets current text</li>
+                        <li><code>.trim()</code> removes leading/trailing spaces</li>
+                    </ul>
+
+                    <h4>3. Minimum Length Check</h4>
+                    <div class="code-explanation">
+                        <pre>if (query.length < 2) {
+    resultsContainer.innerHTML = "";
+    return;
+}</pre>
+                    </div>
+                    <ul>
+                        <li>Requires at least 2 characters before searching</li>
+                        <li>Searching for "f" would return too many results</li>
+                        <li>Clears results if query becomes too short</li>
+                    </ul>
+
+                    <h2>Performing the Search</h2>
+                    <div class="code-explanation">
+                        <pre>async function performSearch(query) {
+    const resultsContainer = document.getElementById("search-results");
+    const loadingIndicator = document.getElementById("search-loading");
+    
+    try {
+        // Call API
+        const response = await fetch(
+            `http://127.0.0.1:8000/api/search?q=${encodeURIComponent(query)}`
+        );
+        
+        if (!response.ok) {
+            throw new Error("Search failed");
+        }
+        
+        const results = await response.json();
+        
+        // Hide loading
+        loadingIndicator.style.display = "none";
+        
+        // Display results
+        displaySearchResults(results, resultsContainer);
+        
+    } catch (error) {
+        console.error("Search error:", error);
+        loadingIndicator.style.display = "none";
+        resultsContainer.innerHTML = 
+            '&lt;li class="error"&gt;Search failed. Please try again.&lt;/li&gt;';
+    }
+}</pre>
+                    </div>
+
+                    <h3>Key Concepts</h3>
+
+                    <h4>URL Encoding</h4>
+                    <div class="code-explanation">
+                        <pre>encodeURIComponent(query)</pre>
+                    </div>
+                    <ul>
+                        <li>Converts special characters for URL safety</li>
+                        <li>Example: "bone & joint" becomes "bone%20%26%20joint"</li>
+                        <li>Spaces become <code>%20</code></li>
+                        <li><strong>Always encode user input in URLs!</strong></li>
+                    </ul>
+
+                    <h4>Query Parameters</h4>
+                    <div class="code-explanation">
+                        <pre>?q=${query}</pre>
+                    </div>
+                    <ul>
+                        <li><code>?</code> starts query parameters</li>
+                        <li><code>q=</code> is the parameter name</li>
+                        <li>Server reads this to know what to search for</li>
+                        <li>Full URL: <code>http://127.0.0.1:8000/api/search?q=frontal</code></li>
+                    </ul>
+
+                    <h2>Displaying Search Results</h2>
+                    <div class="code-explanation">
+                        <pre>function displaySearchResults(results, container) {
+    // Clear previous results
+    container.innerHTML = "";
+    
+    if (results.length === 0) {
+        container.innerHTML = 
+            '&lt;li class="no-results"&gt;No bones found&lt;/li&gt;';
+        return;
+    }
+    
+    // Create list item for each result
+    results.forEach(result => {
+        const li = document.createElement("li");
+        li.classList.add("search-result-item");
+        
+        // Highlight matching text
+        const highlightedName = highlightMatch(result.name, query);
+        
+        li.innerHTML = `
+            &lt;div class="result-name"&gt;${highlightedName}&lt;/div&gt;
+            &lt;div class="result-type"&gt;${result.type}&lt;/div&gt;
+        `;
+        
+        // Click handler
+        li.addEventListener("click", () => {
+            selectBone(result.id);
+            container.innerHTML = "";
+            searchInput.value = "";
+        });
+        
+        container.appendChild(li);
+    });
+}</pre>
+                    </div>
+
+                    <h3>Result Structure</h3>
+                    <ul>
+                        <li>Each result is clickable</li>
+                        <li>Shows bone name and type (bone/sub-bone)</li>
+                        <li>Clicking selects that bone in dropdowns</li>
+                        <li>Clears search after selection</li>
+                    </ul>
+
+                    <h2>Highlighting Matches</h2>
+                    <div class="code-explanation">
+                        <pre>function highlightMatch(text, query) {
+    const regex = new RegExp(`(${query})`, 'gi');
+    return text.replace(regex, '&lt;mark&gt;$1&lt;/mark&gt;');
+}</pre>
+                    </div>
+
+                    <h3>How It Works</h3>
+                    <ul>
+                        <li><code>RegExp</code> creates a regular expression</li>
+                        <li><code>gi</code> flags: g = global (all matches), i = case-insensitive</li>
+                        <li><code>.replace()</code> wraps matches in <code>&lt;mark&gt;</code> tags</li>
+                        <li><strong>Example:</strong> "Frontal" with query "fron" → <code>&lt;mark&gt;Fron&lt;/mark&gt;tal</code></li>
+                        <li>CSS styles <code>&lt;mark&gt;</code> with yellow background</li>
+                    </ul>
+
+                    <h2>Search Performance</h2>
+                    <div class="info-box">
+                        <h3>Optimizations Used</h3>
+                        <ul>
+                            <li><strong>Debouncing:</strong> Reduces API calls by 85%+</li>
+                            <li><strong>Minimum length:</strong> Avoids searching single letters</li>
+                            <li><strong>Early return:</strong> Stops if query too short</li>
+                            <li><strong>Trim spaces:</strong> Prevents accidental spaces</li>
+                        </ul>
+                        
+                        <h3>Could Add (Not Implemented)</h3>
+                        <ul>
+                            <li><strong>Caching:</strong> Store recent searches</li>
+                            <li><strong>Fuzzy matching:</strong> "frontle" still finds "frontal"</li>
+                            <li><strong>Autocomplete:</strong> Suggest as you type</li>
+                            <li><strong>Search history:</strong> Show recent searches</li>
+                        </ul>
+                    </div>
+
+                    <h2>Keyboard Navigation</h2>
+                    <p>Professional search bars allow arrow key navigation:</p>
+
+                    <div class="code-explanation">
+                        <pre>searchInput.addEventListener("keydown", (event) => {
+    const results = document.querySelectorAll(".search-result-item");
+    
+    if (event.key === "ArrowDown") {
+        // Move selection down
+        event.preventDefault();
+        currentIndex = Math.min(currentIndex + 1, results.length - 1);
+        highlightResult(currentIndex);
+    }
+    
+    if (event.key === "ArrowUp") {
+        // Move selection up
+        event.preventDefault();
+        currentIndex = Math.max(currentIndex - 1, 0);
+        highlightResult(currentIndex);
+    }
+    
+    if (event.key === "Enter") {
+        // Select highlighted result
+        results[currentIndex]?.click();
+    }
+});</pre>
+                    </div>
+
+                    <h2>Key Programming Concepts</h2>
+                    <ul>
+                        <li><strong>Debouncing:</strong> Delay execution until action stops</li>
+                        <li><strong>setTimeout/clearTimeout:</strong> Timing control</li>
+                        <li><strong>Regular Expressions:</strong> Pattern matching</li>
+                        <li><strong>URL Encoding:</strong> Safe URL parameters</li>
+                        <li><strong>Event Listeners:</strong> input, click, keydown</li>
+                        <li><strong>Async/Await:</strong> Handle API calls</li>
+                        <li><strong>String Methods:</strong> trim(), replace()</li>
+                        <li><strong>DOM Manipulation:</strong> Creating and updating elements</li>
+                    </ul>
+
+                    <h2>User Experience Patterns</h2>
+                    <ul>
+                        <li><strong>Instant Feedback:</strong> Shows "Searching..." indicator</li>
+                        <li><strong>Empty States:</strong> "No bones found" message</li>
+                        <li><strong>Visual Feedback:</strong> Highlights matching text</li>
+                        <li><strong>Clear on Select:</strong> Clears search after selection</li>
+                        <li><strong>Minimum Input:</strong> Requires 2+ characters</li>
+                        <li><strong>Error Recovery:</strong> Shows friendly error message</li>
+                    </ul>
+
+                    <h2>Professional Practices</h2>
+                    <ul>
+                        <li><strong>Debouncing:</strong> Essential for search inputs</li>
+                        <li><strong>Loading States:</strong> Show when searching</li>
+                        <li><strong>Error Handling:</strong> Try-catch for API calls</li>
+                        <li><strong>URL Encoding:</strong> Prevent injection attacks</li>
+                        <li><strong>Minimum Length:</strong> Prevent excessive API calls</li>
+                        <li><strong>Clear Results:</strong> Clean up after selection</li>
+                        <li><strong>Accessibility:</strong> Keyboard navigation, ARIA labels</li>
+                    </ul>
+
+                    <p class="tutorial-link"><a href="js-tutorials.html#lesson-9">Review JavaScript Lesson 9: Events & Event Handling</a></p>
+                </div>
+
+                <div class="lesson-navigation">
+                    <a href="walkthrough-viewer-js.html" class="nav-btn secondary">← Previous: viewer.js</a>
+                    <a href="walkthrough-server-js.html" class="nav-btn">Next: server.js →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

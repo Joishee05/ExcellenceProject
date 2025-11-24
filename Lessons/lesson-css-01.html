@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: What is CSS? - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="../styles/practice.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="tutorial-container">
+        <aside class="sidebar">
+            <h2>CSS Lessons</h2>
+            <div class="progress-section">
+                <h3>Progress</h3>
+                <div class="progress-bar"><div class="progress-fill" style="width: 10%"></div></div>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="lesson-css-01.html" class="lesson-link active">1. What is CSS?</a></li>
+                <li><a href="lesson-css-02.html" class="lesson-link">2. Selectors</a></li>
+                <li><a href="lesson-css-03.html" class="lesson-link">3. Colors & Backgrounds</a></li>
+                <li><a href="lesson-css-04.html" class="lesson-link">4. Text Styling</a></li>
+                <li><a href="lesson-css-05.html" class="lesson-link">5. Box Model</a></li>
+                <li><a href="lesson-css-06.html" class="lesson-link">6. Borders & Spacing</a></li>
+                <li><a href="lesson-css-07.html" class="lesson-link">7. Flexbox</a></li>
+                <li><a href="lesson-css-08.html" class="lesson-link">8. Grid Layout</a></li>
+                <li><a href="lesson-css-09.html" class="lesson-link">9. Positioning</a></li>
+                <li><a href="lesson-css-10.html" class="lesson-link">10. Transitions & Animations</a></li>
+            </ul>
+        </aside>
+        <main class="lesson-content">
+            <div class="lesson-header">
+                <div class="lesson-number">Lesson 1 of 10</div>
+                <h1>What is CSS?</h1>
+            </div>
+            <div class="lesson-text">
+                <p><strong>CSS</strong> stands for <strong>Cascading Style Sheets</strong>. It's used to style and layout web pages.</p>
+                <h3>What Does CSS Do?</h3>
+                <ul>
+                    <li>Controls colors, fonts, and spacing</li>
+                    <li>Creates layouts and positioning</li>
+                    <li>Adds animations and transitions</li>
+                    <li>Makes websites responsive</li>
+                </ul>
+                <h3>How to Add CSS:</h3>
+                <p>There are three ways to add CSS to HTML:</p>
+                <div class="info-box">
+                    <strong>1. Inline CSS:</strong> <code>&lt;p style="color: blue;"&gt;Text&lt;/p&gt;</code><br>
+                    <strong>2. Internal CSS:</strong> In a <code>&lt;style&gt;</code> tag in the <code>&lt;head&gt;</code><br>
+                    <strong>3. External CSS:</strong> Link to a separate .css file (best practice!)
+                </div>
+                <h3>CSS Syntax:</h3>
+                <pre><code>selector {
+    property: value;
+    property: value;
+}</code></pre>
+            </div>
+            <div class="interactive-section">
+                <h3>Try It Yourself:</h3>
+                <div class="code-editor">
+                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
+                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
+<html>
+<head>
+<style>
+    h1 {
+        color: blue;
+        font-size: 36px;
+    }
+    
+    p {
+        color: green;
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+    <h1>Hello CSS!</h1>
+    <p>CSS makes websites beautiful!</p>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html></textarea>
+                </div>
+                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+            </div>
+            <div class="challenge">
+                <h3>Challenge:</h3>
+                <p>Modify the code to:</p>
+                <ol>
+                    <li>Change the h1 color to red</li>
+                    <li>Make the paragraph text purple</li>
+                    <li>Increase the h1 font size to 48px</li>
+                </ol>
+            </div>
+            <div class="lesson-navigation">
+                <a href="../css-tutorials.html" class="nav-button">← Back to Overview</a>
+                <a href="lesson-css-02.html" class="nav-button">Next Lesson →</a>
+            </div>
+        </main>
+    </div>
+    <script>function runCode(){const code=document.getElementById('code-input').value;const iframe=document.getElementById('output-frame');const iframeDoc=iframe.contentDocument||iframe.contentWindow.document;iframeDoc.open();iframeDoc.write(code);iframeDoc.close();}</script>
+    <script src="../scripts/practice.js?v=1000"></script>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File 1: boneset.html - DigitalBonesBox Walkthrough</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <link rel="stylesheet" href="styles/walkthrough.css?v=1000">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">SLU LearnCode</span>
+                <span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html-tutorials.html">HTML</a></li>
+                <li><a href="css-tutorials.html">CSS</a></li>
+                <li><a href="js-tutorials.html">JavaScript</a></li>
+                <li><a href="project-walkthrough.html" class="active">DigitalBonesBox Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="tutorial-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h2>DigitalBonesBox Files</h2>
+            <a href="project-walkthrough.html" class="back-link">← Back to Overview</a>
+            <div class="lesson-links">
+                <a href="walkthrough-boneset-html.html" class="lesson-link active">
+                    <span class="lesson-number">File 1</span>
+                    <span class="lesson-title">boneset.html</span>
+                </a>
+                <a href="walkthrough-style-css.html" class="lesson-link">
+                    <span class="lesson-number">File 2</span>
+                    <span class="lesson-title">style.css</span>
+                </a>
+                <a href="walkthrough-main-js.html" class="lesson-link">
+                    <span class="lesson-number">File 3</span>
+                    <span class="lesson-title">main.js</span>
+                </a>
+                <a href="walkthrough-api-js.html" class="lesson-link">
+                    <span class="lesson-number">File 4</span>
+                    <span class="lesson-title">api.js</span>
+                </a>
+                <a href="walkthrough-dropdowns-js.html" class="lesson-link">
+                    <span class="lesson-number">File 5</span>
+                    <span class="lesson-title">dropdowns.js</span>
+                </a>
+                <a href="walkthrough-viewer-js.html" class="lesson-link">
+                    <span class="lesson-number">File 6</span>
+                    <span class="lesson-title">viewer.js</span>
+                </a>
+                <a href="walkthrough-search-js.html" class="lesson-link">
+                    <span class="lesson-number">File 7</span>
+                    <span class="lesson-title">search.js</span>
+                </a>
+                <a href="walkthrough-server-js.html" class="lesson-link">
+                    <span class="lesson-number">File 8</span>
+                    <span class="lesson-title">server.js</span>
+                </a>
+            </div>
+        </aside>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="lesson-content">
+            <div class="lesson active">
+                <div class="lesson-header">
+                    <span class="lesson-meta">File 1 of 8</span>
+                    <h1>boneset.html - The Main HTML File</h1>
+                </div>
+
+                <div class="lesson-text">
+                    <h2>What is boneset.html?</h2>
+                    <p>This is the main HTML file that builds the entire user interface. It's essentially the skeleton of the app - everything users see and click on starts here. The file defines the structure and layout of the page.</p>
+                    
+                    <div class="info-box">
+                        <h3>Here's a simple way to think about it</h3>
+                        <p>Imagine you're building a restaurant:</p>
+                        <ul>
+                            <li><strong>boneset.html</strong> - The actual building structure: walls, doors, where the tables go</li>
+                            <li><strong>style.css</strong> - The paint, furniture, and decorations that make it look nice</li>
+                            <li><strong>JavaScript files</strong> - The staff who take orders and serve food</li>
+                            <li><strong>server.js</strong> - The kitchen where everything actually gets prepared</li>
+                        </ul>
+                    </div>
+
+                    <h2>What's in this file</h2>
+                    <p>At 217 lines, this file sets up everything you see on screen:</p>
+                    <ul>
+                        <li>Top navigation bar with all the main buttons</li>
+                        <li>Search bar so users can quickly find specific bones</li>
+                        <li>Three connected dropdown menus that filter from broad to specific</li>
+                        <li>Description area where bone information appears</li>
+                        <li>Image viewer to display bone photos</li>
+                        <li>Navigation arrows to move between bones</li>
+                        <li>Help popup that explains how everything works</li>
+                    </ul>
+
+                    <h2>Technologies we're using</h2>
+                    <ul>
+                        <li><strong>HTML5:</strong> Modern semantic tags that tell browsers exactly what each section does</li>
+                        <li><strong>HTMX:</strong> Lets us add dynamic features right in the HTML without writing tons of JavaScript</li>
+                        <li><strong>ARIA attributes:</strong> Makes sure screen readers can understand and navigate the page</li>
+                        <li><strong>ES6 Modules:</strong> The current standard for organizing JavaScript code</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Why we built it this way</h3>
+                        <p>This file follows industry best practices:</p>
+                        <ul>
+                            <li><strong>Semantic HTML:</strong> We use tags like <code>&lt;header&gt;</code> and <code>&lt;section&gt;</code> instead of just throwing <code>&lt;div&gt;</code> everywhere</li>
+                            <li><strong>Accessibility:</strong> People using screen readers or keyboards can still navigate everything</li>
+                            <li><strong>Progressive enhancement:</strong> The basic version works even without JavaScript enabled</li>
+                            <li><strong>Mobile-ready:</strong> The viewport settings make sure it looks good on phones and tablets</li>
+                        </ul>
+                    </div>
+
+                    <h2>Let's walk through the file</h2>
+
+                    <h3>1. Document Declaration (Lines 1-2)</h3>
+                    <div class="code-explanation">
+                        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;</pre>
+                    </div>
+                    <p><strong>What's happening here:</strong></p>
+                    <ul>
+                        <li><code>&lt;!DOCTYPE html&gt;</code> - This tells the browser we're using HTML5</li>
+                        <li><code>lang="en"</code> - Specifies that the content is in English</li>
+                        <li>These should always be the first lines in any HTML file</li>
+                    </ul>
+                    <p><strong>Why it matters:</strong> Without the DOCTYPE, browsers can go into "quirks mode" where they render things differently and unpredictably. The language attribute helps screen readers pronounce words correctly and lets search engines know what language you're writing in.</p>
+                    <p class="tutorial-link"><a href="html-tutorials.html">Review HTML Lesson 1: Basic Structure</a></p>
+
+                    <h3>2. The Head Section (Lines 4-20)</h3>
+                    <div class="code-explanation">
+                        <pre>&lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Digital Bones Box - Bone Set Viewer&lt;/title&gt;
+    
+    &lt;!-- Favicon --&gt;
+    &lt;link rel="icon" href="data:,"&gt;
+    
+    &lt;!-- Google Fonts --&gt;
+    &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+    &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet"&gt;
+    
+    &lt;link rel="stylesheet" href="style.css" /&gt;
+    &lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
+    &lt;script src="https://unpkg.com/htmx.org@1.9.10"&gt;&lt;/script&gt;
+&lt;/head&gt;</pre>
+                    </div>
+
+                    <p><strong>Breaking down each part:</strong></p>
+                    
+                    <h4><code>&lt;meta charset="UTF-8" /&gt;</code></h4>
+                    <ul>
+                        <li>Sets character encoding to UTF-8 (supports all languages and symbols)</li>
+                        <li>Without this, special characters like é, ñ, or emoji might break</li>
+                        <li>UTF-8 is the universal standard for modern websites</li>
+                    </ul>
+
+                    <h4><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</code></h4>
+                    <ul>
+                        <li><strong>Most important line for mobile devices!</strong></li>
+                        <li><code>width=device-width</code> - Makes the page width match the screen width</li>
+                        <li><code>initial-scale=1.0</code> - Starts at 100% zoom (no zooming in/out by default)</li>
+                        <li>Without this, mobile phones would show a tiny zoomed-out desktop version</li>
+                    </ul>
+
+                    <h4><code>&lt;title&gt;</code></h4>
+                    <ul>
+                        <li>Sets the text in the browser tab</li>
+                        <li>Used as default bookmark name</li>
+                        <li>Important for SEO (search engine optimization)</li>
+                    </ul>
+
+                    <h4>Google Fonts Loading</h4>
+                    <div class="code-explanation">
+                        <pre>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</pre>
+                    </div>
+                    <ul>
+                        <li><code>preconnect</code> - Starts connecting to Google's servers early (faster loading)</li>
+                        <li>Loads "Inter" (modern sans-serif) and "Crimson Text" (elegant serif) fonts</li>
+                        <li>Different font weights: 300 (light), 400 (normal), 500 (medium), 600 (semi-bold), 700 (bold)</li>
+                    </ul>
+
+                    <h4>External Resources</h4>
+                    <ul>
+                        <li><code>&lt;link rel="stylesheet" href="style.css" /&gt;</code> - Links the CSS file for styling</li>
+                        <li><code>&lt;script src="https://unpkg.com/htmx.org@1.9.10"&gt;</code> - Loads HTMX library from CDN</li>
+                        <li>HTMX version 1.9.10 is specifically chosen for stability</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>What is HTMX?</h3>
+                        <p>HTMX is a modern library that lets you add AJAX, transitions, and dynamic updates using just HTML attributes - no JavaScript required!</p>
+                        <p><strong>Example:</strong> Instead of writing 20 lines of JavaScript to fetch data, you write:</p>
+                        <div class="code-explanation">
+                            <pre>&lt;button hx-get="/api/data" hx-target="#result"&gt;Load Data&lt;/button&gt;</pre>
+                        </div>
+                        <p>HTMX handles the fetch, response, and inserting content automatically!</p>
+                    </div>
+
+                    <p class="tutorial-link"><a href="html-tutorials.html#lesson-2">Review HTML Lesson 2: Head Elements</a></p>
+
+                    <h3>3. Header Navigation (Lines 23-47)</h3>
+                    <div class="code-explanation">
+                        <pre>&lt;header id="badge" role="banner"&gt;
+    &lt;div class="header-left"&gt;
+        &lt;button id="toggle-sidebar" aria-label="Toggle navigation menu"&gt;☰&lt;/button&gt;
+        &lt;nav class="main-navigation" role="navigation"&gt;
+            &lt;span id="text-button-Home" role="button" tabindex="0"&gt;Home&lt;/span&gt;
+            &lt;span id="text-button-Tutor" role="button" tabindex="0"&gt;Tutor&lt;/span&gt;
+            &lt;span id="text-button-Study" role="button" tabindex="0"&gt;Study&lt;/span&gt;
+            &lt;span id="text-button-Help" role="button" tabindex="0"&gt;Help&lt;/span&gt;
+        &lt;/nav&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="header-right"&gt;
+        &lt;span id="text-button-Login" role="button" tabindex="0"&gt;Login&lt;/span&gt;
+        &lt;span id="text-button-SignUp" role="button" tabindex="0"&gt;Sign Up&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/header&gt;</pre>
+                    </div>
+
+                    <p><strong>Key concepts explained:</strong></p>
+
+                    <h4>Semantic HTML</h4>
+                    <ul>
+                        <li><code>&lt;header&gt;</code> - Semantic element meaning "this is the page header"</li>
+                        <li>Better than <code>&lt;div class="header"&gt;</code> because it has meaning</li>
+                        <li>Screen readers announce "banner landmark" when entering this section</li>
+                    </ul>
+
+                    <h4>ARIA Attributes (Accessibility)</h4>
+                    <ul>
+                        <li><code>role="banner"</code> - Explicitly states this is the main header</li>
+                        <li><code>role="navigation"</code> - Marks the nav links section</li>
+                        <li><code>role="button"</code> - Tells screen readers these spans act as buttons</li>
+                        <li><code>tabindex="0"</code> - Makes elements keyboard-navigable (press Tab to focus)</li>
+                        <li><code>aria-label="Toggle navigation menu"</code> - Describes button purpose for screen readers</li>
+                    </ul>
+
+                    <h4>Why Use <code>&lt;span&gt;</code> Instead of <code>&lt;button&gt;</code>?</h4>
+                    <p>These are styled as text buttons for a cleaner look. The <code>role="button"</code> and <code>tabindex="0"</code> attributes make them functionally equivalent to real buttons for accessibility.</p>
+
+                    <div class="info-box">
+                        <h3>Hamburger Menu Icon (☰)</h3>
+                        <p>The "☰" symbol is a Unicode character (U+2630) called "trigram for heaven". It's commonly used as a menu icon on mobile sites.</p>
+                        <p>On mobile devices, this button would toggle the sidebar navigation open/closed.</p>
+                    </div>
+
+                    <p class="tutorial-link"><a href="html-tutorials.html#lesson-4">Review HTML Lesson 4: Text Content</a></p>
+
+                    <h3>4. Search Section (Lines 54-71)</h3>
+                    <div class="code-explanation">
+                        <pre>&lt;section class="search-section"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="search-bar"&gt;Search Bones and Sub-bones&lt;/label&gt;
+        &lt;div class="search-container"&gt;
+            &lt;input type="text" 
+                   id="search-bar" 
+                   placeholder="Enter bone name (minimum 2 characters)"
+                   autocomplete="off" /&gt;
+            &lt;div id="search-loading" class="search-loading" style="display: none;"&gt;
+                Searching...
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;ul id="search-results" class="search-results" role="listbox" 
+        aria-label="Search results"&gt;&lt;/ul&gt;
+&lt;/section&gt;</pre>
+                    </div>
+
+                    <p><strong>Understanding each element:</strong></p>
+
+                    <h4><code>&lt;label for="search-bar"&gt;</code></h4>
+                    <ul>
+                        <li>Connects the label text to the input field</li>
+                        <li>The <code>for</code> attribute MUST match the input's <code>id</code></li>
+                        <li>Clicking the label focuses the input (better UX)</li>
+                        <li>Screen readers read the label when the input is focused</li>
+                        <li><strong>Always use labels with inputs!</strong> Never skip them!</li>
+                    </ul>
+
+                    <h4><code>&lt;input type="text"&gt;</code></h4>
+                    <ul>
+                        <li><code>type="text"</code> - Creates a single-line text input</li>
+                        <li><code>placeholder</code> - Shows hint text (disappears when typing)</li>
+                        <li><code>autocomplete="off"</code> - Prevents browser from showing previous search history</li>
+                        <li><code>id</code> - Must be unique on the entire page</li>
+                    </ul>
+
+                    <h4>Loading Indicator</h4>
+                    <ul>
+                        <li><code>style="display: none;"</code> - Hidden by default</li>
+                        <li>JavaScript will show/hide this during searches</li>
+                        <li>Provides visual feedback that search is happening</li>
+                    </ul>
+
+                    <h4>Search Results</h4>
+                    <ul>
+                        <li><code>&lt;ul&gt;</code> - Unordered list (results will be added here dynamically)</li>
+                        <li><code>role="listbox"</code> - ARIA role for selectable list</li>
+                        <li><code>aria-label</code> - Describes the list for screen readers</li>
+                    </ul>
+
+                    <p class="tutorial-link"><a href="html-tutorials.html#lesson-6">Review HTML Lesson 6: Forms & Inputs</a></p>
+
+                    <h3>5. Dropdown Menus (Lines 74-114)</h3>
+                    <div class="code-explanation">
+                        <pre>&lt;section class="selection-section"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label&gt;Select Anatomical Structure&lt;/label&gt;
+        &lt;div class="form-row"&gt;
+            &lt;div class="select-group"&gt;
+                &lt;label for="boneset-select"&gt;Boneset&lt;/label&gt;
+                &lt;select id="boneset-select" 
+                        name="boneId"
+                        hx-get="http://127.0.0.1:8000/api/description/" 
+                        hx-target="#description-Container"
+                        hx-trigger="change"&gt;
+                    &lt;option value=""&gt;Select a boneset&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="select-group"&gt;
+                &lt;label for="bone-select"&gt;Bone&lt;/label&gt;
+                &lt;select id="bone-select" 
+                        name="boneId"
+                        hx-get="http://127.0.0.1:8000/api/description/" 
+                        hx-target="#description-Container"
+                        hx-trigger="change"
+                        disabled&gt;
+                    &lt;option value=""&gt;Select a bone&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="select-group"&gt;
+                &lt;label for="subbone-select"&gt;Sub-bone&lt;/label&gt;
+                &lt;select id="subbone-select"
+                        name="boneId"
+                        hx-get="http://127.0.0.1:8000/api/description/" 
+                        hx-target="#description-Container"
+                        hx-trigger="change"
+                        disabled&gt;
+                    &lt;option value=""&gt;Select a sub-bone&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</pre>
+                    </div>
+
+                    <p><strong>This is where HTMX magic happens!</strong></p>
+
+                    <h4>Dependent Dropdowns</h4>
+                    <ul>
+                        <li><strong>Boneset dropdown:</strong> Always enabled, populated on page load</li>
+                        <li><strong>Bone dropdown:</strong> Starts <code>disabled</code>, enables when boneset is selected</li>
+                        <li><strong>Sub-bone dropdown:</strong> Starts <code>disabled</code>, enables when bone is selected</li>
+                        <li>This creates a cascading selection flow</li>
+                    </ul>
+
+                    <h4>HTMX Attributes Explained</h4>
+                    <ul>
+                        <li><code>hx-get="http://127.0.0.1:8000/api/description/"</code>
+                            <ul>
+                                <li>Makes a GET request to this URL</li>
+                                <li>Automatically includes the selected value</li>
+                                <li>127.0.0.1:8000 is the local development server</li>
+                            </ul>
+                        </li>
+                        <li><code>hx-target="#description-Container"</code>
+                            <ul>
+                                <li>Puts the server response into the element with id="description-Container"</li>
+                                <li>Replaces existing content automatically</li>
+                            </ul>
+                        </li>
+                        <li><code>hx-trigger="change"</code>
+                            <ul>
+                                <li>Triggers the request when selection changes</li>
+                                <li>No "Submit" button needed!</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>How Dependent Dropdowns Work</h3>
+                        <p><strong>Step 1:</strong> User selects "Skull" from Boneset dropdown</p>
+                        <p><strong>Step 2:</strong> JavaScript file (dropdowns.js) detects the change</p>
+                        <p><strong>Step 3:</strong> It fetches bones that belong to "Skull" from the server</p>
+                        <p><strong>Step 4:</strong> It enables the Bone dropdown and fills it with options</p>
+                        <p><strong>Step 5:</strong> User selects a bone, process repeats for Sub-bone dropdown</p>
+                        <p>This creates a smooth, guided user experience!</p>
+                    </div>
+
+                    <p class="tutorial-link"><a href="html-tutorials.html#lesson-6">Review HTML Lesson 6: Forms & Select Elements</a></p>
+
+                    <h3>6. Content Display Panels (Lines 117-151)</h3>
+                    <div class="code-explanation">
+                        <pre>&lt;div class="content-grid"&gt;
+    &lt;!-- Description Panel --&gt;
+    &lt;section id="bone-Description-Container" class="description-panel"&gt;
+        &lt;div class="panel-header"&gt;
+            &lt;h2&gt;Anatomical Description&lt;/h2&gt;
+        &lt;/div&gt;
+        &lt;div class="description-content"&gt;
+            &lt;ul id="description-Container" role="list" aria-live="polite"&gt;&lt;/ul&gt;
+            &lt;div class="description-placeholder"&gt;
+                &lt;p&gt;Select a bone or sub-bone above to view detailed 
+                   anatomical descriptions.&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+    
+    &lt;!-- Images Panel --&gt;
+    &lt;section id="bone-images-section" class="images-panel"&gt;
+        &lt;div class="panel-header"&gt;
+            &lt;h2&gt;Visual Reference&lt;/h2&gt;
+        &lt;/div&gt;
+        &lt;div class="images-content"&gt;
+            &lt;div id="bone-image-container" role="region" 
+                 aria-live="polite"&gt;&lt;/div&gt;
+            &lt;div class="images-placeholder"&gt;
+                &lt;p&gt;Please select a bone from the dropdown to view its image.&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+&lt;/div&gt;</pre>
+                    </div>
+
+                    <p><strong>Side-by-side Layout:</strong></p>
+                    <ul>
+                        <li><code>content-grid</code> - CSS class that creates a two-column layout</li>
+                        <li>Left panel: Text descriptions</li>
+                        <li>Right panel: Images and visual references</li>
+                        <li>Responsive: Stacks vertically on mobile devices</li>
+                    </ul>
+
+                    <h4>ARIA Live Regions</h4>
+                    <ul>
+                        <li><code>aria-live="polite"</code> - Announces content changes to screen readers</li>
+                        <li>"polite" means it waits for user to finish current action before announcing</li>
+                        <li>Alternative: <code>aria-live="assertive"</code> interrupts immediately (use for urgent alerts)</li>
+                    </ul>
+
+                    <h4>Placeholder Content</h4>
+                    <ul>
+                        <li>Shows instructional text before user selects anything</li>
+                        <li>Hidden by CSS when real content loads</li>
+                        <li>Provides clear guidance on what to do</li>
+                    </ul>
+
+                    <h3>7. Navigation Buttons (Lines 154-157)</h3>
+                    <div class="code-explanation">
+                        <pre>&lt;nav class="navigation-buttons" role="navigation"&gt;
+    &lt;button id="prev-button" class="btn-secondary" disabled&gt;Previous&lt;/button&gt;
+    &lt;button id="next-button" disabled&gt;Next&lt;/button&gt;
+&lt;/nav&gt;</pre>
+                    </div>
+
+                    <ul>
+                        <li>Both buttons start <code>disabled</code> (can't click until content is loaded)</li>
+                        <li>JavaScript will enable/disable based on available content</li>
+                        <li>Allows browsing through related bones sequentially</li>
+                    </ul>
+
+                    <h3>8. Help Modal (Lines 161-205)</h3>
+                    <p>A popup window that explains how to use the application. Uses inline styles for simplicity:</p>
+                    <ul>
+                        <li><code>position: fixed</code> - Stays in viewport even when scrolling</li>
+                        <li><code>display: none</code> - Hidden by default</li>
+                        <li><code>z-index: 99999</code> - Appears above everything else</li>
+                        <li>Closes when clicking the button or pressing Escape key</li>
+                    </ul>
+
+                    <h3>9. JavaScript Module Loading (Lines 208-212)</h3>
+                    <div class="code-explanation">
+                        <pre>&lt;script type="module" src="js/sidebar.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="js/main.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="js/imageDisplay.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="js/annotationOverlay.js"&gt;&lt;/script&gt;</pre>
+                    </div>
+
+                    <ul>
+                        <li><code>type="module"</code> - ES6 modules (modern JavaScript)</li>
+                        <li>Each file handles one specific responsibility</li>
+                        <li>Modules load <code>defer</code> automatically (after HTML parses)</li>
+                        <li>Can use <code>import</code>/<code>export</code> syntax</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Why Separate JavaScript Files?</h3>
+                        <p><strong>Separation of Concerns:</strong> Each file does one job:</p>
+                        <ul>
+                            <li><strong>sidebar.js:</strong> Handles mobile menu toggle</li>
+                            <li><strong>main.js:</strong> Coordinates everything, initializes app</li>
+                            <li><strong>imageDisplay.js:</strong> Loads and displays bone images</li>
+                            <li><strong>annotationOverlay.js:</strong> Handles image annotations/labels</li>
+                        </ul>
+                        <p>This makes code easier to debug, test, and maintain!</p>
+                    </div>
+
+                    <p class="tutorial-link"><a href="js-tutorials.html#lesson-10">Review JavaScript Lesson 10: Functions & Modules</a></p>
+
+                    <h2>Key Takeaways</h2>
+                    <ul>
+                        <li><strong>Semantic HTML</strong> makes code more meaningful and accessible</li>
+                        <li><strong>ARIA attributes</strong> ensure screen reader users can navigate effectively</li>
+                        <li><strong>HTMX</strong> simplifies AJAX requests with simple HTML attributes</li>
+                        <li><strong>Disabled dropdowns</strong> create a guided user flow (boneset → bone → sub-bone)</li>
+                        <li><strong>Module architecture</strong> keeps code organized and maintainable</li>
+                        <li><strong>Viewport meta tag</strong> is essential for mobile responsiveness</li>
+                        <li><strong>Labels with inputs</strong> improve both accessibility and usability</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <h3>Professional Practices Demonstrated</h3>
+                        <p>This file showcases several industry-standard practices:</p>
+                        <ul>
+                            <li>Accessibility-first approach (WCAG compliance)</li>
+                            <li>Progressive enhancement (works without JavaScript)</li>
+                            <li>Semantic HTML structure</li>
+                            <li>Clear separation between structure (HTML), presentation (CSS), and behavior (JS)</li>
+                            <li>Mobile-first responsive design</li>
+                            <li>Graceful degradation (placeholders when no content)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="lesson-navigation">
+                    <a href="project-walkthrough.html" class="nav-btn secondary">← Back to Overview</a>
+                    <a href="walkthrough-style-css.html" class="nav-btn">Next: style.css →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
