@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 8: Tables - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5002">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
         .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #3b82f6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #3b82f6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -48,9 +51,9 @@
             <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../html-tutorials.html" class="active">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
@@ -73,6 +76,15 @@
             <a href="lesson-html-13.html">13. Meta Tags & SEO</a>
             <a href="lesson-html-14.html">14. Audio & Video</a>
             <a href="lesson-html-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html">17. Core Attributes</a>
+            <a href="lesson-html-18.html">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,112 +92,157 @@
                 <div class="lesson-meta">Lesson 8 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 8 of 15</div>
-                <h1>Tables</h1>
-            </div>
-            <div class="lesson-text">
-                <p>Tables organize data into rows and columns. Perfect for displaying structured information!</p>
-                <h3>Basic Table Structure:</h3>
-                <pre><code>&lt;table&gt;
-    &lt;tr&gt;
-        &lt;th&gt;Header 1&lt;/th&gt;
-        &lt;th&gt;Header 2&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;Data 1&lt;/td&gt;
-        &lt;td&gt;Data 2&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-                <h3>Table Elements:</h3>
+                <p><strong>Tables organize data into rows and columns for easy comparison and analysis.</strong> HTML tables use semantic elements like <code>&lt;table&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code> to structure tabular data clearly and accessibly.</p>
+
+                <h2>What Are Tables?</h2>
+                <p>A table is a structured grid of data organized in rows and columns. Tables are essential for presenting data like schedules, pricing, statistics, and comparisons. Proper table markup improves accessibility for screen readers and makes data easier to understand.</p>
+
+                <h3>When to Use Tables:</h3>
                 <ul>
-                    <li><code>&lt;table&gt;</code> - Defines the table</li>
-                    <li><code>&lt;tr&gt;</code> - Table row</li>
-                    <li><code>&lt;th&gt;</code> - Table header cell (bold & centered)</li>
-                    <li><code>&lt;td&gt;</code> - Table data cell</li>
-                    <li><code>&lt;thead&gt;</code> - Groups header content</li>
-                    <li><code>&lt;tbody&gt;</code> - Groups body content</li>
-                    <li><code>&lt;tfoot&gt;</code> - Groups footer content</li>
+                    <li>Price comparison charts</li>
+                    <li>Sports scores and statistics</li>
+                    <li>Class schedules or timetables</li>
+                    <li>Financial reports or data</li>
+                    <li>Feature comparisons</li>
                 </ul>
-                <h3>Table Attributes:</h3>
-                <ul>
-                    <li><code>colspan</code> - Spans across multiple columns</li>
-                    <li><code>rowspan</code> - Spans across multiple rows</li>
-                </ul>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-    th { background-color: #0033A0; color: white; }
-    tr:nth-child(even) { background-color: #f2f2f2; }
-    tr:hover { background-color: #e3f2fd; }
-</style>
-</head>
-<body>
-    <h2>Student Grades</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Math</th>
-                <th>Science</th>
-                <th>English</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Alice</td>
-                <td>95</td>
-                <td>88</td>
-                <td>92</td>
-            </tr>
-            <tr>
-                <td>Bob</td>
-                <td>87</td>
-                <td>91</td>
-                <td>85</td>
-            </tr>
-            <tr>
-                <td>Charlie</td>
-                <td>92</td>
-                <td>89</td>
-                <td>94</td>
-            </tr>
-        </tbody>
-    </table>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+
+                <h2>Basic Table Structure</h2>
+                <p>Every table consists of key elements: <code>&lt;table&gt;</code> (wrapper), <code>&lt;tr&gt;</code> (table row), and <code>&lt;td&gt;</code> (table data cell). Header rows use <code>&lt;th&gt;</code> (table header) instead of <code>&lt;td&gt;</code>.</p>
+
+                <h3>Simplest Table Example:</h3>
+                <div class="code-block">&lt;table&gt;<br>&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Name&lt;/th&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Age&lt;/th&gt;<br>&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Alice&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;28&lt;/td&gt;<br>&nbsp;&nbsp;&lt;/tr&gt;<br>&lt;/table&gt;</div>
+
+                <h2>Table Elements Explained</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <!-- TABLE tag -->
+                        <div style="border-left: 4px solid #3b82f6; padding-left: 15px;">
+                            <h3 style="color: #3b82f6; font-size: 1.1rem; margin-bottom: 10px;"><code>&lt;table&gt;</code></h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>Purpose:</strong> Container for entire table</p>
+                            <p style="font-size: 0.9rem; color: #666;">The wrapper element that contains all rows, headers, and data</p>
+                        </div>
+
+                        <!-- TR tag -->
+                        <div style="border-left: 4px solid #10b981; padding-left: 15px;">
+                            <h3 style="color: #10b981; font-size: 1.1rem; margin-bottom: 10px;"><code>&lt;tr&gt;</code></h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>Purpose:</strong> Table row – groups cells horizontally</p>
+                            <p style="font-size: 0.9rem; color: #666;">Contains multiple &lt;th&gt; or &lt;td&gt; elements</p>
+                        </div>
+
+                        <!-- TH tag -->
+                        <div style="border-left: 4px solid #f97316; padding-left: 15px;">
+                            <h3 style="color: #f97316; font-size: 1.1rem; margin-bottom: 10px;"><code>&lt;th&gt;</code></h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>Purpose:</strong> Table header cell (semantic)</p>
+                            <p style="font-size: 0.9rem; color: #666;">Bold by default; helps screen readers understand columns</p>
+                        </div>
+
+                        <!-- TD tag -->
+                        <div style="border-left: 4px solid #8b5cf6; padding-left: 15px;">
+                            <h3 style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 10px;"><code>&lt;td&gt;</code></h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>Purpose:</strong> Table data cell</p>
+                            <p style="font-size: 0.9rem; color: #666;">Regular cell containing data; used with rows</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+
+                <h2>Semantic Table Sections</h2>
+                <p>Use <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code> to organize tables semantically and improve accessibility:</p>
+
+                <h3>Complete Table with Sections:</h3>
+                <div class="code-block">&lt;table&gt;<br>&nbsp;&nbsp;&lt;thead&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Product&lt;/th&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Price&lt;/th&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Stock&lt;/th&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/thead&gt;<br>&nbsp;&nbsp;&lt;tbody&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Laptop&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;$999&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;15&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/tbody&gt;<br>&nbsp;&nbsp;&lt;tfoot&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td colspan="2"&gt;Total:&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;15 items&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/tfoot&gt;<br>&lt;/table&gt;</div>
+
+                <h3>Understanding Each Section:</h3>
+                <ul>
+                    <li><strong>&lt;thead&gt;:</strong> Table header – typically contains column titles in &lt;th&gt; elements</li>
+                    <li><strong>&lt;tbody&gt;:</strong> Table body – contains main data rows</li>
+                    <li><strong>&lt;tfoot&gt;:</strong> Table footer – contains summary rows (totals, averages, notes)</li>
+                </ul>
+
+                <h2>Important Table Attributes</h2>
+                
+                <h3>colspan - Span Multiple Columns:</h3>
+                <div class="code-block">&lt;!-- Cell spans 2 columns --&gt;<br>&lt;td colspan="2"&gt;Merged cell&lt;/td&gt;<br><br>&lt;!-- Header spanning 3 columns --&gt;<br>&lt;th colspan="3"&gt;Q1 Sales Data&lt;/th&gt;</div>
+
+                <h3>rowspan - Span Multiple Rows:</h3>
+                <div class="code-block">&lt;!-- Cell spans 2 rows --&gt;<br>&lt;td rowspan="2"&gt;Name&lt;/td&gt;<br><br>&lt;!-- Useful for labels in side columns --&gt;<br>&lt;th rowspan="3"&gt;2024&lt;/th&gt;</div>
+
+                <h2>Table Best Practices</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Do -->
+                        <div style="background: white; border: 2px solid #10b981; border-radius: 6px; padding: 15px;">
+                            <div style="background: #10b981; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✓ DO</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use &lt;thead&gt;, &lt;tbody&gt;, &lt;tfoot&gt;</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use &lt;th&gt; for headers</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Keep headers semantic</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use &lt;caption&gt; for table title</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Add scope attribute to headers</li>
+                            </ul>
+                        </div>
+
+                        <!-- Don't -->
+                        <div style="background: white; border: 2px solid #ef4444; border-radius: 6px; padding: 15px;">
+                            <div style="background: #ef4444; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✗ DON'T</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Use tables for page layout</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Mix &lt;th&gt; and &lt;td&gt; in headers</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Skip semantic sections</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Overuse colspan/rowspan</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Create complex nested tables</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Accessible Tables</h2>
+                <p>Screen reader users need proper semantic markup to navigate tables. Here are accessibility best practices:</p>
+
+                <h3>Add Scope Attribute to Headers:</h3>
+                <div class="code-block">&lt;table&gt;<br>&nbsp;&nbsp;&lt;thead&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th scope="col"&gt;Name&lt;/th&gt;&lt;!-- column header --&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th scope="col"&gt;Age&lt;/th&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/thead&gt;<br>&nbsp;&nbsp;&lt;tbody&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th scope="row"&gt;Alice&lt;/th&gt;&lt;!-- row header --&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;28&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/tbody&gt;<br>&lt;/table&gt;</div>
+
+                <h3>Add Caption:</h3>
+                <div class="code-block">&lt;table&gt;<br>&nbsp;&nbsp;&lt;caption&gt;2024 Sales by Region&lt;/caption&gt;<br>&nbsp;&nbsp;&lt;thead&gt; ... &lt;/thead&gt;<br>&lt;/table&gt;</div>
+
+                <h2>Real-World Table Example</h2>
+                <div class="code-block">&lt;table&gt;<br>&nbsp;&nbsp;&lt;caption&gt;Course Schedule Spring 2024&lt;/caption&gt;<br>&nbsp;&nbsp;&lt;thead&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th scope="col"&gt;Course&lt;/th&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th scope="col"&gt;Time&lt;/th&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th scope="col"&gt;Instructor&lt;/th&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/thead&gt;<br>&nbsp;&nbsp;&lt;tbody&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;HTML 101&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9:00 AM&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;John Smith&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/tbody&gt;<br>&lt;/table&gt;</div>
+
+                <h2>Why Tables Matter</h2>
+                <div class="highlight-box">
+                    <strong>Understanding tables is crucial because:</strong> Tables are essential for displaying structured data on the web. Proper table markup using semantic elements ensures data is accessible to all users, including those using assistive technologies. Well-structured tables improve readability, maintainability, and SEO while maintaining proper document semantics.
+                </div>
+
+                <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="background: #10b981; color: white; padding: 12px; border-radius: 4px; margin: -20px -20px 15px -20px; font-weight: 700; font-size: 1.05rem;">Key Takeaways</div>
+                    <ul style="margin: 0; padding-left: 15px;">
+                        <li style="padding: 8px 0; color: #555;">Tables organize data in rows and columns using &lt;tr&gt;, &lt;th&gt;, and &lt;td&gt;</li>
+                        <li style="padding: 8px 0; color: #555;">Use &lt;thead&gt;, &lt;tbody&gt;, and &lt;tfoot&gt; for semantic structure</li>
+                        <li style="padding: 8px 0; color: #555;">Use &lt;th&gt; for headers, not &lt;td&gt;</li>
+                        <li style="padding: 8px 0; color: #555;">colspan and rowspan allow cells to span multiple columns or rows</li>
+                        <li style="padding: 8px 0; color: #555;">Add scope attribute to headers for accessibility</li>
+                        <li style="padding: 8px 0; color: #555;">Use &lt;caption&gt; to provide table title</li>
+                        <li style="padding: 8px 0; color: #555;">Never use tables for page layout</li>
+                        <li style="padding: 8px 0; color: #555;">Proper semantics improve screen reader accessibility</li>
+                    </ul>
+                </div>
+
+                <div style="background: #8b5cf6; color: white; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">✓ Ready for Lesson 9?</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Next up: Forms – Learn how to collect user input with form elements and validation!</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-07.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-09.html" class="btn">Next Lesson →</a>
+                </div>
             </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a weekly schedule table with:</p>
-                <ol>
-                    <li>Days of the week as headers</li>
-                    <li>At least 3 time slots (rows)</li>
-                    <li>Your activities for each day/time</li>
-                    <li>Basic CSS styling (borders, colors)</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-html-07.html" class="nav-button">← Previous</a>
-                <a href="lesson-html-09.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

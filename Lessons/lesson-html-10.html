@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 10: Semantic HTML - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5002">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
         .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #3b82f6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #3b82f6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -48,9 +50,9 @@
             <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../html-tutorials.html" class="active">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
@@ -73,6 +75,15 @@
             <a href="lesson-html-13.html">13. Meta Tags & SEO</a>
             <a href="lesson-html-14.html">14. Audio & Video</a>
             <a href="lesson-html-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html">17. Core Attributes</a>
+            <a href="lesson-html-18.html">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,75 +91,157 @@
                 <div class="lesson-meta">Lesson 10 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 10 of 15</div>
-                <h1>Semantic HTML</h1>
-            </div>
-            <div class="lesson-text">
-                <p>Semantic HTML uses tags that clearly describe their meaning to both browsers and developers.</p>
-                <h3>Why Semantic HTML?</h3>
+                <p><strong>Semantic HTML uses meaningful tags that describe content purpose, not just presentation.</strong> Instead of generic <code>&lt;div&gt;</code> elements, semantic tags like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, and <code>&lt;footer&gt;</code> tell browsers and assistive technologies what content represents.</p>
+
+                <h2>What is Semantic HTML?</h2>
+                <p>Semantic HTML means using HTML tags that convey meaning about content. A semantic element clearly describes its meaning to both the browser and developer. Semantic markup improves accessibility, SEO, and code maintainability.</p>
+
+                <h3>Non-Semantic vs Semantic:</h3>
                 <ul>
-                    <li>✓ Better accessibility for screen readers</li>
-                    <li>✓ Improved SEO (search engines understand your content better)</li>
-                    <li>✓ More readable and maintainable code</li>
+                    <li><strong>Non-Semantic:</strong> <code>&lt;div&gt;</code>, <code>&lt;span&gt;</code> – generic containers</li>
+                    <li><strong>Semantic:</strong> <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code> – meaningful structure</li>
                 </ul>
-                <h3>Semantic Elements:</h3>
+
+                <h2>Major Semantic Elements</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div style="border-left: 4px solid #3b82f6; padding-left: 15px;">
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>&lt;header&gt;</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">Top section: site logo, navigation, introductory content</p>
+                        </div>
+                        <div style="border-left: 4px solid #10b981; padding-left: 15px;">
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>&lt;nav&gt;</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">Navigation links (primary, secondary)</p>
+                        </div>
+                        <div style="border-left: 4px solid #f97316; padding-left: 15px;">
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>&lt;main&gt;</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">Primary content of the page (one per page)</p>
+                        </div>
+                        <div style="border-left: 4px solid #8b5cf6; padding-left: 15px;">
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>&lt;article&gt;</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">Self-contained content (blog post, news, comment)</p>
+                        </div>
+                        <div style="border-left: 4px solid #3b82f6; padding-left: 15px;">
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>&lt;section&gt;</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">Thematic grouping of content</p>
+                        </div>
+                        <div style="border-left: 4px solid #10b981; padding-left: 15px;">
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>&lt;aside&gt;</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">Sidebar, related links, tangential content</p>
+                        </div>
+                        <div style="border-left: 4px solid #f97316; padding-left: 15px;">
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>&lt;footer&gt;</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">Bottom: copyright, links, contact info</p>
+                        </div>
+                        <div style="border-left: 4px solid #8b5cf6; padding-left: 15px;">
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 8px;"><strong>&lt;figure&gt;</strong></p>
+                            <p style="font-size: 0.9rem; color: #666;">Self-contained illustration with caption</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Semantic Page Structure</h2>
+                <div class="code-block">&lt;header&gt;<br>&nbsp;&nbsp;&lt;h1&gt;Website Title&lt;/h1&gt;<br>&nbsp;&nbsp;&lt;nav&gt; ... &lt;/nav&gt;<br>&lt;/header&gt;<br><br>&lt;main&gt;<br>&nbsp;&nbsp;&lt;article&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Article Title&lt;/h2&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Article content...&lt;/p&gt;<br>&nbsp;&nbsp;&lt;/article&gt;<br>&lt;/main&gt;<br><br>&lt;footer&gt;<br>&nbsp;&nbsp;&lt;p&gt;Copyright info&lt;/p&gt;<br>&lt;/footer&gt;</div>
+
+                <h2>When to Use Which Element</h2>
+                
+                <h3>&lt;header&gt; vs &lt;footer&gt;:</h3>
                 <ul>
-                    <li><code>&lt;header&gt;</code> - Page or section header</li>
-                    <li><code>&lt;nav&gt;</code> - Navigation links</li>
-                    <li><code>&lt;main&gt;</code> - Main content</li>
-                    <li><code>&lt;article&gt;</code> - Self-contained content</li>
-                    <li><code>&lt;section&gt;</code> - Thematic grouping</li>
-                    <li><code>&lt;aside&gt;</code> - Side content</li>
-                    <li><code>&lt;footer&gt;</code> - Page or section footer</li>
+                    <li><strong>&lt;header&gt;:</strong> Introductory content at top (can appear in article, section)</li>
+                    <li><strong>&lt;footer&gt;:</strong> Footer content at bottom (can appear in article, section)</li>
                 </ul>
+
+                <h3>&lt;article&gt; vs &lt;section&gt;:</h3>
+                <ul>
+                    <li><strong>&lt;article&gt;:</strong> Independent content (blog post, news article, comment)</li>
+                    <li><strong>&lt;section&gt;:</strong> Thematic grouping (chapters, tabbed content, related topics)</li>
+                </ul>
+
+                <h3>&lt;main&gt; Rules:</h3>
+                <ul>
+                    <li>Only ONE <code>&lt;main&gt;</code> element per page</li>
+                    <li>Should not be inside <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>, or <code>&lt;header&gt;</code></li>
+                    <li>Contains the unique content of the page</li>
+                </ul>
+
+                <h2>Semantic Benefits</h2>
+                <ul>
+                    <li><strong>Accessibility:</strong> Screen readers understand page structure better</li>
+                    <li><strong>SEO:</strong> Search engines understand content hierarchy</li>
+                    <li><strong>Maintainability:</strong> Code is clearer and easier to understand</li>
+                    <li><strong>Standards Compliance:</strong> Follows HTML5 best practices</li>
+                    <li><strong>Responsive Design:</strong> Easier to style for different layouts</li>
+                </ul>
+
+                <h2>Non-Semantic Page Structure (DON'T DO THIS)</h2>
+                <div class="code-block">&lt;div class="header"&gt;<br>&nbsp;&nbsp;&lt;h1&gt;Website Title&lt;/h1&gt;<br>&nbsp;&nbsp;&lt;div class="nav"&gt; ... &lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="main"&gt;<br>&nbsp;&nbsp;&lt;div class="article"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Article Title&lt;/h2&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&lt;/div&gt;</div>
+
+                <h2>Best Practices with Semantic HTML</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="background: white; border: 2px solid #10b981; border-radius: 6px; padding: 15px;">
+                            <div style="background: #10b981; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✓ DO</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use semantic elements</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Structure content logically</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ One &lt;main&gt; per page</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use &lt;nav&gt; for navigation</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Group related content with &lt;section&gt;</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: white; border: 2px solid #ef4444; border-radius: 6px; padding: 15px;">
+                            <div style="background: #ef4444; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✗ DON'T</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Use &lt;div&gt; for everything</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Multiple &lt;main&gt; elements</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Nest incompatible elements</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Use &lt;section&gt; as wrapper</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Ignore heading hierarchy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Real-World Semantic Example</h2>
+                <div class="code-block">&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>&lt;body&gt;<br>&lt;header&gt;&lt;h1&gt;My Blog&lt;/h1&gt;&lt;/header&gt;<br>&lt;nav&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/nav&gt;<br>&lt;main&gt;<br>&nbsp;&nbsp;&lt;article&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;header&gt;&lt;h2&gt;Post Title&lt;/h2&gt;&lt;/header&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Post content...&lt;/p&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;footer&gt;By Author&lt;/footer&gt;<br>&nbsp;&nbsp;&lt;/article&gt;<br>&lt;/main&gt;<br>&lt;footer&gt;Copyright&lt;/footer&gt;<br>&lt;/body&gt;</div>
+
+                <h2>Why Semantic HTML Matters</h2>
+                <div class="highlight-box">
+                    <strong>Understanding semantic HTML is crucial because:</strong> Semantic HTML creates structured, meaningful content that benefits everyone. It improves accessibility for users with disabilities, helps search engines understand content, and makes code more maintainable. Semantic markup is a core principle of modern web development.
+                </div>
+
+                <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="background: #10b981; color: white; padding: 12px; border-radius: 4px; margin: -20px -20px 15px -20px; font-weight: 700; font-size: 1.05rem;">Key Takeaways</div>
+                    <ul style="margin: 0; padding-left: 15px;">
+                        <li style="padding: 8px 0; color: #555;">Semantic HTML uses meaningful tags that describe content purpose</li>
+                        <li style="padding: 8px 0; color: #555;">Key elements: &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;section&gt;, &lt;aside&gt;, &lt;footer&gt;</li>
+                        <li style="padding: 8px 0; color: #555;">Only one &lt;main&gt; element per page</li>
+                        <li style="padding: 8px 0; color: #555;">&lt;article&gt; is for independent, self-contained content</li>
+                        <li style="padding: 8px 0; color: #555;">&lt;section&gt; is for thematic grouping of content</li>
+                        <li style="padding: 8px 0; color: #555;">Semantic markup improves accessibility and SEO</li>
+                        <li style="padding: 8px 0; color: #555;">Makes code more maintainable and readable</li>
+                        <li style="padding: 8px 0; color: #555;">Prefer semantic elements over generic &lt;div&gt; tags</li>
+                    </ul>
+                </div>
+
+                <div style="background: #8b5cf6; color: white; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">✓ Ready for Lesson 11?</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Next up: HTML Entities – Learn special characters and symbols in HTML!</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-09.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-11.html" class="btn">Next Lesson →</a>
+                </div>
             </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; }
-    header { background: #0033A0; color: white; padding: 20px; }
-    nav { background: #FFD700; padding: 10px; }
-    nav a { color: #0033A0; margin: 0 10px; text-decoration: none; font-weight: bold; }
-    main { padding: 20px; }
-    article { margin: 20px 0; padding: 20px; background: #f5f5f5; }
-    aside { background: #e0e0e0; padding: 15px; margin: 20px 0; }
-    footer { background: #0033A0; color: white; padding: 20px; text-align: center; }
-</style>
-</head>
-<body>
-    <header>
-        <h1>My Blog Website</h1>
-        <p>Welcome to my personal blog!</p>
-    </header>
-    
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    
-    <main>
-        <article>
-            <h2>My First Blog Post</h2>
-            <p>This is the content of my first blog post...</p>
-        </article>
-        
-        <aside>
-            <h3>About Me</h3>
-            <p>Quick info about the author...</p>
-        </aside>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

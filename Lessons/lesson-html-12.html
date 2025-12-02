@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 12: Comments - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5002">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
         .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #3b82f6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #3b82f6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -48,9 +50,9 @@
             <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../html-tutorials.html" class="active">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
@@ -73,74 +75,156 @@
             <a href="lesson-html-13.html">13. Meta Tags & SEO</a>
             <a href="lesson-html-14.html">14. Audio & Video</a>
             <a href="lesson-html-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html">17. Core Attributes</a>
+            <a href="lesson-html-18.html">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Comments</h1>
+                <h1>Comments in HTML</h1>
                 <div class="lesson-meta">Lesson 12 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 12 of 15</div>
-                <h1>HTML Comments & Code Organization</h1>
-            </div>
-            <div class="lesson-text">
-                <h3>Why Use Comments?</h3>
-                <p>Comments help you and other developers understand your code. They're not displayed in the browser.</p>
-                <h3>Comment Syntax</h3>
-                <pre><code>&lt;!-- This is a single-line comment --&gt;
+                <p><strong>HTML comments let you add notes and explanations in your code that don't display on the webpage.</strong> Comments help you document your work, explain complex sections, and leave reminders for future edits. They're invisible to visitors but visible to developers.</p>
 
-&lt;!--
-This is a
-multi-line comment
---&gt;</code></pre>
-                <h3>Best Practices</h3>
+                <h2>What Are HTML Comments?</h2>
+                <p>Comments are text you include in your HTML file to explain what the code does. They're not rendered by browsers and won't appear on the webpage. Comments are purely for developers reading and maintaining the code.</p>
+
+                <h3>Comment Syntax:</h3>
+                <div class="code-block">&lt;!-- This is a comment --&gt;</div>
+
+                <p>The structure is: <code>&lt;!--</code> starts the comment, <code>--&gt;</code> ends it, and everything between is the comment text.</p>
+
+                <h2>Single-Line Comments</h2>
+                <p>Use single-line comments for brief explanations:</p>
+
+                <div class="code-block">&lt;!-- This is the header section --&gt;<br>&lt;header&gt;<br>&nbsp;&nbsp;&lt;h1&gt;Welcome&lt;/h1&gt;<br>&lt;/header&gt;</div>
+
+                <h3>Real-World Single-Line Example:</h3>
+                <div class="code-block">&lt;!-- Navigation menu --&gt;<br>&lt;nav&gt;<br>&nbsp;&nbsp;&lt;a href="index.html"&gt;Home&lt;/a&gt;<br>&nbsp;&nbsp;&lt;a href="about.html"&gt;About&lt;/a&gt;<br>&lt;/nav&gt;</div>
+
+                <h2>Multi-Line Comments</h2>
+                <p>For longer explanations, use multi-line comments:</p>
+
+                <div class="code-block">&lt;!--<br>&nbsp;&nbsp;This section contains the main content<br>&nbsp;&nbsp;of the webpage. It includes featured products<br>&nbsp;&nbsp;and customer testimonials.<br>--&gt;</div>
+
+                <h3>Best Format for Multi-Line Comments:</h3>
+                <div class="code-block">&lt;!--<br>&nbsp;&nbsp;USER REGISTRATION FORM<br>&nbsp;&nbsp;Allows new users to create accounts<br>&nbsp;&nbsp;Fields: name, email, password<br>&nbsp;&nbsp;Last updated: 2024<br>--&gt;</div>
+
+                <h2>Common Comment Uses</h2>
                 <ul>
-                    <li>Use comments to explain complex sections</li>
-                    <li>Mark sections of your page (header, main, footer)</li>
-                    <li>Document why code exists, not what it does</li>
-                    <li>Keep comments up-to-date with code changes</li>
+                    <li><strong>Explaining Sections</strong> – Mark where major sections begin/end</li>
+                    <li><strong>Temporary Disabling</strong> – Comment out code you might need later</li>
+                    <li><strong>TODO Notes</strong> – Remind yourself of unfinished work</li>
+                    <li><strong>Explaining Complex Code</strong> – Clarify non-obvious HTML structures</li>
+                    <li><strong>Documenting Changes</strong> – Note who changed what and when</li>
+                    <li><strong>Browser Compatibility</strong> – Explain workarounds</li>
                 </ul>
+
+                <h2>Comment Examples</h2>
+
+                <h3>Example 1: Section Markers</h3>
+                <div class="code-block">&lt;!-- ===== HEADER SECTION ===== --&gt;<br>&lt;header&gt;<br>&nbsp;&nbsp;&lt;h1&gt;My Website&lt;/h1&gt;<br>&lt;/header&gt;<br><br>&lt;!-- ===== MAIN CONTENT ===== --&gt;<br>&lt;main&gt;<br>&nbsp;&nbsp;&lt;p&gt;Welcome!&lt;/p&gt;<br>&lt;/main&gt;<br><br>&lt;!-- ===== FOOTER ===== --&gt;<br>&lt;footer&gt;<br>&nbsp;&nbsp;&lt;p&gt;&amp;copy; 2024&lt;/p&gt;<br>&lt;/footer&gt;</div>
+
+                <h3>Example 2: TODO Notes</h3>
+                <div class="code-block">&lt;!-- TODO: Add mobile responsiveness --&gt;<br>&lt;div class="product-gallery"&gt;<br>&nbsp;&nbsp;&lt;!-- TODO: Optimize image loading --&gt;<br>&nbsp;&nbsp;&lt;img src="product1.jpg" alt="Product"&gt;<br>&lt;/div&gt;</div>
+
+                <h3>Example 3: Temporarily Disabling Code</h3>
+                <div class="code-block">&lt;!--<br>&lt;form action="old-script.php"&gt;<br>&nbsp;&nbsp;&lt;input type="text" placeholder="Old form"&gt;<br>&lt;/form&gt;<br>--&gt;<br><br>&lt;form action="new-script.php"&gt;<br>&nbsp;&nbsp;&lt;input type="text" placeholder="New form"&gt;<br>&lt;/form&gt;</div>
+
+                <h3>Example 4: Explaining Complex Markup</h3>
+                <div class="code-block">&lt;!--<br>&nbsp;&nbsp;This nested structure creates a responsive grid<br>&nbsp;&nbsp;The flex container adapts to mobile devices<br>--&gt;<br>&lt;div class="grid-container"&gt;<br>&nbsp;&nbsp;&lt;div class="grid-item"&gt;Item 1&lt;/div&gt;<br>&lt;/div&gt;</div>
+
+                <h2>Comment Best Practices</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="background: white; border: 2px solid #10b981; border-radius: 6px; padding: 15px;">
+                            <div style="background: #10b981; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✓ DO</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Keep comments clear and concise</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Update comments when code changes</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use comments to explain WHY, not what</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Mark major sections clearly</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Comment before complex code</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: white; border: 2px solid #ef4444; border-radius: 6px; padding: 15px;">
+                            <div style="background: #ef4444; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✗ DON'T</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Write obvious comments</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Leave outdated comments</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Over-comment everything</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Use comments instead of refactoring</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Nest comments inside each other</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Comment Guidelines</h2>
+
+                <h3>❌ Bad Comment (Obvious):</h3>
+                <div class="code-block">&lt;!-- Create a paragraph --&gt;<br>&lt;p&gt;This is content&lt;/p&gt;</div>
+
+                <h3>✓ Good Comment (Explanatory):</h3>
+                <div class="code-block">&lt;!-- Paragraph explains key features to first-time visitors --&gt;<br>&lt;p&gt;This is content&lt;/p&gt;</div>
+
+                <h2>Important Comment Rules</h2>
+
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div><p style="font-size: 0.9rem;"><strong>✓ Correct:</strong> <code>&lt;!-- Comment --&gt;</code></p></div>
+                        <div><p style="font-size: 0.9rem;"><strong>✗ Wrong:</strong> <code>&lt;! -- Comment -- &gt;</code></p></div>
+                        <div><p style="font-size: 0.9rem;"><strong>✓ Correct:</strong> <code>&lt;!-- Two hyphens to close --&gt;</code></p></div>
+                        <div><p style="font-size: 0.9rem;"><strong>✗ Wrong:</strong> <code>&lt;!--- Three hyphens -&gt;</code></p></div>
+                    </div>
+                </div>
+
+                <h2>Comments Don't Display in Browser</h2>
+                <p>Even if you add a comment, it won't appear on the webpage. Right-click "View Page Source" to see comments in the HTML code, but normal visitors can't see them.</p>
+
+                <h2>Why Comments Matter</h2>
+                <div class="highlight-box">
+                    <strong>Comments are crucial for:</strong> Documenting your code for future edits, helping team members understand your work, explaining non-obvious design decisions, temporarily disabling code for testing, and creating a maintainable codebase. Comments save time when returning to code weeks later.
+                </div>
+
+                <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="background: #10b981; color: white; padding: 12px; border-radius: 4px; margin: -20px -20px 15px -20px; font-weight: 700; font-size: 1.05rem;">Key Takeaways</div>
+                    <ul style="margin: 0; padding-left: 15px;">
+                        <li style="padding: 8px 0; color: #555;">Comments use syntax: <code>&lt;!-- comment text --&gt;</code></li>
+                        <li style="padding: 8px 0; color: #555;">Comments are invisible in browsers</li>
+                        <li style="padding: 8px 0; color: #555;">Use comments to explain WHY, not WHAT</li>
+                        <li style="padding: 8px 0; color: #555;">Mark sections with clear comment headers</li>
+                        <li style="padding: 8px 0; color: #555;">Temporarily disable code by commenting it out</li>
+                        <li style="padding: 8px 0; color: #555;">Keep comments concise and up-to-date</li>
+                        <li style="padding: 8px 0; color: #555;">View comments using "View Page Source"</li>
+                        <li style="padding: 8px 0; color: #555;">Multi-line comments span across lines</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f97316; color: white; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">✓ Ready for Lesson 13?</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Next up: Meta Tags & SEO – Optimize your pages for search engines!</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-11.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-13.html" class="btn">Next Lesson →</a>
+                </div>
             </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-    <title>Well-Organized Code</title>
-</head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <h1>My Portfolio</h1>
-        <nav>
-            <!-- Main navigation links -->
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-    
-    <!-- Main Content Area -->
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Web developer and designer.</p>
-        </section>
-        
-        <!-- Project showcase section -->
-        <section id="projects">
-            <h2>My Projects</h2>
-            <p>Coming soon!</p>
-        </section>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

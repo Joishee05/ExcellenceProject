@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 5: Links - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5002">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
         .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #3b82f6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #3b82f6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -48,9 +51,9 @@
             <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../html-tutorials.html" class="active">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
@@ -73,6 +76,15 @@
             <a href="lesson-html-13.html">13. Meta Tags & SEO</a>
             <a href="lesson-html-14.html">14. Audio & Video</a>
             <a href="lesson-html-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html">17. Core Attributes</a>
+            <a href="lesson-html-18.html">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,88 +92,230 @@
                 <div class="lesson-meta">Lesson 5 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 5 of 15</div>
-                <h1>Links</h1>
-            </div>
+                <p><strong>Links are the glue that holds the web together.</strong> They allow users to navigate between pages, sections within a page, and external websites. The <code>&lt;a&gt;</code> (anchor) tag is one of the most important elements in HTML.</p>
 
-            <div class="lesson-text">
-                <p>Links are what make the web "web"! They allow you to navigate between pages.</p>
+                <h2>The Anchor Tag (&lt;a&gt;)</h2>
+                <p>The <code>&lt;a&gt;</code> tag creates a hyperlink. The <code>href</code> attribute specifies the destination URL. Without the <code>href</code> attribute, the link won't work.</p>
                 
-                <h3>The Anchor Tag:</h3>
-                <p>Links are created using the <code>&lt;a&gt;</code> (anchor) tag:</p>
-                <pre><code>&lt;a href="URL"&gt;Link Text&lt;/a&gt;</code></pre>
+                <h3>Basic Link Syntax:</h3>
+                <div class="code-block">&lt;a href="https://www.example.com"&gt;Click here&lt;/a&gt;<br>&lt;a href="page2.html"&gt;Go to Page 2&lt;/a&gt;<br>&lt;a href="#section"&gt;Jump to Section&lt;/a&gt;</div>
 
-                <h3>Link Attributes:</h3>
-                <ul>
-                    <li><code>href</code> - The URL or destination</li>
-                    <li><code>target="_blank"</code> - Opens in a new tab</li>
-                    <li><code>title</code> - Tooltip text on hover</li>
-                </ul>
-
-                <h3>Types of Links:</h3>
-                <ul>
-                    <li><strong>External:</strong> <code>href="https://www.example.com"</code></li>
-                    <li><strong>Internal:</strong> <code>href="about.html"</code></li>
-                    <li><strong>Email:</strong> <code>href="mailto:email@example.com"</code></li>
-                    <li><strong>Phone:</strong> <code>href="tel:+1234567890"</code></li>
-                </ul>
-            </div>
-
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
+                <h2>Types of Links</h2>
                 
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span>HTML</span>
-                        <button class="run-button" onclick="runCode()">Run Code</button>
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                        <!-- Absolute URLs -->
+                        <div style="border-left: 4px solid #3b82f6; padding-left: 15px;">
+                            <h3 style="color: #3b82f6; font-size: 1.1rem; margin-bottom: 10px;">Absolute URLs</h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 10px;"><strong>What it is:</strong> Full URL starting with http:// or https://</p>
+                            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85rem;"><code>&lt;a href="https://google.com"&gt;Google&lt;/a&gt;</code></div>
+                            <p style="font-size: 0.9rem; color: #666;"><strong>Use for:</strong> External websites, leaving your site</p>
+                        </div>
+
+                        <!-- Relative URLs -->
+                        <div style="border-left: 4px solid #8b5cf6; padding-left: 15px;">
+                            <h3 style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 10px;">Relative URLs</h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 10px;"><strong>What it is:</strong> Path relative to current page location</p>
+                            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85rem;"><code>&lt;a href="pages/about.html"&gt;About&lt;/a&gt;</code></div>
+                            <p style="font-size: 0.9rem; color: #666;"><strong>Use for:</strong> Internal website links, same site</p>
+                        </div>
+
+                        <!-- Anchor Links -->
+                        <div style="border-left: 4px solid #f97316; padding-left: 15px;">
+                            <h3 style="color: #f97316; font-size: 1.1rem; margin-bottom: 10px;">Anchor Links (Page Jumps)</h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 10px;"><strong>What it is:</strong> Links to sections on the same page with #</p>
+                            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85rem;"><code>&lt;a href="#intro"&gt;Jump to Intro&lt;/a&gt;</code></div>
+                            <p style="font-size: 0.9rem; color: #666;"><strong>Use for:</strong> Navigation within long pages</p>
+                        </div>
+
+                        <!-- Email Links -->
+                        <div style="border-left: 4px solid #10b981; padding-left: 15px;">
+                            <h3 style="color: #10b981; font-size: 1.1rem; margin-bottom: 10px;">Email Links</h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 10px;"><strong>What it is:</strong> Links that open default email client</p>
+                            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85rem;"><code>&lt;a href="mailto:info@example.com"&gt;Email Us&lt;/a&gt;</code></div>
+                            <p style="font-size: 0.9rem; color: #666;"><strong>Use for:</strong> Contact links, email addresses</p>
+                        </div>
                     </div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<body>
-    <h1>My Favorite Resources</h1>
-    
-    <p>Visit <a href="https://www.google.com" target="_blank">Google</a> to search.</p>
-    
-    <p>Contact me at <a href="mailto:hello@example.com">hello@example.com</a></p>
-    
-    <p>Call me: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
-    
-    <p>
-        <a href="https://www.wikipedia.org" target="_blank" title="Free Encyclopedia">
-            Learn on Wikipedia
-        </a>
-    </p>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
                 </div>
+
+                <h2>Understanding URLs</h2>
+                <p>A URL (Uniform Resource Locator) is the address of a web page. Let's break down what each part means:</p>
                 
-                <div class="preview-area">
-                    <iframe class="output-frame" id="output-frame"></iframe>
+                <div style="background: #f5f5f5; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: monospace; font-size: 0.9rem;">
+                    <div style="color: #3b82f6; margin-bottom: 10px;">https://www.example.com/pages/about.html?id=123#top</div>
+                    <div style="color: #555; font-size: 0.85rem; line-height: 1.8;">
+                        <div><span style="color: #f97316; font-weight: 600;">https://</span> = Protocol (secure connection)</div>
+                        <div><span style="color: #8b5cf6; font-weight: 600;">www.example.com</span> = Domain name</div>
+                        <div><span style="color: #10b981; font-weight: 600;">/pages/about.html</span> = Path to specific file</div>
+                        <div><span style="color: #ec4899; font-weight: 600;">?id=123</span> = Query parameters</div>
+                        <div><span style="color: #d4464f; font-weight: 600;">#top</span> = Fragment/anchor (jump to this id)</div>
+                    </div>
+                </div>
+
+                <h2>Absolute vs Relative URLs Explained</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Absolute Example -->
+                        <div style="background: white; border: 2px solid #3b82f6; border-radius: 6px; padding: 15px;">
+                            <div style="background: #3b82f6; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">Absolute URLs</div>
+                            <div style="background: #f5f5f5; padding: 12px; border-radius: 4px; margin-bottom: 10px; font-family: monospace; font-size: 0.85rem; overflow-x: auto;"><code>https://www.google.com</code></div>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 10px;"><strong>Complete address:</strong> Works from any page, any site</p>
+                            <p style="font-size: 0.85rem; color: #999;"><strong>Good for:</strong> External links, different websites</p>
+                        </div>
+
+                        <!-- Relative Example -->
+                        <div style="background: white; border: 2px solid #10b981; border-radius: 6px; padding: 15px;">
+                            <div style="background: #10b981; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">Relative URLs</div>
+                            <div style="background: #f5f5f5; padding: 12px; border-radius: 4px; margin-bottom: 10px; font-family: monospace; font-size: 0.85rem; overflow-x: auto;"><code>../pages/about.html</code></div>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 10px;"><strong>Relative to current file:</strong> Shorter, more portable</p>
+                            <p style="font-size: 0.85rem; color: #999;"><strong>Good for:</strong> Internal site navigation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Creating Anchor Links (Jump to Section)</h2>
+                <p>Anchor links let users jump to a specific section on the same page. You need two parts: a link with <code>#id</code> and a target element with a matching <code>id</code>.</p>
+                
+                <h3>Step 1: Create the target with an ID</h3>
+                <div class="code-block">&lt;h2 id="benefits"&gt;Why This Matters&lt;/h2&gt;</div>
+
+                <h3>Step 2: Create a link pointing to that ID</h3>
+                <div class="code-block">&lt;a href="#benefits"&gt;Jump to Benefits Section&lt;/a&gt;</div>
+
+                <h3>Complete Example:</h3>
+                <div class="code-block">&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>&lt;body&gt;<br>&nbsp;&nbsp;&lt;h1&gt;Table of Contents&lt;/h1&gt;<br>&nbsp;&nbsp;&lt;ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#intro"&gt;Introduction&lt;/a&gt;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#benefits"&gt;Benefits&lt;/a&gt;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#conclusion"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;<br>&nbsp;&nbsp;&lt;/ul&gt;<br><br>&nbsp;&nbsp;&lt;h2 id="intro"&gt;Introduction&lt;/h2&gt;<br>&nbsp;&nbsp;&lt;p&gt;Content here...&lt;/p&gt;<br><br>&nbsp;&nbsp;&lt;h2 id="benefits"&gt;Benefits&lt;/h2&gt;<br>&nbsp;&nbsp;&lt;p&gt;More content...&lt;/p&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</div>
+
+                <h2>Important Link Attributes</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <!-- target attribute -->
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 6px; padding: 12px;">
+                            <p style="font-family: monospace; color: #3b82f6; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;"><code>target="_blank"</code></p>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 8px;">Opens link in a <strong>new tab</strong></p>
+                            <div style="background: #f5f5f5; padding: 8px; border-radius: 3px; font-family: monospace; font-size: 0.8rem;"><code>&lt;a href="page.html" target="_blank"&gt;Open&lt;/a&gt;</code></div>
+                        </div>
+
+                        <!-- title attribute -->
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 6px; padding: 12px;">
+                            <p style="font-family: monospace; color: #3b82f6; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;"><code>title</code></p>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 8px;">Shows <strong>hover text</strong> (tooltip)</p>
+                            <div style="background: #f5f5f5; padding: 8px; border-radius: 3px; font-family: monospace; font-size: 0.8rem;"><code>&lt;a href="..." title="Click to learn"&gt;Link&lt;/a&gt;</code></div>
+                        </div>
+
+                        <!-- rel attribute -->
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 6px; padding: 12px;">
+                            <p style="font-family: monospace; color: #3b82f6; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;"><code>rel</code></p>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 8px;">Describes <strong>relationship</strong> to link</p>
+                            <div style="background: #f5f5f5; padding: 8px; border-radius: 3px; font-family: monospace; font-size: 0.8rem;"><code>&lt;a href="..." rel="nofollow"&gt;Link&lt;/a&gt;</code></div>
+                        </div>
+
+                        <!-- download attribute -->
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 6px; padding: 12px;">
+                            <p style="font-family: monospace; color: #3b82f6; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;"><code>download</code></p>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 8px;">Makes link <strong>download</strong> a file</p>
+                            <div style="background: #f5f5f5; padding: 8px; border-radius: 3px; font-family: monospace; font-size: 0.8rem;"><code>&lt;a href="file.pdf" download&gt;PDF&lt;/a&gt;</code></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Link Best Practices</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Do -->
+                        <div style="background: white; border: 2px solid #10b981; border-radius: 6px; padding: 15px;">
+                            <div style="background: #10b981; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✓ DO</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use descriptive link text</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use relative URLs for internal links</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Add title attributes for tooltips</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use target="_blank" for external links</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Test all links work correctly</li>
+                            </ul>
+                        </div>
+
+                        <!-- Don't -->
+                        <div style="background: white; border: 2px solid #ef4444; border-radius: 6px; padding: 15px;">
+                            <div style="background: #ef4444; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✗ DON'T</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use "click here" as link text</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Break links with dead URLs</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Open internal links in new tabs</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use links for styling (use CSS)</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Make links hard to recognize</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Writing Good Link Text</h2>
+                <p>The text inside a link should clearly describe where it goes. This is important for accessibility and SEO.</p>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Bad -->
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding-left: 15px;">
+                            <p style="font-weight: 600; color: #856404; margin-bottom: 8px;">❌ Poor Link Text</p>
+                            <div style="background: white; border: 1px solid #ffe69c; padding: 10px; border-radius: 4px; margin-bottom: 8px;">
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;"><a href="#" style="color: #3b82f6;">Click here</a> for more info</p>
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;">Visit our website <a href="#" style="color: #3b82f6;">here</a></p>
+                                <p style="font-size: 0.9rem;">Read <a href="#" style="color: #3b82f6;">this</a> article</p>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #856404;">Not descriptive – doesn't explain destination</p>
+                        </div>
+
+                        <!-- Good -->
+                        <div style="background: #d4edda; border-left: 4px solid #28a745; padding-left: 15px;">
+                            <p style="font-weight: 600; color: #155724; margin-bottom: 8px;">✓ Good Link Text</p>
+                            <div style="background: white; border: 1px solid #c3e6cb; padding: 10px; border-radius: 4px; margin-bottom: 8px;">
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;"><a href="#" style="color: #3b82f6;">Learn more about our services</a></p>
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;"><a href="#" style="color: #3b82f6;">View our website</a></p>
+                                <p style="font-size: 0.9rem;"><a href="#" style="color: #3b82f6;">Read the full article about web design</a></p>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #155724;">Clear – describes what's at the destination</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Real-World Link Examples</h2>
+                <div class="code-block">&lt;!-- Navigation menu with relative URLs --&gt;<br>&lt;nav&gt;<br>&nbsp;&nbsp;&lt;a href="index.html"&gt;Home&lt;/a&gt;<br>&nbsp;&nbsp;&lt;a href="about.html"&gt;About Us&lt;/a&gt;<br>&nbsp;&nbsp;&lt;a href="products.html"&gt;Products&lt;/a&gt;<br>&nbsp;&nbsp;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;<br>&lt;/nav&gt;<br><br>&lt;!-- Footer with external and email links --&gt;<br>&lt;footer&gt;<br>&nbsp;&nbsp;&lt;a href="https://twitter.com/company" target="_blank" title="Follow us on Twitter"&gt;Twitter&lt;/a&gt;<br>&nbsp;&nbsp;&lt;a href="https://facebook.com/company" target="_blank" title="Like us on Facebook"&gt;Facebook&lt;/a&gt;<br>&nbsp;&nbsp;&lt;a href="mailto:contact@example.com"&gt;Email Us&lt;/a&gt;<br>&lt;/footer&gt;</div>
+
+                <h2>Why Links Are Critical</h2>
+                <div class="highlight-box">
+                    <strong>Understanding links is essential because:</strong> Links are what make the web interconnected. They enable navigation, create website structure, improve SEO through proper linking strategies, and provide accessibility for all users. Well-designed links make sites intuitive and user-friendly. This is one of the most fundamental HTML concepts you'll use on every website.
+                </div>
+
+                <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="background: #10b981; color: white; padding: 12px; border-radius: 4px; margin: -20px -20px 15px -20px; font-weight: 700; font-size: 1.05rem;">Key Takeaways</div>
+                    <ul style="margin: 0; padding-left: 15px;">
+                        <li style="padding: 8px 0; color: #555;">The &lt;a&gt; tag creates links with the href attribute</li>
+                        <li style="padding: 8px 0; color: #555;">Absolute URLs start with http:// or https:// (external)</li>
+                        <li style="padding: 8px 0; color: #555;">Relative URLs are paths relative to current file (internal)</li>
+                        <li style="padding: 8px 0; color: #555;">Anchor links (with #) jump to sections on the same page</li>
+                        <li style="padding: 8px 0; color: #555;">Use target="_blank" to open links in new tabs</li>
+                        <li style="padding: 8px 0; color: #555;">Use descriptive link text, not "click here"</li>
+                        <li style="padding: 8px 0; color: #555;">mailto: links open the default email client</li>
+                        <li style="padding: 8px 0; color: #555;">Always test links to ensure they work</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f97316; color: white; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">✓ Ready for Lesson 6?</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Next up: Images – Learn how to embed images and make them accessible with alt text!</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-04.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-06.html" class="btn">Next Lesson →</a>
                 </div>
             </div>
-
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a contact page with:</p>
-                <ol>
-                    <li>A link to your email</li>
-                    <li>A link to a social media site (opens in new tab)</li>
-                    <li>A phone number link</li>
-                </ol>
-            </div>
-
-            <div class="lesson-navigation">
-                <a href="lesson-html-04.html" class="nav-button">← Previous</a>
-                <a href="lesson-html-06.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>
