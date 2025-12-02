@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 4: Text Styling - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lesson 4: Box Model - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5004">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
-        .sidebar a.active { background: #e8f1ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #8b5cf6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
+        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #8b5cf6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #8b5cf6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #8b5cf6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #8b5cf6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #8b5cf6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #3b82f6; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -50,37 +53,40 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
                 <li><a href="../css-tutorials.html" class="active">CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="page-wrapper">
         <aside class="sidebar">
             <div class="sidebar-title">CSS Lessons</div>
             <a href="lesson-css-01.html">1. What is CSS?</a>
-            <a href="lesson-css-02.html">2. Selectors</a>
-            <a href="lesson-css-03.html">3. Colors & Backgrounds</a>
-            <a href="lesson-css-04.html" class="active">4. Text Styling</a>
-            <a href="lesson-css-05.html">5. Box Model</a>
-            <a href="lesson-css-06.html">6. Borders & Spacing</a>
-            <a href="lesson-css-07.html">7. Flexbox</a>
-            <a href="lesson-css-08.html">8. Grid Layout</a>
-            <a href="lesson-css-09.html">9. Positioning</a>
-            <a href="lesson-css-10.html">10. Transitions & Animations</a>
-            <a href="lesson-css-11.html">11. Responsive Design</a>
-            <a href="lesson-css-12.html">12. Variables & Functions</a>
-            <a href="lesson-css-13.html">13. Media Queries</a>
-            <a href="lesson-css-14.html">14. Transform & Perspective</a>
+            <a href="lesson-css-02.html">2. Selectors & Properties</a>
+            <a href="lesson-css-03.html">3. Colors & Fonts</a>
+            <a href="lesson-css-04.html" class="active">4. Box Model</a>
+            <a href="lesson-css-05.html">5. Layout & Display</a>
+            <a href="lesson-css-06.html">6. Flexbox</a>
+            <a href="lesson-css-07.html">7. Grid</a>
+            <a href="lesson-css-08.html">8. Positioning</a>
+            <a href="lesson-css-09.html">9. Transitions & Animations</a>
+            <a href="lesson-css-10.html">10. Responsive Design</a>
+            <a href="lesson-css-11.html">11. Media Queries</a>
+            <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
+            <a href="lesson-css-13.html">13. Variables & Functions</a>
+            <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
+
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Text Styling</h1>
-                <div class="lesson-meta">Lesson 4 of 15</div>
+                <h1>Lesson 4: Box Model</h1>
+                <p class="lesson-meta">Lesson 4 of 15</p>
             </div>
+
             <div class="content-area">
-<div class="lesson-header">
+                <div class="lesson-header">
                 <div class="lesson-number">Lesson 4 of 10</div>
                 <h1>Text Styling</h1>
             </div>
@@ -164,12 +170,27 @@
                 <a href="lesson-css-03.html" class="nav-button">← Previous</a>
                 <a href="lesson-css-05.html" class="nav-button">Next Lesson →</a>
             </div>
+                <div class="nav-footer">
+                    <a href="lesson-css-03.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-css-05.html" class="btn">Next Lesson →</a>
+                </div>
             </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+
+    <script>
+        // Prevent caching - add timestamp to all resource requests
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>
