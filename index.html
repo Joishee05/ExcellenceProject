@@ -1,131 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLU LearnCode - Learn Web Development</title>
-    <link rel="stylesheet" href="styles/tutorial.css?v=2000">
-    <style>
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 2rem auto;
-        }
-        
-        .card {
-            text-align: center;
-        }
-        
-        .card-body {
-            text-align: center;
-        }
-        
-        .card h3 {
-            text-align: center;
-        }
-        
-        .card p {
-            text-align: center;
-        }
-        
-        .card .badge {
-            display: inline-block;
-            text-align: center;
-        }
-        
-        @media (max-width: 768px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Learn Web Development - Interactive Tutorials</title>
+ <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+ <link rel="stylesheet" href="styles/main.css?v=1000">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-bracket">&lt;</span>
-                <span class="logo-text">SLU LearnCode</span>
-                <span class="logo-bracket">/&gt;</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="html-tutorials.html">HTML</a></li>
-                <li><a href="css-tutorials.html">CSS</a></li>
-                <li><a href="js-tutorials.html">JavaScript</a></li>
-                <li><a href="project-walkthrough.html">Project</a></li>
-            </ul>
-        </div>
-    </nav>
+ <nav class="navbar">
+ <div class="nav-container">
+ <div class="logo">
+ <span class="logo-bracket">&lt;</span>
+ <span class="logo-text">SLU LearnCode</span>
+ <span class="logo-bracket">/&gt;</span>
+ </div>
+ <ul class="nav-links">
+ <li><a href="index.html">Home</a></li>
+ <li><a href="html-tutorials.html">HTML</a></li>
+ <li><a href="css-tutorials.html">CSS</a></li>
+ <li><a href="js-tutorials.html">JavaScript</a></li>
+ <li><a href="project-walkthrough.html">DigitalBonesBox Project</a></li>
+ </ul>
+ </div>
+ </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Master <span class="gradient-text">Web Development</span></h1>
-            <p>Learn HTML, CSS, and JavaScript to prepare yourself for the DigitalBonesBox Project.</p>
-            <a href="#learning-paths" class="cta-button">Start Learning Now</a>
-        </div>
-    </section>
+ <section class="hero">
+ <div class="hero-content">
+ <h1>SLU Web Development</h1>
+ <p class="hero-subtitle">Master HTML, CSS, and JavaScript through interactive lessons</p>
+ <p class="hero-description">Learn web development the Saint Louis University way - From beginner to intermediate developer!</p>
+ <a href="#courses" class="cta-button">Start Learning</a>
+ </div>
+ <div class="hero-animation">
+ <div class="code-window">
+ <div class="window-header">
+ <span class="dot red"></span>
+ <span class="dot yellow"></span>
+ <span class="dot green"></span>
+ </div>
+ <div class="code-content">
+ <code>
+ <span class="tag">&lt;div</span><span class="attr">class</span>=<span class="string">"learn"</span><span class="tag">&gt;</span><br>
+ &nbsp;&nbsp;<span class="tag">&lt;h1&gt;</span>Hello World!<span class="tag">&lt;/h1&gt;</span><br>
+ <span class="tag">&lt;/div&gt;</span>
+ </code>
+ </div>
+ </div>
+ </div>
+ </section>
 
-    <!-- Learning Paths Section -->
-    <section id="learning-paths" class="featured">
-        <div class="cards-container">
-            <h2 class="section-title">Choose Your Learning Path</h2>
-            
-            <div class="cards-grid">
-                <!-- HTML Card -->
-                <a href="html-tutorials.html" class="card card-blue">
-                    <div class="card-header">HTML - Structure</div>
-                    <div class="card-body">
-                        <h3>Learn HTML</h3>
-                        <p>Build the foundation of web pages. Master semantic HTML, forms, accessibility, and best practices.</p>
-                        <span class="badge">Beginner</span>
-                        <button class="btn">Start Course</button>
-                    </div>
-                </a>
-
-                <!-- CSS Card -->
-                <a href="css-tutorials.html" class="card card-purple">
-                    <div class="card-header">CSS - Design</div>
-                    <div class="card-body">
-                        <h3>Learn CSS</h3>
-                        <p>Create stunning designs. Master layouts, animations, responsive design, and modern techniques.</p>
-                        <span class="badge">Beginner</span>
-                        <button class="btn">Start Course</button>
-                    </div>
-                </a>
-
-                <!-- JavaScript Card -->
-                <a href="js-tutorials.html" class="card card-orange">
-                    <div class="card-header">JavaScript - Logic</div>
-                    <div class="card-body">
-                        <h3>Learn JavaScript</h3>
-                        <p>Add interactivity and logic. Master programming fundamentals, DOM manipulation, and async programming.</p>
-                        <span class="badge">Beginner+</span>
-                        <button class="btn">Start Course</button>
-                    </div>
-                </a>
-
-                <!-- Project Card -->
-                <a href="project-walkthrough.html" class="card card-pink">
-                    <div class="card-header">Real Project</div>
-                    <div class="card-body">
-                        <h3>DigitalBonesBox</h3>
-                        <p>See HTML, CSS, and JavaScript working together in a real web application. File-by-file breakdown.</p>
-                        <span class="badge">Advanced</span>
-                        <button class="btn">Explore Project</button>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+    <footer class="footer">
+        <p>&copy; 2025 SLU LearnCode - Saint Louis University</p>
         <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    </footer> <script src="scripts/main.js"></script>
 </body>
 </html>

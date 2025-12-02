@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 1: What is HTML? - SLU LearnCode</title>
     <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
     <style>
@@ -10,36 +13,36 @@
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
         .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; border: 1px solid #444; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #3b82f6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #3b82f6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; margin-top: auto; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -48,9 +51,9 @@
             <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../html-tutorials.html" class="active">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
@@ -80,82 +83,370 @@
                 <div class="lesson-meta">Lesson 1 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 1 of 15</div>
-                <h1>What is HTML?</h1>
-            </div>
+<p><strong>HTML</strong> stands for <strong>HyperText Markup Language</strong>. It's the standard markup language used to create web pages. Every website you see on the internet is built with HTML.</p>
 
-            <div class="lesson-text">
-                <p><strong>HTML</strong> stands for <strong>HyperText Markup Language</strong>. It's the standard language used to create web pages.</p>
-                
-                <h3>Key Concepts:</h3>
+                <h2>What HTML Does</h2>
+                <p>HTML provides the structure and content of web pages. It tells web browsers how to organize and display information. Think of HTML as the skeleton of a building – it creates the basic framework that everything else is built upon.</p>
                 <ul>
-                    <li>HTML provides the <strong>structure</strong> of web pages</li>
-                    <li>HTML uses <strong>tags</strong> to mark up content</li>
-                    <li>HTML files have a <code>.html</code> extension</li>
-                    <li>Browsers read HTML and display it as web pages</li>
+                    <li>Organizes content into logical sections</li>
+                    <li>Defines the meaning of different content types</li>
+                    <li>Creates links between pages</li>
+                    <li>Embeds images, audio, and video</li>
+                    <li>Creates forms for user input</li>
+                    <li>Provides metadata about the page</li>
                 </ul>
 
-                <h3>HTML Tags:</h3>
-                <p>HTML tags are keywords surrounded by angle brackets:</p>
-                <div class="info-box">
-                    <p><code>&lt;tagname&gt;content&lt;/tagname&gt;</code></p>
-                </div>
-                
-                <p>Most HTML tags come in pairs:</p>
+                <h2>HTML Tags and Elements</h2>
+                <p>HTML uses <strong>tags</strong> to mark up content. Tags are keywords surrounded by angle brackets:</p>
+                <div class="code-block">&lt;tagname&gt;content&lt;/tagname&gt;</div>
+                <p>Most tags come in pairs:</p>
                 <ul>
-                    <li>An <strong>opening tag</strong>: <code>&lt;h1&gt;</code></li>
-                    <li>A <strong>closing tag</strong>: <code>&lt;/h1&gt;</code></li>
+                    <li><strong>Opening tag</strong> – Example: <code>&lt;h1&gt;</code></li>
+                    <li><strong>Content</strong> – The text between the tags</li>
+                    <li><strong>Closing tag</strong> – Example: <code>&lt;/h1&gt;</code></li>
                 </ul>
-            </div>
 
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <p>Type your HTML code below and click "Run Code" to see it in action. Try changing the text inside the tags!</p>
-                
-                <div class="code-actions">
-                    <button class="code-action-btn" onclick="runCode()">▶ Run Code</button>
-                    <button class="code-action-btn secondary" onclick="resetCode()" title="Reset to initial example">↻ Reset</button>
-                    <button class="code-action-btn secondary" onclick="showHint()" title="Get a hint">💡 Hint</button>
-                    <button class="code-action-btn secondary" onclick="copyCode()" title="Copy to clipboard">📋 Copy</button>
+                <h3>Example:</h3>
+                <div class="code-block">&lt;h1&gt;Welcome to Web Development&lt;/h1&gt;<br/>&lt;p&gt;This is my first web page.&lt;/p&gt;</div>
+
+                <div class="highlight-box">
+                    <strong>Key Tip:</strong> The forward slash in the closing tag tells the browser where the element ends. Never forget the closing tag!
                 </div>
-                
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span>HTML</span>
-                        <button class="run-button" onclick="runCode()">Run Code</button>
+
+                <h2>HTML and CSS and JavaScript</h2>
+                <p>HTML works together with two other technologies:</p>
+                <ul>
+                    <li><strong>CSS</strong> – Handles styling and visual appearance (colors, fonts, layouts)</li>
+                    <li><strong>JavaScript</strong> – Adds interactivity and dynamic behavior (animations, user interactions)</li>
+                </ul>
+                <p>HTML is the foundation. CSS and JavaScript build on top of it to create complete web experiences.</p>
+
+                <h2>How the Three Technologies Work Together</h2>
+                <p>Here's a visual representation of how HTML, CSS, and JavaScript combine to create modern websites:</p>
+                <div style="background: #f9f9f9; padding: 30px; border-radius: 8px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 20px;">
+                        <!-- HTML Box -->
+                        <div style="background: white; border: 2px solid #3b82f6; border-radius: 6px; padding: 20px; text-align: center;">
+                            <div style="background: #3b82f6; color: white; padding: 10px; border-radius: 4px; margin-bottom: 10px; font-weight: 600;">HTML</div>
+                            <p style="font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 10px;">
+                                <strong>Structure</strong><br>
+                                Elements<br>
+                                Content<br>
+                                Semantics
+                            </p>
+                            <div style="font-size: 0.75rem; color: #999;">The skeleton</div>
+                        </div>
+
+                        <!-- CSS Box -->
+                        <div style="background: white; border: 2px solid #8b5cf6; border-radius: 6px; padding: 20px; text-align: center;">
+                            <div style="background: #8b5cf6; color: white; padding: 10px; border-radius: 4px; margin-bottom: 10px; font-weight: 600;">CSS</div>
+                            <p style="font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 10px;">
+                                <strong>Styling</strong><br>
+                                Colors<br>
+                                Layouts<br>
+                                Animations
+                            </p>
+                            <div style="font-size: 0.75rem; color: #999;">The skin</div>
+                        </div>
+
+                        <!-- JavaScript Box -->
+                        <div style="background: white; border: 2px solid #f97316; border-radius: 6px; padding: 20px; text-align: center;">
+                            <div style="background: #f97316; color: white; padding: 10px; border-radius: 4px; margin-bottom: 10px; font-weight: 600;">JavaScript</div>
+                            <p style="font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 10px;">
+                                <strong>Interactivity</strong><br>
+                                Logic<br>
+                                Events<br>
+                                Dynamics
+                            </p>
+                            <div style="font-size: 0.75rem; color: #999;">The brain</div>
+                        </div>
                     </div>
-                    <textarea class="code-input" id="code-input" data-initial="<h1>Hello, World!</h1>&#10;<p>This is my first HTML page!</p>" spellcheck="false"><h1>Hello, World!</h1>
-<p>This is my first HTML page!</p></textarea>
+                    <div style="text-align: center; color: #666; font-size: 0.9rem;">
+                        <p style="margin: 10px 0;">Together, these three technologies create the complete web experience</p>
+                    </div>
                 </div>
+
+                <h2>Why Learn HTML?</h2>
+                <ul>
+                    <li><strong>Foundation of the Web:</strong> HTML is the foundation of all websites. Without HTML, browsers wouldn't know how to display content</li>
+                    <li><strong>Easy to Learn:</strong> HTML is simple and beginner-friendly. You don't need advanced math or complex logic to get started</li>
+                    <li><strong>Gateway to Web Development:</strong> You need HTML to learn CSS and JavaScript. It's the starting point for any web developer</li>
+                    <li><strong>In-Demand Skill:</strong> HTML skills are valuable in the job market. Every web developer needs to know HTML</li>
+                    <li><strong>Creative Expression:</strong> Build and publish your own web content. Create websites for your business, portfolio, or just for fun</li>
+                </ul>
+
+                <h2>How Browsers Use HTML</h2>
+                <p>When you open a website in your browser, here's what happens behind the scenes:</p>
                 
-                <div class="preview-area" id="preview">
-                    <div class="preview-label">Preview - How it looks in a browser:</div>
-                    <iframe class="output-frame" id="output-frame"></iframe>
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0; overflow-x: auto;">
+                    <div style="display: flex; align-items: center; gap: 15px; min-width: 100%; padding-bottom: 10px;">
+                        <!-- Step 1 -->
+                        <div style="flex: 1; min-width: 130px; text-align: center;">
+                            <div style="background: #e8f1ff; border: 2px solid #3b82f6; border-radius: 6px; padding: 15px; margin-bottom: 10px;">
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #3b82f6;">1</div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">Request HTML file</p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div style="font-size: 1.5rem; color: #999;">→</div>
+
+                        <!-- Step 2 -->
+                        <div style="flex: 1; min-width: 130px; text-align: center;">
+                            <div style="background: #e8f1ff; border: 2px solid #3b82f6; border-radius: 6px; padding: 15px; margin-bottom: 10px;">
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #3b82f6;">2</div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">Receive HTML code</p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div style="font-size: 1.5rem; color: #999;">→</div>
+
+                        <!-- Step 3 -->
+                        <div style="flex: 1; min-width: 130px; text-align: center;">
+                            <div style="background: #e8f1ff; border: 2px solid #3b82f6; border-radius: 6px; padding: 15px; margin-bottom: 10px;">
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #3b82f6;">3</div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">Parse HTML</p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div style="font-size: 1.5rem; color: #999;">→</div>
+
+                        <!-- Step 4 -->
+                        <div style="flex: 1; min-width: 130px; text-align: center;">
+                            <div style="background: #e8f1ff; border: 2px solid #3b82f6; border-radius: 6px; padding: 15px; margin-bottom: 10px;">
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #3b82f6;">4</div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">Render page</p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div style="font-size: 1.5rem; color: #999;">→</div>
+
+                        <!-- Step 5 -->
+                        <div style="flex: 1; min-width: 130px; text-align: center;">
+                            <div style="background: #e8f1ff; border: 2px solid #3b82f6; border-radius: 6px; padding: 15px; margin-bottom: 10px;">
+                                <div style="font-size: 1.1rem; font-weight: 600; color: #3b82f6;">5</div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">Display in browser</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p>Steps 1-3 happen on the server and in the browser's processing. Steps 4-5 are what you see on your screen. This is why HTML is called the foundation. It provides the structure that CSS and JavaScript build upon.</p>
+
+                <h2>HTML Elements vs Tags</h2>
+                <p>You'll often hear the terms "HTML tag" and "HTML element" used in web development. It's important to understand the difference:</p>
+                <p>An HTML tag is the code you write using angle brackets. An HTML element includes the tag, the content, and everything in between. For example:</p>
+                <div class="code-block">&lt;p&gt;This is a paragraph.&lt;/p&gt;</div>
+                
+                <div style="background: #f0f8ff; border: 2px solid #3b82f6; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Tags -->
+                        <div>
+                            <h3 style="color: #3b82f6; margin-bottom: 15px; font-size: 1.1rem;">HTML Tags</h3>
+                            <div style="background: white; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 4px;">
+                                <p style="margin: 0 0 10px 0; font-size: 0.9rem; color: #555;"><strong>Opening tag:</strong></p>
+                                <div class="code-block" style="margin: 0 0 10px 0; padding: 8px; font-size: 0.8rem;">&lt;p&gt;</div>
+                                <p style="margin: 10px 0; font-size: 0.9rem; color: #555;"><strong>Closing tag:</strong></p>
+                                <div class="code-block" style="margin: 0; padding: 8px; font-size: 0.8rem;">&lt;/p&gt;</div>
+                            </div>
+                        </div>
+
+                        <!-- Elements -->
+                        <div>
+                            <h3 style="color: #3b82f6; margin-bottom: 15px; font-size: 1.1rem;">HTML Element</h3>
+                            <div style="background: white; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 4px;">
+                                <p style="margin: 0 0 10px 0; font-size: 0.9rem; color: #555;"><strong>Complete element:</strong></p>
+                                <div class="code-block" style="margin: 0; padding: 8px; font-size: 0.8rem;">&lt;p&gt;This is a paragraph.&lt;/p&gt;</div>
+                                <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">Includes opening tag, content, and closing tag</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>In this example, <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> are tags, and the entire thing including the text is an element.</p>
+
+                <h2>Common HTML Tags You'll Learn</h2>
+                <p>Throughout this course, you'll work with many different HTML tags. Here are the most common ones organized by category:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;">
+                    <!-- Text Tags -->
+                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 6px; padding: 15px;">
+                        <div style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem;">Text Content</div>
+                        <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;h1&gt;-&lt;h6&gt;</code> Headings
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;p&gt;</code> Paragraphs
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;strong&gt;</code> Bold text
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;em&gt;</code> Italic text
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Media Tags -->
+                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 6px; padding: 15px;">
+                        <div style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem;">Media</div>
+                        <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;img&gt;</code> Images
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;video&gt;</code> Videos
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;audio&gt;</code> Audio
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;iframe&gt;</code> Embedded content
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Links & Navigation -->
+                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 6px; padding: 15px;">
+                        <div style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem;">Navigation</div>
+                        <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;a&gt;</code> Links
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;nav&gt;</code> Navigation
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;menu&gt;</code> Menus
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;button&gt;</code> Buttons
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Structure -->
+                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 6px; padding: 15px;">
+                        <div style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem;">Structure</div>
+                        <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;div&gt;</code> Containers
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;header&gt;</code> Headers
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;main&gt;</code> Main content
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;footer&gt;</code> Footers
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Forms -->
+                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 6px; padding: 15px;">
+                        <div style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem;">Forms</div>
+                        <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;form&gt;</code> Forms
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;input&gt;</code> Input fields
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;select&gt;</code> Dropdowns
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;textarea&gt;</code> Text areas
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Lists -->
+                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 6px; padding: 15px;">
+                        <div style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem;">Lists</div>
+                        <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;ul&gt;</code> Unordered lists
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;ol&gt;</code> Ordered lists
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;li&gt;</code> List items
+                            </li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">
+                                <code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">&lt;table&gt;</code> Tables
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p>Don't worry if these seem overwhelming right now. We'll explore each one in detail throughout this course.</p>
+
+                <h2>What You'll Learn in This Course</h2>
+                <p>Over the next 15 lessons, you'll master:</p>
+                <ul>
+                    <li>HTML structure and best practices</li>
+                    <li>Common HTML tags and when to use them</li>
+                    <li>Text formatting and semantic HTML</li>
+                    <li>Links, images, and multimedia</li>
+                    <li>Forms and user input</li>
+                    <li>Tables for organizing data</li>
+                    <li>Accessibility and SEO optimization</li>
+                </ul>
+
+                <h2>Getting Started</h2>
+                <p>As you go through this course, you'll start with the basics and gradually build your skills. Each lesson builds on what you learned in the previous one. By the end of this course, you'll be able to create complete HTML pages from scratch.</p>
+                <p>You don't need any special software to write HTML. A simple text editor like Notepad is enough to get started. However, many developers use more advanced text editors that have features to help write code faster and with fewer errors.</p>
+
+                <h2>The Next Step</h2>
+                <p>Before we dive into writing HTML code, it's important to understand how everything works together. HTML provides the content and structure. CSS handles the styling and layout. JavaScript adds interactivity and dynamic behavior. Together, these three technologies create the complete web experience you see in your browser every day.</p>
+                <p>In the next lesson, we'll look at the basic structure that every HTML document needs. You'll learn about the boilerplate code that serves as the foundation for every web page.</p>
+
+                <div class="highlight-box">
+                    <strong>Key Takeaways from Lesson 1:</strong>
+                    <ul style="margin: 10px 0 0 20px; padding-left: 10px;">
+                        <li>HTML stands for HyperText Markup Language</li>
+                        <li>HTML provides the structure and content of web pages</li>
+                        <li>Every website uses HTML at its core</li>
+                        <li>HTML works with CSS for styling and JavaScript for interactivity</li>
+                        <li>HTML uses tags in angle brackets to mark up content</li>
+                        <li>Most HTML tags come in pairs: an opening tag and a closing tag</li>
+                        <li>You can write HTML in any text editor</li>
+                        <li>HTML is beginner-friendly and easy to learn</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box" style="background: #f0f8ff; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Ready for Lesson 2?</strong>
+                    <p style="margin: 10px 0 0 0;">In the next lesson, we'll create a complete HTML document from scratch. You'll learn the essential structure that every web page needs to have, including the DOCTYPE, html, head, and body tags. Click the Next Lesson button to continue.</p>
+                </div>
+                <div class="nav-footer">
+                    <button class="btn btn-secondary" disabled>← Previous Lesson</button>
+                    <a href="lesson-html-02.html" class="btn">Next Lesson →</a>
                 </div>
             </div>
-
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Modify the code above to:</p>
-                <ol>
-                    <li>Change the heading text to your name</li>
-                    <li>Change the paragraph to describe yourself in one sentence</li>
-                    <li>Add another paragraph with your favorite hobby</li>
-                </ol>
-                <div id="challenge-feedback" class="challenge-feedback" style="display: none;"></div>
-            </div>
-
-            <div class="lesson-navigation">
-                <a href="#" class="nav-button disabled">← Previous</a>
-                <a href="lesson-html-02.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        // Prevent caching - add timestamp to all resource requests
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>

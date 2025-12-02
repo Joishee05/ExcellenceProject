@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 2: HTML Structure - SLU LearnCode</title>
     <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
     <style>
@@ -10,36 +13,36 @@
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
         .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; border: 1px solid #444; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #3b82f6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #3b82f6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; margin-top: auto; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -48,9 +51,9 @@
             <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../html-tutorials.html" class="active">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
@@ -80,82 +83,190 @@
                 <div class="lesson-meta">Lesson 2 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 2 of 15</div>
-                <h1>HTML Structure</h1>
-            </div>
+                <p><strong>Every HTML document</strong> follows a consistent structure. This structure tells the browser how to organize and display your content. Understanding this structure is essential before you write any HTML code.</p>
 
-            <div class="lesson-text">
-                <p>Every HTML document follows a basic structure. Let's break it down:</p>
-                
-                <h3>The Basic Structure:</h3>
-                <pre><code>&lt;!DOCTYPE html&gt; ← Declares this is HTML5
-&lt;html&gt; ← Root element
-  &lt;head&gt; ← Contains meta information
-    &lt;title&gt;&lt;/title&gt; ← Page title (shown in browser tab)
-  &lt;/head&gt;
-  &lt;body&gt; ← Visible page content
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+                <h2>The HTML Document Structure</h2>
+                <p>Every HTML document must follow a specific template. This template includes several key elements that work together to create a valid web page:</p>
+                <div class="code-block">&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>&nbsp;&nbsp;&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Page Title&lt;/title&gt;<br>&nbsp;&nbsp;&lt;/head&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Page content goes here --&gt;<br>&nbsp;&nbsp;&lt;/body&gt;<br>&lt;/html&gt;</div>
+                <p>This basic structure is the foundation for every web page you create. Every HTML file must contain these elements in this order.</p>
 
-                <h3>Understanding Each Part:</h3>
+                <h2>Understanding Each Part</h2>
+                <p>Let's break down each part of the HTML structure and understand what it does:</p>
+
+                <h3>&lt;!DOCTYPE html&gt;</h3>
+                <p>This is the first line of every HTML document. It declares that this is an HTML5 document. The browser uses this declaration to understand how to interpret the rest of your code. Without it, browsers might display your page incorrectly.</p>
+
+                <h3>&lt;html&gt; Element</h3>
+                <p>This is the root element that contains all other elements in your document. Everything else belongs inside the opening and closing <code>&lt;html&gt;</code> tags. This element tells the browser where your HTML begins and ends.</p>
+
+                <h3>&lt;head&gt; Element</h3>
+                <p>The head section contains information about your page, but this information is not directly displayed on the page. The head section includes:</p>
                 <ul>
-                    <li><code>&lt;!DOCTYPE html&gt;</code> - Tells the browser this is an HTML5 document</li>
-                    <li><code>&lt;html&gt;</code> - The root element that contains all other elements</li>
-                    <li><code>&lt;head&gt;</code> - Contains metadata, title, links to CSS, etc.</li>
-                    <li><code>&lt;title&gt;</code> - Sets the page title (appears in browser tab)</li>
-                    <li><code>&lt;body&gt;</code> - Contains all visible content</li>
+                    <li>The page title (shown in the browser tab)</li>
+                    <li>Links to stylesheets (CSS files)</li>
+                    <li>Links to scripts (JavaScript files)</li>
+                    <li>Character encoding information</li>
+                    <li>Viewport settings for responsive design</li>
+                    <li>Meta information for search engines</li>
                 </ul>
-            </div>
 
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <p>Create a complete HTML page structure. Try adding your own content!</p>
+                <h3>&lt;title&gt; Element</h3>
+                <p>The title appears in the browser tab and tells both users and search engines what your page is about. Always give your pages descriptive titles. A good title is important for search engine optimization (SEO).</p>
+                <div class="code-block">&lt;title&gt;My First Website - Welcome!&lt;/title&gt;</div>
+
+                <h3>&lt;body&gt; Element</h3>
+                <p>Everything inside the body tags is what visitors see on your page. This includes all the text, images, links, and other content. All visible content must be placed inside the body element.</p>
+
+                <h2>The Complete HTML Template</h2>
+                <p>Here's a more complete HTML template with additional important elements:</p>
+                <div class="code-block">&lt;!DOCTYPE html&gt;<br>&lt;html lang="en"&gt;<br>&nbsp;&nbsp;&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;My Website Title&lt;/title&gt;<br>&nbsp;&nbsp;&lt;/head&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Welcome to My Website!&lt;/h1&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;This is my first web page.&lt;/p&gt;<br>&nbsp;&nbsp;&lt;/body&gt;<br>&lt;/html&gt;</div>
+
+                <h2>Key Elements Explained</h2>
+                <p>The complete template includes two important meta tags in the head section:</p>
                 
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span>HTML</span>
-                        <button class="run-button" onclick="runCode()">Run Code</button>
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Character Set -->
+                        <div style="border-left: 4px solid #3b82f6; padding-left: 15px;">
+                            <h3 style="color: #3b82f6; font-size: 1rem; margin-bottom: 10px;">Character Encoding</h3>
+                            <div class="code-block" style="margin: 0; padding: 10px; font-size: 0.85rem;">&lt;meta charset="UTF-8"&gt;</div>
+                            <p style="margin-top: 10px; font-size: 0.9rem; color: #555;">Tells the browser to use UTF-8 encoding, which supports all languages and special characters. Always include this in every HTML document.</p>
+                        </div>
+
+                        <!-- Viewport -->
+                        <div style="border-left: 4px solid #8b5cf6; padding-left: 15px;">
+                            <h3 style="color: #8b5cf6; font-size: 1rem; margin-bottom: 10px;">Responsive Viewport</h3>
+                            <div class="code-block" style="margin: 0; padding: 10px; font-size: 0.85rem;">&lt;meta name="viewport"...&gt;</div>
+                            <p style="margin-top: 10px; font-size: 0.9rem; color: #555;">Makes your page responsive on mobile devices. This ensures your page displays correctly on all screen sizes.</p>
+                        </div>
                     </div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-    <title>My Page Title</title>
-</head>
-<body>
-    <!-- Add your content here -->
-    
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
                 </div>
-                
-                <div class="preview-area">
-                    <iframe class="output-frame" id="output-frame"></iframe>
-                </div>
-            </div>
 
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Inside the &lt;body&gt; tags, add:</p>
+                <h2>Why Structure Matters</h2>
+                <p>Proper HTML structure is important for several reasons:</p>
+                <ul>
+                    <li><strong>Browser Compatibility:</strong> Valid structure ensures your page works in all modern browsers</li>
+                    <li><strong>Search Engine Optimization:</strong> Search engines rely on proper structure to understand your content</li>
+                    <li><strong>Accessibility:</strong> Screen readers and assistive technologies use structure to help users navigate</li>
+                    <li><strong>Maintainability:</strong> Well-structured code is easier to read, update, and debug</li>
+                    <li><strong>Responsive Design:</strong> Proper structure makes it easier to make your site mobile-friendly</li>
+                </ul>
+
+                <h2>Creating Your First HTML File</h2>
+                <p>Follow these steps to create your first HTML document:</p>
                 <ol>
-                    <li>A heading with your name</li>
-                    <li>Two paragraphs about yourself</li>
-                    <li>Change the page title to something meaningful</li>
+                    <li>Open a text editor (Notepad, VS Code, Sublime Text, etc.)</li>
+                    <li>Copy the complete HTML template from above</li>
+                    <li>Replace the title with something meaningful</li>
+                    <li>Add your content in the body section</li>
+                    <li>Save the file with a .html extension (example: <code>index.html</code>)</li>
+                    <li>Open the file in a web browser</li>
                 </ol>
-                <div id="challenge-feedback" class="challenge-feedback" style="display: none;"></div>
-            </div>
 
-            <div class="lesson-navigation">
-                <a href="lesson-html-01.html" class="nav-button">← Previous</a>
-                <a href="lesson-html-03.html" class="nav-button">Next Lesson →</a>
+                <div class="highlight-box">
+                    <strong>Important:</strong> When saving HTML files, always use the .html extension. This tells your computer that the file is an HTML document. Common filenames are index.html (for home pages), about.html, contact.html, etc.
+                </div>
+
+                <h2>Head vs Body</h2>
+                <p>It's common for beginners to get confused about what goes in the head section and what goes in the body. Here's a quick reference:</p>
+
+                <div style="background: #f9f9f9; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Head Content -->
+                        <div style="background: white; border: 2px solid #3b82f6; border-radius: 6px; padding: 15px;">
+                            <div style="background: #3b82f6; color: white; padding: 10px; border-radius: 4px; margin-bottom: 10px; font-weight: 600;">In the &lt;head&gt;</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">Meta tags</li>
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">Page title</li>
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">Links to CSS files</li>
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">Script imports</li>
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">Character encoding</li>
+                            </ul>
+                        </div>
+
+                        <!-- Body Content -->
+                        <div style="background: white; border: 2px solid #10b981; border-radius: 6px; padding: 15px;">
+                            <div style="background: #10b981; color: white; padding: 10px; border-radius: 4px; margin-bottom: 10px; font-weight: 600;">In the &lt;body&gt;</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">Headings and paragraphs</li>
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">Images and videos</li>
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">Links</li>
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">Forms and inputs</li>
+                                <li style="padding: 4px 0; font-size: 0.9rem; color: #555;">All visible content</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Common HTML File Names</h2>
+                <p>When naming your HTML files, follow these conventions:</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 6px; padding: 15px;">
+                        <div style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem;">File Name</div>
+                        <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;"><code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">index.html</code> Home page</li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;"><code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">about.html</code> About page</li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;"><code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">contact.html</code> Contact page</li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;"><code style="background: #f5f5f5; padding: 2px 4px; border-radius: 2px; color: #d4464f;">services.html</code> Services page</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; border: 2px solid #e5e7eb; border-radius: 6px; padding: 15px;">
+                        <div style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem;">Naming Rules</div>
+                        <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">Use lowercase letters</li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">Use hyphens instead of spaces</li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">Always use .html extension</li>
+                            <li style="padding: 4px 0; font-size: 0.85rem; color: #555;">Use descriptive names</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Your First HTML Document</h2>
+                <p>Now that you understand the structure, you're ready to create your first HTML document. Here's a complete example you can use as a starting point:</p>
+                <div class="code-block">&lt;!DOCTYPE html&gt;<br>&lt;html lang="en"&gt;<br>&nbsp;&nbsp;&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;My First Website&lt;/title&gt;<br>&nbsp;&nbsp;&lt;/head&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello World!&lt;/h1&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;This is my first web page. I'm learning HTML!&lt;/p&gt;<br>&nbsp;&nbsp;&lt;/body&gt;<br>&lt;/html&gt;</div>
+
+                <h2>Next Steps</h2>
+                <p>Now that you understand the basic structure of HTML documents, you're ready to start adding content. In the next lesson, we'll explore headings and paragraphs – the most fundamental content elements in HTML. You'll learn how to organize your content and create clear, readable text on your web pages.</p>
+
+                <div class="highlight-box" style="background: #f0f8ff; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Ready for Lesson 3?</strong>
+                    <p style="margin: 10px 0 0 0;">In the next lesson, we'll create content using headings and paragraphs. You'll learn the importance of headings for organization and accessibility. Click the Next Lesson button to continue.</p>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Key Takeaways from Lesson 2:</strong>
+                    <ul style="margin: 10px 0 0 20px; padding-left: 10px;">
+                        <li>Every HTML document must start with &lt;!DOCTYPE html&gt;</li>
+                        <li>The &lt;html&gt; tag is the root element containing all other elements</li>
+                        <li>The &lt;head&gt; section contains metadata and information about the page</li>
+                        <li>The &lt;body&gt; section contains all visible content</li>
+                        <li>Always include &lt;meta charset="UTF-8"&gt; and viewport meta tag</li>
+                        <li>Use descriptive page titles for SEO and user experience</li>
+                        <li>Save your HTML files with the .html extension</li>
+                        <li>Structure is important for accessibility and browser compatibility</li>
+                    </ul>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-01.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-03.html" class="btn">Next Lesson →</a>
+                </div>
             </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        // Prevent caching - add timestamp to all resource requests
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>
