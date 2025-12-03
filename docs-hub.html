@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Documentation Hub - SLU LearnCode</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #0033a0 0%, #003d99 100%); min-height: 100vh; padding: 2rem 1rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .header { color: white; text-align: center; margin-bottom: 3rem; }
+        .header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .header p { font-size: 1.1rem; opacity: 0.9; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.3s, box-shadow 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .card h3 { color: #0033a0; font-size: 1.3rem; margin-bottom: 0.75rem; }
+        .card p { color: #666; margin-bottom: 1rem; line-height: 1.6; }
+        .card-link { display: inline-block; background: #0033a0; color: white; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
+        .card-link:hover { background: #002570; }
+        .secondary-link { color: #0033a0; text-decoration: none; font-weight: 600; }
+        .secondary-link:hover { text-decoration: underline; }
+        .info-box { background: rgba(255,255,255,0.95); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .info-box h3 { color: #0033a0; margin-bottom: 1rem; }
+        .info-box ol { margin-left: 1.5rem; color: #555; }
+        .info-box li { margin: 0.5rem 0; }
+        @media (max-width: 600px) { .header h1 { font-size: 1.8rem; } .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>DigitalBonesBox Documentation Hub</h1>
+            <p>Everything you need to understand the project</p>
+        </div>
+
+        <div class="grid">
+            <!-- Card 1: Complete Guide -->
+            <div class="card">
+                <div class="card-icon">📖</div>
+                <h3>Complete Project Guide</h3>
+                <p>The ultimate beginner's guide to DigitalBonesBox. Learn about every important file, how they work together, and why each one matters.</p>
+                <ul style="margin: 1rem 0; color: #666; font-size: 0.9rem;">
+                    <li>✓ File-by-file explanations</li>
+                    <li>✓ Visual flow diagrams</li>
+                    <li>✓ Frontend & backend overview</li>
+                    <li>✓ Setup instructions</li>
+                    <li>✓ Learning paths</li>
+                </ul>
+                <a href="project-guide.html" class="card-link">Read Full Guide →</a>
+            </div>
+
+            <!-- Card 1b: Advanced Guide -->
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>Advanced Technical Guide</h3>
+                <p>Deep dive into the technical architecture with real code examples, API reference, and detailed explanations for advanced learners.</p>
+                <ul style="margin: 1rem 0; color: #666; font-size: 0.9rem;">
+                    <li>✓ Complete code examples</li>
+                    <li>✓ Backend architecture details</li>
+                    <li>✓ Full API reference</li>
+                    <li>✓ Data flow scenarios</li>
+                    <li>✓ Troubleshooting guide</li>
+                </ul>
+                <a href="advanced-guide.html" class="card-link">Read Advanced Guide →</a>
+            </div>
+
+            <!-- Card 2: Quick Reference -->
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Quick Reference Guide</h3>
+                <p>A condensed, one-page reference for all major files. Perfect for quick lookups and understanding the project structure at a glance.</p>
+                <ul style="margin: 1rem 0; color: #666; font-size: 0.9rem;">
+                    <li>✓ All files listed with descriptions</li>
+                    <li>✓ Data flow visualization</li>
+                    <li>✓ Learning order guide</li>
+                    <li>✓ Key concepts explained</li>
+                    <li>✓ Quick start instructions</li>
+                </ul>
+                <a href="PROJECT_QUICK_REFERENCE.md" class="card-link" download>Download / View →</a>
+            </div>
+
+            <!-- Card 3: Project Walkthrough -->
+            <div class="card">
+                <div class="card-icon">🗺️</div>
+                <h3>Project Walkthrough</h3>
+                <p>Interactive guide with links to explore individual files in detail. See the project overview and jump to specific topics.</p>
+                <ul style="margin: 1rem 0; color: #666; font-size: 0.9rem;">
+                    <li>✓ Frontend file explorations</li>
+                    <li>✓ Backend explanations</li>
+                    <li>✓ Architecture overview</li>
+                    <li>✓ File structure diagram</li>
+                    <li>✓ Interactive cards</li>
+                </ul>
+                <a href="project-walkthrough.html" class="card-link">Explore Project →</a>
+            </div>
+
+            <!-- Card 4: Learning Tutorials -->
+            <div class="card">
+                <div class="card-icon">🎓</div>
+                <h3>HTML, CSS & JavaScript Lessons</h3>
+                <p>Learn the fundamental web technologies before diving into the project. Build your foundation step by step.</p>
+                <ul style="margin: 1rem 0; color: #666; font-size: 0.9rem;">
+                    <li>✓ 23 interactive lessons</li>
+                    <li>✓ HTML basics (lessons 1-23)</li>
+                    <li>✓ CSS styling (lessons 1-15)</li>
+                    <li>✓ JavaScript & Node.js</li>
+                    <li>✓ Progressive difficulty</li>
+                </ul>
+                <a href="html-tutorials.html" class="card-link">Start Learning →</a>
+            </div>
+
+            <!-- Card 5: Home -->
+            <div class="card">
+                <div class="card-icon">🏠</div>
+                <h3>Home</h3>
+                <p>Return to the main learning platform. Find links to all tutorials, projects, and resources.</p>
+                <ul style="margin: 1rem 0; color: #666; font-size: 0.9rem;">
+                    <li>✓ Course overview</li>
+                    <li>✓ Navigation to all sections</li>
+                    <li>✓ Getting started guide</li>
+                    <li>✓ Quick links</li>
+                </ul>
+                <a href="index.html" class="card-link">Go Home →</a>
+            </div>
+
+            <!-- Card 6: Quick Files -->
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Documentation Files</h3>
+                <p>Text and markdown reference files for offline viewing or printing.</p>
+                <ul style="margin: 1rem 0; color: #666; font-size: 0.9rem;">
+                    <li>✓ PROJECT_QUICK_REFERENCE.md</li>
+                    <li>✓ GUIDE_SUMMARY.txt</li>
+                    <li>✓ Project structure overview</li>
+                </ul>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #999;">Files available in project root directory</p>
+            </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <h3>Recommended Learning Path</h3>
+            <ol>
+                <li><strong>Start with Fundamentals:</strong> Go through HTML, CSS, and JavaScript lessons (if you're new to web dev)</li>
+                <li><strong>Understand DigitalBonesBox:</strong> Read the Complete Project Guide to get the big picture</li>
+                <li><strong>Quick Reference:</strong> Keep the Quick Reference Guide handy as you explore files</li>
+                <li><strong>Explore the Project:</strong> Use the Project Walkthrough to dive into specific files</li>
+                <li><strong>Read the Code:</strong> Open files in VS Code and read through them with the guides</li>
+                <li><strong>Run Locally:</strong> Set up the project locally and experiment</li>
+                <li><strong>Make Changes:</strong> Try modifying code and see what breaks - this is how you learn!</li>
+            </ol>
+        </div>
+
+        <div class="info-box" style="margin-top: 1.5rem; text-align: center;">
+            <h3>Need Help?</h3>
+            <p style="color: #666; margin-bottom: 1rem;">Start with the <a href="project-guide.html" class="secondary-link">Complete Project Guide</a> for detailed explanations of every file.</p>
+            <p style="color: #999; font-size: 0.9rem;">All documentation is written in simple terms for beginners!</p>
+        </div>
+    </div>
+</body>
+</html>

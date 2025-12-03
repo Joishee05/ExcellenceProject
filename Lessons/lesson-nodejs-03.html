@@ -69,15 +69,259 @@
                 <div class="lesson-meta">Lesson 23 of 23</div>
             </div>
             <div class="content-area">
-                <h2>Creating an HTTP Server</h2>
-                <p>Node.js includes the http module for building servers. A server listens for incoming requests and sends responses back to clients.</p>
-                <h2>Request-Response Cycle</h2>
-                <p>Every HTTP interaction follows the request-response pattern. The client sends a request, the server processes it, and returns a response with status code and data.</p>
-                <h2>Your First Server</h2>
-                <p>Use the http module to create a simple server. Listen on a port (commonly 3000 or 8080). Handle requests and send responses.</p>
-                <div class="code-block">const http = require('http');<br>const server = http.createServer((req, res) => {<br>&nbsp;&nbsp;res.writeHead(200, {'Content-Type': 'text/plain'});<br>&nbsp;&nbsp;res.end('Hello World!');<br>});<br>server.listen(3000);</div>
+                <h2>Congratulations! You're Ready to Build Your Server</h2>
+                <p>You've learned about Node.js, installed it, and set up your development environment. Now comes the exciting part: building your first HTTP server! This is where server-side JavaScript becomes real. You'll create a server that listens for requests from clients and sends back responses.</p>
+
+                <h2>Understanding the Request-Response Cycle</h2>
+                <p>Before we build a server, let's understand how web communication works:</p>
+                <ol>
+                    <li><strong>Client makes request:</strong> A browser or application sends an HTTP request (GET, POST, etc.) to a server address</li>
+                    <li><strong>Request travels:</strong> The request travels through the internet to the server's IP address and port</li>
+                    <li><strong>Server processes:</strong> The server (your Node.js code) receives and processes the request</li>
+                    <li><strong>Server sends response:</strong> The server sends back a response with status code (200 for success, 404 for not found, etc.) and data</li>
+                    <li><strong>Client receives:</strong> The client receives the response and displays it (usually in a browser)</li>
+                </ol>
+
+                <h2>The Node.js http Module</h2>
+                <p>Node.js includes a built-in <code>http</code> module that makes creating servers simple. You don't need to install anything extra—it's part of Node.js itself.</p>
+                <p>The http module provides:</p>
+                <ul>
+                    <li><strong>http.createServer():</strong> Creates an HTTP server</li>
+                    <li><strong>Server.listen():</strong> Makes the server listen on a specific port</li>
+                    <li><strong>Request object:</strong> Contains information about incoming requests</li>
+                    <li><strong>Response object:</strong> Used to send responses back to clients</li>
+                </ul>
+
+                <h2>Creating Your First Server</h2>
+                <p>Let's build a simple HTTP server. Create a file called <code>server.js</code> in your project directory:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello from Node.js!');
+});
+
+server.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
+                </div>
+
+                <h2>Line-by-Line Explanation</h2>
+                <p><strong>Line 1:</strong> <code>const http = require('http');</code></p>
+                <ul>
+                    <li>Imports the built-in http module</li>
+                    <li><code>require()</code> is how Node.js loads modules</li>
+                </ul>
+                <p><strong>Lines 3-6:</strong> <code>http.createServer((req, res) => { ... })</code></p>
+                <ul>
+                    <li>Creates an HTTP server with a callback function</li>
+                    <li><code>req</code> (request) contains information about the incoming request</li>
+                    <li><code>res</code> (response) is used to send data back to the client</li>
+                    <li>This callback runs every time someone makes a request to your server</li>
+                </ul>
+                <p><strong>Line 4:</strong> <code>res.writeHead(200, {'Content-Type': 'text/plain'});</code></p>
+                <ul>
+                    <li>Sets the HTTP status code (200 = OK, success)</li>
+                    <li>Sets headers: tells the client the response is plain text</li>
+                    <li>Other common status codes: 404 (not found), 500 (server error)</li>
+                </ul>
+                <p><strong>Line 5:</strong> <code>res.end('Hello from Node.js!');</code></p>
+                <ul>
+                    <li>Sends the response body to the client</li>
+                    <li><code>end()</code> finalizes the response (must be called)</li>
+                </ul>
+                <p><strong>Line 8:</strong> <code>server.listen(3000, () => { ... })</code></p>
+                <ul>
+                    <li>Tells the server to listen on port 3000</li>
+                    <li>The callback runs when the server starts successfully</li>
+                </ul>
+
+                <h2>Running Your Server</h2>
+                <p>To start your server, open a terminal, navigate to your project directory, and run:</p>
+                <div class="code-block">
+node server.js
+                </div>
+                <p>You should see:</p>
+                <div class="code-block">
+Server is running on http://localhost:3000
+                </div>
+                <p>Now open your browser and visit <strong>http://localhost:3000</strong>. You should see: "Hello from Node.js!"</p>
+
+                <h2>Stopping Your Server</h2>
+                <p>To stop the server, press <strong>Ctrl+C</strong> in your terminal (or <strong>Cmd+C</strong> on macOS). The server will stop listening for requests.</p>
+
+                <h2>What's a Port?</h2>
+                <p>A port is like a channel that your server listens on. Think of an IP address as a building and a port as a specific room in that building. Common ports:</p>
+                <ul>
+                    <li><strong>Port 80:</strong> Default HTTP port (web browsers)</li>
+                    <li><strong>Port 443:</strong> Default HTTPS port (secure web)</li>
+                    <li><strong>Port 3000:</strong> Common development port</li>
+                    <li><strong>Port 8000/8080:</strong> Also commonly used in development</li>
+                    <li><strong>Ports 1-1023:</strong> Reserved for system services</li>
+                </ul>
+
+                <h2>Making Your Server Dynamic with Routes</h2>
+                <p>Your current server sends the same response for all requests. Let's make it smarter by handling different URLs:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  if (req.url === '/') {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Welcome to the homepage!');
+  } else if (req.url === '/about') {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('This is the about page.');
+  } else {
+    res.writeHead(404, {'Content-Type': 'text/plain'});
+    res.end('Page not found!');
+  }
+});
+
+server.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
+});
+                </div>
+                <p>Now you have:</p>
+                <ul>
+                    <li><strong>http://localhost:3000/</strong> → "Welcome to the homepage!"</li>
+                    <li><strong>http://localhost:3000/about</strong> → "This is the about page."</li>
+                    <li><strong>http://localhost:3000/anything-else</strong> → "Page not found!" (404 status)</li>
+                </ul>
+
+                <h2>Serving HTML Content</h2>
+                <p>Servers typically send HTML instead of plain text. Here's how to send an HTML response:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  if (req.url === '/') {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    const htmlResponse = `
+      &lt;!DOCTYPE html&gt;
+      &lt;html&gt;
+      &lt;head&gt;
+        &lt;title&gt;My Server&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;Welcome to My Node.js Server!&lt;/h1&gt;
+        &lt;p&gt;This HTML is being served from Node.js&lt;/p&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    `;
+    res.end(htmlResponse);
+  }
+});
+
+server.listen(3000);
+                </div>
+
+                <h2>Understanding the Request Object</h2>
+                <p>The <code>req</code> object contains useful information about incoming requests:</p>
+                <ul>
+                    <li><strong>req.url:</strong> The path the client requested (e.g., "/about")</li>
+                    <li><strong>req.method:</strong> The HTTP method (GET, POST, PUT, DELETE, etc.)</li>
+                    <li><strong>req.headers:</strong> Headers sent with the request (browser info, cookies, etc.)</li>
+                    <li><strong>req.connection.remoteAddress:</strong> The client's IP address</li>
+                </ul>
+                <p>Example: Log the URL and method of each request:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  console.log(`Request: ${req.method} ${req.url}`);
+  res.end('OK');
+});
+
+server.listen(3000);
+                </div>
+
+                <h2>Error Handling in Servers</h2>
+                <p>A good server handles errors gracefully:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  try {
+    if (req.url === '/') {
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end('Hello!');
+    } else {
+      res.writeHead(404, {'Content-Type': 'text/plain'});
+      res.end('Not Found');
+    }
+  } catch (error) {
+    console.error('Server error:', error);
+    res.writeHead(500, {'Content-Type': 'text/plain'});
+    res.end('Internal Server Error');
+  }
+});
+
+server.listen(3000, () => {
+  console.log('Server running');
+});
+                </div>
+
+                <h2>Common Server Patterns</h2>
+                <p><strong>Listening for a specific URL:</strong></p>
+                <div class="code-block">
+if (req.url === '/users' && req.method === 'GET') {
+  // Handle GET /users
+}
+                </div>
+                <p><strong>Sending JSON responses:</strong></p>
+                <div class="code-block">
+res.writeHead(200, {'Content-Type': 'application/json'});
+res.end(JSON.stringify({ message: 'Hello', status: 'ok' }));
+                </div>
+                <p><strong>Redirecting to another URL:</strong></p>
+                <div class="code-block">
+res.writeHead(301, { 'Location': '/new-url' });
+res.end();
+                </div>
+
+                <h2>What You've Accomplished</h2>
+                <p>Congratulations! You've now:</p>
+                <ul>
+                    <li>Created a functional HTTP server with Node.js</li>
+                    <li>Understood how HTTP requests and responses work</li>
+                    <li>Learned to handle different routes and send different responses</li>
+                    <li>Served HTML and JSON content</li>
+                    <li>Handled basic error scenarios</li>
+                </ul>
+
+                <h2>Next Steps in Your Node.js Journey</h2>
+                <p>You now have the foundation to build more complex servers. Here are some directions to explore:</p>
+                <ul>
+                    <li><strong>Express.js:</strong> A popular framework that makes building servers easier and more structured</li>
+                    <li><strong>Databases:</strong> Learn MongoDB or MySQL to store and retrieve data</li>
+                    <li><strong>REST APIs:</strong> Build APIs that serve data to frontend applications</li>
+                    <li><strong>WebSockets:</strong> Enable real-time communication between server and client</li>
+                    <li><strong>Authentication:</strong> Implement user login and session management</li>
+                    <li><strong>Testing:</strong> Write tests for your server code to ensure reliability</li>
+                </ul>
+
+                <h2>Best Practices for Server Development</h2>
+                <ul>
+                    <li><strong>Always handle errors:</strong> Use try-catch blocks and send appropriate error responses</li>
+                    <li><strong>Log requests:</strong> Log important events to help debug issues</li>
+                    <li><strong>Use appropriate status codes:</strong> 200 (success), 404 (not found), 500 (server error)</li>
+                    <li><strong>Set correct headers:</strong> Tell clients what type of data you're sending (HTML, JSON, etc.)</li>
+                    <li><strong>Keep servers simple initially:</strong> Start with small, focused servers before scaling</li>
+                    <li><strong>Consider security:</strong> Validate all incoming data and be careful with user input</li>
+                </ul>
+
                 <h2>Key Takeaways</h2>
-                <p>You've completed the course! You can now build full-stack applications with HTML, CSS, JavaScript, and Node.js. Continue learning and building amazing projects!</p>
+                <ul>
+                    <li>Node.js's http module allows you to create web servers with just a few lines of code</li>
+                    <li>Every request follows the pattern: client → request → server → response → client</li>
+                    <li>Routes allow your server to respond differently to different URLs</li>
+                    <li>The <code>req</code> object contains request data; the <code>res</code> object sends responses</li>
+                    <li>Status codes tell clients the outcome of their request (200=success, 404=not found)</li>
+                    <li>Servers can serve HTML, JSON, or plain text responses</li>
+                    <li>You've completed the course! You now understand HTML, CSS, JavaScript, and Node.js—the building blocks of full-stack web development</li>
+                </ul>
                 <div class="nav-footer">
                     <a href="lesson-nodejs-02.html" class="btn btn-secondary">Previous</a>
                 </div>

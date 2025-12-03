@@ -69,13 +69,97 @@
             </div>
             <div class="content-area">
                 <h2>Introduction to Node.js</h2>
-                <p>Node.js is a JavaScript runtime built on Chrome's V8 engine. It allows you to run JavaScript on the server side, enabling full-stack JavaScript development.</p>
+                <p>Node.js is a JavaScript runtime built on Chrome's V8 engine. It allows you to run JavaScript on the server side, enabling full-stack JavaScript development. Instead of JavaScript only running in web browsers, you can now use JavaScript to build web servers, APIs, and backend systems.</p>
+                
+                <h2>The Problem Node.js Solves</h2>
+                <p>Traditionally, developers had to learn multiple languages:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                    <li><strong>Frontend (Browser):</strong> JavaScript</li>
+                    <li><strong>Backend (Server):</strong> Python, Java, PHP, Ruby, etc.</li>
+                </ul>
+                <p>With Node.js, you can use JavaScript for both frontend AND backend, making development faster and allowing developers to specialize in one language.</p>
+                
                 <h2>Server-Side JavaScript</h2>
-                <p>Before Node.js, JavaScript only ran in browsers. Now you can build backends, APIs, and entire applications with JavaScript.</p>
-                <h2>Key Features</h2>
-                <p>Event-driven architecture. Non-blocking I/O. Fast execution. Large package ecosystem (npm). Great for building scalable applications.</p>
+                <p>Before Node.js (pre-2009), JavaScript only ran in web browsers. This was a limitation because:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                    <li>JavaScript couldn't access the file system</li>
+                    <li>JavaScript couldn't create web servers</li>
+                    <li>JavaScript couldn't interact with databases directly</li>
+                    <li>You needed a different language for backend development</li>
+                </ul>
+                <p>Node.js changed this by bringing JavaScript to the server, enabling it to do everything traditional backend languages can do.</p>
+                
+                <h2>Key Features of Node.js</h2>
+                <div style="background: #f0f0f0; padding: 1.5rem; border-radius: 6px; margin: 1rem 0;">
+                    <strong>Event-Driven Architecture:</strong> Node.js uses an event-driven model where the server responds to events (like incoming requests) rather than blocking and waiting.
+                </div>
+                <div style="background: #f0f0f0; padding: 1.5rem; border-radius: 6px; margin: 1rem 0;">
+                    <strong>Non-Blocking I/O:</strong> When Node.js needs to read a file or query a database, it doesn't pause the entire server. Instead, it handles other requests while waiting for the operation to complete. This makes Node.js very efficient.
+                </div>
+                <div style="background: #f0f0f0; padding: 1.5rem; border-radius: 6px; margin: 1rem 0;">
+                    <strong>Fast Execution:</strong> Node.js uses the V8 engine (the same engine Google Chrome uses), which is incredibly fast at executing JavaScript.
+                </div>
+                <div style="background: #f0f0f0; padding: 1.5rem; border-radius: 6px; margin: 1rem 0;">
+                    <strong>Large Package Ecosystem (npm):</strong> npm (Node Package Manager) has millions of packages available. Need a CSV parser? Date library? HTTP client? There's likely an npm package for it.
+                </div>
+                <div style="background: #f0f0f0; padding: 1.5rem; border-radius: 6px; margin: 1rem 0;">
+                    <strong>Scalability:</strong> Node.js is great for building scalable applications that can handle many concurrent connections efficiently.
+                </div>
+                
+                <h2>Node.js vs Browser JavaScript</h2>
+                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                    <tr style="background: #8b5cf6; color: white;">
+                        <th style="padding: 1rem; text-align: left; border: 1px solid #ddd;">Feature</th>
+                        <th style="padding: 1rem; text-align: left; border: 1px solid #ddd;">Browser JavaScript</th>
+                        <th style="padding: 1rem; text-align: left; border: 1px solid #ddd;">Node.js</th>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 1rem; border: 1px solid #ddd;">File System Access</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">No (security)</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">Yes</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">DOM Manipulation</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">No</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 1rem; border: 1px solid #ddd;">Database Access</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">No (security)</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">Yes</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">Create Web Server</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">No</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">Yes</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 1rem; border: 1px solid #ddd;">Access System Environment</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">Limited</td>
+                        <td style="padding: 1rem; border: 1px solid #ddd;">Full Access</td>
+                    </tr>
+                </table>
+                
+                <h2>Real-World Examples Using Node.js</h2>
+                <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                    <li><strong>Web Servers:</strong> Express.js is the most popular web framework for Node.js</li>
+                    <li><strong>REST APIs:</strong> Node.js powers countless APIs (including DigitalBonesBox!)</li>
+                    <li><strong>Real-Time Applications:</strong> Socket.io enables real-time communication</li>
+                    <li><strong>Command-Line Tools:</strong> Many popular CLI tools are built with Node.js</li>
+                    <li><strong>Microservices:</strong> Node.js is lightweight and perfect for microservice architectures</li>
+                </ul>
+                
+                <h2>The JavaScript Everywhere Vision</h2>
+                <p>Node.js enables "JavaScript everywhere" - using the same language across your entire application stack:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                    <li><strong>Frontend:</strong> React, Vue, Angular (all JavaScript)</li>
+                    <li><strong>Backend:</strong> Node.js with Express</li>
+                    <li><strong>Database:</strong> MongoDB (stores JSON, works great with JavaScript)</li>
+                    <li><strong>DevOps:</strong> Build scripts, deployment scripts (JavaScript)</li>
+                </ul>
+                
                 <h2>Key Takeaways</h2>
-                <p>Node.js brings JavaScript to the backend. It's perfect for building modern web applications. Understanding Node.js opens many possibilities for full-stack development.</p>
+                <p>Node.js is a JavaScript runtime that enables server-side development. It uses event-driven, non-blocking I/O for efficiency. With Node.js, you can build complete full-stack applications using only JavaScript. Understanding Node.js opens many possibilities for full-stack development and is essential knowledge for modern web developers. In the next lesson, we'll learn how to set up Node.js on your computer.</p>
                 <div class="nav-footer">
                     <a href="lesson-js-20.html" class="btn btn-secondary">Previous</a>
                     <a href="lesson-nodejs-02.html" class="btn">Next</a>
