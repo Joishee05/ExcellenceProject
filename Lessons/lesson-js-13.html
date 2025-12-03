@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 13: Modules & Imports - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #f97316; }
         .sidebar a.active { background: #e8f1ff; color: #f97316; border-left-color: #f97316; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #f97316; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #f97316; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #f97316; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #f97316; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #f97316; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #f97316; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #f97316; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #f97316cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #f97316; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #f97316; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #f97316; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #f97316; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -49,7 +52,7 @@
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
                 <li><a href="../js-tutorials.html" class="active">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
@@ -73,6 +76,13 @@
             <a href="lesson-js-13.html" class="active">13. Modules & Imports</a>
             <a href="lesson-js-14.html">14. Error Handling</a>
             <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs & JSON</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Node.js Lessons</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setting Up Node.js</a>
+            <a href="lesson-nodejs-03.html">23. Building Your First Server</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,79 +90,232 @@
                 <div class="lesson-meta">Lesson 13 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <h1>What is JavaScript? - Modules & Imports</h1>
-                <div class="lesson-meta">Lesson 13 of 15</div>
-            </div>
-            <div class="content-area">
-                <h2>Introduction to HTML</h2>
-                <p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard markup language used to create web pages. Every website you visit on the internet is built with HTML at its core.</p>
-                <p>HTML works with two other technologies to create complete web experiences:</p>
+                <h2>What You'll Learn</h2>
+                <p>In this comprehensive lesson, you will learn about JavaScript modules and imports - the system that professional developers use to organize and reuse code. Modules are essential for building scalable, maintainable applications. By the end of this lesson, you'll understand how to break code into modules and import them when needed.</p>
+
+                <h2>What Are Modules?</h2>
+                <p><strong>Modules</strong> are a way to organize JavaScript code into separate files. They let you break your code into manageable pieces and reuse them across your application. Every modern JavaScript project uses modules because they make code cleaner, more organized, and easier to maintain.</p>
+                
+                <p>Before modules, developers had to put all their code in a single file or multiple files that all ran in the global scope, leading to naming conflicts and messy code. Modules solve this problem by creating isolated code environments.</p>
+
+                <h3>Why Use Modules?</h3>
                 <ul>
-                    <li><strong>CSS</strong> - Handles styling and visual appearance</li>
-                    <li><strong>JavaScript</strong> - Adds interactivity and dynamic behavior</li>
+                    <li><strong>Organization:</strong> Related code stays together in its own file</li>
+                    <li><strong>Reusability:</strong> Use the same code in multiple places without duplication</li>
+                    <li><strong>Maintainability:</strong> Easier to find and fix bugs when code is organized</li>
+                    <li><strong>Scalability:</strong> Projects can grow without becoming chaotic</li>
+                    <li><strong>Testing:</strong> Easy to test individual modules in isolation</li>
+                    <li><strong>Namespace Isolation:</strong> Avoids naming conflicts by keeping variables private</li>
+                    <li><strong>Performance:</strong> Only load the code you actually need</li>
                 </ul>
+
+                <h2>Module Basics: Export and Import</h2>
+                <p>The two core features of JavaScript modules are <code>export</code> and <code>import</code>. They work together to let different files share code:</p>
+                
                 <div class="highlight-box">
-                    <strong>Key Concept:</strong> HTML provides the structure and content of web pages. Think of HTML as the skeleton of a building - it creates the basic framework that everything else is built upon.
+                    <strong>Key Concept: How Modules Work</strong>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><strong>export</strong> - Makes code available for other files to use</li>
+                        <li><strong>import</strong> - Brings code from other modules into your current file</li>
+                        <li><strong>Named exports</strong> - Export multiple specific items with names</li>
+                        <li><strong>Default export</strong> - Export one main thing per module</li>
+                    </ul>
                 </div>
-                <h2>What Does HTML Do?</h2>
-                <p>HTML tells web browsers how to structure and display content. Browsers like Chrome, Firefox, Safari, and Edge read HTML code and convert it into the visual web pages you see.</p>
-                <p>HTML does several important things:</p>
+
+                <h2>Named Exports and Imports</h2>
+                <p>Named exports let you export multiple functions, variables, or classes from a module. Each export must have a name, and when you import, you specify which items you want.</p>
+
+                <h3>Example: Creating a Math Module</h3>
+                <div class="code-block">// math.js - This file exports two functions
+export function add(a, b) {
+  return a + b;
+}
+
+export function subtract(a, b) {
+  return a - b;
+}
+
+export function multiply(a, b) {
+  return a * b;
+}</div>
+
+                <p><strong>What This Does:</strong> The <code>export</code> keyword makes these functions available for other files to import and use.</p>
+
+                <h3>Example: Importing Named Exports</h3>
+                <div class="code-block">// main.js - Import only the functions we need
+import { add, subtract } from './math.js';
+
+console.log(add(5, 3));        // 8
+console.log(subtract(10, 4));  // 6
+
+// Note: multiply is not imported, so this would cause an error:
+// console.log(multiply(3, 4));  // Error!</div>
+
+                <p><strong>What This Does:</strong> We use curly braces <code>{ }</code> to import only the specific functions we need from the math module.</p>
+
+                <h2>Default Exports and Imports</h2>
+                <p>Default exports let you export one main thing from a module. When you import a default export, you don't need curly braces and you can name it whatever you want.</p>
+
+                <h3>Example: Default Export</h3>
+                <div class="code-block">// calculator.js - Export one main calculator function
+export default function calculate(a, b, operation) {
+  if (operation === 'add') return a + b;
+  if (operation === 'subtract') return a - b;
+  if (operation === 'multiply') return a * b;
+  if (operation === 'divide') return a / b;
+  return 'Unknown operation';
+}</div>
+
+                <h3>Example: Importing Default Export</h3>
+                <div class="code-block">// main.js - Import the default export
+import calculate from './calculator.js';
+
+// Notice: no curly braces, and we can name it whatever we want
+console.log(calculate(10, 5, 'multiply'));  // 50
+console.log(calculate(20, 4, 'divide'));    // 5</div>
+
+                <p><strong>Key Differences:</strong> Default exports don't use curly braces and can be imported with any name you choose. You can only have one default export per module.</p>
+
+                <h2>Exporting and Importing Objects</h2>
+                <p>You can also export objects that contain related data and functions:</p>
+
+                <h3>Example: Exporting an Object</h3>
+                <div class="code-block">// user.js - Export a user management module
+export const userManager = {
+  users: [],
+  
+  addUser(name, email) {
+    this.users.push({ name, email, id: Date.now() });
+  },
+  
+  getUser(id) {
+    return this.users.find(user => user.id === id);
+  },
+  
+  removeUser(id) {
+    this.users = this.users.filter(user => user.id !== id);
+  }
+};</div>
+
+                <h3>Example: Importing and Using the Object</h3>
+                <div class="code-block">// app.js - Use the user manager
+import { userManager } from './user.js';
+
+userManager.addUser('John', 'john@example.com');
+userManager.addUser('Jane', 'jane@example.com');
+
+console.log(userManager.users);  // Shows all users
+
+const john = userManager.getUser(/* id */);
+console.log(john);  // Shows John's data</div>
+
+                <h2>Module Organization Strategies</h2>
+                <p>Here are best practices for organizing your modules:</p>
+
+                <h3>1. One Responsibility Per Module</h3>
+                <p>Each module should do one thing well. Don't mix different functionality in a single file.</p>
+                <div class="code-block">// Good: math.js contains only math functions
+export function add(a, b) { return a + b; }
+export function subtract(a, b) { return a - b; }
+
+// Good: string.js contains only string functions
+export function capitalize(str) { 
+  return str.charAt(0).toUpperCase() + str.slice(1); 
+}</div>
+
+                <h3>2. Clear Module Names</h3>
+                <p>File names should clearly describe what the module contains:</p>
                 <ul>
-                    <li>Organizes content into logical sections</li>
-                    <li>Defines the meaning of different content types</li>
-                    <li>Creates links between pages</li>
-                    <li>Embeds images, audio, and video</li>
-                    <li>Creates forms for user input</li>
-                    <li>Provides metadata about the page</li>
+                    <li><code>userManager.js</code> - Manages user data and operations</li>
+                    <li><code>apiClient.js</code> - Handles API requests</li>
+                    <li><code>dateFormatter.js</code> - Formats and parses dates</li>
+                    <li><code>validators.js</code> - Validates data and forms</li>
                 </ul>
-                <h2>HTML Tags and Elements</h2>
-                <p>HTML uses tags to mark up content. Tags are keywords surrounded by angle brackets.</p>
-                <div class="code-block">&lt;tagname&gt;content&lt;/tagname&gt;</div>
-                <p>Most tags come in pairs:</p>
+
+                <h3>3. Organize with Folders</h3>
+                <p>For larger projects, group related modules into folders:</p>
+                <div class="code-block">project/
+├── utils/
+│   ├── math.js
+│   ├── string.js
+│   └── date.js
+├── api/
+│   ├── users.js
+│   └── posts.js
+├── components/
+│   ├── header.js
+│   └── button.js
+└── index.js (main entry point)</div>
+
+                <h2>Combining Multiple Imports</h2>
+                <p>You can import multiple named exports and a default export in one statement:</p>
+
+                <div class="code-block">// Import named exports AND a default export
+import Calculator, { add, subtract } from './math-tools.js';
+
+// Use them together
+console.log(add(5, 3));                // 8
+console.log(Calculator.calculate());   // (default export)
+</div>
+
+                <h2>Real-World Module Example</h2>
+                <p>Here's how modules work in a real application:</p>
+
+                <div class="code-block">// modules/storage.js - Handles local storage
+export function saveUser(user) {
+  localStorage.setItem('user', JSON.stringify(user));
+}
+
+export function getUser() {
+  const user = localStorage.getItem('user');
+  return user ? JSON.parse(user) : null;
+}
+
+export function clearUser() {
+  localStorage.removeItem('user');
+}</div>
+
+                <div class="code-block">// app.js - Uses the storage module
+import { saveUser, getUser, clearUser } from './modules/storage.js';
+
+const user = { name: 'Alice', email: 'alice@example.com' };
+
+saveUser(user);
+console.log(getUser());  // { name: 'Alice', email: 'alice@example.com' }
+clearUser();
+console.log(getUser());  // null
+</div>
+
+                <h2>Module Best Practices Summary</h2>
                 <ul>
-                    <li><strong>Opening tag</strong> - Example: <code>&lt;h1&gt;</code></li>
-                    <li><strong>Closing tag</strong> - Example: <code>&lt;/h1&gt;</code></li>
-                    <li><strong>Content</strong> - The text or elements between the tags</li>
+                    <li><strong>One Responsibility Per Module</strong> - Each file should do one thing and do it well</li>
+                    <li><strong>Descriptive Names</strong> - Use clear file names that describe the module's purpose</li>
+                    <li><strong>Organized Structure</strong> - Group related modules into folders for large projects</li>
+                    <li><strong>Prefer Named Exports</strong> - More explicit and easier to refactor than default exports</li>
+                    <li><strong>Document Your Modules</strong> - Add comments explaining what each export does</li>
+                    <li><strong>Keep Modules Focused</strong> - Don't try to do too much in one file</li>
+                    <li><strong>Test Individual Modules</strong> - Test each module separately before combining</li>
                 </ul>
-                <h3>Example:</h3>
-                <div class="code-block">&lt;h1&gt;Welcome to Web Development&lt;/h1&gt;<br/>&lt;p&gt;This is my first web page.&lt;/p&gt;</div>
-                <div class="highlight-box">
-                    <strong>Important:</strong> The forward slash in the closing tag is what tells the browser where the element ends.
-                </div>
-                <h2>Why Learn HTML?</h2>
-                <ul>
-                    <li><strong>Foundation of Web:</strong> HTML is the foundation of all websites</li>
-                    <li><strong>Easy to Learn:</strong> HTML is simple and beginner-friendly</li>
-                    <li><strong>Gateway to Web Development:</strong> You need HTML to learn CSS and JavaScript</li>
-                    <li><strong>In-Demand Skill:</strong> HTML skills are valuable in the job market</li>
-                    <li><strong>Creative Expression:</strong> Build and publish your own web content</li>
-                </ul>
-                <h2>What You Will Learn</h2>
-                <p>In this 15-lesson course, we'll cover:</p>
-                <ul>
-                    <li>HTML structure and best practices</li>
-                    <li>Common HTML tags and their uses</li>
-                    <li>Text formatting and semantic HTML</li>
-                    <li>Links, images, and media</li>
-                    <li>Forms and user input</li>
-                    <li>Tables and data organization</li>
-                    <li>Accessibility and SEO</li>
-                </ul>
-                <div class="highlight-box">
-                    <strong>Next Lesson:</strong> In Lesson 2, we'll explore the basic structure of an HTML document and create our first web page.
-                </div>
+
                 <div class="nav-footer">
-                    <button class="btn btn-secondary" disabled>Previous Lesson</button>
-                    <a href="lesson-js-02.html" class="btn">Next Lesson</a>
+                    <a href="lesson-js-12.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-js-14.html" class="btn">Next Lesson →</a>
                 </div>
             </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>

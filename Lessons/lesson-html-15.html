@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 15: Best Practices - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
         .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #3b82f6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #3b82f6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -48,9 +50,9 @@
             <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../html-tutorials.html" class="active">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
@@ -73,115 +75,186 @@
             <a href="lesson-html-13.html">13. Meta Tags & SEO</a>
             <a href="lesson-html-14.html">14. Audio & Video</a>
             <a href="lesson-html-15.html" class="active">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html">17. Core Attributes</a>
+            <a href="lesson-html-18.html">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Best Practices</h1>
-                <div class="lesson-meta">Lesson 15 of 15</div>
+                <h1>HTML Best Practices</h1>
+                <div class="lesson-meta">Lesson 15 of 15 • Final Lesson</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 15 of 15</div>
-                <h1>HTML iframes & Embedding Content</h1>
-            </div>
-            <div class="lesson-text">
-                <h3>What is an iframe?</h3>
-                <p>An iframe (inline frame) allows you to embed another HTML document within your current page.</p>
-                <h3>Basic Iframe Syntax</h3>
-                <pre><code>&lt;iframe src="https://www.example.com" 
-        width="800" 
-        height="600"
-        title="Description"&gt;
-&lt;/iframe&gt;</code></pre>
-                <h3>Common Uses</h3>
+                <p><strong>Congratulations on completing all 15 HTML lessons!</strong> This final lesson covers essential best practices that will help you write clean, professional, accessible, and maintainable HTML code. These habits will make you a better web developer.</p>
+
+                <h2>Code Organization & Structure</h2>
+                
+                <h3>Use Proper Indentation</h3>
+                <p>Indentation makes code readable and easier to debug. Use consistent spacing (2 or 4 spaces):</p>
+                <div class="code-block">&lt;!-- Good indentation --&gt;<br>&lt;html&gt;<br>&nbsp;&nbsp;&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Page&lt;/title&gt;<br>&nbsp;&nbsp;&lt;/head&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Welcome&lt;/h1&gt;<br>&nbsp;&nbsp;&lt;/body&gt;<br>&lt;/html&gt;</div>
+
+                <h3>Use Semantic HTML</h3>
+                <p>Choose meaningful tags that describe content, not just visual appearance:</p>
                 <ul>
-                    <li>Embedding YouTube videos</li>
-                    <li>Displaying Google Maps</li>
-                    <li>Showing external content</li>
-                    <li>Embedding social media posts</li>
+                    <li>Use <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code></li>
+                    <li>Use <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code> for headings (don't skip levels)</li>
+                    <li>Use <code>&lt;p&gt;</code> for paragraphs, not <code>&lt;div&gt;</code> with styling</li>
+                    <li>Use <code>&lt;button&gt;</code> for buttons, not <code>&lt;div&gt;</code> with click handlers</li>
                 </ul>
-                <h3>Important Attributes</h3>
+
+                <h2>Accessibility (A11y)</h2>
+
+                <h3>Always Include Alt Text for Images</h3>
+                <div class="code-block">&lt;!-- Good --&gt;<br>&lt;img src="dog.jpg" alt="Golden Retriever playing in park"&gt;<br><br>&lt;!-- Bad --&gt;<br>&lt;img src="dog.jpg" alt="dog"&gt;</div>
+
+                <h3>Use Semantic Labels for Forms</h3>
+                <div class="code-block">&lt;!-- Good --&gt;<br>&lt;label for="email"&gt;Email:&lt;/label&gt;<br>&lt;input type="email" id="email" name="email"&gt;<br><br>&lt;!-- Bad --&gt;<br>&lt;input type="email" placeholder="email"&gt;</div>
+
+                <h3>Provide Descriptive Link Text</h3>
+                <div class="code-block">&lt;!-- Good --&gt;<br>&lt;a href="about.html"&gt;Read our About page&lt;/a&gt;<br><br>&lt;!-- Bad --&gt;<br>&lt;a href="about.html"&gt;Click here&lt;/a&gt;</div>
+
+                <h2>Performance Best Practices</h2>
+
+                <h3>Optimize Images</h3>
                 <ul>
-                    <li><code>src</code> - URL of the page to embed</li>
-                    <li><code>width</code> and <code>height</code> - Frame dimensions</li>
-                    <li><code>title</code> - Accessibility description</li>
-                    <li><code>frameborder</code> - Border around iframe (0 or 1)</li>
-                    <li><code>allowfullscreen</code> - Allow fullscreen mode</li>
+                    <li>Use modern formats: WebP (with fallback to PNG/JPG)</li>
+                    <li>Compress images before uploading</li>
+                    <li>Use appropriate dimensions (don't load 4000px image for 400px display)</li>
+                    <li>Consider responsive images with <code>srcset</code></li>
                 </ul>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-    <title>Embedded Content</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-        iframe {
-            margin: 20px 0;
-            border: 2px solid #0033A0;
-            border-radius: 8px;
-        }
-        h2 {
-            color: #0033A0;
-        }
-    </style>
-</head>
-<body>
-    <h1>Embedded Content Examples</h1>
-    
-    <h2>YouTube Video</h2>
-    <iframe width="560" height="315" 
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allowfullscreen>
-    </iframe>
-    
-    <h2>Google Maps</h2>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.920838768469!2d-90.23603448464886!3d38.63689697960825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87df3578c1e88863%3A0x8c1e0cf9f6d5c3af!2sSaint%20Louis%20University!5e0!3m2!1sen!2sus!4v1234567890123"
-            width="600" 
-            height="450" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy">
-    </iframe>
-    
-    <p>Note: iframes load external content within your page.</p>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+
+                <h3>Minimize External Resources</h3>
+                <ul>
+                    <li>Load CSS in <code>&lt;head&gt;</code></li>
+                    <li>Load JavaScript at end of <code>&lt;body&gt;</code> or use <code>defer</code></li>
+                    <li>Minimize HTTP requests</li>
+                    <li>Use CSS instead of images when possible</li>
+                </ul>
+
+                <h3>Meta Viewport Tag</h3>
+                <p>Always include for mobile responsiveness:</p>
+                <div class="code-block">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
+
+                <h2>Security Best Practices</h2>
+
+                <h3>Validate Form Input</h3>
+                <p>Use HTML5 input types and required attributes:</p>
+                <div class="code-block">&lt;input type="email" required&gt;<br>&lt;input type="password" minlength="8" required&gt;<br>&lt;input type="number" min="0" max="100"&gt;</div>
+
+                <h3>Use HTTPS</h3>
+                <p>Always serve content over HTTPS, especially forms handling sensitive data.</p>
+
+                <h3>Don't Hardcode Sensitive Data</h3>
+                <p>Never include passwords, API keys, or tokens in HTML.</p>
+
+                <h2>Content & Naming Conventions</h2>
+
+                <h3>Use Clear, Descriptive Class Names</h3>
+                <div class="code-block">&lt;!-- Good --&gt;<br>&lt;div class="product-card"&gt;<br>&lt;div class="primary-button"&gt;<br><br>&lt;!-- Bad --&gt;<br>&lt;div class="red-box"&gt;<br>&lt;div class="btn1"&gt;</div>
+
+                <h3>Use Lowercase for Tags & Attributes</h3>
+                <div class="code-block">&lt;!-- Good --&gt;<br>&lt;div id="main-content" class="container"&gt;<br><br>&lt;!-- Bad --&gt;<br>&lt;DIV ID="Main-Content" CLASS="Container"&gt;</div>
+
+                <h3>Use IDs for Unique Elements, Classes for Reusable Styles</h3>
+                <div class="code-block">&lt;div id="header"&gt; &lt;!-- Unique --&gt;<br>&lt;div class="button"&gt; &lt;!-- Reusable --&gt;</div>
+
+                <h2>Common HTML Mistakes to Avoid</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="background: white; border: 2px solid #ef4444; border-radius: 6px; padding: 15px;">
+                            <div style="background: #ef4444; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✗ Common Mistakes</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Missing alt text on images</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Using outdated HTML tags</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Not closing tags properly</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Skipping h1 or h2 levels</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Using tables for layout</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Missing DOCTYPE declaration</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: white; border: 2px solid #10b981; border-radius: 6px; padding: 15px;">
+                            <div style="background: #10b981; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✓ Best Practices</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Always use descriptive alt text</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use modern HTML5 elements</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Validate HTML code</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use heading hierarchy properly</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use semantic HTML</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Start with valid HTML5 structure</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+
+                <h2>HTML Validation</h2>
+                <p>Always validate your HTML to find errors:</p>
+                <ul>
+                    <li><strong>W3C Validator:</strong> https://validator.w3.org/</li>
+                    <li><strong>Browser DevTools:</strong> Right-click → Inspect Element</li>
+                    <li><strong>VS Code Extensions:</strong> Use HTML Hint or similar</li>
+                </ul>
+
+                <h2>Testing & Quality Assurance</h2>
+                <ul>
+                    <li>Test on different browsers (Chrome, Firefox, Safari, Edge)</li>
+                    <li>Test on mobile devices or browser emulators</li>
+                    <li>Use browser DevTools to check for console errors</li>
+                    <li>Test keyboard navigation and screen readers</li>
+                    <li>Check page load performance</li>
+                </ul>
+
+                <h2>Keep Learning</h2>
+                <div class="highlight-box">
+                    <strong>Next steps after HTML:</strong> Learn CSS to style your pages, then JavaScript to add interactivity. Combine HTML, CSS, and JavaScript to build complete web applications. Always stay updated with web standards.
+                </div>
+
+                <h2>HTML5 Quick Reference</h2>
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div><p style="font-size: 0.9rem;"><strong>Semantic:</strong> &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;section&gt;, &lt;footer&gt;</p></div>
+                        <div><p style="font-size: 0.9rem;"><strong>Forms:</strong> &lt;form&gt;, &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt;, &lt;button&gt;</p></div>
+                        <div><p style="font-size: 0.9rem;"><strong>Media:</strong> &lt;img&gt;, &lt;audio&gt;, &lt;video&gt;, &lt;source&gt;</p></div>
+                        <div><p style="font-size: 0.9rem;"><strong>Structure:</strong> &lt;table&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;div&gt;</p></div>
+                    </div>
+                </div>
+
+                <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="background: #10b981; color: white; padding: 12px; border-radius: 4px; margin: -20px -20px 15px -20px; font-weight: 700; font-size: 1.05rem;">Final Key Takeaways</div>
+                    <ul style="margin: 0; padding-left: 15px;">
+                        <li style="padding: 8px 0; color: #555;">HTML is the foundation of all web development</li>
+                        <li style="padding: 8px 0; color: #555;">Semantic HTML improves accessibility and SEO</li>
+                        <li style="padding: 8px 0; color: #555;">Always include alt text, proper structure, and validation</li>
+                        <li style="padding: 8px 0; color: #555;">HTML5 includes modern tags for better organization</li>
+                        <li style="padding: 8px 0; color: #555;">Performance and security matter from day one</li>
+                        <li style="padding: 8px 0; color: #555;">Write HTML for humans AND machines (browsers, search engines)</li>
+                        <li style="padding: 8px 0; color: #555;">Keep learning and stay updated with web standards</li>
+                        <li style="padding: 8px 0; color: #555;">Practice by building real projects</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 1.3rem; font-weight: 700; margin-bottom: 10px;">✓ Ready for HTMX?</div>
+                    <p style="margin: 0; font-size: 0.95rem; line-height: 1.6;">You've completed all 15 HTML lessons! Next, explore HTMX to add dynamic interactivity to your web pages without complex JavaScript frameworks!</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-14.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-16.html" class="btn">Next Lesson: HTMX →</a>
+                </div>
             </div>
-            <div class="challenge">
-                <h3>Final Challenge:</h3>
-                <p>Create a comprehensive resource page with:</p>
-                <ol>
-                    <li>An embedded YouTube video tutorial</li>
-                    <li>A Google Maps location (SLU campus)</li>
-                    <li>Proper titles for accessibility</li>
-                    <li>Styled iframes with CSS</li>
-                </ol>
-                <p><strong>Congratulations!</strong> You've completed all 15 HTML lessons!</p>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-html-14.html" class="nav-button">← Previous</a>
-                <a href="../css-tutorials.html" class="nav-button">Start CSS Course →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

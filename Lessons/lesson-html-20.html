@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lesson 20: Request Attributes - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
+        .navbar { position: relative !important; flex-shrink: 0; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
+        .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
+        .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
+        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
+        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
+        .lesson-meta { font-size: 0.9rem; color: #999; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
+        .content-area h2:first-of-type { margin-top: 0; }
+        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
+        .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #3b82f6; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        table th, table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        table th { background: #e8f1ff; color: #3b82f6; font-weight: 600; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthrough.html">Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-title">HTML Lessons</div>
+            <a href="lesson-html-01.html">1. What is HTML?</a>
+            <a href="lesson-html-02.html">2. HTML Structure</a>
+            <a href="lesson-html-03.html">3. Headings & Paragraphs</a>
+            <a href="lesson-html-04.html">4. Text Formatting</a>
+            <a href="lesson-html-05.html">5. Links</a>
+            <a href="lesson-html-06.html">6. Images</a>
+            <a href="lesson-html-07.html">7. Lists</a>
+            <a href="lesson-html-08.html">8. Tables</a>
+            <a href="lesson-html-09.html">9. Forms</a>
+            <a href="lesson-html-10.html">10. Semantic HTML</a>
+            <a href="lesson-html-11.html">11. HTML Entities</a>
+            <a href="lesson-html-12.html">12. Comments</a>
+            <a href="lesson-html-13.html">13. Meta Tags & SEO</a>
+            <a href="lesson-html-14.html">14. Audio & Video</a>
+            <a href="lesson-html-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html">17. Core Attributes</a>
+            <a href="lesson-html-18.html">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html" class="active">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
+        </aside>
+
+        <main class="main-content">
+            <div class="lesson-header">
+                <h1>HTMX Request Attributes</h1>
+                <p class="lesson-meta">Lesson 20 of 23</p>
+            </div>
+
+            <div class="content-area">
+                <h2>Understanding HTTP Requests</h2>
+                <p>HTMX lets you make different types of HTTP requests directly from HTML attributes. These are the same types of requests your browser makes when you click a link or submit a form, but now you can do it with HTMX for better control.</p>
+
+                <h2>GET Requests</h2>
+                <p>Use <code>hx-get</code> to fetch data from the server without sending any data along with the request:</p>
+                <div class="code-block">&lt;button hx-get="/api/greeting"&gt;Get Greeting&lt;/button&gt;</div>
+                <p>This is useful for:</p>
+                <ul>
+                    <li>Loading content when a button is clicked</li>
+                    <li>Fetching data without modifying anything on the server</li>
+                    <li>Simple page loads without reloading the entire page</li>
+                </ul>
+
+                <h2>POST Requests</h2>
+                <p>Use <code>hx-post</code> to send data to the server and create or update something:</p>
+                <div class="code-block">&lt;form hx-post="/api/users"&gt;
+    &lt;input type="text" name="username" placeholder="Username"&gt;
+    &lt;button&gt;Create User&lt;/button&gt;
+&lt;/form&gt;</div>
+                <p>POST requests are useful for:</p>
+                <ul>
+                    <li>Creating new items (users, posts, todos, etc.)</li>
+                    <li>Submitting forms without page reload</li>
+                    <li>Sending data that creates a change on the server</li>
+                </ul>
+
+                <h2>PUT Requests</h2>
+                <p>Use <code>hx-put</code> to update existing data on the server:</p>
+                <div class="code-block">&lt;button hx-put="/api/users/123" hx-target="#user-info"&gt;
+    Update User
+&lt;/button&gt;</div>
+                <p>PUT requests are useful for:</p>
+                <ul>
+                    <li>Updating existing records (editing user profile, changing settings)</li>
+                    <li>Replacing entire resources with new data</li>
+                    <li>Modifying items that already exist</li>
+                </ul>
+
+                <h2>DELETE Requests</h2>
+                <p>Use <code>hx-delete</code> to remove data from the server:</p>
+                <div class="code-block">&lt;button hx-delete="/api/users/123" hx-confirm="Delete this user?"&gt;
+    Delete User
+&lt;/button&gt;</div>
+                <p>DELETE requests are useful for:</p>
+                <ul>
+                    <li>Removing items from a list</li>
+                    <li>Deleting records from the database</li>
+                    <li>Cleanup operations</li>
+                </ul>
+
+                <h2>PATCH Requests</h2>
+                <p>Use <code>hx-patch</code> to partially update data (just the fields that changed):</p>
+                <div class="code-block">&lt;input type="text" name="email" placeholder="New email"&gt;
+&lt;button hx-patch="/api/users/123"&gt;Update Email Only&lt;/button&gt;</div>
+                <p>PATCH requests are useful for:</p>
+                <ul>
+                    <li>Updating just one or two fields</li>
+                    <li>More efficient than PUT for partial updates</li>
+                    <li>Reducing the amount of data sent to the server</li>
+                </ul>
+
+                <h2>Request Attributes Comparison</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>HTTP Method</th>
+                            <th>Use Case</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>hx-get</code></td>
+                            <td>GET</td>
+                            <td>Fetch data without changes</td>
+                            <td>Load comments, get content</td>
+                        </tr>
+                        <tr>
+                            <td><code>hx-post</code></td>
+                            <td>POST</td>
+                            <td>Create new data</td>
+                            <td>Submit form, add item</td>
+                        </tr>
+                        <tr>
+                            <td><code>hx-put</code></td>
+                            <td>PUT</td>
+                            <td>Replace entire resource</td>
+                            <td>Update user profile</td>
+                        </tr>
+                        <tr>
+                            <td><code>hx-patch</code></td>
+                            <td>PATCH</td>
+                            <td>Update specific fields</td>
+                            <td>Change user status only</td>
+                        </tr>
+                        <tr>
+                            <td><code>hx-delete</code></td>
+                            <td>DELETE</td>
+                            <td>Remove data</td>
+                            <td>Delete comment, remove item</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Real-World Examples</h2>
+
+                <h3>Example 1: Add Item to Todo List</h3>
+                <div class="code-block">&lt;form hx-post="/todos" hx-target="#todo-list" hx-swap="beforeend"&gt;
+    &lt;input type="text" name="task" placeholder="New task"&gt;
+    &lt;button&gt;Add Todo&lt;/button&gt;
+&lt;/form&gt;
+&lt;ul id="todo-list"&gt;
+    &lt;li&gt;Learn HTMX&lt;/li&gt;
+&lt;/ul&gt;</div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-19.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-21.html" class="btn">Next Lesson →</a>
+                </div>
+            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
+        </main>
+    </div>
+    <script>
+        // Prevent caching - add timestamp to all resource requests
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
+</body>
+</html>

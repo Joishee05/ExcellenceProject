@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 22: Setting Up Node.js - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
+        .navbar { position: relative !important; flex-shrink: 0; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
+        .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; }
+        .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s; }
+        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
+        .sidebar a.active { background: #ecf0ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
+        .main-content { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin: 0 0 20px 0; border-radius: 8px; border-left: 4px solid #8b5cf6; }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
+        .lesson-meta { font-size: 0.9rem; color: #999; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; margin: 0 0 20px 0; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
+        .content-area h2:first-of-type { margin-top: 0; }
+        .content-area h3 { font-size: 1.2rem; color: #333; margin-top: 15px; margin-bottom: 10px; font-weight: 600; }
+        .content-area p { color: #555; margin-bottom: 15px; line-height: 1.6; }
+        .code-block { background: #2d2d2d; color: #e8e8e8; padding: 15px; border-radius: 6px; margin: 15px 0; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: 100%; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
+        </div>
+    </nav>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-title">JavaScript</div>
+            <a href="lesson-js-01.html">1. What is JavaScript?</a>
+            <a href="lesson-js-02.html">2. Variables</a>
+            <a href="lesson-js-03.html">3. Operators</a>
+            <a href="lesson-js-04.html">4. Conditionals</a>
+            <a href="lesson-js-05.html">5. Loops</a>
+            <a href="lesson-js-06.html">6. Functions</a>
+            <a href="lesson-js-07.html">7. Arrays</a>
+            <a href="lesson-js-08.html">8. Objects</a>
+            <a href="lesson-js-09.html">9. DOM</a>
+            <a href="lesson-js-10.html">10. Events</a>
+            <a href="lesson-js-11.html">11. ES6</a>
+            <a href="lesson-js-12.html">12. Async</a>
+            <a href="lesson-js-13.html">13. Modules</a>
+            <a href="lesson-js-14.html">14. Error Handling</a>
+            <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title">Node.js</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html" class="active">22. Setup</a>
+            <a href="lesson-nodejs-03.html">23. Your First Server</a>
+        </aside>
+        <main class="main-content">
+            <div class="lesson-header">
+                <h1>Setting Up Node.js</h1>
+                <div class="lesson-meta">Lesson 22 of 23</div>
+            </div>
+            <div class="content-area">
+                <h2>Why Proper Setup Matters</h2>
+                <p>Before you can start building Node.js applications, you need to properly install and configure Node.js and npm on your machine. This lesson walks you through the entire setup process, ensuring your development environment is ready for the next lesson where you'll create your first server.</p>
+
+                <h2>What is npm?</h2>
+                <p>npm (Node Package Manager) is the default package manager for Node.js. It comes automatically when you install Node.js. npm allows you to:</p>
+                <ul>
+                    <li><strong>Install packages:</strong> Download code libraries written by other developers</li>
+                    <li><strong>Manage dependencies:</strong> Keep track of what packages your project needs</li>
+                    <li><strong>Version control:</strong> Ensure consistent package versions across your team</li>
+                    <li><strong>Share code:</strong> Publish your own packages for others to use</li>
+                </ul>
+                <p>Think of npm as an app store for code. Instead of writing everything from scratch, you can download and use thousands of pre-built modules to extend your Node.js applications.</p>
+
+                <h2>Installation Steps</h2>
+                <p>Node.js is available for Windows, macOS, and Linux. We recommend installing the <strong>LTS (Long Term Support)</strong> version, which is the most stable and widely supported version. Follow the instructions for your operating system:</p>
+
+                <h3>Installation on Windows</h3>
+                <ol>
+                    <li>Visit <strong>https://nodejs.org</strong> in your web browser</li>
+                    <li>You'll see two versions: LTS and Current. Click the <strong>LTS button</strong> to download</li>
+                    <li>The installer (.msi file) will download. Open it and follow the setup wizard</li>
+                    <li>Accept the license agreement and choose the default installation path</li>
+                    <li>Keep "npm package manager" checked (it should be by default)</li>
+                    <li>Complete the installation</li>
+                    <li>Restart your computer to ensure the PATH is updated</li>
+                </ol>
+
+                <h3>Installation on macOS</h3>
+                <p>You have two options on macOS:</p>
+                <div class="code-block">
+# Option 1: Using Homebrew (recommended)
+brew install node
+
+# Option 2: Download installer from nodejs.org
+# Visit https://nodejs.org and download the macOS installer
+                </div>
+                <p>If you don't have Homebrew installed, visit https://brew.sh to install it first. Homebrew is a package manager for macOS that makes installing tools much easier.</p>
+
+                <h3>Installation on Linux</h3>
+                <p>Use your distribution's package manager:</p>
+                <div class="code-block">
+# Ubuntu / Debian
+sudo apt-get update
+sudo apt-get install nodejs npm
+
+# Fedora
+sudo dnf install nodejs npm
+
+# Arch
+sudo pacman -S nodejs npm
+                </div>
+
+                <h2>Verifying Your Installation</h2>
+                <p>After installation, verify that Node.js and npm installed correctly by checking their versions. Open your terminal or command prompt and run:</p>
+                <div class="code-block">
+node --version
+npm --version
+                </div>
+                <p>You should see version numbers appear (for example: <code>v18.16.0</code> and <code>9.6.7</code>). If you see version numbers, congratulations—your installation was successful!</p>
+
+                <h2>Understanding Your Node.js Installation</h2>
+                <p>When you install Node.js, you're installing two main components:</p>
+                <ol>
+                    <li><strong>Node.js Runtime:</strong> The JavaScript engine that executes your code server-side</li>
+                    <li><strong>npm:</strong> The package manager for downloading and managing dependencies</li>
+                </ol>
+                <p>These two components work together. Node.js runs your JavaScript code, and npm helps you manage the libraries your code depends on.</p>
+
+                <h2>Creating Your First Project Directory</h2>
+                <p>Now that Node.js is installed, let's create your first Node.js project directory:</p>
+                <div class="code-block">
+# Create a new folder for your project
+mkdir my-first-node-app
+cd my-first-node-app
+
+# Initialize a Node.js project (this creates package.json)
+npm init -y
+                </div>
+                <p>The <code>npm init -y</code> command creates a <code>package.json</code> file in your directory. This file tracks your project's metadata and dependencies.</p>
+
+                <h2>Understanding package.json</h2>
+                <p>The <code>package.json</code> file is the heart of every Node.js project. Here's what a basic one looks like:</p>
+                <div class="code-block">
+{
+  "name": "my-first-node-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+                </div>
+                <p><strong>Key fields:</strong></p>
+                <ul>
+                    <li><strong>name:</strong> Your project's name</li>
+                    <li><strong>version:</strong> Current version of your project</li>
+                    <li><strong>main:</strong> The entry point file (usually index.js)</li>
+                    <li><strong>scripts:</strong> Commands you can run with npm run</li>
+                    <li><strong>dependencies:</strong> Packages your project needs (added when you install packages)</li>
+                </ul>
+
+                <h2>Installing Packages with npm</h2>
+                <p>One of npm's most powerful features is the ability to install packages. For example, if you want to use the popular Express.js web framework:</p>
+                <div class="code-block">
+npm install express
+                </div>
+                <p>This command:</p>
+                <ol>
+                    <li>Downloads the Express package from npm's online registry</li>
+                    <li>Saves it in a folder called <code>node_modules</code></li>
+                    <li>Updates your <code>package.json</code> to record the dependency</li>
+                </ol>
+                <p>Later, when you share your project, others can run <code>npm install</code> and automatically get the same packages.</p>
+
+                <h2>Common Setup Issues</h2>
+                <p><strong>Issue 1: "node command not found"</strong></p>
+                <ul>
+                    <li>Problem: Node.js isn't in your system PATH</li>
+                    <li>Solution: Restart your computer after installation, or reinstall Node.js</li>
+                </ul>
+                <p><strong>Issue 2: npm conflicts with existing packages</strong></p>
+                <ul>
+                    <li>Problem: You're trying to install a package that conflicts with an existing one</li>
+                    <li>Solution: Delete the node_modules folder and run npm install again</li>
+                </ul>
+                <p><strong>Issue 3: Permission errors on macOS/Linux</strong></p>
+                <ul>
+                    <li>Problem: npm install fails with permission denied errors</li>
+                    <li>Solution: Use nvm (Node Version Manager) to manage Node.js instead of sudo</li>
+                </ul>
+
+                <h2>Using Node.js in Your Projects</h2>
+                <p>After setup, you can create Node.js files (typically with .js extension) and run them:</p>
+                <div class="code-block">
+# Create a simple JavaScript file
+echo "console.log('Hello from Node.js!');" > app.js
+
+# Run it with Node
+node app.js
+                </div>
+                <p>The output should be: <code>Hello from Node.js!</code></p>
+
+                <h2>Best Practices for Node.js Setup</h2>
+                <ul>
+                    <li><strong>Always use LTS versions</strong> in production environments for maximum stability</li>
+                    <li><strong>Keep Node.js updated</strong> but test updates before deploying to production</li>
+                    <li><strong>Use .gitignore:</strong> Always exclude node_modules from version control. Create a .gitignore file with node_modules on a line</li>
+                    <li><strong>Document your setup:</strong> Include setup instructions in your project's README</li>
+                    <li><strong>Use project-specific versions:</strong> Consider using nvm for managing multiple Node.js versions</li>
+                    <li><strong>Share package.json only:</strong> When sharing projects, include package.json so others can install dependencies</li>
+                </ul>
+
+                <h2>What's Next?</h2>
+                <p>Now that your Node.js environment is properly set up, you're ready to move to Lesson 23: "Your First Server." In that lesson, you'll create an actual HTTP server that responds to requests, building on the foundation you've created here.</p>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Node.js is JavaScript for servers; npm is Node.js's package manager</li>
+                    <li>Installation is straightforward: download from nodejs.org or use package managers (Homebrew, apt-get, etc.)</li>
+                    <li>Always verify installation by checking node --version and npm --version</li>
+                    <li>package.json is your project's configuration file and tracks dependencies</li>
+                    <li>npm makes it easy to install pre-built packages instead of writing everything yourself</li>
+                    <li>Proper setup and project initialization is crucial for maintainable Node.js applications</li>
+                </ul>
+                <div class="nav-footer">
+                    <a href="lesson-nodejs-01.html" class="btn btn-secondary">Previous</a>
+                    <a href="lesson-nodejs-03.html" class="btn">Next</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

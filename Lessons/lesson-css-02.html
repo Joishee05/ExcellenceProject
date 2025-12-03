@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 2: Selectors - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lesson 2: Selectors & Properties - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
-        .sidebar a.active { background: #e8f1ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #8b5cf6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #8b5cf6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #8b5cf6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #8b5cf6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #8b5cf6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #8b5cf6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -50,126 +53,329 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
                 <li><a href="../css-tutorials.html" class="active">CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="page-wrapper">
         <aside class="sidebar">
             <div class="sidebar-title">CSS Lessons</div>
             <a href="lesson-css-01.html">1. What is CSS?</a>
-            <a href="lesson-css-02.html" class="active">2. Selectors</a>
-            <a href="lesson-css-03.html">3. Colors & Backgrounds</a>
-            <a href="lesson-css-04.html">4. Text Styling</a>
-            <a href="lesson-css-05.html">5. Box Model</a>
-            <a href="lesson-css-06.html">6. Borders & Spacing</a>
-            <a href="lesson-css-07.html">7. Flexbox</a>
-            <a href="lesson-css-08.html">8. Grid Layout</a>
-            <a href="lesson-css-09.html">9. Positioning</a>
-            <a href="lesson-css-10.html">10. Transitions & Animations</a>
-            <a href="lesson-css-11.html">11. Responsive Design</a>
-            <a href="lesson-css-12.html">12. Variables & Functions</a>
-            <a href="lesson-css-13.html">13. Media Queries</a>
-            <a href="lesson-css-14.html">14. Transform & Perspective</a>
+            <a href="lesson-css-02.html" class="active">2. Selectors & Properties</a>
+            <a href="lesson-css-03.html">3. Colors & Fonts</a>
+            <a href="lesson-css-04.html">4. Box Model</a>
+            <a href="lesson-css-05.html">5. Layout & Display</a>
+            <a href="lesson-css-06.html">6. Flexbox</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
+            <a href="lesson-css-08.html">8. Positioning</a>
+            <a href="lesson-css-09.html">9. Transitions & Animations</a>
+            <a href="lesson-css-10.html">10. Responsive Design</a>
+            <a href="lesson-css-11.html">11. Media Queries</a>
+            <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
+            <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
+
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Selectors</h1>
-                <div class="lesson-meta">Lesson 2 of 15</div>
+                <h1>Lesson 2: Selectors & Properties</h1>
+                <p class="lesson-meta">Lesson 2 of 15</p>
             </div>
+
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 2 of 10</div>
-                <h1>Selectors</h1>
-            </div>
-            <div class="lesson-text">
-                <p>Selectors let you target specific HTML elements to style them.</p>
-                <h3>Types of Selectors:</h3>
+                <h2>What You'll Learn</h2>
+                <p>In this comprehensive lesson, you will master CSS selectors and propertiesthe foundation of all CSS styling. You will learn different selector types, how to target specific elements, the most important CSS properties, and how to organize your styles effectively.</p>
+
+                <h2>Introduction to Selectors</h2>
+                <p>Selectors are patterns used to select HTML elements that you want to style. Every CSS rule starts with a selector that determines which elements the styles will apply to. Understanding selectors is crucial for writing effective CSS.</p>
+
+                <h2>Types of CSS Selectors</h2>
+
+                <h3>1. Element/Type Selector</h3>
+                <p>Targets all instances of a specific HTML element by its tag name.</p>
+                <div class="code-block">p { color: #333; }         /* Styles all paragraphs */
+h1 { font-size: 32px; }    /* Styles all h1 headings */
+div { background: white; } /* Styles all divs */</div>
+
+                <p><strong>Breaking Down Each Line:</strong></p>
                 <ul>
-                    <li><strong>Element Selector:</strong> <code>p { }</code> - Targets all &lt;p&gt; elements</li>
-                    <li><strong>Class Selector:</strong> <code>.classname { }</code> - Targets elements with class="classname"</li>
-                    <li><strong>ID Selector:</strong> <code>#idname { }</code> - Targets element with id="idname"</li>
-                    <li><strong>Universal Selector:</strong> <code>* { }</code> - Targets all elements</li>
+                    <li><strong>p { }</strong> - The "p" targets all paragraph tags. Every &lt;p&gt;&lt;/p&gt; on your page gets the same styling</li>
+                    <li><strong>color: #333;</strong> - Changes text color to dark gray (#333 is a hex code for gray)</li>
+                    <li><strong>h1 { font-size: 32px; }</strong> - Makes all headings 32 pixels tall. That's pretty big!</li>
+                    <li><strong>Why use type selectors?:</strong> When you want to style ALL of one type of element the same way (like all paragraphs)</li>
                 </ul>
-                <h3>Selector Examples:</h3>
-                <pre><code>/* Element */
-h1 { color: blue; }
 
-/* Class */
-.highlight { background: yellow; }
+                <h3>2. Class Selector</h3>
+                <p>Targets elements with a specific class attribute. Class selectors start with a dot (.) and can be applied to multiple elements.</p>
+                <div class="code-block">.intro { font-weight: bold; }      /* Any element with class="intro" */
+.button { background: #0066cc; } /* Any element with class="button" */
 
-/* ID */
-#header { font-size: 24px; }
+&lt;!-- In your HTML --&gt;
+&lt;p class="intro"&gt;This is an intro paragraph&lt;/p&gt;
+&lt;button class="button"&gt;Click Me&lt;/button&gt;</div>
 
-/* Multiple elements */
-h1, h2, h3 { font-family: Arial; }</code></pre>
-                <div class="info-box"><strong>Note:</strong> Use classes for reusable styles and IDs for unique elements!</div>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    /* Element selector */
-    h1 {
-        color: navy;
-    }
-    
-    /* Class selector */
-    .highlight {
-        background-color: yellow;
-        padding: 5px;
-    }
-    
-    /* ID selector */
-    #special {
-        color: red;
-        font-weight: bold;
-    }
-    
-    /* Multiple selectors */
-    h2, h3 {
-        color: purple;
-    }
-</style>
-</head>
-<body>
-    <h1>CSS Selectors Demo</h1>
-    <h2>Section 1</h2>
-    <p class="highlight">This paragraph is highlighted!</p>
-    <p id="special">This paragraph is special!</p>
-    <h3>Section 2</h3>
-    <p class="highlight">Another highlighted paragraph.</p>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>.intro { }</strong> - The dot "." means "look for elements with class='intro'". Only elements with this class get styled</li>
+                    <li><strong>font-weight: bold;</strong> - Makes the text bold/thick</li>
+                    <li><strong>Key Difference:</strong> Type selectors (like "p") style ALL paragraphs. Class selectors (like ".intro") style ONLY paragraphs with class="intro"</li>
+                    <li><strong>Why useful:</strong> You can have multiple paragraphs but only make SOME of them bold by using the class</li>
+                    <li><strong>Reusable:</strong> You can add class="intro" to any element - not just paragraphs. It always gets bold styling</li>
+                </ul>
+
+                <h3>3. ID Selector</h3>
+                <p>Targets a single element with a specific ID. ID selectors start with a hash (#) and should be unique on the page. Use IDs sparingly in CSSclasses are more flexible.</p>
+                <div class="code-block">#header { background: #333; }  /* The element with id="header" */
+#main { max-width: 1200px; }  /* The element with id="main" */</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>#header { }</strong> - The hash "#" means "find the ONE element with id='header'". Only ONE element should have a specific ID</li>
+                    <li><strong>background: #333;</strong> - Sets the background color to dark gray (#333)</li>
+                    <li><strong>Classes vs IDs:</strong> Classes (.) can be used multiple times. IDs (#) should be used only once</li>
+                    <li><strong>When to use:</strong> Use IDs for unique page sections like header, footer, main content - the big landmark elements</li>
+                </ul>
+
+                <h3>4. Descendant Selector</h3>
+                <p>Targets elements that are descendants of another element, regardless of depth. Useful for styling elements within specific containers.</p>
+                <div class="code-block">/* Style all li elements inside a ul */
+ul li { list-style: none; }
+
+/* Style all p elements inside .container */
+.container p { color: #666; }</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>ul li { }</strong> - The space means "li that is INSIDE ul". Styles list items only when they're in a ul (not outside it)</li>
+                    <li><strong>list-style: none;</strong> - Removes the bullets from list items</li>
+                    <li><strong>.container p { }</strong> - Targets paragraphs ONLY if they're inside something with class="container"</li>
+                    <li><strong>Why useful:</strong> You can have paragraphs outside .container (not styled) and inside .container (styled gray). Same HTML tag, different styling based on location!</li>
+                    <li><strong>Deep nesting:</strong> The p can be deeply nested inside .container - 2 levels down, 5 levels down, doesn't matter</li>
+                </ul>
+
+                <h3>5. Child Selector</h3>
+                <p>Targets elements that are direct children of another element (one level deep only). Uses the greater-than symbol (>).</p>
+                <div class="code-block">/* Style only direct child li elements, not nested ones */
+ul > li { margin-bottom: 10px; }
+
+/* Style only direct child paragraphs */
+.section > p { font-size: 16px; }</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>ul > li { }</strong> - The ">" means "direct child". Styles li ONLY if it's immediately inside ul (not nested deeper)</li>
+                    <li><strong>Difference from descendant:</strong> "ul li" (space) = any li anywhere inside. "ul > li" (>) = only li directly inside</li>
+                    <li><strong>margin-bottom: 10px;</strong> - Adds 10 pixels of space below each list item</li>
+                    <li><strong>Why useful:</strong> More precise control. You can style direct children differently from nested descendants</li>
+                </ul>
+
+                <h3>6. Attribute Selector</h3>
+                <p>Targets elements based on their attributes. Very useful for styling form inputs and links.</p>
+                <div class="code-block">/* Style all input elements with type="text" */
+input[type="text"] { border: 1px solid #ccc; padding: 8px; }
+
+/* Style all links with target="_blank" */
+a[target="_blank"] { color: #0066cc; }
+
+/* Style elements with specific attribute values */
+img[alt] { border: 1px solid #ddd; }</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>input[type="text"] { }</strong> - The brackets [ ] mean "check the attribute". Styles only input elements WITH type="text" attribute</li>
+                    <li><strong>border: 1px solid #ccc;</strong> - Adds a 1-pixel gray border. padding: 8px adds space inside</li>
+                    <li><strong>a[target="_blank"] { }</strong> - Styles only links that have target="_blank" (opens in new tab)</li>
+                    <li><strong>img[alt] { }</strong> - Styles images that HAVE an alt attribute (whether value matters or not)</li>
+                    <li><strong>Why useful:</strong> You can style inputs differently based on their type. Text inputs look different from checkboxes</li>
+                </ul>
+
+                <h3>7. Pseudo-Class Selector</h3>
+                <p>Targets elements based on their state or position. Common pseudo-classes include :hover, :focus, :first-child, :last-child.</p>
+                <div class="code-block">/* Style links when hovered */
+a:hover { color: #0052a3; text-decoration: underline; }
+
+/* Style focused form inputs */
+input:focus { outline: 2px solid #0066cc; }
+
+/* Style first child of a parent */
+li:first-child { font-weight: bold; }
+
+/* Style odd/even list items */
+li:nth-child(odd) { background: #f5f5f5; }</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>a:hover { }</strong> - The colon ":" means "this is a pseudo-class". Styles links when mouse hovers over them. Makes them darker and underlined</li>
+                    <li><strong>input:focus { }</strong> - Styles input fields when they're active (user clicked in them to type). Shows a blue outline</li>
+                    <li><strong>li:first-child { }</strong> - Styles only the FIRST list item. Makes it bold</li>
+                    <li><strong>li:nth-child(odd) { }</strong> - Styles every odd-numbered list item (1st, 3rd, 5th...). Gives them light gray background</li>
+                    <li><strong>Why useful:</strong> Pseudo-classes let you style based on user interaction (hover, focus) or position (first, last, odd)</li>
+                </ul>
+
+                <h3>8. Combining Selectors</h3>
+                <p>You can combine multiple selectors for more specific targeting. This is called using multiple selectors.</p>
+                <div class="code-block">/* Style all h1, h2, h3 elements */
+h1, h2, h3 { font-family: 'Segoe UI', sans-serif; color: #333; }
+
+/* Style paragraphs inside containers with the .content class */
+.content p { line-height: 1.8; }
+
+/* Style the first paragraph inside a .section */
+.section p:first-child { margin-top: 0; }</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>h1, h2, h3 { }</strong> - The comma "," means "apply these styles to ALL these selectors". Saves writing three separate rules</li>
+                    <li><strong>.content p { }</strong> - Combines class and descendant selector. Styles paragraphs ONLY inside .content</li>
+                    <li><strong>.section p:first-child { }</strong> - Combines class, descendant, and pseudo-class. Styles the FIRST paragraph inside .section</li>
+                    <li><strong>Why useful:</strong> More specific control. You can style the same element differently in different locations</li>
+                </ul>
+
+                <h2>Specificity: Which Rule Wins?</h2>
+                <p>When multiple CSS rules target the same element, the browser uses specificity to determine which rule applies. Specificity is calculated as follows:</p>
+                <ul>
+                    <li><strong>Element/Type Selector:</strong> 1 point (lowest specificity)</li>
+                    <li><strong>Class Selector (.class):</strong> 10 points</li>
+                    <li><strong>ID Selector (#id):</strong> 100 points</li>
+                    <li><strong>Inline Style:</strong> 1000 points (highest)</li>
+                </ul>
+
+                <div class="code-block">/* Example: Which rule applies? */
+p { color: black; }           /* Specificity: 1 */
+.intro { color: blue; }       /* Specificity: 10 (wins over p) */
+#main p { color: red; }       /* Specificity: 101 (wins over .intro) */
+&lt;p style="color: green;"&gt;   /* Specificity: 1000 (highest, wins) */</div>
+
+                <p><strong>What This Means:</strong></p>
+                <ul>
+                    <li><strong>Specificity:</strong> A score that determines which CSS rule applies when multiple rules target the same element</li>
+                    <li><strong>Type selector (1 point):</strong> "p { }" is weak. Any other rule wins</li>
+                    <li><strong>Class selector (10 points):</strong> ".intro { }" beats type selectors. Stronger than just "p"</li>
+                    <li><strong>ID selector (100 points):</strong> "#main p { }" is powerful. Beats classes and type selectors</li>
+                    <li><strong>Inline style (1000 points):</strong> "style=" in HTML is the strongest. Beats everything else</li>
+                    <li><strong>Real Example:</strong> If a paragraph has both "p { color: black; }" AND ".intro { color: blue; }", it becomes BLUE because class (10) beats type (1)</li>
+                </ul>
+
+                <h2>Common CSS Properties</h2>
+
+                <h3>Text and Font Properties</h3>
+                <div class="code-block">color: #333;              /* Text color */
+font-size: 16px;          /* Text size */
+font-weight: bold;        /* Text weight (normal, bold, 700, etc.) */
+font-family: Arial, sans-serif; /* Font choice */
+text-align: center;       /* Text alignment (left, center, right, justify) */
+line-height: 1.6;         /* Line spacing */
+text-decoration: none;    /* Text decoration (underline, overline, line-through) */
+letter-spacing: 2px;      /* Space between letters */</div>
+
+                <h3>Color and Background Properties</h3>
+                <div class="code-block">color: #333;                          /* Text color (hexadecimal) */
+color: rgb(51, 51, 51);               /* Text color (RGB) */
+color: rgba(51, 51, 51, 0.8);         /* Text color with transparency */
+background-color: #f5f5f5;            /* Background color */
+background-image: url('image.jpg');   /* Background image */
+background-size: cover;               /* How to size the background */
+background-position: center;          /* Where to position the background */</div>
+
+                <h3>Box Model Properties</h3>
+                <div class="code-block">margin: 20px;             /* Space outside element */
+padding: 15px;            /* Space inside element */
+border: 1px solid #ddd;   /* Border around element */
+width: 100%;              /* Element width */
+height: auto;             /* Element height */
+max-width: 1200px;        /* Maximum width */
+min-height: 300px;        /* Minimum height */</div>
+
+                <h3>Display and Layout Properties</h3>
+                <div class="code-block">display: block;           /* Block-level element (full width) */
+display: inline;          /* Inline element (flows with text) */
+display: inline-block;    /* Both inline and block properties */
+display: flex;            /* Flexbox container */
+display: grid;            /* Grid container */
+display: none;            /* Hide element completely */</div>
+
+                <h2>CSS Property Categories</h2>
+                <ul>
+                    <li><strong>Typography:</strong> font-size, font-weight, font-family, color, line-height, text-align</li>
+                    <li><strong>Spacing:</strong> margin, padding, gap</li>
+                    <li><strong>Borders and Backgrounds:</strong> border, background-color, background-image, box-shadow</li>
+                    <li><strong>Layout:</strong> display, width, height, position, float</li>
+                    <li><strong>Visual Effects:</strong> opacity, transform, filter, transition</li>
+                    <li><strong>Text Effects:</strong> text-decoration, text-transform, text-shadow</li>
+                </ul>
+
+                <h2>Inheritance in CSS</h2>
+                <p>Some CSS properties are inherited from parent elements to their children. For example, the color property is inherited, so if you set color on a parent div, child elements will have that color too.</p>
+
+                <div class="code-block">/* Inherited property example */
+.container { color: #333; }  /* All text inside .container will be this color */
+
+/* Non-inherited property example */
+.container { border: 1px solid #ddd; }  /* Only .container gets the border, not children */</div>
+
+                <p>You can force inheritance using the inherit keyword, or reset inheritance using the initial keyword.</p>
+
+                <h2>Shorthand Properties</h2>
+                <p>Some CSS properties have shorthand versions that let you set multiple values at once. This reduces code and improves readability.</p>
+
+                <div class="code-block">/* Longhand */
+margin-top: 10px;
+margin-right: 20px;
+margin-bottom: 10px;
+margin-left: 20px;
+
+/* Shorthand (same effect) */
+margin: 10px 20px 10px 20px;  /* top right bottom left */
+
+/* Even shorter */
+margin: 10px 20px;            /* top/bottom right/left */</div>
+
+                <h2>Debugging CSS Issues</h2>
+                <p>Every modern browser has developer tools to help debug CSS issues:</p>
+                <ul>
+                    <li><strong>Inspect Element:</strong> Right-click any element and select "Inspect" to see its HTML and CSS</li>
+                    <li><strong>Box Model Visualization:</strong> The Elements panel shows how margin, border, padding, and content are sized</li>
+                    <li><strong>Computed Styles:</strong> See which CSS rules actually apply to an element</li>
+                    <li><strong>CSS Override Visualization:</strong> Crossed-out rules show which CSS was overridden and why</li>
+                </ul>
+
+                <h2>Best Practices for Writing Selectors</h2>
+                <ul>
+                    <li><strong>Keep Specificity Low:</strong> Avoid deeply nested selectors and ID-based selectors</li>
+                    <li><strong>Use Meaningful Class Names:</strong> Name classes based on purpose (e.g., .button-primary), not appearance (e.g., .blue-button)</li>
+                    <li><strong>Avoid Inline Styles:</strong> Always use external or internal stylesheets instead of inline styles</li>
+                    <li><strong>Be Consistent:</strong> Use a consistent naming convention (e.g., kebab-case for class names)</li>
+                    <li><strong>Don't Overuse !important:</strong> Only use !important as a last resort</li>
+                </ul>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Ready for Colors and Fonts?</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 3, you will explore colors, fonts, and typography in detail. You will learn how to use colors effectively, choose appropriate fonts, and style text beautifully.</p>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+
+                <div class="nav-footer">
+                    <a href="lesson-css-01.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-css-03.html" class="btn">Next Lesson →</a>
+                </div>
             </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Add these styles:</p>
-                <ol>
-                    <li>Create a class "blue-text" that makes text blue</li>
-                    <li>Apply it to one of the paragraphs</li>
-                    <li>Change the highlight background color to light green</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-css-01.html" class="nav-button">← Previous</a>
-                <a href="lesson-css-03.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        // Prevent caching
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>

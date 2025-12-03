@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 4: Conditionals - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #f97316; }
         .sidebar a.active { background: #e8f1ff; color: #f97316; border-left-color: #f97316; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
         .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #f97316; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
@@ -37,9 +37,9 @@
         .btn-secondary { background: #ddd; color: #666; }
         .btn-secondary:hover { background: #ccc; }
         .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #f97316; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        footer { background: #f97316; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: 100%; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
     </style>
 </head>
 <body>
@@ -73,6 +73,13 @@
             <a href="lesson-js-13.html">13. Modules & Imports</a>
             <a href="lesson-js-14.html">14. Error Handling</a>
             <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs & JSON</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Node.js Lessons</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setting Up Node.js</a>
+            <a href="lesson-nodejs-03.html">23. Building Your First Server</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,163 +87,223 @@
                 <div class="lesson-meta">Lesson 4 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 4 of 12</div>
-                <h1>JavaScript Operators</h1>
-            </div>
-
             <div class="lesson-text">
-                <p>Operators are symbols that perform operations on values and variables. JavaScript has several types of operators.</p>
+                <p>Conditional statements allow your code to make decisions and execute different code based on conditions. They're essential for creating interactive programs that respond to user input and changing data.</p>
 
-                <h2>Arithmetic Operators</h2>
-                <p>Used to perform mathematical calculations:</p>
-                <pre><code>let a = 10;
-let b = 3;
-
-console.log(a + b);  // Addition: 13
-console.log(a - b);  // Subtraction: 7
-console.log(a * b);  // Multiplication: 30
-console.log(a / b);  // Division: 3.333...
-console.log(a % b);  // Modulus (remainder): 1
-console.log(a ** b); // Exponentiation: 1000 (10^3)</code></pre>
-
-                <h3>Increment and Decrement</h3>
-                <pre><code>let count = 5;
-
-count++;  // Increment by 1 (count = 6)
-console.log(count); // 6
-
-count--;  // Decrement by 1 (count = 5)
-console.log(count); // 5</code></pre>
-
-                <h2>Assignment Operators</h2>
-                <p>Used to assign values to variables:</p>
-                <pre><code>let x = 10;
-
-x += 5;  // Same as: x = x + 5  (x becomes 15)
-x -= 3;  // Same as: x = x - 3  (x becomes 12)
-x *= 2;  // Same as: x = x * 2  (x becomes 24)
-x /= 4;  // Same as: x = x / 4  (x becomes 6)
-x %= 4;  // Same as: x = x % 4  (x becomes 2)
-
-console.log(x); // 2</code></pre>
-
-                <h2>Comparison Operators</h2>
-                <p>Used to compare values and return true or false:</p>
+                <h2>The If Statement</h2>
+                <p>The simplest conditional - executes code only if a condition is true:</p>
                 <pre><code>let age = 20;
 
-console.log(age == 20);   // Equal to: true
-console.log(age === 20);  // Strict equal to: true
-console.log(age != 18);   // Not equal to: true
-console.log(age !== "20"); // Strict not equal: true
-console.log(age > 18);    // Greater than: true
-console.log(age < 25);    // Less than: true
-console.log(age >= 20);   // Greater than or equal: true
-console.log(age <= 19);   // Less than or equal: false</code></pre>
+if (age >= 18) {
+    console.log("You are an adult.");
+}
+// Output: "You are an adult."
 
-                <div class="info-box">
-                    <p><strong>Important:</strong> Use <code>===</code> (strict equality) instead of <code>==</code>. Strict equality checks both value and type, while <code>==</code> performs type conversion.</p>
-                    <pre><code>console.log(5 == "5");   // true (converts string to number)
-console.log(5 === "5");  // false (different types)</code></pre>
+let temperature = 15;
+
+if (temperature < 0) {
+    console.log("It's freezing!");
+}
+// No output (condition is false)</code></pre>
+
+                <h2>If...Else Statement</h2>
+                <p>Execute one block if true, a different block if false:</p>
+                <pre><code>let score = 75;
+
+if (score >= 80) {
+    console.log("Grade: A");
+} else {
+    console.log("Grade: B or lower");
+}
+// Output: "Grade: B or lower"
+
+let time = 14;
+
+if (time < 12) {
+    console.log("Good morning!");
+} else {
+    console.log("Good afternoon!");
+}
+// Output: "Good afternoon!"</code></pre>
+
+                <h2>If...Else If...Else Statement</h2>
+                <p>Test multiple conditions in order. JavaScript stops at the first true condition:</p>
+                <pre><code>let score = 75;
+
+if (score >= 90) {
+    console.log("Grade: A");
+} else if (score >= 80) {
+    console.log("Grade: B");
+} else if (score >= 70) {
+    console.log("Grade: C");
+} else if (score >= 60) {
+    console.log("Grade: D");
+} else {
+    console.log("Grade: F");
+}
+// Output: "Grade: C"</code></pre>
+
+                <h3>How This Works</h3>
+                <pre><code>let time = 14;  // 2 PM in 24-hour format
+
+if (time < 12) {
+    console.log("Morning");      // Not executed
+} else if (time < 17) {
+    console.log("Afternoon");    // This runs (14 < 17 is true)
+} else if (time < 21) {
+    console.log("Evening");      // Skipped (found a match already)
+} else {
+    console.log("Night");        // Skipped
+}</code></pre>
+
+                <h2>The Switch Statement</h2>
+                <p>For comparing one value against many options. Cleaner than many if...else if blocks:</p>
+                <pre><code>let day = 3;  // 1 = Monday, 2 = Tuesday, etc.
+let dayName;
+
+switch (day) {
+    case 1:
+        dayName = "Monday";
+        break;
+    case 2:
+        dayName = "Tuesday";
+        break;
+    case 3:
+        dayName = "Wednesday";
+        break;
+    case 4:
+        dayName = "Thursday";
+        break;
+    case 5:
+        dayName = "Friday";
+        break;
+    default:
+        dayName = "Weekend";
+}
+
+console.log(dayName);  // "Wednesday"</code></pre>
+
+                <div class="highlight-box">
+                    <strong>Important: Don't Forget break;</strong>
+                    <p style="margin: 10px 0;">Without <code>break</code>, JavaScript continues executing all cases below the match ("fall-through"). This is usually a bug:</p>
+                    <pre><code>let fruit = "apple";
+
+switch (fruit) {
+    case "apple":
+        console.log("Red fruit");  // Prints this
+    case "banana":
+        console.log("Yellow fruit"); // And this (BUG!)
+    case "grape":
+        console.log("Purple fruit"); // And this (BUG!)
+        break;
+}</code></pre>
                 </div>
 
-                <h2>Logical Operators</h2>
-                <p>Used to combine or invert boolean values:</p>
+                <h2>Ternary Operator (Conditional Operator)</h2>
+                <p>A short way to write simple if...else statements on one line:</p>
                 <pre><code>let age = 20;
-let hasID = true;
+
+// Traditional if...else
+let status;
+if (age >= 18) {
+    status = "adult";
+} else {
+    status = "minor";
+}
+
+// Using ternary operator (much shorter)
+let status2 = age >= 18 ? "adult" : "minor";
+
+console.log(status2); // "adult"</code></pre>
+
+                <h3>Ternary Operator Syntax</h3>
+                <pre><code>condition ? valueIfTrue : valueIfFalse
+
+// Example 1
+let canVote = age >= 18 ? "Yes" : "No";
+
+// Example 2
+let message = score >= 60 ? "Passed" : "Failed";
+
+// Example 3 - nested ternary
+let grade = score >= 90 ? "A" : score >= 80 ? "B" : score >= 70 ? "C" : "F";</code></pre>
+
+                <h2>Combining Conditions</h2>
+                <p>Use logical operators to test multiple conditions:</p>
+                <pre><code>let age = 25;
+let hasLicense = true;
 
 // AND (&&) - both must be true
-console.log(age >= 18 && hasID);  // true
+if (age >= 18 && hasLicense) {
+    console.log("You can rent a car");
+}
 
 // OR (||) - at least one must be true
-console.log(age >= 21 || hasID);  // true
+if (age < 18 || hasLicense === false) {
+    console.log("You cannot rent a car");
+}
 
-// NOT (!) - inverts the value
-console.log(!hasID);  // false
-console.log(!(age < 18)); // true</code></pre>
+// NOT (!) - inverts the condition
+if (!hasLicense) {
+    console.log("You need a license");
+}
 
-                <h3>Logical Operator Examples</h3>
-                <pre><code>let isStudent = true;
-let hasDiscount = false;
+// Multiple AND conditions
+if (age >= 18 && hasLicense && age < 70) {
+    console.log("You can rent a car");
+}</code></pre>
 
-// Check if eligible for student discount
-let eligible = isStudent && hasDiscount;
-console.log(eligible); // false
+                <h2>Conditional Flowchart</h2>
+                <pre>
+User action or data
+        ↓
+    [Is condition true?]
+        ↙        ↖
+      YES        NO
+       ↓          ↓
+   Run this    Check next
+   code block  condition?
+       ↓          ↓
+   Continue   [Another condition?]
+              ↙        ↖
+            YES        NO
+             ↓          ↓
+         Run else    Continue
+         code block  program
+</pre>
 
-// Check if any discount applies
-let anyDiscount = isStudent || hasDiscount;
-console.log(anyDiscount); // true</code></pre>
+                <h2>Real-World Example</h2>
+                <pre><code>let userInput = "admin";
+let password = "12345";
 
-                <h2>String Operators</h2>
-                <p>The <code>+</code> operator can also concatenate (join) strings:</p>
-                <pre><code>let firstName = "John";
-let lastName = "Doe";
+if (userInput === "admin" && password === "12345") {
+    console.log("Access granted: Admin panel");
+} else if (userInput === "user" && password === "pass") {
+    console.log("Access granted: User dashboard");
+} else {
+    console.log("Access denied: Invalid credentials");
+}</code></pre>
 
-let fullName = firstName + " " + lastName;
-console.log(fullName); // "John Doe"
+                <h2>Key Takeaways</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use <code>if</code> to test ONE condition</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use <code>if...else</code> for ONE choice between two paths</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use <code>if...else if...else</code> for MULTIPLE conditions</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use <code>switch</code> when comparing ONE value to MANY options</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use ternary operator for quick true/false decisions</li>
+                    <li style="padding: 8px 0;">Always use <code>===</code> for comparisons, not <code>==</code></li>
+                </ul>
 
-// You can also use += with strings
-let message = "Hello";
-message += " World";
-console.log(message); // "Hello World"</code></pre>
-
-                <h2>Try It Yourself</h2>
-                <p>Experiment with different operators:</p>
-                
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span>JavaScript Editor</span>
-                        <button class="run-button" onclick="runCode()">Run Code</button>
-                    </div>
-                    <textarea class="code-input" id="codeInput">// Arithmetic operators
-let num1 = 15;
-let num2 = 4;
-console.log("15 + 4 =", num1 + num2);
-console.log("15 - 4 =", num1 - num2);
-console.log("15 * 4 =", num1 * num2);
-console.log("15 / 4 =", num1 / num2);
-console.log("15 % 4 =", num1 % num2);
-
-// Comparison operators
-let age = 21;
-console.log("\nAge checks:");
-console.log("age >= 18:", age >= 18);
-console.log("age < 21:", age < 21);
-
-// Logical operators
-let isStudent = true;
-let hasID = true;
-console.log("\nLogical checks:");
-console.log("isStudent AND hasID:", isStudent && hasID);
-console.log("NOT isStudent:", !isStudent);</textarea>
-                    <div class="preview-area">
-                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
-                    </div>
-                </div>
-
-                <div class="challenge">
-                    <h3>Challenge</h3>
-                    <p>Write code that:</p>
-                    <ul>
-                        <li>Calculates the area of a rectangle (length × width)</li>
-                        <li>Checks if a number is even using the modulus operator</li>
-                        <li>Determines if someone can vote (age >= 18)</li>
-                        <li>Checks if a student qualifies for honors (GPA >= 3.5 AND attendance >= 90%)</li>
-                        <li>Concatenates your first and last name with a space</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="lesson-navigation">
-                <a href="lesson-js-03.html" class="nav-button">← Previous Lesson</a>
-                <a href="lesson-js-05.html" class="nav-button">Next Lesson →</a>
+                <div class="nav-footer">
+                <a href="lesson-js-03.html" class="btn btn-secondary">← Previous Lesson</a>
+                <a href="lesson-js-05.html" class="btn">Next Lesson →</a>
             </div>
             </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

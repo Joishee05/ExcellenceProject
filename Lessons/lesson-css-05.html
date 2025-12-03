@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 5: Box Model - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lesson 5: Layout & Display - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
-        .sidebar a.active { background: #e8f1ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #8b5cf6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #8b5cf6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #8b5cf6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #8b5cf6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #8b5cf6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #8b5cf6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -50,122 +53,276 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
                 <li><a href="../css-tutorials.html" class="active">CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="page-wrapper">
         <aside class="sidebar">
             <div class="sidebar-title">CSS Lessons</div>
             <a href="lesson-css-01.html">1. What is CSS?</a>
-            <a href="lesson-css-02.html">2. Selectors</a>
-            <a href="lesson-css-03.html">3. Colors & Backgrounds</a>
-            <a href="lesson-css-04.html">4. Text Styling</a>
-            <a href="lesson-css-05.html" class="active">5. Box Model</a>
-            <a href="lesson-css-06.html">6. Borders & Spacing</a>
-            <a href="lesson-css-07.html">7. Flexbox</a>
-            <a href="lesson-css-08.html">8. Grid Layout</a>
-            <a href="lesson-css-09.html">9. Positioning</a>
-            <a href="lesson-css-10.html">10. Transitions & Animations</a>
-            <a href="lesson-css-11.html">11. Responsive Design</a>
-            <a href="lesson-css-12.html">12. Variables & Functions</a>
-            <a href="lesson-css-13.html">13. Media Queries</a>
-            <a href="lesson-css-14.html">14. Transform & Perspective</a>
+            <a href="lesson-css-02.html">2. Selectors & Properties</a>
+            <a href="lesson-css-03.html">3. Colors & Fonts</a>
+            <a href="lesson-css-04.html">4. Box Model</a>
+            <a href="lesson-css-05.html" class="active">5. Layout & Display</a>
+            <a href="lesson-css-06.html">6. Flexbox</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
+            <a href="lesson-css-08.html">8. Positioning</a>
+            <a href="lesson-css-09.html">9. Transitions & Animations</a>
+            <a href="lesson-css-10.html">10. Responsive Design</a>
+            <a href="lesson-css-11.html">11. Media Queries</a>
+            <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
+            <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
+
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Box Model</h1>
-                <div class="lesson-meta">Lesson 5 of 15</div>
+                <h1>Lesson 5: Layout & Display</h1>
+                <p class="lesson-meta">Lesson 5 of 15</p>
             </div>
+
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 5 of 10</div>
-                <h1>The Box Model</h1>
-            </div>
-            <div class="lesson-text">
-                <p>The CSS Box Model is fundamental to understanding layout. Every element is a box!</p>
-                <h3>The Box Model has 4 parts:</h3>
+                <h2>What You'll Learn</h2>
+                <p>In this important lesson, you will master the display property and basic layout concepts. Understanding how elements are displayed is crucial for building any layout.</p>
+
+                <h2>The Display Property</h2>
+                <p>The display property controls how an HTML element is rendered. It affects how the element flows with other content and how it responds to width/height properties.</p>
+
+                <h2>Display: Block</h2>
+                <p>Block-level elements take up the full available width and start on a new line. Each block element occupies its own horizontal space.</p>
+
+                <div class="code-block">display: block;
+
+/* Default block elements include: */
+div, p, h1-h6, header, footer, section, article, ul, ol, blockquote</div>
+
+                <p><strong>What Block Display Does:</strong></p>
                 <ul>
-                    <li><strong>Content:</strong> The actual content (text, images)</li>
-                    <li><strong>Padding:</strong> Space between content and border</li>
-                    <li><strong>Border:</strong> Line around the padding</li>
-                    <li><strong>Margin:</strong> Space outside the border</li>
+                    <li><strong>display: block;</strong> - Makes the element take full width (stretches left to right)</li>
+                    <li><strong>New line:</strong> Starts on a new line and forces content after it to the next line</li>
+                    <li><strong>Stacking:</strong> Multiple block elements stack vertically like paragraphs in a document</li>
+                    <li><strong>Default block elements:</strong> p, div, h1-h6 are naturally block. That's why paragraphs don't sit side-by-side</li>
+                    <li><strong>Width and height work:</strong> You can set width: 200px on a block element and it actually becomes 200px</li>
                 </ul>
-                <pre><code>/* Box Model Properties */
-.box {
-    width: 200px; /* Content width */
-    padding: 20px; /* Space inside */
-    border: 2px solid; /* Border line */
-    margin: 10px; /* Space outside */
-}</code></pre>
-                <div class="info-box"><strong>Remember:</strong> Total width = width + padding + border + margin</div>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    .box {
-        width: 200px;
-        padding: 20px;
-        border: 5px solid #3498db;
-        margin: 20px auto;
-        background-color: #ecf0f1;
-        text-align: center;
-    }
-    
-    .box-visual {
-        background-color: #e74c3c;
-        color: white;
-        padding: 30px;
-        margin: 30px;
-        border: 10px solid #c0392b;
-    }
-</style>
-</head>
-<body>
-    <div class="box">
-        <p>This is the content area</p>
-    </div>
-    
-    <div class="box-visual">
-        Content (red)<br>
-        + Padding (30px)<br>
-        + Border (10px dark red)<br>
-        + Margin (30px)
-    </div>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+
+                <h3>Characteristics of Block Elements</h3>
+                <ul>
+                    <li>Takes up full available width (stretches to fill its container)</li>
+                    <li>Starts on a new line and forces content after it to a new line</li>
+                    <li>Respects all margin, padding, and border properties</li>
+                    <li>Width and height properties work as expected</li>
+                </ul>
+
+                <h3>Block Element Example</h3>
+                <div class="code-block">.box {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 20px;
+  background: #f5f5f5;
+}</div>
+
+                <h2>Display: Inline</h2>
+                <p>Inline elements do not start on a new line and only take up as much width as necessary. They flow within text and other inline content.</p>
+
+                <div class="code-block">display: inline;
+
+/* Default inline elements include: */
+a, span, strong, em, img, button (mostly)</div>
+
+                <p><strong>What Inline Display Does:</strong></p>
+                <ul>
+                    <li><strong>display: inline;</strong> - Makes element sit next to other content (no new line)</li>
+                    <li><strong>Only needed width:</strong> Takes only as much space as its content needs. If content is 50px wide, element is 50px</li>
+                    <li><strong>Flows like text:</strong> Multiple inline elements sit side-by-side like words in a sentence</li>
+                    <li><strong>Default inline elements:</strong> &lt;a&gt;, &lt;span&gt;, &lt;strong&gt;, &lt;em&gt; are naturally inline</li>
+                    <li><strong>Problem:</strong> Top/bottom margin doesn't work! Left/right margin/padding works but top/bottom is ignored</li>
+                    <li><strong>Width/height ignored:</strong> Can't set width: 200px on inline elements - it doesn't work</li>
+                </ul>
+
+                <h3>Characteristics of Inline Elements</h3>
+                <ul>
+                    <li>Only takes up as much width as necessary</li>
+                    <li>Does not start on a new line; flows within text</li>
+                    <li>Top and bottom margin properties are ignored</li>
+                    <li>Left and right margin/padding work, but top and bottom do not</li>
+                    <li>Width and height properties do not apply</li>
+                    <li>Line breaks may appear between inline elements</li>
+                </ul>
+
+                <h3>Inline Element Example</h3>
+                <div class="code-block">span {
+  display: inline;
+  background: yellow;
+  margin-left: 10px;  /* Works */
+  margin-top: 10px;   /* Does NOT work on inline elements */
+}</div>
+
+                <h2>Display: Inline-Block</h2>
+                <p>Inline-block is a hybridelements flow inline (no new line) but respect margin, padding, width, and height properties like block elements.</p>
+
+                <div class="code-block">display: inline-block;</div>
+
+                <p><strong>What Inline-Block Does:</strong></p>
+                <ul>
+                    <li><strong>display: inline-block;</strong> - The "best of both worlds" between block and inline</li>
+                    <li><strong>Flows inline:</strong> Multiple inline-block elements sit side-by-side like inline. No new line</li>
+                    <li><strong>Respects sizing:</strong> But width: 200px WORKS. You can set actual dimensions</li>
+                    <li><strong>Respects spacing:</strong> Top/bottom margin and padding work perfectly (unlike inline)</li>
+                    <li><strong>Perfect for buttons:</strong> Buttons next to each other with proper spacing and clickable areas</li>
+                    <li><strong>Real example:</strong> Navigation buttons, image galleries where items sit side-by-side</li>
+                </ul>
+
+                <h3>Characteristics of Inline-Block Elements</h3>
+                <ul>
+                    <li>Flows inline with other content (no new line)</li>
+                    <li>Respects width, height, margin, and padding (all sides)</li>
+                    <li>Useful for creating buttons, badges, and small components</li>
+                    <li>Can have whitespace issues due to HTML formatting</li>
+                </ul>
+
+                <h3>Inline-Block Example</h3>
+                <div class="code-block">.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;           /* All sides work */
+  background: #0066cc;
+  color: white;
+  border-radius: 4px;
+}</div>
+
+                <h2>Display Comparison Table</h2>
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Display</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">New Line</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Width/Height</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Margin (All)</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>block</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Yes</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Yes</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Yes</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>inline</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">No</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">No</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">L/R only</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>inline-block</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">No</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Yes</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Yes</td>
+                    </tr>
+                </table>
+
+                <h2>Other Important Display Values</h2>
+
+                <h3>Display: None</h3>
+                <p>Completely removes an element from the page flow as if it doesn't exist.</p>
+                <div class="code-block">display: none;  /* Element is completely hidden */
+
+/* Different from visibility: hidden which hides element but keeps its space */</div>
+
+                <h3>Display: Flex</h3>
+                <p>Enables Flexbox layout. The container becomes a flex container, and children become flex items.</p>
+                <div class="code-block">display: flex;  /* Simple horizontal layout */
+display: flex;
+flex-direction: column;  /* Vertical layout */</div>
+
+                <h3>Display: Grid</h3>
+                <p>Enables CSS Grid layout for two-dimensional layouts.</p>
+                <div class="code-block">display: grid;  /* Two-dimensional layout */
+grid-template-columns: repeat(3, 1fr);  /* Three equal columns */</div>
+
+                <h2>Practical Layout Examples</h2>
+
+                <h3>Navigation Bar with Inline-Block</h3>
+                <div class="code-block">nav {
+  background: #333;
+  padding: 10px;
+}
+
+nav a {
+  display: inline-block;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+nav a:hover {
+  background: #555;
+}</div>
+
+                <h3>Creating a Simple Grid with Inline-Block</h3>
+                <div class="code-block">.item {
+  display: inline-block;
+  width: calc(33.333% - 10px);  /* 3 items per row */
+  margin: 5px;
+  padding: 15px;
+  background: white;
+  border: 1px solid #ddd;
+}</div>
+
+                <h2>Best Practices for Display Property</h2>
+                <ul>
+                    <li><strong>Know Your Elements:</strong> Understand which elements are block, inline, or inline-block by default</li>
+                    <li><strong>Use Semantic Elements:</strong> Use appropriate HTML elements for their intended purpose</li>
+                    <li><strong>Prefer Flexbox for Modern Layouts:</strong> Flexbox is more powerful and flexible than inline-block</li>
+                    <li><strong>Use Grid for Complex Layouts:</strong> Grid excels at two-dimensional layouts</li>
+                    <li><strong>Be Explicit:</strong> Set display properties explicitly for clarity, even if using defaults</li>
+                </ul>
+
+                <h2>Responsive Display Changes</h2>
+                <p>You can change the display property at different screen sizes for responsive design:</p>
+                <div class="code-block">/* Desktop: horizontal navigation */
+nav {
+  display: flex;
+}
+
+/* Mobile: vertical navigation */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+}</div>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Ready for Flexbox?</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 6, you will dive deep into Flexboxa powerful one-dimensional layout system perfect for navbars, forms, and flexible component layouts.</p>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+
+                <div class="nav-footer">
+                    <a href="lesson-css-04.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-css-06.html" class="btn">Next Lesson →</a>
+                </div>
+
+                
             </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a box with:</p>
-                <ol>
-                    <li>Width of 250px</li>
-                    <li>Padding of 25px</li>
-                    <li>A solid green border (3px)</li>
-                    <li>Margin of 15px</li>
-                    <li>A background color</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-css-04.html" class="nav-button">← Previous</a>
-                <a href="lesson-css-06.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        // Prevent caching
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>

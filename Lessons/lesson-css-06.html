@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 6: Borders & Spacing - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lesson 6: Flexbox - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
-        .sidebar a.active { background: #e8f1ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #8b5cf6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #8b5cf6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #8b5cf6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #8b5cf6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #8b5cf6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #8b5cf6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -50,124 +53,266 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
                 <li><a href="../css-tutorials.html" class="active">CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="page-wrapper">
         <aside class="sidebar">
             <div class="sidebar-title">CSS Lessons</div>
             <a href="lesson-css-01.html">1. What is CSS?</a>
-            <a href="lesson-css-02.html">2. Selectors</a>
-            <a href="lesson-css-03.html">3. Colors & Backgrounds</a>
-            <a href="lesson-css-04.html">4. Text Styling</a>
-            <a href="lesson-css-05.html">5. Box Model</a>
-            <a href="lesson-css-06.html" class="active">6. Borders & Spacing</a>
-            <a href="lesson-css-07.html">7. Flexbox</a>
-            <a href="lesson-css-08.html">8. Grid Layout</a>
-            <a href="lesson-css-09.html">9. Positioning</a>
-            <a href="lesson-css-10.html">10. Transitions & Animations</a>
-            <a href="lesson-css-11.html">11. Responsive Design</a>
-            <a href="lesson-css-12.html">12. Variables & Functions</a>
-            <a href="lesson-css-13.html">13. Media Queries</a>
-            <a href="lesson-css-14.html">14. Transform & Perspective</a>
+            <a href="lesson-css-02.html">2. Selectors & Properties</a>
+            <a href="lesson-css-03.html">3. Colors & Fonts</a>
+            <a href="lesson-css-04.html">4. Box Model</a>
+            <a href="lesson-css-05.html">5. Layout & Display</a>
+            <a href="lesson-css-06.html" class="active">6. Flexbox</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
+            <a href="lesson-css-08.html">8. Positioning</a>
+            <a href="lesson-css-09.html">9. Transitions & Animations</a>
+            <a href="lesson-css-10.html">10. Responsive Design</a>
+            <a href="lesson-css-11.html">11. Media Queries</a>
+            <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
+            <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
+
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Borders & Spacing</h1>
-                <div class="lesson-meta">Lesson 6 of 15</div>
+                <h1>Lesson 6: Flexbox</h1>
+                <p class="lesson-meta">Lesson 6 of 15</p>
             </div>
+
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 6 of 10</div>
-                <h1>Borders & Spacing</h1>
-            </div>
-            <div class="lesson-text">
-                <p>Learn to control borders, margins, padding, and rounded corners.</p>
-                <h3>Border Properties:</h3>
+                <h2>What You'll Learn</h2>
+                <p>In this comprehensive lesson, you will master Flexbox (Flexible Box Layout)one of the most important CSS layout tools. You will learn to create flexible, responsive one-dimensional layouts with powerful alignment and distribution properties.</p>
+
+                <h2>Introduction to Flexbox</h2>
+                <p>Flexbox is a CSS layout module that provides an efficient way to arrange, distribute, and align items within a container. It was introduced to solve common layout challenges and has become the standard for modern web layouts. Flexbox excels at creating responsive designs, navigation bars, forms, and components.</p>
+
+                <h2>When to Use Flexbox</h2>
                 <ul>
-                    <li><code>border-width</code> - Thickness</li>
-                    <li><code>border-style</code> - solid, dashed, dotted, double</li>
-                    <li><code>border-color</code> - Color of border</li>
-                    <li><code>border-radius</code> - Rounded corners</li>
+                    <li><strong>One-dimensional layouts:</strong> Items flowing in a single row or column</li>
+                    <li><strong>Navigation bars:</strong> Horizontal or vertical menus</li>
+                    <li><strong>Forms:</strong> Aligning labels with inputs</li>
+                    <li><strong>Toolbars:</strong> Grouping related controls</li>
+                    <li><strong>Centering content:</strong> Perfectly center items both horizontally and vertically</li>
+                    <li><strong>Responsive layouts:</strong> Easily adapt to different screen sizes</li>
                 </ul>
-                <h3>Shorthand:</h3>
-                <pre><code>border: 2px solid red; /* width style color */
-border-radius: 10px; /* rounded corners */</code></pre>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    .card {
-        width: 200px;
-        padding: 20px;
-        margin: 20px;
-        background: white;
-        display: inline-block;
-    }
-    
-    .solid-border {
-        border: 3px solid #3498db;
-    }
-    
-    .dashed-border {
-        border: 3px dashed #e74c3c;
-    }
-    
-    .rounded {
-        border: 3px solid #2ecc71;
-        border-radius: 15px;
-    }
-    
-    .circle {
-        width: 100px;
-        height: 100px;
-        border: 3px solid #9b59b6;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-</head>
-<body style="background: #ecf0f1; padding: 20px;">
-    <div class="card solid-border">Solid Border</div>
-    <div class="card dashed-border">Dashed Border</div>
-    <div class="card rounded">Rounded Corners</div>
-    <div class="card circle">Circle!</div>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+
+                <h2>Flex Container and Flex Items</h2>
+                <p>To use Flexbox, you create a flex container by setting display: flex on a parent element. All direct children automatically become flex items and can be controlled with flex properties.</p>
+
+                <div class="code-block">.container {
+  display: flex;  /* Create flex container */
+}
+
+.item {
+  /* Automatically flex items */
+}</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>display: flex;</strong> - This magic line transforms the container. All child elements inside become flex items that can be arranged flexibly</li>
+                    <li><strong>.item { }:</strong> Child elements automatically become flex items. You don't need to add any special CSS to them - they inherit flex behavior</li>
+                    <li><strong>No floats, no positioning needed:</strong> Flexbox handles all the layout for you. Just add display: flex to the parent!</li>
+                </ul>
+
+                <h2>Main Axis and Cross Axis</h2>
+                <p>Flexbox operates on two axes:</p>
+                <ul>
+                    <li><strong>Main Axis:</strong> The primary direction items flow. Default is horizontal (left to right).</li>
+                    <li><strong>Cross Axis:</strong> The axis perpendicular to main axis. Default is vertical (top to bottom).</li>
+                </ul>
+
+                <p>Understanding these axes is critical because many properties align items along these directions.</p>
+
+                <h2>Flex Direction: Controlling Flow</h2>
+                <p>The flex-direction property determines the direction of the main axis.</p>
+
+                <div class="code-block">flex-direction: row;           /* Default: horizontal left-to-right */
+flex-direction: row-reverse;   /* Horizontal right-to-left */
+flex-direction: column;        /* Vertical top-to-bottom */
+flex-direction: column-reverse; /* Vertical bottom-to-top */</div>
+
+                <h3>Practical Direction Examples</h3>
+                <div class="code-block">/* Horizontal navigation */
+.navbar {
+  display: flex;
+  flex-direction: row;  /* Items flow left to right */
+}
+
+/* Vertical sidebar menu */
+.sidebar {
+  display: flex;
+  flex-direction: column;  /* Items stack vertically */
+}</div>
+
+                <h2>Justify-Content: Distributing Along Main Axis</h2>
+                <p>The justify-content property controls how flex items are aligned and how free space is distributed along the main axis.</p>
+
+                <div class="code-block">justify-content: flex-start;    /* Items at start (default) */
+justify-content: flex-end;      /* Items at end */
+justify-content: center;        /* Items centered */
+justify-content: space-between; /* Space between items, at edges */
+justify-content: space-around;  /* Space around each item */
+justify-content: space-evenly;  /* Equal space everywhere */</div>
+
+                <h3>Justify-Content Visual Comparison</h3>
+                <ul>
+                    <li><strong>flex-start:</strong> Item Item Item | | | (items at left)</li>
+                    <li><strong>flex-end:</strong> | | | Item Item Item (items at right)</li>
+                    <li><strong>center:</strong> | Item Item Item | (items in middle)</li>
+                    <li><strong>space-between:</strong> Item | | Item | | Item (edges at container edges)</li>
+                    <li><strong>space-around:</strong> | Item | Item | Item | (equal space around each)</li>
+                    <li><strong>space-evenly:</strong> | Item | Item | Item | (equal space everywhere)</li>
+                </ul>
+
+                <h2>Align-Items: Aligning Along Cross Axis</h2>
+                <p>The align-items property controls how flex items are aligned along the cross axis. This is perfect for vertical centering.</p>
+
+                <div class="code-block">align-items: stretch;    /* Items stretch to fill (default) */
+align-items: flex-start;  /* Items at start of cross axis */
+align-items: flex-end;    /* Items at end of cross axis */
+align-items: center;      /* Items centered on cross axis */
+align-items: baseline;    /* Items aligned by baseline */</div>
+
+                <h3>Perfect Centering Example</h3>
+                <div class="code-block">/* Center content both ways */
+.hero {
+  display: flex;
+  justify-content: center;  /* Horizontal center */
+  align-items: center;      /* Vertical center */
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}</div>
+
+                <h2>Gap: Spacing Between Items</h2>
+                <p>The gap property creates consistent spacing between flex items. This is cleaner than using margins.</p>
+
+                <div class="code-block">gap: 20px;         /* Space between items */
+row-gap: 10px;    /* Space between rows */
+column-gap: 20px; /* Space between columns */</div>
+
+                <h2>Flex Property: Growing and Shrinking Items</h2>
+                <p>The flex property is a shorthand for flex-grow, flex-shrink, and flex-basis. It controls how items grow and shrink.</p>
+
+                <h3>Flex-Grow: Make Items Expand</h3>
+                <div class="code-block">flex-grow: 0;     /* Default: do not grow */
+flex-grow: 1;     /* Grow equally with siblings */
+flex-grow: 2;     /* Grow twice as much */</div>
+
+                <h3>Flex-Shrink: Make Items Shrink</h3>
+                <div class="code-block">flex-shrink: 1;   /* Default: shrink if needed */
+flex-shrink: 0;   /* Never shrink */</div>
+
+                <h3>Flex-Basis: Initial Size</h3>
+                <div class="code-block">flex-basis: auto;   /* Size based on content */
+flex-basis: 200px;  /* Fixed initial size */
+flex-basis: 50%;    /* Percentage of container */</div>
+
+                <h3>Flex Shorthand</h3>
+                <div class="code-block">/* flex: grow shrink basis */
+flex: 1;            /* flex: 1 1 0 */
+flex: 0 0 200px;    /* Fixed 200px, doesn't grow/shrink */
+flex: 1 1 auto;     /* Flexible, based on content */</div>
+
+                <h2>Flex-Wrap: Multiple Lines</h2>
+                <p>By default, all flex items fit on one line. Use flex-wrap to allow items to wrap to multiple lines.</p>
+
+                <div class="code-block">flex-wrap: nowrap;    /* Default: one line */
+flex-wrap: wrap;      /* Wrap to next line if needed */
+flex-wrap: wrap-reverse; /* Wrap in reverse */</div>
+
+                <h3>Responsive Card Grid</h3>
+                <div class="code-block">.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  flex: 1 1 calc(33.333% - 20px);  /* 3 cards per row */
+  min-width: 250px;                 /* Responsive: stack on small screens */
+}</div>
+
+                <h2>Practical Flexbox Layouts</h2>
+
+                <h3>Navigation Bar</h3>
+                <div class="code-block">.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  padding: 15px 30px;
+}
+
+.logo {
+  color: white;
+  font-weight: bold;
+  flex-shrink: 0;  /* Don't shrink logo */
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  flex: 1;  /* Take remaining space */
+}</div>
+
+                <h3>Centered Hero Section</h3>
+                <div class="code-block">.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('background.jpg') center/cover;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+}</div>
+
+                <h2>Common Flexbox Issues and Solutions</h2>
+                <ul>
+                    <li><strong>Items not centering:</strong> Make sure to use both justify-content and align-items</li>
+                    <li><strong>Unequal item sizes:</strong> Use flex: 1 to make items equal width</li>
+                    <li><strong>Content overflowing:</strong> Use min-width: 0 on flex items to allow shrinking below content size</li>
+                    <li><strong>Last item wrapping:</strong> Use flex-wrap: wrap if items should be on multiple lines</li>
+                </ul>
+
+                <h2>Browser Support</h2>
+                <p>Flexbox is supported in all modern browsers. For older browsers (Internet Explorer 11), some properties may need vendor prefixes.</p>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Next: CSS Grid</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 7, you will learn CSS Grida two-dimensional layout system perfect for complex page layouts with rows and columns.</p>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+
+                <div class="nav-footer">
+                    <a href="lesson-css-05.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-css-07.html" class="btn">Next Lesson →</a>
+                </div>
+
+                
             </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a card with:</p>
-                <ol>
-                    <li>A dotted border</li>
-                    <li>Rounded corners (border-radius: 20px)</li>
-                    <li>Padding and margin of your choice</li>
-                    <li>A nice background color</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-css-05.html" class="nav-button">← Previous</a>
-                <a href="lesson-css-07.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        // Prevent caching
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>

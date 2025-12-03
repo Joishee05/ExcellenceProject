@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalBonesBox - Comprehensive Technical Guide</title>
+    <link rel="stylesheet" href="styles/tutorial.css?v=1000">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%); }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #333; line-height: 1.8; }
+        
+        .navbar { background: white; border-bottom: 2px solid #d4af37; padding: 1.2rem 0; box-shadow: 0 2px 8px rgba(0,51,160,0.08); position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; display: flex; align-items: center; gap: 2rem; }
+        .logo { font-size: 1.3rem; font-weight: 700; color: #0033a0; text-decoration: none; transition: all 0.3s; }
+        .logo:hover { color: #d4af37; }
+        .logo-bracket { color: #d4af37; }
+        .nav-container a:last-child { margin-left: auto; color: #0033a0; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s; }
+        .nav-container a:last-child:hover { background: #ecf0ff; }
+        
+        .guide-container { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+        
+        h1 { color: #0033a0; font-size: 2.8rem; margin-bottom: 0.5rem; font-weight: 700; letter-spacing: -0.5px; }
+        h1 + p { color: #666; font-size: 1.15rem; margin-bottom: 2rem; }
+        
+        h2 { color: white; font-size: 1.9rem; margin-top: 3rem; margin-bottom: 1.5rem; padding: 1rem 1.5rem; background: linear-gradient(135deg, #0033a0 0%, #004db3 100%); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,51,160,0.15); }
+        
+        h3 { color: #0033a0; font-size: 1.35rem; margin-top: 2.5rem; margin-bottom: 1.5rem; font-weight: 600; }
+        h4 { color: #0033a0; font-size: 1.1rem; margin-top: 1.8rem; margin-bottom: 0.9rem; font-weight: 600; border-left: 3px solid #d4af37; padding-left: 1rem; }
+        h5 { color: #333; font-size: 1rem; margin-top: 1.2rem; margin-bottom: 0.8rem; font-weight: 600; }
+        
+        p { color: #555; margin-bottom: 1.5rem; font-size: 1rem; }
+        li { color: #555; margin-bottom: 0.8rem; margin-left: 0.3rem; }
+        
+        a { color: #0033a0; text-decoration: none; font-weight: 500; transition: all 0.3s; border-radius: 3px; padding: 0 2px; }
+        a:hover { color: #d4af37; background: rgba(0,51,160,0.05); }
+        
+        strong { color: #0033a0; font-weight: 600; }
+        
+        .section-box { background: white; padding: 2rem; margin-bottom: 2rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: all 0.3s; border-top: 4px solid #0033a0; }
+        .section-box:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+        
+        .file-box { background: linear-gradient(135deg, #f9fafb 0%, #f0f4f9 100%); border: 2px solid #e0e7ff; border-left: 4px solid #d4af37; padding: 1.5rem; margin: 1rem 0; border-radius: 8px; }
+        .file-name { font-family: 'Courier New', monospace; color: #0033a0; font-weight: 700; font-size: 1.1rem; }
+        .file-type { display: inline-block; background: #0033a0; color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-left: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .file-description { color: #666; margin: 0.7rem 0; }
+        
+        .key-points { background: linear-gradient(135deg, #e8f2ff 0%, #f0f7ff 100%); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #0033a0; }
+        .key-points ul { margin-left: 1.5rem; }
+        .key-points li { margin: 0.6rem 0; color: #333; font-weight: 500; }
+        
+        .code-example { background: #1e1e1e; color: #d4d4d4; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; overflow-x: auto; font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; border-left: 4px solid #d4af37; box-shadow: inset 0 2px 4px rgba(0,0,0,0.3); white-space: pre-wrap; word-wrap: break-word; }
+        
+        .learning-flow { background: linear-gradient(135deg, #e8f2ff 0%, #f0f7ff 100%); padding: 2rem; border-radius: 10px; margin: 1.5rem 0; border-left: 4px solid #0033a0; }
+        .flow-item { margin: 1rem 0; padding-left: 2.5rem; position: relative; font-weight: 500; color: #333; }
+        .flow-item::before { content: "→"; position: absolute; left: 0; color: #0033a0; font-weight: bold; font-size: 1.2rem; }
+        
+        .important { background: linear-gradient(135deg, #fff8e8 0%, #fffbf0 100%); border-left: 4px solid #ff9800; padding: 1.2rem; border-radius: 8px; margin: 1rem 0; }
+        .important strong { color: #e65100; }
+        
+        .note { background: linear-gradient(135deg, #e3f2fd 0%, #f1f5ff 100%); border-left: 4px solid #2196f3; padding: 1.2rem; border-radius: 8px; margin: 1rem 0; }
+        .note strong { color: #0d47a1; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        table th { background: linear-gradient(135deg, #0033a0 0%, #004db3 100%); color: white; padding: 1rem 0.75rem; text-align: left; font-weight: 600; letter-spacing: 0.5px; }
+        table td { padding: 0.9rem 0.75rem; border-bottom: 1px solid #e8ecf1; }
+        table tr:hover { background: #f9fafb; }
+        table tr:nth-child(even) { background: #f9fafb; }
+        
+        .footer { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center; padding: 2rem; margin-top: 4rem; }
+        
+        .toc { background: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem; border: 2px solid #ecf0ff; border-left: 4px solid #0033a0; }
+        .toc h3 { color: #0033a0; margin-top: 0; }
+        .toc ol { margin-left: 1.5rem; }
+        .toc li { margin: 0.7rem 0; color: #333; }
+        .toc a { color: #0033a0; font-weight: 600; }
+        
+        @media (max-width: 768px) { 
+            h1 { font-size: 2rem; } 
+            h2 { font-size: 1.4rem; padding: 0.8rem 1rem; } 
+            .guide-container { padding: 1rem 0.5rem; }
+            .section-box { padding: 1.5rem; }
+            .code-example { font-size: 0.8rem; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><span class="logo-bracket">&lt;</span>SLU LearnCode<span class="logo-bracket">/&gt;</span></a>
+            <a href="project-walkthrough.html" style="text-decoration: none; color: #0033a0;">Back to Project Overview</a>
+        </div>
+    </nav>
+
+    <div class="guide-container">
+        <h1>DigitalBonesBox: Comprehensive Technical Guide</h1>
+        <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">In-depth explanations of every component with code examples and architecture details</p>
+
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+                <li><a href="#overview" style="color: #0033a0;">Project Overview</a></li>
+                <li><a href="#frontend" style="color: #0033a0;">Frontend Architecture</a></li>
+                <li><a href="#backend" style="color: #0033a0;">Backend Architecture</a></li>
+                <li><a href="#data-flow" style="color: #0033a0;">Data Flow Examples</a></li>
+                <li><a href="#code-examples" style="color: #0033a0;">Code Examples</a></li>
+                <li><a href="#api-reference" style="color: #0033a0;">API Reference</a></li>
+                <li><a href="#setup" style="color: #0033a0;">Setup Instructions</a></li>
+                <li><a href="#troubleshooting" style="color: #0033a0;">Troubleshooting</a></li>
+            </ol>
+        </div>
+
+        <!-- SECTION 1: OVERVIEW -->
+        <div class="section-box" id="overview">
+            <h2>1. Project Overview</h2>
+            <p>DigitalBonesBox is a full-stack web application for learning human anatomy through interactive exploration. The application consists of a frontend (what you see in your browser) and a backend server (where data is stored and processed).</p>
+            
+            <h3>Technology Stack</h3>
+            <table>
+                <tr>
+                    <th>Layer</th>
+                    <th>Technology</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td>Frontend HTML</td>
+                    <td>HTML5</td>
+                    <td>Structure and semantic markup</td>
+                </tr>
+                <tr>
+                    <td>Frontend Styling</td>
+                    <td>CSS3</td>
+                    <td>Layout, design, responsive behavior</td>
+                </tr>
+                <tr>
+                    <td>Frontend Logic</td>
+                    <td>JavaScript (ES6+)</td>
+                    <td>Interactivity and dynamic updates</td>
+                </tr>
+                <tr>
+                    <td>Backend Server</td>
+                    <td>Node.js with Express</td>
+                    <td>HTTP server and API endpoints</td>
+                </tr>
+                <tr>
+                    <td>Data Management</td>
+                    <td>JSON files on GitHub</td>
+                    <td>Bone data and metadata storage</td>
+                </tr>
+                <tr>
+                    <td>Additional Libraries</td>
+                    <td>Axios, CORS, Rate Limiting</td>
+                    <td>HTTP requests, security, performance</td>
+                </tr>
+            </table>
+
+            <h3>System Architecture</h3>
+            <p>The application follows a client-server architecture:</p>
+            <div class="learning-flow">
+                <div class="flow-item">User's Browser (Client)</div>
+                <div class="flow-item">Makes HTTP Requests via JavaScript</div>
+                <div class="flow-item">Node.js Server (Backend) receives request</div>
+                <div class="flow-item">Server processes and validates request</div>
+                <div class="flow-item">Server fetches data from GitHub or cache</div>
+                <div class="flow-item">Server sends JSON response</div>
+                <div class="flow-item">Browser receives response and updates display</div>
+                <div class="flow-item">User sees updated interface</div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: FRONTEND -->
+        <div class="section-box" id="frontend">
+            <h2>2. Frontend Architecture</h2>
+
+            <h3>HTML Structure: boneset.html</h3>
+            <p>The main HTML file defines the page structure. Here is the key layout:</p>
+            <div class="code-example">&#60;body&#62;
+  &#60;header id="badge"&#62;
+    Navigation bar with Home, Tutor, Study, Help buttons
+  &#60;/header&#62;
+
+  &#60;aside id="sidebar-container"&#62;
+    Navigation menu with bone categories
+  &#60;/aside&#62;
+
+  &#60;main id="editor-view"&#62;
+    &#60;section class="search-area"&#62;
+      Search input and filter controls
+    &#60;/section&#62;
+    
+    &#60;section class="content-area"&#62;
+      Bone images and descriptions displayed here
+    &#60;/section&#62;
+  &#60;/main&#62;
+&#60;/body&#62;</div>
+
+            <h3>CSS Styling: style.css</h3>
+            <p>The stylesheet implements responsive design using Flexbox and CSS Grid. Key design features:</p>
+            <ul style="margin-left: 1.5rem;">
+                <li>Header fixed at top with navigation buttons</li>
+                <li>Sidebar toggles on mobile (hamburger menu)</li>
+                <li>Main content area grows to fill available space</li>
+                <li>Media queries for breakpoints at 768px (tablet) and smaller</li>
+                <li>Color scheme: Blue (#0033a0) primary, Gold (#d4af37) accent</li>
+                <li>Font stack: Inter for UI, Crimson Text for content</li>
+                <li>Smooth transitions and hover effects for interactivity</li>
+            </ul>
+
+            <h4>Responsive Breakpoints:</h4>
+            <table>
+                <tr>
+                    <th>Screen Size</th>
+                    <th>Layout</th>
+                    <th>Sidebar</th>
+                </tr>
+                <tr>
+                    <td>Desktop (1024px+)</td>
+                    <td>Horizontal layout with sidebar visible</td>
+                    <td>Always visible on left</td>
+                </tr>
+                <tr>
+                    <td>Tablet (768px - 1023px)</td>
+                    <td>Narrow sidebar, full-width content</td>
+                    <td>Visible but narrow</td>
+                </tr>
+                <tr>
+                    <td>Mobile (under 768px)</td>
+                    <td>Full-width stacked layout</td>
+                    <td>Hidden, toggled with hamburger menu</td>
+                </tr>
+            </table>
+
+            <h3>JavaScript: main.js</h3>
+            <p>The central controller that orchestrates the entire application. Main responsibilities:</p>
+            <h4>Initialization (on page load):</h4>
+            <div class="code-example">// Pseudo-code for initialization flow
+document.addEventListener('DOMContentLoaded', async function() {
+  // 1. Load all bones from server
+  const bones = await api.getAllBones();
+  
+  // 2. Build sidebar navigation
+  populateSidebar(bones);
+  
+  // 3. Set up event listeners
+  setupSearchListener();
+  setupDropdownListeners();
+  setupBoneClickListeners();
+  
+  // 4. Display initial content
+  showDefaultBone();
+});</div>
+
+            <h4>Event Handling:</h4>
+            <p>main.js sets up listeners for user interactions:</p>
+            <ul style="margin-left: 1.5rem;">
+                <li>Search input: Filters bones in real-time as user types</li>
+                <li>Dropdown menus: Updates bone list based on selected category</li>
+                <li>Bone clicks: Loads and displays selected bone details</li>
+                <li>Window resize: Adjusts layout for responsive design</li>
+                <li>Navigation buttons: Routes between different modes (Home, Tutor, Study)</li>
+            </ul>
+
+            <h3>JavaScript: api.js</h3>
+            <p>Handles all communication with the backend server using the Fetch API.</p>
+            <h4>Key Functions:</h4>
+            <div class="code-example">// Get all bones
+async function getAllBones() {
+  const response = await fetch('/api/bones');
+  return await response.json();
+}
+
+// Get specific bone by ID
+async function getBoneById(boneId) {
+  const response = await fetch(`/api/bones/${boneId}`);
+  if (!response.ok) {
+    throw new Error(`Bone not found: ${boneId}`);
+  }
+  return await response.json();
+}
+
+// Search bones
+async function searchBones(query) {
+  const response = await fetch(`/api/search?q=${query}`);
+  return await response.json();
+}
+
+// Get bone image
+async function getBoneImage(boneId) {
+  const response = await fetch(`/api/bones/${boneId}/image`);
+  return await response.blob();
+}</div>
+
+            <h3>JavaScript: search.js</h3>
+            <p>Implements real-time filtering and search functionality.</p>
+            <h4>How it works:</h4>
+            <div class="code-example">// Pseudo-code for search implementation
+searchInput.addEventListener('input', (event) => {
+  const query = event.target.value.toLowerCase();
+  
+  // Filter bones array
+  const results = bones.filter(bone => 
+    bone.name.toLowerCase().includes(query) ||
+    bone.description.toLowerCase().includes(query)
+  );
+  
+  // Update display
+  displaySearchResults(results);
+  
+  // Highlight matching text
+  highlightMatches(query);
+});</div>
+
+            <h3>JavaScript: dropdowns.js</h3>
+            <p>Manages category filters and dropdown menus.</p>
+            <h4>Features:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Open/close dropdown on click</li>
+                <li>Filter bones by selected category</li>
+                <li>Update sidebar with filtered results</li>
+                <li>Keyboard navigation (arrow keys)</li>
+                <li>Close on outside click</li>
+            </ul>
+
+            <h3>JavaScript: viewer.js</h3>
+            <p>Manages bone image display and interaction.</p>
+            <h4>Capabilities:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Load and display bone images</li>
+                <li>Zoom in/out on image</li>
+                <li>Pan image when zoomed</li>
+                <li>Switch between different anatomical views (anterior, posterior, medial, lateral)</li>
+                <li>Display anatomical landmarks and labels</li>
+                <li>Show descriptions and clinical notes</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 3: BACKEND -->
+        <div class="section-box" id="backend">
+            <h2>3. Backend Architecture</h2>
+
+            <h3>Server: server.js</h3>
+            <p>The Node.js backend server powered by Express. It runs continuously and handles all HTTP requests from the frontend.</p>
+
+            <h4>Server Startup:</h4>
+            <div class="code-example">const express = require('express');
+const cors = require('cors');
+const app = express();
+const PORT = process.env.PORT || 8000;
+
+// Enable CORS for frontend requests
+app.use(cors());
+
+// Parse JSON requests
+app.use(express.json());
+
+// Start listening
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});</div>
+
+            <h4>Key Middleware:</h4>
+            <table>
+                <tr>
+                    <th>Middleware</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td>CORS</td>
+                    <td>Allows requests from different domains (frontend)</td>
+                </tr>
+                <tr>
+                    <td>express.json()</td>
+                    <td>Parses incoming JSON request bodies</td>
+                </tr>
+                <tr>
+                    <td>Rate Limiting</td>
+                    <td>Limits search requests to 100 per minute per IP</td>
+                </tr>
+                <tr>
+                    <td>Input Validation</td>
+                    <td>Prevents malicious input and path traversal attacks</td>
+                </tr>
+                <tr>
+                    <td>Error Handling</td>
+                    <td>Catches and properly handles errors</td>
+                </tr>
+            </table>
+
+            <h4>Data Caching:</h4>
+            <p>The server implements intelligent caching to improve performance:</p>
+            <div class="code-example">let boneCache = null;
+
+async function getAllBones() {
+  // Check if data is already cached in memory
+  if (boneCache !== null) {
+    console.log('Returning cached data');
+    return boneCache;
+  }
+  
+  // Fetch from GitHub if not cached
+  const response = await axios.get(BONESET_JSON_URL);
+  boneCache = response.data;
+  
+  return boneCache;
+}</div>
+            <p>This means: First request fetches from GitHub (slower), all subsequent requests use cached data (fast).</p>
+
+            <h3>Security Features</h3>
+            <h4>Input Validation:</h4>
+            <div class="code-example">function isValidBoneId(boneId) {
+  // Only allow alphanumeric and underscores
+  // Prevents path traversal attacks like "../../../etc/passwd"
+  return /^[a-zA-Z0-9_]+$/.test(boneId);
+}
+
+// Usage
+app.get('/api/bones/:id', (req, res) => {
+  if (!isValidBoneId(req.params.id)) {
+    return res.status(400).json({error: 'Invalid bone ID'});
+  }
+  // ... continue processing
+});</div>
+
+            <h4>HTML Escaping:</h4>
+            <p>Prevents XSS (Cross-Site Scripting) attacks:</p>
+            <div class="code-example">function escapeHtml(str = "") {
+  return String(str).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#39;",
+  })[c]);
+}</div>
+
+            <h3>Error Handling</h3>
+            <p>The server handles various error scenarios gracefully:</p>
+            <table>
+                <tr>
+                    <th>Error</th>
+                    <th>HTTP Code</th>
+                    <th>Response</th>
+                </tr>
+                <tr>
+                    <td>Bone not found</td>
+                    <td>404</td>
+                    <td>{"error": "Bone not found"}</td>
+                </tr>
+                <tr>
+                    <td>Invalid request</td>
+                    <td>400</td>
+                    <td>{"error": "Invalid bone ID"}</td>
+                </tr>
+                <tr>
+                    <td>Server error</td>
+                    <td>500</td>
+                    <td>{"error": "Internal server error"}</td>
+                </tr>
+                <tr>
+                    <td>Rate limit exceeded</td>
+                    <td>429</td>
+                    <td>{"error": "Too many requests"}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECTION 4: DATA FLOW -->
+        <div class="section-box" id="data-flow">
+            <h2>4. Detailed Data Flow Examples</h2>
+
+            <h3>Scenario 1: User Opens Application</h3>
+            <div class="learning-flow">
+                <div class="flow-item">Browser loads boneset.html</div>
+                <div class="flow-item">style.css applies styling and layout</div>
+                <div class="flow-item">main.js script starts executing</div>
+                <div class="flow-item">main.js calls api.getAllBones()</div>
+                <div class="flow-item">api.js sends GET /api/bones request</div>
+                <div class="flow-item">server.js receives request</div>
+                <div class="flow-item">Server checks cache (finds nothing on first load)</div>
+                <div class="flow-item">Server fetches from GitHub</div>
+                <div class="flow-item">Server caches data in memory</div>
+                <div class="flow-item">Server returns JSON array of bones</div>
+                <div class="flow-item">api.js returns data to main.js</div>
+                <div class="flow-item">main.js populates sidebar with bones</div>
+                <div class="flow-item">main.js displays first bone details</div>
+                <div class="flow-item">User sees loaded application</div>
+            </div>
+
+            <h3>Scenario 2: User Searches for "ischial"</h3>
+            <div class="learning-flow">
+                <div class="flow-item">User types "ischial" in search box</div>
+                <div class="flow-item">search.js detects input event</div>
+                <div class="flow-item">search.js filters bones array locally</div>
+                <div class="flow-item">Results: [ischial_tuberosity, ischial_spine, ischial_ramus]</div>
+                <div class="flow-item">search.js updates sidebar with matching bones</div>
+                <div class="flow-item">User sees 3 matching results</div>
+                <div class="flow-item">search.js highlights the word "ischial"</div>
+            </div>
+
+            <h3>Scenario 3: User Clicks "Ischial Tuberosity" Bone</h3>
+            <div class="learning-flow">
+                <div class="flow-item">User clicks on bone name in sidebar</div>
+                <div class="flow-item">main.js detects click event</div>
+                <div class="flow-item">main.js calls api.getBoneById('ischial_tuberosity')</div>
+                <div class="flow-item">api.js sends GET /api/bones/ischial_tuberosity</div>
+                <div class="flow-item">server.js receives request</div>
+                <div class="flow-item">server.js validates bone ID</div>
+                <div class="flow-item">server.js finds bone in cached data</div>
+                <div class="flow-item">server.js returns bone object with details</div>
+                <div class="flow-item">api.js receives response</div>
+                <div class="flow-item">main.js passes to viewer.js</div>
+                <div class="flow-item">viewer.js loads and displays bone image</div>
+                <div class="flow-item">viewer.js displays anatomical landmarks</div>
+                <div class="flow-item">viewer.js shows description and clinical notes</div>
+                <div class="flow-item">User sees detailed bone information</div>
+            </div>
+
+            <h3>Scenario 4: User Filters by Category</h3>
+            <div class="learning-flow">
+                <div class="flow-item">User opens "Region" dropdown</div>
+                <div class="flow-item">dropdowns.js displays options: Anterior, Posterior, Medial, etc.</div>
+                <div class="flow-item">User selects "Posterior"</div>
+                <div class="flow-item">dropdowns.js filters bones by region</div>
+                <div class="flow-item">Only posterior bones shown in sidebar</div>
+                <div class="flow-item">First posterior bone displayed</div>
+                <div class="flow-item">User can now only see bones from posterior pelvis</div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: CODE EXAMPLES -->
+        <div class="section-box" id="code-examples">
+            <h2>5. Detailed Code Examples</h2>
+
+            <h3>Example 1: Complete Search Implementation</h3>
+            <div class="code-example">// In search.js
+const searchInput = document.getElementById('search-input');
+let allBones = [];
+
+searchInput.addEventListener('input', (event) => {
+  const query = event.target.value.toLowerCase().trim();
+  
+  // If empty, show all
+  if (query === '') {
+    displayBones(allBones);
+    return;
+  }
+  
+  // Filter bones
+  const filtered = allBones.filter(bone => {
+    return bone.name.toLowerCase().includes(query) ||
+           bone.description.toLowerCase().includes(query);
+  });
+  
+  // Display results
+  displayBones(filtered);
+  
+  // Update count
+  document.getElementById('result-count').textContent = 
+    `Found ${filtered.length} bone(s)`;
+});
+
+function displayBones(bones) {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.innerHTML = '';
+  
+  bones.forEach(bone => {
+    const item = document.createElement('div');
+    item.className = 'bone-item';
+    item.textContent = bone.name;
+    item.onclick = () => selectBone(bone);
+    sidebar.appendChild(item);
+  });
+}</div>
+
+            <h3>Example 2: Fetching Data from Server</h3>
+            <div class="code-example">// In main.js
+async function loadBones() {
+  try {
+    // Show loading indicator
+    showLoadingSpinner();
+    
+    // Fetch from API
+    const response = await fetch('/api/bones');
+    
+    // Check if response is OK
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+    
+    // Parse JSON
+    const bones = await response.json();
+    
+    // Validate data
+    if (!Array.isArray(bones)) {
+      throw new Error('Invalid data format');
+    }
+    
+    // Store for later use
+    allBones = bones;
+    
+    // Update UI
+    populateSidebar(bones);
+    
+    return bones;
+    
+  } catch (error) {
+    console.error('Error loading bones:', error);
+    showErrorMessage('Failed to load bones. Please try again.');
+  } finally {
+    hideLoadingSpinner();
+  }
+}</div>
+
+            <h3>Example 3: Server Endpoint with Error Handling</h3>
+            <div class="code-example">// In server.js
+app.get('/api/bones/:id', async (req, res) => {
+  try {
+    // Extract and validate bone ID
+    const boneId = req.params.id;
+    
+    if (!isValidBoneId(boneId)) {
+      return res.status(400).json({
+        error: 'Invalid bone ID format'
+      });
+    }
+    
+    // Get all bones (from cache if available)
+    const bones = await getAllBones();
+    
+    // Find the specific bone
+    const bone = bones.find(b => b.id === boneId);
+    
+    if (!bone) {
+      return res.status(404).json({
+        error: `Bone not found: ${boneId}`
+      });
+    }
+    
+    // Return bone data
+    res.json(bone);
+    
+  } catch (error) {
+    console.error('Error fetching bone:', error);
+    res.status(500).json({
+      error: 'Internal server error'
+    });
+  }
+});</div>
+
+            <h3>Example 4: Event Listener for Dropdown</h3>
+            <div class="code-example">// In dropdowns.js
+class DropdownFilter {
+  constructor(triggerId, menuId, boneListId) {
+    this.trigger = document.getElementById(triggerId);
+    this.menu = document.getElementById(menuId);
+    this.boneList = document.getElementById(boneListId);
+    this.isOpen = false;
+    
+    this.setup();
+  }
+  
+  setup() {
+    // Toggle dropdown
+    this.trigger.addEventListener('click', () => {
+      this.isOpen ? this.close() : this.open();
+    });
+    
+    // Handle menu item selection
+    this.menu.querySelectorAll('li').forEach(item => {
+      item.addEventListener('click', (e) => {
+        this.selectItem(e.target);
+      });
+    });
+    
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!this.trigger.contains(e.target) && 
+          !this.menu.contains(e.target)) {
+        this.close();
+      }
+    });
+  }
+  
+  open() {
+    this.menu.style.display = 'block';
+    this.isOpen = true;
+  }
+  
+  close() {
+    this.menu.style.display = 'none';
+    this.isOpen = false;
+  }
+  
+  selectItem(item) {
+    const category = item.textContent;
+    this.trigger.textContent = category;
+    this.filterBones(category);
+    this.close();
+  }
+  
+  filterBones(category) {
+    const items = this.boneList.querySelectorAll('.bone-item');
+    items.forEach(item => {
+      if (item.dataset.category === category || category === 'All') {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+}</div>
+        </div>
+
+        <!-- SECTION 6: API REFERENCE -->
+        <div class="section-box" id="api-reference">
+            <h2>6. API Reference</h2>
+
+            <h3>Base URL</h3>
+            <div class="code-example">http://localhost:8000/api</div>
+
+            <h3>Endpoints</h3>
+
+            <h4>GET /api/bones</h4>
+            <p>Returns all bones in the database.</p>
+            <h5>Request:</h5>
+            <div class="code-example">GET /api/bones</div>
+            <h5>Response:</h5>
+            <div class="code-example">[
+  {
+    "id": "ischial_tuberosity",
+    "name": "Ischial Tuberosity",
+    "region": "posterior",
+    "anatomicalLandmarks": ["prominence", "rough surface"],
+    "description": "The pointed projection of the ischium...",
+    "clinicalNotes": "Weight-bearing landmark..."
+  },
+  ...
+]</div>
+            <h5>Status Codes:</h5>
+            <ul style="margin-left: 1.5rem;">
+                <li>200 OK: Request successful</li>
+                <li>500 Server Error: Problem fetching data</li>
+            </ul>
+
+            <h4>GET /api/bones/:id</h4>
+            <p>Returns a specific bone by ID.</p>
+            <h5>Request:</h5>
+            <div class="code-example">GET /api/bones/ischial_tuberosity</div>
+            <h5>Response:</h5>
+            <div class="code-example">{
+  "id": "ischial_tuberosity",
+  "name": "Ischial Tuberosity",
+  "region": "posterior",
+  "anatomicalLandmarks": ["prominence", "rough surface"],
+  "description": "The pointed projection of the ischium...",
+  "clinicalNotes": "Weight-bearing landmark...",
+  "imagePath": "/images/ischial_tuberosity_anterior.png"
+}</div>
+            <h5>Status Codes:</h5>
+            <ul style="margin-left: 1.5rem;">
+                <li>200 OK: Bone found and returned</li>
+                <li>400 Bad Request: Invalid bone ID format</li>
+                <li>404 Not Found: Bone doesn't exist</li>
+                <li>500 Server Error: Problem fetching data</li>
+            </ul>
+
+            <h4>GET /api/bones/:id/image</h4>
+            <p>Returns the image file for a specific bone.</p>
+            <h5>Request:</h5>
+            <div class="code-example">GET /api/bones/ischial_tuberosity/image</div>
+            <h5>Response:</h5>
+            <p>Returns image file (PNG, JPG, etc.)</p>
+
+            <h4>GET /api/search?q=query</h4>
+            <p>Searches bones by name or description.</p>
+            <h5>Request:</h5>
+            <div class="code-example">GET /api/search?q=ischial</div>
+            <h5>Response:</h5>
+            <div class="code-example">[
+  {
+    "id": "ischial_tuberosity",
+    "name": "Ischial Tuberosity",
+    ...
+  },
+  {
+    "id": "ischial_spine",
+    "name": "Ischial Spine",
+    ...
+  },
+  {
+    "id": "ischial_ramus",
+    "name": "Ischial Ramus",
+    ...
+  }
+]</div>
+            <h5>Rate Limiting:</h5>
+            <ul style="margin-left: 1.5rem;">
+                <li>100 requests per minute per IP address</li>
+                <li>Exceeding limit returns HTTP 429 (Too Many Requests)</li>
+            </ul>
+
+            <h4>GET /api/categories</h4>
+            <p>Returns available bone categories for filtering.</p>
+            <h5>Response:</h5>
+            <div class="code-example">{
+  "regions": ["anterior", "posterior", "medial", "lateral"],
+  "types": ["articulation", "landmark", "process"],
+  "groups": ["pelvis", "femur", "tibia"]
+}</div>
+        </div>
+
+        <!-- SECTION 7: SETUP -->
+        <div class="section-box" id="setup">
+            <h2>7. Setup and Deployment</h2>
+
+            <h3>Local Development Setup</h3>
+            <h4>Prerequisites:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Node.js v14 or higher</li>
+                <li>npm (comes with Node.js)</li>
+                <li>Git for version control</li>
+                <li>Code editor (VS Code recommended)</li>
+            </ul>
+
+            <h4>Step-by-Step Instructions:</h4>
+            <div class="code-example">1. Clone the repository
+git clone https://github.com/oss-slu/DigitalBonesBox.git
+
+2. Navigate to project directory
+cd DigitalBonesBox
+
+3. Install dependencies
+npm install
+
+4. Start the server
+npm start
+  or
+node boneset-api/server.js
+
+5. Open browser
+http://localhost:8000
+
+6. Application should load with all bones visible</div>
+
+            <h3>Environment Variables</h3>
+            <p>Create a .env file in the project root (optional):</p>
+            <div class="code-example">PORT=8000
+NODE_ENV=development
+GITHUB_REPO=https://raw.githubusercontent.com/oss-slu/DigitalBonesBox/data/DataPelvis/</div>
+
+            <h3>Troubleshooting Common Issues</h3>
+            <h4>Port Already in Use:</h4>
+            <p>If you get "Address already in use" error:</p>
+            <div class="code-example"># Find process using port 8000
+lsof -i :8000
+
+# Kill the process
+kill -9 PID_NUMBER
+
+# Or use a different port
+PORT=8001 npm start</div>
+
+            <h4>Dependencies Not Installing:</h4>
+            <div class="code-example"># Clear npm cache
+npm cache clean --force
+
+# Delete package-lock.json and node_modules
+rm -rf node_modules package-lock.json
+
+# Reinstall
+npm install</div>
+
+            <h4>Server Starts But Page Won't Load:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Check browser console for errors (F12 or right-click → Inspect)</li>
+                <li>Verify server is running: Check terminal for "Server running on port 8000"</li>
+                <li>Check network tab in browser DevTools</li>
+                <li>Verify GitHub connection: Server needs internet to fetch bone data</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 8: TROUBLESHOOTING -->
+        <div class="section-box" id="troubleshooting">
+            <h2>8. Troubleshooting Guide</h2>
+
+            <h3>Frontend Issues</h3>
+            <h4>Sidebar not showing bones:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Check browser console (F12) for JavaScript errors</li>
+                <li>Verify api.getAllBones() is being called in main.js</li>
+                <li>Check Network tab to see if /api/bones request returns data</li>
+                <li>Verify CSS is loading (style.css should be in &lt;head&gt;)</li>
+            </ul>
+
+            <h4>Search not working:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Verify search.js is loaded in browser</li>
+                <li>Check that searchInput element has correct ID</li>
+                <li>Verify allBones array is populated before searching</li>
+                <li>Test with browser console: console.log(allBones)</li>
+            </ul>
+
+            <h4>Images not displaying:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Check that bone object has imagePath property</li>
+                <li>Verify image files exist on GitHub</li>
+                <li>Check Network tab for failed image requests (404 errors)</li>
+                <li>Verify CORS headers are set correctly on server</li>
+            </ul>
+
+            <h3>Backend Issues</h3>
+            <h4>Server won't start:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Check Node.js is installed: node --version</li>
+                <li>Check npm is installed: npm --version</li>
+                <li>Verify all dependencies installed: npm install</li>
+                <li>Check for syntax errors: npm start (should show error message)</li>
+            </ul>
+
+            <h4>Can't connect to server:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Verify server is actually running (should see "Server listening on port 8000")</li>
+                <li>Check correct URL: http://localhost:8000 (not 3000 or other port)</li>
+                <li>Try curl in terminal: curl http://localhost:8000/api/bones</li>
+                <li>Check firewall isn't blocking port 8000</li>
+            </ul>
+
+            <h4>API returns 404 for bones:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Verify GitHub is accessible (server needs internet)</li>
+                <li>Check GITHUB_REPO URL in server.js is correct</li>
+                <li>Verify bone ID format (lowercase, underscores only)</li>
+                <li>Check server console for error messages</li>
+            </ul>
+
+            <h3>Network and Security</h3>
+            <h4>CORS errors:</h4>
+            <p>If you see "Access to XMLHttpRequest blocked by CORS policy":</p>
+            <ul style="margin-left: 1.5rem;">
+                <li>Verify cors() middleware is enabled in server.js</li>
+                <li>Check that frontend and backend are on same origin or CORS is configured</li>
+                <li>Clear browser cache: Ctrl+Shift+Delete (or Cmd+Shift+Delete on Mac)</li>
+            </ul>
+
+            <h4>Rate limiting:</h4>
+            <p>If you get "Too Many Requests (429)":</p>
+            <ul style="margin-left: 1.5rem;">
+                <li>You've exceeded 100 requests per minute</li>
+                <li>Wait a minute before making more requests</li>
+                <li>This is normal in production to prevent abuse</li>
+                <li>For development, you can disable rate limiting</li>
+            </ul>
+
+            <h3>Data Issues</h3>
+            <h4>Bones showing undefined or empty fields:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Check data structure in GitHub JSON files</li>
+                <li>Verify bone object has all required fields</li>
+                <li>Add default values in viewer.js for missing fields</li>
+                <li>Check console for any data parsing errors</li>
+            </ul>
+
+            <h4>Images wrong or missing:</h4>
+            <ul style="margin-left: 1.5rem;">
+                <li>Verify image file paths are correct in bone data</li>
+                <li>Check image files exist on GitHub</li>
+                <li>Try accessing image URL directly in browser</li>
+                <li>Verify image format is supported (PNG, JPG, WebP)</li>
+            </ul>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="section-box" style="background: #ecf0ff; border-left: 4px solid #0033a0;">
+            <h2>Next Steps</h2>
+            <p>Now that you understand the technical architecture:</p>
+            <ol style="margin-left: 1.5rem;">
+                <li>Set up DigitalBonesBox locally using the setup instructions</li>
+                <li>Run the application and explore the interface</li>
+                <li>Open the browser DevTools (F12) and monitor network requests</li>
+                <li>Read through the source code with this guide as reference</li>
+                <li>Try modifying the code (e.g., change colors in CSS, add logging in JS)</li>
+                <li>Make a small feature addition (e.g., favorite button for bones)</li>
+                <li>Deploy to a server and share with others</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Copyright 2025 SLU LearnCode - Comprehensive DigitalBonesBox Technical Guide</p>
+    </div>
+</body>
+</html>

@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 14: Transform & Perspective - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lesson 14: Best Practices - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
-        .sidebar a.active { background: #e8f1ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #8b5cf6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #8b5cf6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #8b5cf6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #8b5cf6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #8b5cf6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #8b5cf6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -50,109 +53,317 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
                 <li><a href="../css-tutorials.html" class="active">CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="page-wrapper">
         <aside class="sidebar">
             <div class="sidebar-title">CSS Lessons</div>
             <a href="lesson-css-01.html">1. What is CSS?</a>
-            <a href="lesson-css-02.html">2. Selectors</a>
-            <a href="lesson-css-03.html">3. Colors & Backgrounds</a>
-            <a href="lesson-css-04.html">4. Text Styling</a>
-            <a href="lesson-css-05.html">5. Box Model</a>
-            <a href="lesson-css-06.html">6. Borders & Spacing</a>
-            <a href="lesson-css-07.html">7. Flexbox</a>
-            <a href="lesson-css-08.html">8. Grid Layout</a>
-            <a href="lesson-css-09.html">9. Positioning</a>
-            <a href="lesson-css-10.html">10. Transitions & Animations</a>
-            <a href="lesson-css-11.html">11. Responsive Design</a>
-            <a href="lesson-css-12.html">12. Variables & Functions</a>
-            <a href="lesson-css-13.html">13. Media Queries</a>
-            <a href="lesson-css-14.html" class="active">14. Transform & Perspective</a>
+            <a href="lesson-css-02.html">2. Selectors & Properties</a>
+            <a href="lesson-css-03.html">3. Colors & Fonts</a>
+            <a href="lesson-css-04.html">4. Box Model</a>
+            <a href="lesson-css-05.html">5. Layout & Display</a>
+            <a href="lesson-css-06.html">6. Flexbox</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
+            <a href="lesson-css-08.html">8. Positioning</a>
+            <a href="lesson-css-09.html">9. Transitions & Animations</a>
+            <a href="lesson-css-10.html">10. Responsive Design</a>
+            <a href="lesson-css-11.html">11. Media Queries</a>
+            <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
+            <a href="lesson-css-14.html" class="active">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
+
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Transform & Perspective</h1>
-                <div class="lesson-meta">Lesson 14 of 15</div>
+                <h1>Lesson 14: Best Practices</h1>
+                <p class="lesson-meta">Lesson 14 of 15</p>
             </div>
+
             <div class="content-area">
-<div class="lesson-header">
-                <h1>What is CSS? - Transform & Perspective</h1>
-                <div class="lesson-meta">Lesson 14 of 15</div>
-            </div>
-            <div class="content-area">
-                <h2>Introduction to HTML</h2>
-                <p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard markup language used to create web pages. Every website you visit on the internet is built with HTML at its core.</p>
-                <p>HTML works with two other technologies to create complete web experiences:</p>
+                <h2>What You'll Learn</h2>
+                <p>In this lesson, you will learn CSS best practices for writing clean, maintainable, performant stylesheets. These practices help you and your team build better websites faster.</p>
+
+                <h2>Organize Your CSS</h2>
+
+                <h3>Logical Structure</h3>
+                <p>Organize your CSS file logically.</p>
+                <div class="code-block">/* 1. CSS Variables */
+:root {
+  --primary-color: #10b981;
+}
+
+/* 2. Reset/Normalize */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 3. Base/Global Styles */
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+}
+
+/* 4. Layout/Grid */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 5. Components */
+.button {
+  /* Button styles */
+}
+
+/* 6. Utilities */
+.text-center {
+  text-align: center;
+}</div>
+
+                <h3>Separate Concerns</h3>
+                <p>Keep CSS organized by putting related styles together.</p>
+                <div class="code-block">/* DON'T: Mix unrelated styles */
+.container { width: 1200px; }
+.button { padding: 10px; }
+.container { margin: 0 auto; }  /* Scattered */
+
+/* DO: Group related styles */
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.button {
+  padding: 10px;
+  background: #10b981;
+}</div>
+
+                <h2>Naming Conventions</h2>
+
+                <h3>BEM (Block-Element-Modifier)</h3>
+                <p>A system for naming CSS classes that makes them clear and organized.</p>
+                <div class="code-block">/* Block - the main component */
+.card { }
+
+/* Element - parts of the card, double underscore __ */
+.card__header { }    /* The header PART of the card */
+.card__body { }      /* The body PART of the card */
+.card__footer { }    /* The footer PART of the card */
+
+/* Modifier - variations, double dash -- */
+.card--highlighted { }  /* A HIGHLIGHTED version of card */
+.card--error { }        /* An ERROR version of card */</div>
+
+                <p><strong>Why This Works So Well:</strong></p>
                 <ul>
-                    <li><strong>CSS</strong> - Handles styling and visual appearance</li>
-                    <li><strong>JavaScript</strong> - Adds interactivity and dynamic behavior</li>
+                    <li><strong>.card:</strong> This is the main component (Block). The parent container</li>
+                    <li><strong>.card__header:</strong> Double underscore means "this is PART OF card" (Element). It's specifically the header part</li>
+                    <li><strong>.card--highlighted:</strong> Double dash means "this is a VARIATION of card" (Modifier). A different type or state of card</li>
+                    <li>By reading the class name, you immediately know: what component it belongs to, what part it is, and what variation</li>
+                    <li>No confusing cascade - every element has its own clear, descriptive name</li>
                 </ul>
-                <div class="highlight-box">
-                    <strong>Key Concept:</strong> HTML provides the structure and content of web pages. Think of HTML as the skeleton of a building - it creates the basic framework that everything else is built upon.
+
+                <h3>Benefits of BEM</h3>
+                <ul>
+                    <li><strong>Clarity:</strong> Name clearly indicates element purpose</li>
+                    <li><strong>No Nesting:</strong> Avoids specificity issues</li>
+                    <li><strong>Scalability:</strong> Easy to add new variants</li>
+                </ul>
+
+                <h3>Alternative: Utility-First</h3>
+                <div class="code-block">/* Utility classes that do one thing */
+.flex { display: flex; }
+.gap-md { gap: 16px; }
+.text-center { text-align: center; }
+
+<!-- Use combinations in HTML -->
+<div class="flex gap-md text-center"></div></div>
+
+                <h2>CSS Specificity</h2>
+
+                <h3>Specificity Rules</h3>
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Selector</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Specificity</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Element: p</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">0-0-1</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Class: .button</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">0-1-0</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">ID: #header</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">1-0-0</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Inline: style=""</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Very high</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">!important</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Highest</td>
+                    </tr>
+                </table>
+
+                <h3>Best Practice</h3>
+                <p>Keep specificity low by favoring classes over IDs and avoiding nesting.</p>
+
+                <div class="code-block">/* DON'T: High specificity */
+#header nav ul li a:hover { }
+
+/* DO: Low specificity */
+.nav__link:hover { }</div>
+
+                <h2>Avoid Common Mistakes</h2>
+
+                <h3>Overusing !important</h3>
+                <div class="code-block">/* DON'T */
+.button { color: blue !important; }
+
+/* DO: Better specificity management */
+.button { color: blue; }
+.button--primary { color: green; }</div>
+
+                <h3>Deep Nesting</h3>
+                <div class="code-block">/* DON'T: Too deep, hard to maintain */
+.container > div > div > div > p { }
+
+/* DO: Simpler, more specific class */
+.section-title { }</div>
+
+                <h3>Inline Styles</h3>
+                <div class="code-block"><!-- DON'T -->
+<div style="color: red; font-size: 16px;"></div>
+
+<!-- DO -->
+<div class="error-text"></div></div>
+
+                <h2>Performance Tips</h2>
+
+                <h3>Minimize CSS</h3>
+                <p>Remove unnecessary selectors and properties.</p>
+                <div class="code-block">/* DON'T: Unused styles */
+.old-component { }
+div.container { }
+
+/* DO: Clean CSS */
+.container { }</div>
+
+                <h3>Use CSS Efficiently</h3>
+                <ul>
+                    <li><strong>Combine selectors:</strong> .button, .link instead of separate rules</li>
+                    <li><strong>Use shorthand:</strong> margin: 10px instead of margin-top, margin-bottom, etc.</li>
+                    <li><strong>Group media queries:</strong> Keep responsive styles together or at end</li>
+                </ul>
+
+                <h3>Avoid Expensive Properties</h3>
+                <div class="code-block">/* Performance: Good */
+transform: translateX(10px);
+opacity: 0.5;
+
+/* Performance: Poor - causes reflows */
+left: 10px;
+width: 90%;</div>
+
+                <h2>Accessibility Considerations</h2>
+
+                <h3>Color Contrast</h3>
+                <p>Ensure sufficient contrast between text and background.</p>
+                <div class="code-block">/* Poor contrast */
+color: #888; background: #f0f0f0;  /* Fails WCAG AA */
+
+/* Good contrast */
+color: #333; background: #f0f0f0;  /* Passes WCAG AA */</div>
+
+                <h3>Focus States</h3>
+                <p>Always provide visible focus indicators for keyboard navigation.</p>
+                <div class="code-block">button:focus {
+  outline: 3px solid #10b981;
+  outline-offset: 2px;
+}</div>
+
+                <h3>Respecting Preferences</h3>
+                <div class="code-block">@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}</div>
+
+                <h2>Documentation and Comments</h2>
+
+                <h3>Comment Complex Code</h3>
+                <div class="code-block">/* Main layout grid with specific breakpoints
+   Adjusted for mobile-first approach
+   See design file: layout-specs.fig */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}</div>
+
+                <h3>Section Comments</h3>
+                <div class="code-block">/* ====================================
+   HEADER STYLES
+   ==================================== */
+
+/* ====================================
+   NAVIGATION
+   ==================================== */</div>
+
+                <h2>CSS Frameworks and Preprocessors</h2>
+
+                <h3>When to Use</h3>
+                <ul>
+                    <li><strong>Frameworks (Bootstrap, Tailwind):</strong> Quick prototyping, consistent components</li>
+                    <li><strong>Preprocessors (SASS, LESS):</strong> Variables, nesting, mixins for complex projects</li>
+                    <li><strong>Pure CSS:</strong> Custom projects, CSS variables, smaller codebases</li>
+                </ul>
+
+                <h2>Version Control for CSS</h2>
+                <ul>
+                    <li><strong>Track changes:</strong> Use git to track CSS modifications</li>
+                    <li><strong>Review PRs:</strong> Have CSS changes reviewed by team members</li>
+                    <li><strong>Document changes:</strong> Describe why CSS changed, not just what changed</li>
+                </ul>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Next: Advanced Techniques</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 15, you will learn advanced CSS techniques including filters, blend modes, clip-path, and more creative effects.</p>
                 </div>
-                <h2>What Does HTML Do?</h2>
-                <p>HTML tells web browsers how to structure and display content. Browsers like Chrome, Firefox, Safari, and Edge read HTML code and convert it into the visual web pages you see.</p>
-                <p>HTML does several important things:</p>
-                <ul>
-                    <li>Organizes content into logical sections</li>
-                    <li>Defines the meaning of different content types</li>
-                    <li>Creates links between pages</li>
-                    <li>Embeds images, audio, and video</li>
-                    <li>Creates forms for user input</li>
-                    <li>Provides metadata about the page</li>
-                </ul>
-                <h2>HTML Tags and Elements</h2>
-                <p>HTML uses tags to mark up content. Tags are keywords surrounded by angle brackets.</p>
-                <div class="code-block">&lt;tagname&gt;content&lt;/tagname&gt;</div>
-                <p>Most tags come in pairs:</p>
-                <ul>
-                    <li><strong>Opening tag</strong> - Example: <code>&lt;h1&gt;</code></li>
-                    <li><strong>Closing tag</strong> - Example: <code>&lt;/h1&gt;</code></li>
-                    <li><strong>Content</strong> - The text or elements between the tags</li>
-                </ul>
-                <h3>Example:</h3>
-                <div class="code-block">&lt;h1&gt;Welcome to Web Development&lt;/h1&gt;<br/>&lt;p&gt;This is my first web page.&lt;/p&gt;</div>
-                <div class="highlight-box">
-                    <strong>Important:</strong> The forward slash in the closing tag is what tells the browser where the element ends.
-                </div>
-                <h2>Why Learn HTML?</h2>
-                <ul>
-                    <li><strong>Foundation of Web:</strong> HTML is the foundation of all websites</li>
-                    <li><strong>Easy to Learn:</strong> HTML is simple and beginner-friendly</li>
-                    <li><strong>Gateway to Web Development:</strong> You need HTML to learn CSS and JavaScript</li>
-                    <li><strong>In-Demand Skill:</strong> HTML skills are valuable in the job market</li>
-                    <li><strong>Creative Expression:</strong> Build and publish your own web content</li>
-                </ul>
-                <h2>What You Will Learn</h2>
-                <p>In this 15-lesson course, we'll cover:</p>
-                <ul>
-                    <li>HTML structure and best practices</li>
-                    <li>Common HTML tags and their uses</li>
-                    <li>Text formatting and semantic HTML</li>
-                    <li>Links, images, and media</li>
-                    <li>Forms and user input</li>
-                    <li>Tables and data organization</li>
-                    <li>Accessibility and SEO</li>
-                </ul>
-                <div class="highlight-box">
-                    <strong>Next Lesson:</strong> In Lesson 2, we'll explore the basic structure of an HTML document and create our first web page.
-                </div>
+
                 <div class="nav-footer">
-                    <button class="btn btn-secondary" disabled>Previous Lesson</button>
-                    <a href="lesson-css-02.html" class="btn">Next Lesson</a>
+                    <a href="lesson-css-13.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-css-15.html" class="btn">Next Lesson →</a>
                 </div>
+
+                
             </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        // Prevent caching
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>

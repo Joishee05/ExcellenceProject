@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 1: What is CSS? - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
-        .sidebar a.active { background: #e8f1ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #8b5cf6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #8b5cf6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #8b5cf6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #8b5cf6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #8b5cf6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #8b5cf6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -50,109 +53,259 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
                 <li><a href="../css-tutorials.html" class="active">CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="page-wrapper">
         <aside class="sidebar">
             <div class="sidebar-title">CSS Lessons</div>
             <a href="lesson-css-01.html" class="active">1. What is CSS?</a>
-            <a href="lesson-css-02.html">2. Selectors</a>
-            <a href="lesson-css-03.html">3. Colors & Backgrounds</a>
-            <a href="lesson-css-04.html">4. Text Styling</a>
-            <a href="lesson-css-05.html">5. Box Model</a>
-            <a href="lesson-css-06.html">6. Borders & Spacing</a>
-            <a href="lesson-css-07.html">7. Flexbox</a>
-            <a href="lesson-css-08.html">8. Grid Layout</a>
-            <a href="lesson-css-09.html">9. Positioning</a>
-            <a href="lesson-css-10.html">10. Transitions & Animations</a>
-            <a href="lesson-css-11.html">11. Responsive Design</a>
-            <a href="lesson-css-12.html">12. Variables & Functions</a>
-            <a href="lesson-css-13.html">13. Media Queries</a>
-            <a href="lesson-css-14.html">14. Transform & Perspective</a>
+            <a href="lesson-css-02.html">2. Selectors & Properties</a>
+            <a href="lesson-css-03.html">3. Colors & Fonts</a>
+            <a href="lesson-css-04.html">4. Box Model</a>
+            <a href="lesson-css-05.html">5. Layout & Display</a>
+            <a href="lesson-css-06.html">6. Flexbox</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
+            <a href="lesson-css-08.html">8. Positioning</a>
+            <a href="lesson-css-09.html">9. Transitions & Animations</a>
+            <a href="lesson-css-10.html">10. Responsive Design</a>
+            <a href="lesson-css-11.html">11. Media Queries</a>
+            <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
+            <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
+
         <main class="main-content">
             <div class="lesson-header">
-                <h1>What is CSS?</h1>
-                <div class="lesson-meta">Lesson 1 of 15</div>
+                <h1>Lesson 1: What is CSS?</h1>
+                <p class="lesson-meta">Lesson 1 of 15</p>
             </div>
+
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 1 of 10</div>
-                <h1>What is CSS?</h1>
-            </div>
-            <div class="lesson-text">
-                <p><strong>CSS</strong> stands for <strong>Cascading Style Sheets</strong>. It's used to style and layout web pages.</p>
-                <h3>What Does CSS Do?</h3>
+                <h2>What You'll Learn</h2>
+                <p>In this comprehensive lesson, you will learn the fundamentals of CSS, including what it is, why it's essential for modern web development, how it works with HTML, and how to structure CSS code effectively. By the end of this lesson, you'll have a solid foundation to move forward with more advanced CSS topics.</p>
+
+                <h2>What is CSS?</h2>
+                <p>CSS stands for Cascading Style Sheets. It is a language used to describe how HTML elements should be displayed on screen, on paper, or in other media. CSS is used to style and layout web pages by controlling fonts, colors, sizes, spacing, positioning, animations, and visual effects.</p>
+                
+                <p>CSS was first introduced in 1996 and has evolved significantly over time. Modern CSS (CSS3 and beyond) includes advanced features like Flexbox, Grid, animations, and custom properties that make creating complex, responsive layouts much simpler than before.</p>
+
+                <h2>Why is CSS Important?</h2>
+                <p>CSS is absolutely essential to web development for several key reasons:</p>
                 <ul>
-                    <li>Controls colors, fonts, and spacing</li>
-                    <li>Creates layouts and positioning</li>
-                    <li>Adds animations and transitions</li>
-                    <li>Makes websites responsive</li>
+                    <li><strong>Visual Design:</strong> CSS enables you to create beautiful, visually appealing websites that stand out and engage users.</li>
+                    <li><strong>User Experience:</strong> Proper styling improves readability, navigation, and overall user experience. Good CSS makes sites intuitive and pleasant to use.</li>
+                    <li><strong>Responsive Design:</strong> CSS allows websites to adapt to different screen sizes (mobile, tablet, desktop), ensuring your site works everywhere.</li>
+                    <li><strong>Performance:</strong> CSS is extremely efficient. A small CSS file can style an entire website, reducing the amount of code needed.</li>
+                    <li><strong>Maintainability:</strong> Separating CSS from HTML makes code easier to maintain, update, and scale as projects grow.</li>
+                    <li><strong>Brand Consistency:</strong> CSS makes it easy to apply consistent styling across your entire website.</li>
+                    <li><strong>Accessibility:</strong> Proper CSS helps create accessible websites that work for users with disabilities.</li>
                 </ul>
-                <h3>How to Add CSS:</h3>
-                <p>There are three ways to add CSS to HTML:</p>
-                <div class="info-box">
-                    <strong>1. Inline CSS:</strong> <code>&lt;p style="color: blue;"&gt;Text&lt;/p&gt;</code><br>
-                    <strong>2. Internal CSS:</strong> In a <code>&lt;style&gt;</code> tag in the <code>&lt;head&gt;</code><br>
-                    <strong>3. External CSS:</strong> Link to a separate .css file (best practice!)
-                </div>
-                <h3>CSS Syntax:</h3>
-                <pre><code>selector {
-    property: value;
-    property: value;
-}</code></pre>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
+
+                <h2>How CSS Works with HTML</h2>
+                <p>HTML and CSS work together but serve different purposes:</p>
+                <ul>
+                    <li><strong>HTML (HyperText Markup Language):</strong> Provides the structure and content of a web page. It defines what elements exist on the page (headings, paragraphs, images, etc.).</li>
+                    <li><strong>CSS (Cascading Style Sheets):</strong> Controls the presentation and styling. It defines how those elements look (colors, fonts, sizes, positions, animations).</li>
+                </ul>
+
+                <p>Think of HTML as the skeleton of a house (the structure) and CSS as the paint, furniture, and decorations (the appearance).</p>
+
+                <h2>CSS Syntax: Rules and Properties</h2>
+                <p>CSS code is organized into rules. Each rule consists of a selector and a declaration block:</p>
+                <div class="code-block">selector {
+  property: value;
+  another-property: another-value;
+}</div>
+
+                <p><strong>What This Code Does:</strong></p>
+                <ul>
+                    <li><strong>selector { }</strong> - The curly braces create a "rule block" that holds all the style instructions for that selector</li>
+                    <li><strong>property:</strong> - This is the CSS property name (what you want to change, like color or size)</li>
+                    <li><strong>value;</strong> - This is what you want to change it to. The semicolon at the end tells CSS "this instruction is done"</li>
+                </ul>
+
+                <h3>Breaking Down CSS Syntax</h3>
+                <ul>
+                    <li><strong>Selector:</strong> Targets which HTML elements to style (e.g., h1, .classname, #idname)</li>
+                    <li><strong>Property:</strong> Specifies what aspect of the element to change (e.g., color, font-size, margin)</li>
+                    <li><strong>Value:</strong> Specifies how to change that property (e.g., blue, 24px, 20px)</li>
+                    <li><strong>Declaration Block:</strong> Contains all the property-value pairs enclosed in curly braces</li>
+                </ul>
+
+                <h3>Practical CSS Examples</h3>
+                <div class="code-block">/* Make all h1 headings blue and larger */
+h1 {
+  color: blue;
+  font-size: 32px;
+  margin: 20px 0;
+}
+
+/* Style paragraphs with gray text and line spacing */
+p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}</div>
+
+                <p><strong>Let's Break This Down:</strong></p>
+                <ul>
+                    <li><strong>h1 { }</strong> - This targets all h1 headings on the page. Anything inside these braces will apply to every h1</li>
+                    <li><strong>color: blue;</strong> - Changes the text color to blue. The word "blue" is the value we're giving to the color property</li>
+                    <li><strong>font-size: 32px;</strong> - Makes the text 32 pixels tall. "px" means pixels (a small unit of measurement on screens)</li>
+                    <li><strong>margin: 20px 0;</strong> - Adds 20 pixels of space above and below each h1, but no space on the left and right</li>
+                    <li><strong>p { }</strong> - This targets all paragraphs. Each paragraph will get these styles</li>
+                    <li><strong>color: #666;</strong> - Changes text to a gray color. The #666 is a special code for colors (called hexadecimal)</li>
+                    <li><strong>line-height: 1.6;</strong> - Makes space between lines of text. 1.6 means 1.6 times the normal height, making text easier to read</li>
+                    <li><strong>margin-bottom: 15px;</strong> - Adds 15 pixels of space below each paragraph so paragraphs don't touch each other</li>
+                </ul>
+
+                <h2>Three Ways to Add CSS to HTML</h2>
+
+                <h3>1. External CSS (Recommended)</h3>
+                <p>Link to a separate CSS file in your HTML head. This is the most professional and maintainable approach.</p>
+                <div class="code-block">&lt;!-- In your HTML file --&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>&lt;link ... &gt;</strong> - This HTML tag tells the browser to load a CSS file</li>
+                    <li><strong>rel="stylesheet"</strong> - Tells the browser "this is a stylesheet" (CSS file)</li>
+                    <li><strong>href="styles.css"</strong> - Tells the browser where to find the CSS file. In this case, it's a file named "styles.css" in the same folder</li>
+                </ul>
+
+                <p>Then you create a separate file called "styles.css" with all your CSS rules inside it. This is the professional way because:</p>
+                <ul>
+                    <li>Your HTML stays clean and focused on structure</li>
+                    <li>Your CSS stays organized in its own file</li>
+                    <li>You can use the same CSS file for multiple HTML pages</li>
+                    <li>Browsers remember (cache) the CSS file, so pages load faster</li>
+                </ul>
+
+                <h3>2. Internal CSS</h3>
+                <p>Write CSS directly in the HTML file using style tags in the head section.</p>
+                <div class="code-block">&lt;head&gt;
+  &lt;style&gt;
     h1 {
-        color: blue;
-        font-size: 36px;
+      color: blue;
+      font-size: 24px;
     }
-    
-    p {
-        color: green;
-        font-size: 18px;
-    }
-</style>
-</head>
-<body>
-    <h1>Hello CSS!</h1>
-    <p>CSS makes websites beautiful!</p>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+  &lt;/style&gt;
+&lt;/head&gt;</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>&lt;style&gt; ... &lt;/style&gt;</strong> - This HTML tag tells the browser "everything inside here is CSS code, apply these styles to this page"</li>
+                    <li>All your CSS rules go between the opening and closing style tags</li>
+                    <li>This only affects the current HTML page, not other pages</li>
+                </ul>
+
+                <p><strong>When to Use This:</strong> Good for quick testing or small single-page projects. Not recommended for large websites.</p>
+
+                <h3>3. Inline CSS</h3>
+                <p>Apply CSS directly to individual HTML elements using the style attribute.</p>
+                <div class="code-block">&lt;h1 style="color: blue; font-size: 24px;"&gt;Hello World&lt;/h1&gt;</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>style=" "</strong> - This is an HTML attribute (an extra piece of information on a tag) that holds CSS code</li>
+                    <li><strong>color: blue; font-size: 24px;</strong> - These are CSS rules written directly in the HTML tag</li>
+                    <li>This styling only applies to this one specific element, not to other h1 tags</li>
+                </ul>
+
+                <p><strong>When to Use This:</strong> Only for quick testing. Don't use this for real websites because if you want to change the style later, you have to edit every single element. With external CSS, you change it once and it updates everywhere!</p>
+
+                <h2>The Cascade in CSS</h2>
+                <p>CSS stands for Cascading Style Sheets. The cascade refers to how CSS rules are applied when there are multiple rules targeting the same element.</p>
+
+                <p>When multiple CSS rules apply to the same element, the browser determines which rule takes precedence based on:</p>
+                <ul>
+                    <li><strong>Importance:</strong> Rules marked with !important have highest priority (avoid using this)</li>
+                    <li><strong>Specificity:</strong> More specific selectors override less specific ones (e.g., #id is more specific than .class)</li>
+                    <li><strong>Source Order:</strong> Later rules override earlier rules if specificity is equal</li>
+                </ul>
+
+                <div class="code-block">/* Example of CSS cascade */
+p { color: black; }      /* Least specific */
+.intro { color: blue; }  /* More specific (class selector) */
+#main { color: red; }    /* Most specific (ID selector) */</div>
+
+                <h2>Key CSS Concepts</h2>
+                <ul>
+                    <li><strong>Selectors:</strong> Patterns that target HTML elements to style</li>
+                    <li><strong>Properties:</strong> CSS attributes that control styling (color, font-size, margin, etc.)</li>
+                    <li><strong>Values:</strong> The actual values assigned to properties (blue, 24px, 10px 20px, etc.)</li>
+                    <li><strong>Specificity:</strong> How CSS determines which rules apply when multiple selectors target the same element</li>
+                    <li><strong>Inheritance:</strong> Some CSS properties are inherited from parent elements to child elements</li>
+                    <li><strong>Box Model:</strong> Understanding margin, border, padding, and content area</li>
+                    <li><strong>Display Property:</strong> Controls how elements are laid out (block, inline, flex, grid)</li>
+                </ul>
+
+                <h2>Browser Support and Compatibility</h2>
+                <p>Most modern browsers (Chrome, Firefox, Safari, Edge) support all the CSS features covered in this course. Older browsers like Internet Explorer 11 have limited support for modern CSS features like Flexbox and Grid. When building professional websites, always test your CSS across multiple browsers.</p>
+
+                <p>You can check browser support for any CSS feature at caniuse.com, which shows exactly which browsers support specific CSS properties.</p>
+
+                <h2>Best Practices for CSS Beginners</h2>
+                <ul>
+                    <li><strong>Use External CSS:</strong> Keep CSS in separate files for better organization and reusability</li>
+                    <li><strong>Avoid Inline Styles:</strong> Inline CSS is hard to maintain and should be avoided</li>
+                    <li><strong>Use Meaningful Class Names:</strong> Name classes based on what they do, not what they look like (e.g., .button-primary, not .blue-button)</li>
+                    <li><strong>Keep CSS Organized:</strong> Group related styles together and add comments to explain your code</li>
+                    <li><strong>Use Consistent Indentation:</strong> Proper formatting makes CSS easier to read and maintain</li>
+                    <li><strong>Minimize Specificity:</strong> Use simple, low-specificity selectors to make your CSS easier to override and maintain</li>
+                </ul>
+
+                <h2>Common CSS Units</h2>
+                <p>CSS supports various units for sizing elements. Understanding the differences is important for responsive design:</p>
+                <ul>
+                    <li><strong>px (pixels):</strong> Fixed units. 1px = 1 pixel on screen. Good for precise sizing but not responsive.</li>
+                    <li><strong>em:</strong> Relative to parent element's font size. Useful for responsive typography.</li>
+                    <li><strong>rem:</strong> Relative to root (html) font size. More predictable than em. Recommended for modern layouts.</li>
+                    <li><strong>% (percentage):</strong> Relative to parent element. Great for responsive widths and heights.</li>
+                    <li><strong>vw/vh:</strong> Viewport width/height. 1vw = 1% of viewport width. Useful for full-screen designs.</li>
+                </ul>
+
+                <h2>Your CSS Learning Journey</h2>
+                <p>This course is structured to take you from CSS basics to advanced techniques:</p>
+                <ul>
+                    <li><strong>Lessons 1-5:</strong> Fundamentals (selectors, colors, box model, layouts)</li>
+                    <li><strong>Lessons 6-8:</strong> Layout Systems (Flexbox, Grid, Positioning)</li>
+                    <li><strong>Lessons 9-12:</strong> Advanced Styling (Animations, Responsive Design, Pseudo-classes)</li>
+                    <li><strong>Lessons 13-15:</strong> Professional Techniques (Variables, Best Practices, Advanced Effects)</li>
+                </ul>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Ready to Learn CSS Selectors?</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 2, you will explore CSS selectors and properties in depth. You will learn different ways to target HTML elements and the most commonly used CSS properties. Click Next Lesson to continue your CSS journey.</p>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+
+                <div class="nav-footer">
+                    <button class="btn btn-secondary" disabled>← Previous Lesson</button>
+                    <a href="lesson-css-02.html" class="btn">Next Lesson →</a>
+                </div>
             </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Modify the code to:</p>
-                <ol>
-                    <li>Change the h1 color to red</li>
-                    <li>Make the paragraph text purple</li>
-                    <li>Increase the h1 font size to 48px</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="../css-tutorials.html" class="nav-button">← Back to Overview</a>
-                <a href="lesson-css-02.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        // Prevent caching
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>

@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 3: Operators - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #f97316; }
         .sidebar a.active { background: #e8f1ff; color: #f97316; border-left-color: #f97316; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
         .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #f97316; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
@@ -37,9 +37,9 @@
         .btn-secondary { background: #ddd; color: #666; }
         .btn-secondary:hover { background: #ccc; }
         .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #f97316; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        footer { background: #f97316; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: 100%; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
     </style>
 </head>
 <body>
@@ -73,6 +73,13 @@
             <a href="lesson-js-13.html">13. Modules & Imports</a>
             <a href="lesson-js-14.html">14. Error Handling</a>
             <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs & JSON</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Node.js Lessons</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setting Up Node.js</a>
+            <a href="lesson-nodejs-03.html">23. Building Your First Server</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,156 +87,173 @@
                 <div class="lesson-meta">Lesson 3 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 3 of 12</div>
-                <h1>Data Types in JavaScript</h1>
-            </div>
-
             <div class="lesson-text">
-                <p>JavaScript has several data types that allow you to work with different kinds of values. Understanding data types is crucial for writing effective code.</p>
+                <p>Operators are symbols that perform operations on values and variables. They're the foundation of programming logic, allowing you to manipulate data, make comparisons, and build complex expressions.</p>
 
-                <h2>Primitive Data Types</h2>
+                <h2>Arithmetic Operators</h2>
+                <p>Used to perform mathematical calculations. All operators work with numbers:</p>
+                <pre><code>let a = 10;
+let b = 3;
 
-                <h3>1. String</h3>
-                <p>Strings represent text and are enclosed in quotes:</p>
-                <pre><code>let firstName = "John";
-let lastName = 'Doe';
-let message = `Hello, ${firstName}!`; // Template literal
+console.log(a + b);  // Addition: 13
+console.log(a - b);  // Subtraction: 7
+console.log(a * b);  // Multiplication: 30
+console.log(a / b);  // Division: 3.333...
+console.log(a % b);  // Modulus (remainder): 1
+console.log(a ** b); // Exponentiation: 1000 (10^3)</code></pre>
 
-console.log(firstName); // "John"
-console.log(message);   // "Hello, John!"</code></pre>
+                <h3>Increment and Decrement Operators</h3>
+                <p>Shorthand for adding or subtracting 1:</p>
+                <pre><code>let count = 5;
 
-                <h3>2. Number</h3>
-                <p>Numbers can be integers or decimals:</p>
-                <pre><code>let age = 25;
-let price = 19.99;
-let negative = -10;
+count++;  // Post-increment: count = 6, returns old value
+count--;  // Post-decrement: count = 5, returns old value
 
-console.log(age + 5);      // 30
-console.log(price * 2);    // 39.98</code></pre>
+++count;  // Pre-increment: increments first, then returns
+--count;  // Pre-decrement: decrements first, then returns
 
-                <h3>3. Boolean</h3>
-                <p>Booleans represent true or false values:</p>
+console.log(count); // 5</code></pre>
+
+                <h2>Assignment Operators</h2>
+                <p>Assign values to variables, often with a shorthand operation:</p>
+                <pre><code>let x = 10;
+
+x = 20;    // Basic assignment
+x += 5;    // x = x + 5  (x becomes 25)
+x -= 3;    // x = x - 3  (x becomes 22)
+x *= 2;    // x = x * 2  (x becomes 44)
+x /= 4;    // x = x / 4  (x becomes 11)
+x %= 3;    // x = x % 3  (x becomes 2)
+
+console.log(x); // 2</code></pre>
+
+                <h2>Comparison Operators</h2>
+                <p>Compare two values and return a boolean (true or false). Used heavily in conditional statements:</p>
+                <pre><code>let age = 20;
+
+console.log(age == 20);   // Equal to: true
+console.log(age === 20);  // Strict equal: true
+console.log(age != 18);   // Not equal: true
+console.log(age !== "20"); // Strict not equal: true
+console.log(age > 18);    // Greater than: true
+console.log(age < 25);    // Less than: true
+console.log(age >= 20);   // Greater or equal: true
+console.log(age <= 19);   // Less or equal: false</code></pre>
+
+                <div class="highlight-box">
+                    <strong>Important: == vs ===</strong>
+                    <p style="margin: 10px 0;">Always use <code>===</code> (strict equality) instead of <code>==</code>. The strict version checks both value AND type, while <code>==</code> performs automatic type conversion (which can cause bugs):</p>
+                    <pre><code>console.log(5 == "5");   // true (converts string to number)
+console.log(5 === "5");  // false (different types)</code></pre>
+                </div>
+
+                <h2>Logical Operators</h2>
+                <p>Combine or invert boolean values. Essential for complex conditions:</p>
+                <pre><code>let age = 20;
+let hasID = true;
+
+// AND (&&) - both must be true
+console.log(age >= 18 && hasID);  // true
+
+// OR (||) - at least one must be true
+console.log(age >= 21 || hasID);  // true
+
+// NOT (!) - inverts the value
+console.log(!hasID);  // false
+console.log(!(age < 18)); // true</code></pre>
+
+                <h3>Practical Logical Operator Examples</h3>
                 <pre><code>let isStudent = true;
-let hasGraduated = false;
+let hasStudent Discount = false;
+let age = 22;
 
-console.log(isStudent);     // true
-console.log(hasGraduated);  // false</code></pre>
+// Check if eligible for student discount
+let eligible = isStudent && hasStudentDiscount;
+console.log(eligible); // false
 
-                <h3>4. Undefined</h3>
-                <p>A variable that has been declared but not assigned a value:</p>
-                <pre><code>let notAssigned;
-console.log(notAssigned); // undefined</code></pre>
+// Check if any condition applies
+let canRegister = age >= 18 || isStudent;
+console.log(canRegister); // true</code></pre>
 
-                <h3>5. Null</h3>
-                <p>Represents an intentional absence of value:</p>
-                <pre><code>let emptyValue = null;
-console.log(emptyValue); // null</code></pre>
+                <h2>String Operators</h2>
+                <p>The <code>+</code> operator concatenates (combines) strings:</p>
+                <pre><code>let firstName = "John";
+let lastName = "Doe";
 
-                <h2>The typeof Operator</h2>
-                <p>You can check the type of a value using the <code>typeof</code> operator:</p>
-                <pre><code>console.log(typeof "Hello");    // "string"
-console.log(typeof 42);         // "number"
-console.log(typeof true);       // "boolean"
-console.log(typeof undefined);  // "undefined"
-console.log(typeof null);       // "object" (historical bug!)</code></pre>
+let fullName = firstName + " " + lastName;
+console.log(fullName); // "John Doe"
 
-                <div class="info-box">
-                    <p><strong>Note:</strong> <code>typeof null</code> returns "object" due to a historical bug in JavaScript. null is actually a primitive type, not an object.</p>
-                </div>
+// Compound assignment with strings
+let message = "Hello";
+message += " World";
+console.log(message); // "Hello World"</code></pre>
 
-                <h2>Template Literals</h2>
-                <p>Template literals (backticks) allow you to embed expressions in strings:</p>
-                <pre><code>let name = "Alice";
-let age = 25;
-let school = "SLU";
+                <h2>Operator Precedence</h2>
+                <p>JavaScript evaluates operators in a specific order. Operations with higher precedence are evaluated first:</p>
+                <table style="width: 100%; margin: 15px 0; border-collapse: collapse; background: white;">
+                    <tr style="background: #f97316; color: white;">
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Precedence (High to Low)</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Operators</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Example</th>
+                    </tr>
+                    <tr style="background: #f5f5f5;">
+                        <td style="padding: 12px; border: 1px solid #ddd;">1 (Highest)</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Exponentiation **</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">2 ** 3 = 8</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">2</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">*, /, %</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">10 * 3 + 2 = 32 (not 50)</td>
+                    </tr>
+                    <tr style="background: #f5f5f5;">
+                        <td style="padding: 12px; border: 1px solid #ddd;">3</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">+, -</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">5 + 3 - 2 = 6</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">4</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><, >, <=, >=, ==, ===</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">5 > 3 = true</td>
+                    </tr>
+                    <tr style="background: #f5f5f5;">
+                        <td style="padding: 12px; border: 1px solid #ddd;">5</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">&&</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">true && false = false</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">6 (Lowest)</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">||</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">true || false = true</td>
+                    </tr>
+                </table>
 
-// Old way (concatenation)
-let message1 = "My name is " + name + " and I'm " + age;
+                <h3>Using Parentheses to Override Precedence</h3>
+                <pre><code>// Without parentheses (multiplication first)
+console.log(2 + 3 * 4);   // 14 (3*4 = 12, then 2+12)
 
-// New way (template literal)
-let message2 = `My name is ${name} and I'm ${age}`;
-let message3 = `I study at ${school}`;
+// With parentheses (addition first)
+console.log((2 + 3) * 4); // 20 (2+3 = 5, then 5*4)</code></pre>
 
-console.log(message2); // "My name is Alice and I'm 25"
-console.log(message3); // "I study at SLU"</code></pre>
+                <h2>Key Takeaways</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use <strong>arithmetic operators</strong> for math: +, -, *, /, %, **</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use <strong>comparison operators</strong> (===, !==, <, >) for conditions</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use <strong>logical operators</strong> (&&, ||, !) to combine conditions</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Remember <strong>operator precedence</strong> - multiplication before addition, etc.</li>
+                    <li style="padding: 8px 0;">Use <strong>parentheses</strong> for clarity when combining multiple operators</li>
+                </ul>
 
-                <h2>Type Conversion</h2>
-                <p>JavaScript can automatically or explicitly convert between types:</p>
-                <pre><code>// String to Number
-let str = "123";
-let num = Number(str);
-console.log(num);        // 123
-console.log(typeof num); // "number"
-
-// Number to String
-let age = 25;
-let ageStr = String(age);
-console.log(ageStr);        // "25"
-console.log(typeof ageStr); // "string"
-
-// To Boolean
-console.log(Boolean(1));      // true
-console.log(Boolean(0));      // false
-console.log(Boolean("text")); // true
-console.log(Boolean(""));     // false</code></pre>
-
-                <h2>Try It Yourself</h2>
-                <p>Experiment with different data types:</p>
-                
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span>JavaScript Editor</span>
-                        <button class="run-button" onclick="runCode()">Run Code</button>
-                    </div>
-                    <textarea class="code-input" id="codeInput">// Different data types
-let studentName = "Maria";
-let studentAge = 22;
-let isEnrolled = true;
-let grade = null;
-
-// Check types
-console.log(typeof studentName);  // string
-console.log(typeof studentAge);   // number
-console.log(typeof isEnrolled);   // boolean
-console.log(typeof grade);        // object
-
-// Template literal
-let intro = `Hi, I'm ${studentName} and I'm ${studentAge} years old.`;
-console.log(intro);
-
-// Type conversion
-let numStr = "100";
-let num = Number(numStr);
-console.log(num + 50); // 150</textarea>
-                    <div class="preview-area">
-                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
-                    </div>
-                </div>
-
-                <div class="challenge">
-                    <h3>Challenge</h3>
-                    <p>Create variables with the following data types and log them to the console:</p>
-                    <ul>
-                        <li>A string with your favorite subject</li>
-                        <li>A number representing your graduation year</li>
-                        <li>A boolean indicating if you like programming</li>
-                        <li>Use a template literal to create a sentence combining all three</li>
-                        <li>Use <code>typeof</code> to check the type of each variable</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="lesson-navigation">
-                <a href="lesson-js-02.html" class="nav-button">← Previous Lesson</a>
-                <a href="lesson-js-04.html" class="nav-button">Next Lesson →</a>
+                <div class="nav-footer">
+                <a href="lesson-js-02.html" class="btn btn-secondary">← Previous Lesson</a>
+                <a href="lesson-js-04.html" class="btn">Next Lesson →</a>
             </div>
             </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

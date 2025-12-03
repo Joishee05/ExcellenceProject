@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lesson 18: Practical HTMX Examples - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
+        .navbar { position: relative !important; flex-shrink: 0; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
+        .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
+        .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
+        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
+        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
+        .lesson-meta { font-size: 0.9rem; color: #999; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
+        .content-area h2:first-of-type { margin-top: 0; }
+        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
+        .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6; overflow-x: auto; border: 1px solid #444; }
+        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #3b82f6; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthrough.html">Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-title">HTML Lessons</div>
+            <a href="lesson-html-01.html">1. What is HTML?</a>
+            <a href="lesson-html-02.html">2. HTML Structure</a>
+            <a href="lesson-html-03.html">3. Headings & Paragraphs</a>
+            <a href="lesson-html-04.html">4. Text Formatting</a>
+            <a href="lesson-html-05.html">5. Links</a>
+            <a href="lesson-html-06.html">6. Images</a>
+            <a href="lesson-html-07.html">7. Lists</a>
+            <a href="lesson-html-08.html">8. Tables</a>
+            <a href="lesson-html-09.html">9. Forms</a>
+            <a href="lesson-html-10.html">10. Semantic HTML</a>
+            <a href="lesson-html-11.html">11. HTML Entities</a>
+            <a href="lesson-html-12.html">12. Comments</a>
+            <a href="lesson-html-13.html">13. Meta Tags & SEO</a>
+            <a href="lesson-html-14.html">14. Audio & Video</a>
+            <a href="lesson-html-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html">17. Core Attributes</a>
+            <a href="lesson-html-18.html" class="active">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
+        </aside>
+
+        <main class="main-content">
+            <div class="lesson-header">
+                <h1>Practical HTMX Examples</h1>
+                <p class="lesson-meta">Lesson 18 of 18 • Final Lesson</p>
+            </div>
+
+            <div class="content-area">
+                <p>Now that you understand HTMX fundamentals, let's explore real-world examples you can use in the Digital Bones Box project.</p>
+
+                <h2>Real-World Example 1: Live Search</h2>
+                <p>A search box that shows results as the user types:</p>
+                <div class="code-block">&lt;!-- HTML --&gt;
+&lt;input type="text" 
+       name="search"
+       placeholder="Search for items..."
+       hx-get="/search"
+       hx-trigger="keyup changed delay:500ms"
+       hx-target="#search-results"&gt;
+
+&lt;div id="search-results"&gt;&lt;/div&gt;</div>
+
+                <p><strong>How it works:</strong></p>
+                <ul>
+                    <li>User types in the search box</li>
+                    <li>After 500ms of no typing (debounce), HTMX sends a GET request to /search with the input value</li>
+                    <li>Server responds with HTML snippets of matching results</li>
+                    <li>Results appear instantly in the #search-results div</li>
+                </ul>
+
+                <h2>Real-World Example 2: Todo List with Add/Delete</h2>
+                <div class="code-block">&lt;form hx-post="/todos"
+      hx-target="#todo-list"
+      hx-swap="beforeend"&gt;
+  &lt;input type="text" name="task" placeholder="Add a new task..."&gt;
+  &lt;button type="submit"&gt;Add&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;ul id="todo-list"&gt;
+  &lt;li id="todo-1"&gt;
+    Buy groceries
+    &lt;button hx-delete="/todos/1"
+            hx-target="closest li"
+            hx-swap="outerHTML swap:1s"&gt;
+      Delete
+    &lt;/button&gt;
+  &lt;/li&gt;
+  &lt;li id="todo-2"&gt;
+    Finish project
+    &lt;button hx-delete="/todos/2"
+            hx-target="closest li"
+            hx-swap="outerHTML swap:1s"&gt;
+      Delete
+    &lt;/button&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</div>
+
+                <p><strong>Features:</strong></p>
+                <ul>
+                    <li>Form submits to /todos endpoint using POST</li>
+                    <li>Server responds with new &lt;li&gt; element</li>
+                    <li>New item is appended to the list (hx-swap="beforeend")</li>
+                    <li>Delete button removes the specific todo item</li>
+                    <li>hx-swap="outerHTML swap:1s" adds a 1 second swap transition</li>
+                </ul>
+
+                <h2>Real-World Example 3: Infinite Scroll / Load More</h2>
+                <div class="code-block">&lt;div id="posts"&gt;
+  &lt;!-- Existing posts --&gt;
+&lt;/div&gt;
+
+&lt;button hx-get="/posts?page=2"
+        hx-target="#posts"
+        hx-swap="beforeend"
+        hx-indicator=".spinner"&gt;
+  Load More
+&lt;/button&gt;
+
+&lt;div class="spinner" style="display:none"&gt;
+  Loading...
+&lt;/div&gt;</div>
+
+                <p><strong>Features:</strong></p>
+                <ul>
+                    <li>Button fetches more posts from the server</li>
+                    <li>Posts are appended to the existing list (hx-swap="beforeend")</li>
+                    <li>hx-indicator shows a loading spinner while fetching</li>
+                </ul>
+
+                <h2>Real-World Example 4: Form Validation</h2>
+                <div class="code-block">&lt;form hx-post="/validate-email"&gt;
+  &lt;input type="email" 
+         name="email"
+         hx-post="/validate-email"
+         hx-trigger="change"
+         hx-target=".email-error"&gt;
+  &lt;span class="email-error"&gt;&lt;/span&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</div>
+
+                <p><strong>Server Response (when invalid):</strong></p>
+                <div class="code-block">&lt;span class="email-error error"&gt;
+  Invalid email format
+&lt;/span&gt;</div>
+
+                <p><strong>Server Response (when valid):</strong></p>
+                <div class="code-block">&lt;span class="email-error"&gt;&lt;/span&gt;</div>
+
+                <h2>Real-World Example 5: Sorting & Filtering</h2>
+                <div class="code-block">&lt;div hx-target="this" hx-swap="outerHTML"&gt;
+  &lt;select name="sort"
+          hx-get="/items"
+          hx-trigger="change"&gt;
+    &lt;option value="name"&gt;Sort by Name&lt;/option&gt;
+    &lt;option value="date"&gt;Sort by Date&lt;/option&gt;
+    &lt;option value="price"&gt;Sort by Price&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;select name="category"
+          hx-get="/items"
+          hx-trigger="change"&gt;
+    &lt;option value=""&gt;All Categories&lt;/option&gt;
+    &lt;option value="electronics"&gt;Electronics&lt;/option&gt;
+    &lt;option value="books"&gt;Books&lt;/option&gt;
+    &lt;option value="clothing"&gt;Clothing&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;div id="items"&gt;
+  &lt;!-- Items will display here --&gt;
+&lt;/div&gt;</div>
+
+                <h2>Best Practices for HTMX</h2>
+
+                <h3>1. Keep Server Responses Lightweight</h3>
+                <p>Server should respond with HTML fragments only, not full pages:</p>
+                <div class="code-block">&lt;!-- Good: Just the fragment --&gt;
+&lt;li class="todo-item"&gt;
+  &lt;span&gt;Buy groceries&lt;/span&gt;
+  &lt;button hx-delete="/todos/1"&gt;Delete&lt;/button&gt;
+&lt;/li&gt;
+
+&lt;!-- ✗ Bad: Full page HTML --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;...&lt;/head&gt;
+&lt;body&gt;...&lt;/body&gt;
+&lt;/html&gt;</div>
+
+                <h3>2. Use Semantic HTML</h3>
+                <p>HTMX works best with semantic, well-structured HTML. Use proper form elements, buttons, and links.</p>
+
+                <h3>3. Handle Errors Gracefully</h3>
+                <div class="code-block">&lt;button hx-post="/action"
+        hx-confirm="Are you sure?"
+        hx-target="#result"&gt;
+  Perform Action
+&lt;/button&gt;</div>
+
+                <h3>4. Use hx-confirm for Destructive Actions</h3>
+                <p>Always ask for confirmation before deleting or making significant changes.</p>
+
+                <h3>5. Debounce Frequent Requests</h3>
+                <div class="code-block">&lt;input hx-get="/search"
+       hx-trigger="keyup changed delay:500ms"&gt;</div>
+
+                <p>This prevents sending a request for every keystroke, improving performance.</p>
+
+                <h2>Integrating with Digital Bones Box Project</h2>
+                <p>You can use HTMX to:</p>
+                <ul>
+                    <li><strong>Live search:</strong> Search for students, courses, or resources without page reload</li>
+                    <li><strong>Real-time updates:</strong> Update grades, attendance, or status instantly</li>
+                    <li><strong>Form validation:</strong> Validate user input as they type</li>
+                    <li><strong>Dynamic filtering:</strong> Filter results by date, category, status, etc.</li>
+                    <li><strong>Bulk operations:</strong> Perform actions on multiple items at once</li>
+                    <li><strong>Inline editing:</strong> Edit content directly in the table/list</li>
+                </ul>
+
+                <div style="background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                    <div style="background: #10b981; color: white; padding: 10px; margin: -15px -15px 10px -15px; border-radius: 4px 4px 0 0; font-weight: 700;">Key Takeaways</div>
+                    <ul style="margin: 0; padding-left: 15px;">
+                        <li style="padding: 8px 0; color: #555;">HTMX shines for live search, load more, and real-time updates</li>
+                        <li style="padding: 8px 0; color: #555;">Always return HTML fragments from the server, not full pages</li>
+                        <li style="padding: 8px 0; color: #555;">Use hx-confirm for destructive operations</li>
+                        <li style="padding: 8px 0; color: #555;">Debounce frequent requests to improve performance</li>
+                        <li style="padding: 8px 0; color: #555;">HTMX works perfectly with server-side rendering</li>
+                        <li style="padding: 8px 0; color: #555;">Combine HTMX with your backend to create powerful, interactive experiences</li>
+                    </ul>
+                </div>
+
+                <div style="background: #e8f1ff; color: #1e40af; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">You've Completed All 18 Lessons!</div>
+                    <p style="margin: 0; font-size: 0.95rem;">You now have complete knowledge of HTML and HTMX! You're ready to build dynamic, interactive web applications. Use these skills in your Digital Bones Box project!</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-17.html" class="btn btn-secondary">Previous Lesson</a>
+                    <a href="lesson-html-19.html" class="btn">Next Lesson</a>
+                </div>
+            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

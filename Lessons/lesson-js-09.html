@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 9: DOM Manipulation - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #f97316; }
         .sidebar a.active { background: #e8f1ff; color: #f97316; border-left-color: #f97316; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
         .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #f97316; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
@@ -37,9 +37,9 @@
         .btn-secondary { background: #ddd; color: #666; }
         .btn-secondary:hover { background: #ccc; }
         .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #f97316; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        footer { background: #f97316; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: 100%; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
     </style>
 </head>
 <body>
@@ -73,6 +73,13 @@
             <a href="lesson-js-13.html">13. Modules & Imports</a>
             <a href="lesson-js-14.html">14. Error Handling</a>
             <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs & JSON</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Node.js Lessons</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setting Up Node.js</a>
+            <a href="lesson-nodejs-03.html">23. Building Your First Server</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,275 +87,71 @@
                 <div class="lesson-meta">Lesson 9 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 9 of 12</div>
-                <h1>JavaScript Objects</h1>
-            </div>
-
             <div class="lesson-text">
-                <p>Objects are collections of key-value pairs. They allow you to group related data and functionality together.</p>
+                <p>The DOM (Document Object Model) is how JavaScript interacts with HTML elements on a web page.</p>
 
-                <h2>Creating Objects</h2>
-                <p>Use curly braces <code>{}</code> to create an object:</p>
-                <pre><code>// Empty object
-let emptyObj = {};
+                <h2>Selecting Elements</h2>
+                <p>Find elements to manipulate:</p>
+                <pre><code>// By ID
+let header = document.getElementById("main-heading");
 
-// Object with properties
-let person = {
-    name: "John",
-    age: 25,
-    city: "St. Louis"
-};
+// By class
+let items = document.getElementsByClassName("item");
 
-// Objects can hold any type of value
-let student = {
-    firstName: "Alice",
-    lastName: "Smith",
-    age: 20,
-    gpa: 3.8,
-    isEnrolled: true,
-    courses: ["HTML", "CSS", "JavaScript"]
-};
+// By CSS selector
+let first = document.querySelector(".container");
+let all = document.querySelectorAll("p");</code></pre>
 
-console.log(student);</code></pre>
+                <h2>Changing Content</h2>
+                <p>Update element text and HTML:</p>
+                <pre><code>let para = document.getElementById("text");
 
-                <h2>Accessing Object Properties</h2>
+// Change text
+para.textContent = "New text";
 
-                <h3>Dot Notation</h3>
-                <pre><code>let person = {
-    name: "John",
-    age: 25,
-    city: "St. Louis"
-};
+// Change HTML
+para.innerHTML = "<strong>Bold text</strong>";</code></pre>
 
-console.log(person.name);  // "John"
-console.log(person.age);   // 25
-console.log(person.city);  // "St. Louis"</code></pre>
+                <h2>Changing Styles</h2>
+                <p>Modify CSS properties:</p>
+                <pre><code>let box = document.getElementById("box");
 
-                <h3>Bracket Notation</h3>
-                <pre><code>let person = {
-    name: "John",
-    age: 25,
-    "favorite color": "blue"  // Property with spaces
-};
+box.style.backgroundColor = "blue";
+box.style.fontSize = "20px";
+box.style.color = "white";</code></pre>
 
-console.log(person["name"]);  // "John"
-console.log(person["age"]);   // 25
+                <h2>Working with Classes</h2>
+                <p>Add or remove CSS classes:</p>
+                <pre><code>let button = document.getElementById("btn");
 
-// Necessary for properties with spaces
-console.log(person["favorite color"]); // "blue"
+button.classList.add("active");
+button.classList.remove("disabled");
+button.classList.toggle("hidden");</code></pre>
 
-// Useful with variables
-let prop = "name";
-console.log(person[prop]); // "John"</code></pre>
+                <h2>Creating Elements</h2>
+                <p>Add new elements to the page:</p>
+                <pre><code>let newDiv = document.createElement("div");
+newDiv.textContent = "Hello!";
+document.body.appendChild(newDiv);</code></pre>
 
-                <h2>Modifying Objects</h2>
-                <pre><code>let car = {
-    brand: "Toyota",
-    model: "Camry",
-    year: 2020
-};
+                <h2>Key Takeaways</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">querySelector finds any element</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">textContent changes text safely</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">classList manages CSS classes</li>
+                    <li style="padding: 8px 0;">createElement adds new elements</li>
+                </ul>
 
-// Change existing property
-car.year = 2021;
-console.log(car.year); // 2021
-
-// Add new property
-car.color = "blue";
-console.log(car.color); // "blue"
-
-// Delete property
-delete car.model;
-console.log(car); // { brand: "Toyota", year: 2021, color: "blue" }</code></pre>
-
-                <h2>Object Methods</h2>
-                <p>Objects can contain functions, called methods:</p>
-                <pre><code>let person = {
-    firstName: "John",
-    lastName: "Doe",
-    age: 25,
-    
-    // Method using regular function
-    greet: function() {
-        console.log("Hello, my name is " + this.firstName);
-    },
-    
-    // Shorthand method syntax (ES6)
-    getFullName() {
-        return this.firstName + " " + this.lastName;
-    },
-    
-    haveBirthday() {
-        this.age++;
-        console.log("Happy birthday! Now " + this.age);
-    }
-};
-
-person.greet();           // "Hello, my name is John"
-console.log(person.getFullName()); // "John Doe"
-person.haveBirthday();    // "Happy birthday! Now 26"</code></pre>
-
-                <div class="info-box">
-                    <p><strong>Note:</strong> The <code>this</code> keyword refers to the object that the method belongs to. It allows methods to access other properties and methods of the same object.</p>
-                </div>
-
-                <h2>Nested Objects</h2>
-                <p>Objects can contain other objects:</p>
-                <pre><code>let student = {
-    name: "Alice",
-    age: 20,
-    address: {
-        street: "123 Main St",
-        city: "St. Louis",
-        state: "MO",
-        zip: "63103"
-    },
-    grades: {
-        math: 95,
-        english: 88,
-        science: 92
-    }
-};
-
-// Access nested properties
-console.log(student.address.city);      // "St. Louis"
-console.log(student.grades.math);       // 95
-console.log(student.address.street);    // "123 Main St"</code></pre>
-
-                <h2>Looping Through Objects</h2>
-
-                <h3>For...in Loop</h3>
-                <pre><code>let person = {
-    name: "John",
-    age: 25,
-    city: "St. Louis"
-};
-
-// Loop through all properties
-for (let key in person) {
-    console.log(key + ": " + person[key]);
-}
-// Output:
-// name: John
-// age: 25
-// city: St. Louis</code></pre>
-
-                <h3>Object.keys(), Object.values(), Object.entries()</h3>
-                <pre><code>let student = {
-    name: "Alice",
-    age: 20,
-    gpa: 3.8
-};
-
-// Get all keys
-let keys = Object.keys(student);
-console.log(keys); // ["name", "age", "gpa"]
-
-// Get all values
-let values = Object.values(student);
-console.log(values); // ["Alice", 20, 3.8]
-
-// Get key-value pairs
-let entries = Object.entries(student);
-console.log(entries);
-// [["name", "Alice"], ["age", 20], ["gpa", 3.8]]
-
-// Loop through entries
-Object.entries(student).forEach(([key, value]) => {
-    console.log(`${key}: ${value}`);
-});</code></pre>
-
-                <h2>Object Destructuring</h2>
-                <p>Extract properties into variables:</p>
-                <pre><code>let person = {
-    name: "John",
-    age: 25,
-    city: "St. Louis"
-};
-
-// Extract properties
-let { name, age, city } = person;
-
-console.log(name);  // "John"
-console.log(age);   // 25
-console.log(city);  // "St. Louis"
-
-// With different variable names
-let { name: personName, age: personAge } = person;
-console.log(personName); // "John"
-console.log(personAge);  // 25</code></pre>
-
-                <h2>Try It Yourself</h2>
-                <p>Practice working with objects:</p>
-                
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span>JavaScript Editor</span>
-                        <button class="run-button" onclick="runCode()">Run Code</button>
-                    </div>
-                    <textarea class="code-input" id="codeInput">// Create a student object
-let student = {
-    name: "Maria",
-    major: "Computer Science",
-    year: 3,
-    gpa: 3.9,
-    
-    introduce() {
-        return `Hi, I'm ${this.name}, a ${this.major} major.`;
-    },
-    
-    getStatus() {
-        if (this.gpa >= 3.5) {
-            return "Dean's List";
-        } else {
-            return "Good Standing";
-        }
-    }
-};
-
-// Access properties
-console.log("Name:", student.name);
-console.log("Major:", student.major);
-
-// Call methods
-console.log(student.introduce());
-console.log("Status:", student.getStatus());
-
-// Loop through properties
-console.log("\nAll properties:");
-for (let key in student) {
-    if (typeof student[key] !== 'function') {
-        console.log(`  ${key}: ${student[key]}`);
-    }
-}</textarea>
-                    <div class="preview-area">
-                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
-                    </div>
-                </div>
-
-                <div class="challenge">
-                    <h3>Challenge</h3>
-                    <p>Create objects for these scenarios:</p>
-                    <ul>
-                        <li>A <code>book</code> object with title, author, pages, and a method that returns a description</li>
-                        <li>A <code>calculator</code> object with methods for add, subtract, multiply, and divide</li>
-                        <li>A <code>car</code> object with make, model, year, and a method to calculate the car's age</li>
-                        <li>Use nested objects to create a <code>university</code> object with location info and student count</li>
-                        <li>Loop through an object and log only the properties that are numbers</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="lesson-navigation">
-                <a href="lesson-js-08.html" class="nav-button">← Previous Lesson</a>
-                <a href="lesson-js-10.html" class="nav-button">Next Lesson →</a>
+                <div class="nav-footer">
+                <a href="lesson-js-08.html" class="btn btn-secondary">← Previous Lesson</a>
+                <a href="lesson-js-10.html" class="btn">Next Lesson →</a>
             </div>
             </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

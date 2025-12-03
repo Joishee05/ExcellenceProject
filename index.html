@@ -3,42 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLU LearnCode - Learn Web Development</title>
-    <link rel="stylesheet" href="styles/tutorial.css?v=2000">
+    <title>SLU LearnCode - Master Web Development</title>
     <style>
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body { 
+            height: 100%; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            color: #333; 
+            line-height: 1.8;
+        }
+        
+        /* Navigation */
+        .navbar { 
+            background: white; 
+            border-bottom: 2px solid #d4af37; 
+            padding: 1.2rem 0; 
+            box-shadow: 0 2px 8px rgba(0,51,160,0.08); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
+        }
+        
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 1rem; 
+            display: flex; 
+            align-items: center; 
             gap: 2rem;
-            max-width: 1000px;
-            margin: 2rem auto;
         }
         
-        .card {
+        .logo { 
+            font-size: 1.3rem; 
+            font-weight: 700; 
+            color: #0033a0; 
+            text-decoration: none; 
+            transition: all 0.3s;
+        }
+        
+        .logo:hover { 
+            color: #d4af37;
+        }
+        
+        .logo-bracket { 
+            color: #d4af37;
+        }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 0.3rem; 
+            list-style: none; 
+            margin-left: auto;
+        }
+        
+        .nav-links li a { 
+            color: #0033a0; 
+            text-decoration: none; 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 4px; 
+            font-weight: 500; 
+            transition: all 0.3s;
+        }
+        
+        .nav-links li a:hover { 
+            background: #ecf0ff; 
+            color: #d4af37;
+        }
+        
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(135deg, #0033a0 0%, #004db3 100%); 
+            padding: 7rem 2rem; 
+            color: white; 
             text-align: center;
+            box-shadow: 0 8px 24px rgba(0,51,160,0.2);
         }
         
-        .card-body {
-            text-align: center;
+        .hero-content { 
+            max-width: 1000px; 
+            margin: 0 auto;
         }
         
-        .card h3 {
-            text-align: center;
+        .hero-content h1 { 
+            font-size: 3.5rem; 
+            font-weight: 900; 
+            margin-bottom: 1.5rem; 
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: -0.5px;
         }
         
-        .card p {
-            text-align: center;
+        .hero-subtitle { 
+            font-size: 1.4rem; 
+            margin-bottom: 1rem; 
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+            letter-spacing: 0.3px;
         }
         
-        .card .badge {
+        .hero-description { 
+            font-size: 1.1rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button { 
             display: inline-block;
-            text-align: center;
+            background: #d4af37; 
+            color: #0033a0; 
+            padding: 1rem 3rem; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+            border: 2px solid #d4af37;
         }
         
+        .cta-button:hover { 
+            background: transparent; 
+            color: #d4af37;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+        }
+        
+        /* Courses Section */
+        .courses-section { 
+            max-width: 1200px; 
+            margin: 4rem auto; 
+            padding: 0 1rem;
+        }
+        
+        .section-title { 
+            text-align: center; 
+            color: #0033a0; 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            margin-bottom: 3rem;
+            letter-spacing: -0.3px;
+        }
+        
+        .courses-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem;
+        }
+        
+        .course-card { 
+            background: white; 
+            padding: 2.5rem 2rem; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 5px solid #0033a0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-card::before { 
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ecf0ff 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .course-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 25px rgba(0,51,160,0.15);
+            border-top-color: #d4af37;
+        }
+        
+        .course-icon { 
+            font-size: 3rem; 
+            margin-bottom: 1rem;
+        }
+        
+        .course-card h3 { 
+            color: #0033a0; 
+            font-size: 1.5rem; 
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .course-card p { 
+            color: #666; 
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .course-link { 
+            display: inline-block;
+            color: #0033a0; 
+            text-decoration: none; 
+            font-weight: 600;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .course-link:hover { 
+            color: #d4af37;
+            border-bottom-color: #d4af37;
+        }
+        
+        /* Footer */
+        .footer { 
+            background: #1a1a1a; 
+            color: white; 
+            text-align: center; 
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 2px solid #d4af37;
+        }
+        
+        .footer p { 
+            margin: 0.5rem 0; 
+            color: #ccc;
+        }
+        
+        .footer p:first-child { 
+            font-weight: 600;
+            color: #d4af37;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .hero-description { font-size: 0.95rem; }
+            .section-title, .features-title, .resources-title { font-size: 1.8rem; }
+            .nav-links { gap: 0; flex-wrap: wrap; }
+            .nav-links li a { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -46,85 +261,55 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <span class="logo-bracket">&lt;</span>
-                <span class="logo-text">SLU LearnCode</span>
-                <span class="logo-bracket">/&gt;</span>
+                <span class="logo-bracket">&lt;</span>SLU LearnCode<span class="logo-bracket">/&gt;</span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="html-tutorials.html">HTML</a></li>
                 <li><a href="css-tutorials.html">CSS</a></li>
                 <li><a href="js-tutorials.html">JavaScript</a></li>
-                <li><a href="project-walkthrough.html">Project</a></li>
+                <li><a href="project-walkthrough.html">DigitalBonesBox Project</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Master <span class="gradient-text">Web Development</span></h1>
-            <p>Learn HTML, CSS, and JavaScript to prepare yourself for the DigitalBonesBox Project.</p>
-            <a href="#learning-paths" class="cta-button">Start Learning Now</a>
+            <h1>SLU Web Development</h1>
+            <p class="hero-subtitle">Master HTML, CSS, and JavaScript through interactive lessons</p>
+            <p class="hero-description">Learn web development the Saint Louis University way - From beginner to intermediate developer!</p>
+            <a href="Lessons/lesson-html-01.html" class="cta-button">Start Learning</a>
         </div>
     </section>
 
-    <!-- Learning Paths Section -->
-    <section id="learning-paths" class="featured">
-        <div class="cards-container">
-            <h2 class="section-title">Choose Your Learning Path</h2>
+    <section class="courses-section" id="courses">
+        <h2 class="section-title">Learning Paths</h2>
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-icon">HTML</div>
+                <h3>HTML Fundamentals</h3>
+                <p>Learn the structure of web pages with semantic HTML5. Master tags, attributes, and best practices for creating accessible web content.</p>
+                <a href="html-tutorials.html" class="course-link">Explore HTML Lessons →</a>
+            </div>
             
-            <div class="cards-grid">
-                <!-- HTML Card -->
-                <a href="html-tutorials.html" class="card card-blue">
-                    <div class="card-header">HTML - Structure</div>
-                    <div class="card-body">
-                        <h3>Learn HTML</h3>
-                        <p>Build the foundation of web pages. Master semantic HTML, forms, accessibility, and best practices.</p>
-                        <span class="badge">Beginner</span>
-                        <button class="btn">Start Course</button>
-                    </div>
-                </a>
-
-                <!-- CSS Card -->
-                <a href="css-tutorials.html" class="card card-purple">
-                    <div class="card-header">CSS - Design</div>
-                    <div class="card-body">
-                        <h3>Learn CSS</h3>
-                        <p>Create stunning designs. Master layouts, animations, responsive design, and modern techniques.</p>
-                        <span class="badge">Beginner</span>
-                        <button class="btn">Start Course</button>
-                    </div>
-                </a>
-
-                <!-- JavaScript Card -->
-                <a href="js-tutorials.html" class="card card-orange">
-                    <div class="card-header">JavaScript - Logic</div>
-                    <div class="card-body">
-                        <h3>Learn JavaScript</h3>
-                        <p>Add interactivity and logic. Master programming fundamentals, DOM manipulation, and async programming.</p>
-                        <span class="badge">Beginner+</span>
-                        <button class="btn">Start Course</button>
-                    </div>
-                </a>
-
-                <!-- Project Card -->
-                <a href="project-walkthrough.html" class="card card-pink">
-                    <div class="card-header">Real Project</div>
-                    <div class="card-body">
-                        <h3>DigitalBonesBox</h3>
-                        <p>See HTML, CSS, and JavaScript working together in a real web application. File-by-file breakdown.</p>
-                        <span class="badge">Advanced</span>
-                        <button class="btn">Explore Project</button>
-                    </div>
-                </a>
+            <div class="course-card">
+                <div class="course-icon">CSS</div>
+                <h3>CSS Styling</h3>
+                <p>Create beautiful, responsive layouts with CSS. Learn flexbox, grid, animations, and responsive design techniques.</p>
+                <a href="css-tutorials.html" class="course-link">Explore CSS Lessons →</a>
+            </div>
+            
+            <div class="course-card">
+                <div class="course-icon">JS</div>
+                <h3>JavaScript Programming</h3>
+                <p>Master JavaScript from basics to advanced concepts. Learn DOM manipulation, async programming, and modern ES6+ features.</p>
+                <a href="js-tutorials.html" class="course-link">Explore JavaScript Lessons →</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+    <footer class="footer">
+        <p>&copy; 2025 SLU LearnCode - Saint Louis University</p>
         <p>A helpful aid for Students working on the Digital Bones Box project</p>
     </footer>
 </body>

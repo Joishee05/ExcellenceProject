@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 5: Loops - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #f97316; }
         .sidebar a.active { background: #e8f1ff; color: #f97316; border-left-color: #f97316; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
         .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #f97316; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
@@ -37,9 +37,9 @@
         .btn-secondary { background: #ddd; color: #666; }
         .btn-secondary:hover { background: #ccc; }
         .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #f97316; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        footer { background: #f97316; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: 100%; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
     </style>
 </head>
 <body>
@@ -73,6 +73,13 @@
             <a href="lesson-js-13.html">13. Modules & Imports</a>
             <a href="lesson-js-14.html">14. Error Handling</a>
             <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs & JSON</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Node.js Lessons</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setting Up Node.js</a>
+            <a href="lesson-nodejs-03.html">23. Building Your First Server</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,186 +87,96 @@
                 <div class="lesson-meta">Lesson 5 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 5 of 12</div>
-                <h1>JavaScript Functions</h1>
-            </div>
-
             <div class="lesson-text">
-                <p>Functions are reusable blocks of code that perform a specific task. They help organize your code and avoid repetition.</p>
+                <p>Loops allow you to repeat code multiple times without writing it over and over. They're essential for working with collections of data and automating repetitive tasks.</p>
 
-                <h2>Function Declaration</h2>
-                <p>The traditional way to create a function:</p>
-                <pre><code>function greet() {
-    console.log("Hello, World!");
+                <h2>The For Loop</h2>
+                <p>The most common loop - repeats code a specific number of times:</p>
+                <pre><code>// Syntax: for (start; condition; increment)
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+// Output: 1, 2, 3, 4, 5
+
+// Count down
+for (let i = 10; i >= 5; i--) {
+    console.log(i);
+}
+// Output: 10, 9, 8, 7, 6, 5</code></pre>
+
+                <h3>For Loop Breakdown</h3>
+                <pre><code>for (let i = 1; i <= 3; i++) {
+    console.log("Iteration: " + i);
 }
 
-// Call the function
-greet(); // Outputs: "Hello, World!"</code></pre>
+// let i = 1      → Initialize counter at 1
+// i <= 3         → Check: Is i less than or equal to 3?
+// i++            → After each loop, add 1 to i
+// Loop body      → Code inside the braces</code></pre>
 
-                <h2>Functions with Parameters</h2>
-                <p>Parameters allow you to pass data into functions:</p>
-                <pre><code>function greetUser(name) {
-    console.log("Hello, " + name + "!");
+                <h2>The While Loop</h2>
+                <p>Repeats code while a condition is true. Useful when you don't know how many times to loop:</p>
+                <pre><code>// Count up
+let count = 1;
+
+while (count <= 5) {
+    console.log(count);
+    count++;  // Important! Without this, infinite loop
 }
+// Output: 1, 2, 3, 4, 5</code></pre>
 
-greetUser("Alice");  // "Hello, Alice!"
-greetUser("Bob");    // "Hello, Bob!"
+                <h2>The Do...While Loop</h2>
+                <p>Similar to while, but runs at least once before checking the condition:</p>
+                <pre><code>let count = 1;
 
-// Multiple parameters
-function add(a, b) {
-    console.log(a + b);
+do {
+    console.log(count);
+    count++;
+} while (count <= 5);
+// Output: 1, 2, 3, 4, 5</code></pre>
+
+                <h2>Breaking and Continuing</h2>
+                <p>Control loop flow with break and continue:</p>
+                <pre><code>// break exits loop
+for (let i = 1; i <= 10; i++) {
+    if (i === 5) break;
+    console.log(i);
 }
+// Output: 1, 2, 3, 4
 
-add(5, 3);  // 8
-add(10, 20); // 30</code></pre>
-
-                <h2>Return Values</h2>
-                <p>Functions can return values using the <code>return</code> keyword:</p>
-                <pre><code>function multiply(a, b) {
-    return a * b;
+// continue skips iteration
+for (let i = 1; i <= 5; i++) {
+    if (i === 3) continue;
+    console.log(i);
 }
+// Output: 1, 2, 4, 5</code></pre>
 
-let result = multiply(4, 5);
-console.log(result); // 20
-
-// You can use the returned value directly
-console.log(multiply(3, 7)); // 21</code></pre>
-
-                <h3>Return Statement Details</h3>
-                <pre><code>function calculateGrade(score) {
-    if (score >= 90) {
-        return "A";
-    } else if (score >= 80) {
-        return "B";
-    } else if (score >= 70) {
-        return "C";
-    } else {
-        return "F";
+                <h2>Nested Loops</h2>
+                <p>A loop inside another loop for 2D patterns:</p>
+                <pre><code>for (let i = 1; i <= 3; i++) {
+    for (let j = 1; j <= 3; j++) {
+        console.log(i + "," + j);
     }
-}
+}</code></pre>
 
-console.log(calculateGrade(95)); // "A"
-console.log(calculateGrade(82)); // "B"</code></pre>
+                <h2>Key Takeaways</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use for loops for known iterations</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use while for condition-based loops</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use break to exit early</li>
+                    <li style="padding: 8px 0;">Use continue to skip iterations</li>
+                </ul>
 
-                <div class="info-box">
-                    <p><strong>Note:</strong> When a <code>return</code> statement is executed, the function stops immediately and returns the value. Any code after <code>return</code> won't run.</p>
-                </div>
-
-                <h2>Function Expressions</h2>
-                <p>You can also store functions in variables:</p>
-                <pre><code>const square = function(x) {
-    return x * x;
-};
-
-console.log(square(5)); // 25
-console.log(square(8)); // 64</code></pre>
-
-                <h2>Arrow Functions</h2>
-                <p>A shorter syntax for writing functions (ES6+):</p>
-                <pre><code>// Traditional function
-const add = function(a, b) {
-    return a + b;
-};
-
-// Arrow function
-const addArrow = (a, b) => {
-    return a + b;
-};
-
-// Shorter arrow function (implicit return)
-const addShort = (a, b) => a + b;
-
-console.log(addShort(10, 5)); // 15</code></pre>
-
-                <h3>Arrow Function Examples</h3>
-                <pre><code>// Single parameter (no parentheses needed)
-const double = x => x * 2;
-console.log(double(4)); // 8
-
-// No parameters (empty parentheses required)
-const sayHi = () => console.log("Hi!");
-sayHi(); // "Hi!"
-
-// Multiple lines (braces and return required)
-const calculateArea = (width, height) => {
-    let area = width * height;
-    return area;
-};
-console.log(calculateArea(5, 10)); // 50</code></pre>
-
-                <h2>Default Parameters</h2>
-                <p>You can set default values for parameters:</p>
-                <pre><code>function greet(name = "Guest") {
-    console.log("Hello, " + name + "!");
-}
-
-greet("Alice");  // "Hello, Alice!"
-greet();         // "Hello, Guest!"
-
-// Arrow function with defaults
-const power = (base, exponent = 2) => base ** exponent;
-console.log(power(5));     // 25 (5^2)
-console.log(power(5, 3));  // 125 (5^3)</code></pre>
-
-                <h2>Try It Yourself</h2>
-                <p>Create and use your own functions:</p>
-                
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span>JavaScript Editor</span>
-                        <button class="run-button" onclick="runCode()">Run Code</button>
-                    </div>
-                    <textarea class="code-input" id="codeInput">// Function declaration
-function calculateGPA(grade1, grade2, grade3) {
-    let average = (grade1 + grade2 + grade3) / 3;
-    return average.toFixed(2);
-}
-
-let myGPA = calculateGPA(3.5, 3.8, 4.0);
-console.log("My GPA:", myGPA);
-
-// Arrow function
-const isEven = (num) => num % 2 === 0;
-
-console.log("Is 4 even?", isEven(4));  // true
-console.log("Is 7 even?", isEven(7));  // false
-
-// Function with default parameter
-const greetStudent = (name = "Student") => {
-    return `Welcome to SLU, ${name}!`;
-};
-
-console.log(greetStudent("Maria"));
-console.log(greetStudent());</textarea>
-                    <div class="preview-area">
-                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
-                    </div>
-                </div>
-
-                <div class="challenge">
-                    <h3>Challenge</h3>
-                    <p>Create the following functions:</p>
-                    <ul>
-                        <li>A function <code>celsiusToFahrenheit(celsius)</code> that converts Celsius to Fahrenheit (formula: F = C × 9/5 + 32)</li>
-                        <li>A function <code>calculateDiscount(price, discount)</code> that returns the final price after applying a discount percentage</li>
-                        <li>An arrow function <code>isAdult(age)</code> that returns true if age is 18 or above</li>
-                        <li>A function with default parameters <code>createGreeting(name, time = "day")</code> that returns "Good [time], [name]!"</li>
-                    </ul>
-                    <p>Test each function with different inputs!</p>
-                </div>
-            </div>
-
-            <div class="lesson-navigation">
-                <a href="lesson-js-04.html" class="nav-button">← Previous Lesson</a>
-                <a href="lesson-js-06.html" class="nav-button">Next Lesson →</a>
+                <div class="nav-footer">
+                <a href="lesson-js-04.html" class="btn btn-secondary">← Previous Lesson</a>
+                <a href="lesson-js-06.html" class="btn">Next Lesson →</a>
             </div>
             </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

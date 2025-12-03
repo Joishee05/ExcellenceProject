@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 3: Colors & Backgrounds - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lesson 3: Colors & Fonts - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
-        .sidebar a.active { background: #e8f1ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #8b5cf6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #8b5cf6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #8b5cf6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #8b5cf6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #8b5cf6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #8b5cf6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -50,123 +53,281 @@
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
                 <li><a href="../css-tutorials.html" class="active">CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="page-wrapper">
         <aside class="sidebar">
             <div class="sidebar-title">CSS Lessons</div>
             <a href="lesson-css-01.html">1. What is CSS?</a>
-            <a href="lesson-css-02.html">2. Selectors</a>
-            <a href="lesson-css-03.html" class="active">3. Colors & Backgrounds</a>
-            <a href="lesson-css-04.html">4. Text Styling</a>
-            <a href="lesson-css-05.html">5. Box Model</a>
-            <a href="lesson-css-06.html">6. Borders & Spacing</a>
-            <a href="lesson-css-07.html">7. Flexbox</a>
-            <a href="lesson-css-08.html">8. Grid Layout</a>
-            <a href="lesson-css-09.html">9. Positioning</a>
-            <a href="lesson-css-10.html">10. Transitions & Animations</a>
-            <a href="lesson-css-11.html">11. Responsive Design</a>
-            <a href="lesson-css-12.html">12. Variables & Functions</a>
-            <a href="lesson-css-13.html">13. Media Queries</a>
-            <a href="lesson-css-14.html">14. Transform & Perspective</a>
+            <a href="lesson-css-02.html">2. Selectors & Properties</a>
+            <a href="lesson-css-03.html" class="active">3. Colors & Fonts</a>
+            <a href="lesson-css-04.html">4. Box Model</a>
+            <a href="lesson-css-05.html">5. Layout & Display</a>
+            <a href="lesson-css-06.html">6. Flexbox</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
+            <a href="lesson-css-08.html">8. Positioning</a>
+            <a href="lesson-css-09.html">9. Transitions & Animations</a>
+            <a href="lesson-css-10.html">10. Responsive Design</a>
+            <a href="lesson-css-11.html">11. Media Queries</a>
+            <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
+            <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
+
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Colors & Backgrounds</h1>
-                <div class="lesson-meta">Lesson 3 of 15</div>
+                <h1>Lesson 3: Colors & Fonts</h1>
+                <p class="lesson-meta">Lesson 3 of 15</p>
             </div>
+
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 3 of 10</div>
-                <h1>Colors & Backgrounds</h1>
-            </div>
-            <div class="lesson-text">
-                <p>CSS offers many ways to add colors and backgrounds to your elements.</p>
-                <h3>Color Values:</h3>
+                <h2>What You'll Learn</h2>
+                <p>In this comprehensive lesson, you will master working with colors and fonts in CSS. You will learn different color systems, how to choose and implement fonts effectively, and best practices for typography that improves readability and user experience.</p>
+
+                <h2>Understanding Colors in CSS</h2>
+                <p>Colors are fundamental to web design. CSS offers multiple ways to specify colors, each with its own advantages and use cases.</p>
+
+                <h3>Color System 1: Named Colors</h3>
+                <p>CSS supports 147 predefined color names. These are easy to remember and use but limit your design flexibility.</p>
+                <div class="code-block">color: red;
+color: blue;
+color: green;
+color: lightblue;
+background: transparent;  /* Special keyword */</div>
+
+                <p><strong>What This Does:</strong></p>
                 <ul>
-                    <li><strong>Named colors:</strong> <code>color: red;</code></li>
-                    <li><strong>Hex codes:</strong> <code>color: #FF0000;</code></li>
-                    <li><strong>RGB:</strong> <code>color: rgb(255, 0, 0);</code></li>
-                    <li><strong>RGBA (with transparency):</strong> <code>color: rgba(255, 0, 0, 0.5);</code></li>
+                    <li><strong>color: red;</strong> - Browser recognizes "red" as a color name and displays red text. Simple and readable</li>
+                    <li><strong>color: lightblue;</strong> - Named colors can have modifiers like "light" or "dark" (e.g., lightblue, darkgreen)</li>
+                    <li><strong>background: transparent;</strong> - A special keyword that makes something invisible (see-through)</li>
+                    <li><strong>Limitation:</strong> Only 147 names available. Professional designs need more color options</li>
+                    <li><strong>When to use:</strong> Quick prototyping or when exact color doesn't matter much</li>
                 </ul>
-                <h3>Background Properties:</h3>
+
+                <p>Named colors are useful for quick prototyping but professional designs typically use other color systems for more precise control.</p>
+
+                <h3>Color System 2: Hexadecimal (Hex) Colors</h3>
+                <p>Hex colors are six-digit codes (or three-digit shorthand) representing RGB values in base-16 format. This is the most common color system in web design.</p>
+                <div class="code-block">color: #FF0000;      /* Red (full notation) */
+color: #F00;         /* Red (shorthand) */
+color: #00FF00;      /* Green */
+color: #0000FF;      /* Blue */
+color: #333333;      /* Dark gray */
+color: #FFFFFF;      /* White */</div>
+
+                <p><strong>What This Does:</strong></p>
                 <ul>
-                    <li><code>background-color</code> - Solid color</li>
-                    <li><code>background-image</code> - Image or gradient</li>
-                    <li><code>background-size</code> - Size of background</li>
-                    <li><code>background-position</code> - Position of background</li>
+                    <li><strong>#FF0000:</strong> The # symbol means "hex color". FF=red, 00=green, 00=blue. Together they make pure red</li>
+                    <li><strong>#F00:</strong> Shorthand for #FF0000. The browser automatically expands it. Both create the same red</li>
+                    <li><strong>#333333 (dark gray):</strong> When all three pairs are equal, you get a shade of gray. 333 is dark, FFF is white, 000 is black</li>
+                    <li><strong>Why popular:</strong> Designers can create millions of colors. Tools let you pick a color visually and get the hex code</li>
+                    <li><strong>Real example:</strong> #10b981 means red(10) + green(b9) + blue(81) = a nice teal color</li>
                 </ul>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    body {
-        margin: 0;
-        padding: 20px;
-    }
-    
-    .box1 {
-        background-color: #3498db;
-        color: white;
-        padding: 20px;
-        margin: 10px 0;
-    }
-    
-    .box2 {
-        background-color: rgba(231, 76, 60, 0.7);
-        color: white;
-        padding: 20px;
-        margin: 10px 0;
-    }
-    
-    .gradient-box {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        padding: 20px;
-        margin: 10px 0;
-        border-radius: 10px;
-    }
-</style>
-</head>
-<body>
-    <div class="box1">Blue box with hex color</div>
-    <div class="box2">Semi-transparent red box</div>
-    <div class="gradient-box">Beautiful gradient box!</div>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+
+                <p>Hex colors range from #000000 (black) to #FFFFFF (white). Every two digits represent Red, Green, and Blue values (0-255). The shorthand (#ABC) expands to #AABBCC.</p>
+
+                <h3>Color System 3: RGB (Red, Green, Blue)</h3>
+                <p>RGB uses three numbers (0-255) to specify the intensity of red, green, and blue light. This is how monitors display colors.</p>
+                <div class="code-block">color: rgb(255, 0, 0);      /* Red */
+color: rgb(0, 255, 0);      /* Green */
+color: rgb(0, 0, 255);      /* Blue */
+color: rgb(128, 128, 128);  /* Gray */</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>rgb(255, 0, 0):</strong> Three numbers from 0-255. First is red, second is green, third is blue. This creates pure red</li>
+                    <li><strong>rgb(0, 255, 0):</strong> Red=0 (no red), Green=255 (maximum), Blue=0 (no blue). This makes pure green</li>
+                    <li><strong>rgb(128, 128, 128):</strong> When all three are equal, you get gray. 0,0,0 = black, 255,255,255 = white</li>
+                    <li><strong>How monitors work:</strong> Every pixel on your screen is made of tiny red, green, and blue lights. RGB controls their brightness</li>
+                    <li><strong>More intuitive:</strong> If you know "I want more red", RGB is easier than remembering hex codes</li>
+                </ul>
+
+                <h3>Color System 4: RGBA (RGB with Alpha/Transparency)</h3>
+                <p>RGBA adds an alpha channel for transparency. The fourth number ranges from 0 (fully transparent) to 1 (fully opaque).</p>
+                <div class="code-block">background: rgba(255, 0, 0, 1);    /* Fully opaque red */
+background: rgba(255, 0, 0, 0.5);  /* 50% transparent red */
+background: rgba(0, 0, 0, 0.8);    /* 80% opaque black */
+background: rgba(255, 255, 255, 0); /* Fully transparent */</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>rgba(255, 0, 0, 1):</strong> Same as rgb but with a 4th number. The 1 means 100% opaque (solid, can't see through)</li>
+                    <li><strong>rgba(255, 0, 0, 0.5):</strong> The 0.5 means 50% transparent (semi-transparent). You can see through it</li>
+                    <li><strong>The Alpha number:</strong> 0 = completely invisible, 0.5 = halfway see-through, 1 = completely solid</li>
+                    <li><strong>Practical use:</strong> Semi-transparent overlays on images, buttons that fade in/out, glass-morphism effects</li>
+                    <li><strong>rgba(255, 255, 255, 0):</strong> White that's completely transparent - totally invisible but still takes up space</li>
+                </ul>
+
+                <h3>Color System 5: HSL (Hue, Saturation, Lightness)</h3>
+                <p>HSL is another way to specify colors. It's often more intuitive for designers: Hue (0-360 degrees), Saturation (0-100%), Lightness (0-100%).</p>
+                <div class="code-block">color: hsl(0, 100%, 50%);      /* Red */
+color: hsl(120, 100%, 50%);    /* Green */
+color: hsl(240, 100%, 50%);    /* Blue */
+color: hsl(200, 50%, 50%);     /* Medium blue */</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>Hue (0-360):</strong> Think of a color wheel. 0=red, 120=green, 240=blue. Any angle gives you a different color</li>
+                    <li><strong>Saturation (0-100%):</strong> How intense the color is. 0% = gray, 100% = full, vibrant color</li>
+                    <li><strong>Lightness (0-100%):</strong> How bright. 0% = black, 50% = normal, 100% = white</li>
+                    <li><strong>Real example:</strong> hsl(200, 50%, 50%) = blue-ish (200 degrees) + medium intensity (50% saturation) + medium brightness (50% light)</li>
+                    <li><strong>Why designers love it:</strong> To make a color darker, just lower lightness. To make it less vibrant, lower saturation. Much easier than hex!</li>
+                </ul>
+
+                <p>HSL can be easier for creating color schemes and tints/shades of the same color.</p>
+
+                <h3>Color System 6: HSLA (HSL with Alpha)</h3>
+                <p>HSLA combines HSL with transparency, similar to RGBA.</p>
+                <div class="code-block">background: hsla(200, 100%, 50%, 0.5);  /* Semi-transparent light blue */</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>hsla(200, 100%, 50%, 0.5):</strong> First three numbers are HSL (hue, saturation, lightness), fourth is transparency</li>
+                    <li><strong>Advantages:</strong> Combine the easy HSL system with transparency</li>
+                    <li><strong>The 0.5:</strong> 50% transparent - you can see through it</li>
+                </ul>
+
+                <h2>Working with Color Effectively</h2>
+
+                <h3>Color Properties</h3>
+                <div class="code-block">color: #333;                    /* Text color */
+background-color: #f5f5f5;     /* Background color */
+border-color: #ddd;            /* Border color */
+box-shadow: 0 2px 5px rgba(0,0,0,0.2);  /* Shadow color with transparency */
+text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Text shadow */</div>
+
+                <h3>Color Contrast and Accessibility</h3>
+                <p>Proper color contrast is essential for accessibility. The Web Content Accessibility Guidelines (WCAG) recommend:</p>
+                <ul>
+                    <li><strong>WCAG AA:</strong> Contrast ratio of at least 4.5:1 for normal text</li>
+                    <li><strong>WCAG AAA:</strong> Contrast ratio of at least 7:1 for normal text</li>
+                </ul>
+
+                <p>Always test your color combinations to ensure they are readable by people with color blindness and low vision.</p>
+
+                <h2>Introduction to Fonts and Typography</h2>
+                <p>Typography is crucial for user experience. Good typography improves readability, establishes visual hierarchy, and reinforces your brand identity.</p>
+
+                <h3>Font Families</h3>
+                <p>The font-family property specifies which font to use. You can list multiple fonts as fallbacksthe browser uses the first available font.</p>
+                <div class="code-block">/* Using specific fonts with fallbacks */
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+/* Alternative approaches */
+font-family: 'Times New Roman', Georgia, serif;
+font-family: 'Courier New', monospace;
+font-family: Arial, Helvetica, sans-serif;</div>
+
+                <h3>Font Categories</h3>
+                <ul>
+                    <li><strong>Serif:</strong> Fonts with small lines at the end of letters (e.g., Times New Roman, Georgia). Often used for body text in print but increasingly common online.</li>
+                    <li><strong>Sans-Serif:</strong> Fonts without serifs (e.g., Arial, Helvetica, Segoe UI). Cleaner appearance, preferred for web and screen readability.</li>
+                    <li><strong>Monospace:</strong> Fixed-width fonts where each letter takes same space (e.g., Courier New, Monaco). Used for code blocks.</li>
+                    <li><strong>Cursive:</strong> Script or handwriting-style fonts. Use sparingly as they can reduce readability.</li>
+                    <li><strong>Fantasy:</strong> Decorative fonts. Use only for headings and special effects.</li>
+                </ul>
+
+                <h2>Font Properties</h2>
+
+                <h3>Font Size</h3>
+                <div class="code-block">font-size: 16px;      /* Pixels (fixed size) */
+font-size: 1.5em;     /* Em (relative to parent) */
+font-size: 1.5rem;    /* Rem (relative to root) */
+font-size: 100%;      /* Percentage of parent */</div>
+
+                <h3>Font Weight</h3>
+                <p>Controls how thick or thin the font appears. Values range from 100 (thin) to 900 (black).</p>
+                <div class="code-block">font-weight: normal;    /* 400 */
+font-weight: bold;      /* 700 */
+font-weight: 300;       /* Light */
+font-weight: 500;       /* Medium */
+font-weight: 700;       /* Bold */
+font-weight: 900;       /* Black */</div>
+
+                <h3>Font Style</h3>
+                <div class="code-block">font-style: normal;     /* Default */
+font-style: italic;     /* Italicized text */
+font-style: oblique;    /* Similar to italic */</div>
+
+                <h3>Line Height</h3>
+                <p>Controls the vertical spacing between lines of text. Affects readability significantly.</p>
+                <div class="code-block">line-height: 1.5;       /* 1.5 times the font size (recommended for web) */
+line-height: 1.6;       /* Even more space */
+line-height: 20px;      /* Fixed pixel height */
+line-height: 150%;      /* Percentage of font size */</div>
+
+                <p>For body text, a line-height of 1.5 to 1.8 is recommended for optimal readability.</p>
+
+                <h2>Typography Best Practices</h2>
+                <ul>
+                    <li><strong>Font Size:</strong> Use 16px or larger for body text. Smaller text reduces readability.</li>
+                    <li><strong>Line Height:</strong> Use 1.5-1.8 for body text. Too tight reduces readability, too loose looks awkward.</li>
+                    <li><strong>Font Families:</strong> Limit to 2-3 font families per site. Too many fonts look unprofessional.</li>
+                    <li><strong>Font Pairing:</strong> Pair contrasting fonts well (e.g., sans-serif heading with serif body, or vice versa).</li>
+                    <li><strong>Color Contrast:</strong> Ensure sufficient contrast between text and background.</li>
+                    <li><strong>Letter Spacing:</strong> Use sparingly. Excessive letter spacing reduces readability.</li>
+                </ul>
+
+                <h2>Web Fonts and @font-face</h2>
+                <p>Beyond system fonts, you can use custom web fonts via @font-face or services like Google Fonts.</p>
+                <div class="code-block">@font-face {
+  font-family: 'MyCustomFont';
+  src: url('font.woff2') format('woff2');
+}
+
+body {
+  font-family: 'MyCustomFont', sans-serif;
+}</div>
+
+                <h2>Text Properties Beyond Font</h2>
+                <div class="code-block">text-align: left;              /* left, center, right, justify */
+text-decoration: none;         /* none, underline, overline, line-through */
+text-transform: uppercase;    /* uppercase, lowercase, capitalize, none */
+text-indent: 20px;            /* Indent first line of paragraph */
+letter-spacing: 2px;          /* Space between letters */
+word-spacing: 5px;            /* Space between words */</div>
+
+                <h2>Creating Readable Content</h2>
+                <ul>
+                    <li><strong>Font Size:</strong> 16px minimum for body text</li>
+                    <li><strong>Line Height:</strong> 1.5-1.8 for readable spacing</li>
+                    <li><strong>Line Length:</strong> 50-75 characters per line for optimal readability</li>
+                    <li><strong>Color Contrast:</strong> High contrast between text and background</li>
+                    <li><strong>Font Weight:</strong> Use bold for emphasis, not for large text areas</li>
+                </ul>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Ready for the Box Model?</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 4, you will learn the CSS box modelunderstanding margin, border, padding, and content area is fundamental to layout.</p>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+
+                <div class="nav-footer">
+                    <a href="lesson-css-02.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-css-04.html" class="btn">Next Lesson →</a>
+                </div>
+
+                
             </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a new box with:</p>
-                <ol>
-                    <li>A green background (any shade)</li>
-                    <li>White text</li>
-                    <li>20px padding</li>
-                    <li>Try using different color formats (hex, rgb, or rgba)</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-css-02.html" class="nav-button">← Previous</a>
-                <a href="lesson-css-04.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        // Prevent caching
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>

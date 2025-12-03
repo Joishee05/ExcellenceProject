@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 13: Meta Tags & SEO - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
         .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #3b82f6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #3b82f6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -48,9 +50,9 @@
             <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../html-tutorials.html" class="active">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
@@ -73,6 +75,15 @@
             <a href="lesson-html-13.html" class="active">13. Meta Tags & SEO</a>
             <a href="lesson-html-14.html">14. Audio & Video</a>
             <a href="lesson-html-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html">17. Core Attributes</a>
+            <a href="lesson-html-18.html">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,78 +91,136 @@
                 <div class="lesson-meta">Lesson 13 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 13 of 15</div>
-                <h1>HTML Meta Tags & SEO</h1>
-            </div>
-            <div class="lesson-text">
-                <h3>What are Meta Tags?</h3>
-                <p>Meta tags provide metadata about your HTML document. They're crucial for SEO (Search Engine Optimization).</p>
-                <h3>Essential Meta Tags</h3>
-                <pre><code>&lt;!-- Character encoding --&gt;
-&lt;meta charset="UTF-8"&gt;
+                <p><strong>Meta tags provide information about your webpage to browsers and search engines.</strong> They live in the <code>&lt;head&gt;</code> section and don't display on the page. Meta tags help search engines understand your content and improve how your page appears in search results (SEO).</p>
 
-&lt;!-- Viewport for responsive design --&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                <h2>What Are Meta Tags?</h2>
+                <p>Meta tags are HTML tags that give metadata (data about data) about your page. Search engines like Google use meta tags to understand your content, index pages properly, and display previews in search results. They're essential for SEO (Search Engine Optimization).</p>
 
-&lt;!-- Page description for search engines --&gt;
-&lt;meta name="description" content="Learn web development at SLU"&gt;
+                <h3>Meta Tag Structure:</h3>
+                <div class="code-block">&lt;meta name="attribute" content="value"&gt;</div>
 
-&lt;!-- Keywords for SEO --&gt;
-&lt;meta name="keywords" content="HTML, CSS, JavaScript, web development"&gt;
+                <h2>Essential Meta Tags</h2>
 
-&lt;!-- Author information --&gt;
-&lt;meta name="author" content="Your Name"&gt;</code></pre>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of SLU student showcasing web projects">
-    <meta name="keywords" content="portfolio, web design, SLU, student work">
-    <meta name="author" content="John Doe">
-    <title>John Doe - Web Developer Portfolio</title>
-</head>
-<body>
-    <h1>Welcome to My Portfolio</h1>
-    <p>This page is optimized for search engines!</p>
-    
-    <section>
-        <h2>About This Page</h2>
-        <p>Meta tags in the head section help search engines understand this page.</p>
-        <p>The viewport meta tag makes this page mobile-friendly.</p>
-    </section>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+                <h3>1. Charset Declaration</h3>
+                <div class="code-block">&lt;meta charset="UTF-8"&gt;</div>
+                <p>Defines character encoding. Always use <code>UTF-8</code> for universal character support.</p>
+
+                <h3>2. Viewport Tag</h3>
+                <div class="code-block">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
+                <p>Makes pages responsive and mobile-friendly. Tells browsers how to scale content on different devices.</p>
+
+                <h3>3. Description</h3>
+                <div class="code-block">&lt;meta name="description" content="Brief description of your page (155-160 characters)"&gt;</div>
+                <p>Summary shown in search results. Keep it under 160 characters. This is crucial for CTR (click-through rate).</p>
+
+                <h3>4. Keywords</h3>
+                <div class="code-block">&lt;meta name="keywords" content="keyword1, keyword2, keyword3"&gt;</div>
+                <p>Search terms relevant to your page. While less important now, still useful for clarity. Limit to 5-10 keywords.</p>
+
+                <h3>5. Author</h3>
+                <div class="code-block">&lt;meta name="author" content="Your Name"&gt;</div>
+                <p>Identifies the page creator. Optional but helpful for documentation.</p>
+
+                <h2>Open Graph Meta Tags (Social Media)</h2>
+                <p>Control how your page appears when shared on social media:</p>
+
+                <div class="code-block">&lt;meta property="og:title" content="Page Title"&gt;<br>&lt;meta property="og:description" content="Page description"&gt;<br>&lt;meta property="og:image" content="https://example.com/image.jpg"&gt;<br>&lt;meta property="og:url" content="https://example.com/page"&gt;<br>&lt;meta property="og:type" content="website"&gt;</div>
+
+                <h2>Twitter Card Meta Tags</h2>
+                <p>Control how your page appears when shared on Twitter:</p>
+
+                <div class="code-block">&lt;meta name="twitter:card" content="summary_large_image"&gt;<br>&lt;meta name="twitter:title" content="Page Title"&gt;<br>&lt;meta name="twitter:description" content="Description"&gt;<br>&lt;meta name="twitter:image" content="https://example.com/image.jpg"&gt;</div>
+
+                <h2>Complete SEO Meta Tags Example</h2>
+                <div class="code-block">&lt;head&gt;<br>&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>&nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>&nbsp;&nbsp;&lt;meta name="description" content="Learn HTML, CSS, and JavaScript with our comprehensive tutorials"&gt;<br>&nbsp;&nbsp;&lt;meta name="keywords" content="HTML, CSS, JavaScript, web development"&gt;<br>&nbsp;&nbsp;&lt;meta name="author" content="SLU LearnCode"&gt;<br>&nbsp;&nbsp;&lt;title&gt;Learn Web Development | SLU LearnCode&lt;/title&gt;<br>&lt;/head&gt;</div>
+
+                <h2>SEO Best Practices</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="background: white; border: 2px solid #10b981; border-radius: 6px; padding: 15px;">
+                            <div style="background: #10b981; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✓ DO</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Write unique descriptions (155-160 char)</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use relevant keywords naturally</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Include viewport meta tag</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Set charset to UTF-8</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✓ Use descriptive page titles</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: white; border: 2px solid #ef4444; border-radius: 6px; padding: 15px;">
+                            <div style="background: #ef4444; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✗ DON'T</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Stuff keywords excessively</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Copy descriptions from others</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Forget the viewport tag</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Use generic descriptions</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">✗ Skip meta tags entirely</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+
+                <h2>How Search Engines Use Meta Tags</h2>
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div><p style="font-size: 0.9rem;"><strong>Title:</strong> Shown in search results and browser tabs</p></div>
+                        <div><p style="font-size: 0.9rem;"><strong>Description:</strong> Snippet under title in search results</p></div>
+                        <div><p style="font-size: 0.9rem;"><strong>Keywords:</strong> Help categorize content (less important now)</p></div>
+                        <div><p style="font-size: 0.9rem;"><strong>Viewport:</strong> Affects mobile search ranking</p></div>
+                    </div>
+                </div>
+
+                <h2>The Title Tag (Not Technically Meta, But Critical)</h2>
+                <div class="code-block">&lt;title&gt;Best Dog Training | Expert Tips - SLU LearnCode&lt;/title&gt;</div>
+                <p><strong>Title Best Practices:</strong> Keep under 60 characters, include primary keyword, make it descriptive and compelling, avoid keyword stuffing.</p>
+
+                <h2>Meta Tag Example Breakdown</h2>
+                <div style="background: #f5f5f5; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <p style="font-size: 0.9rem; margin-bottom: 10px;"><strong>Description Meta Tag:</strong></p>
+                    <div class="code-block">&lt;meta name="description" content="Learn HTML basics with interactive examples and exercises. Perfect for beginners."&gt;</div>
+                    <ul style="margin-top: 10px; font-size: 0.9rem;">
+                        <li><strong>Name:</strong> "description" tells search engines this is a page description</li>
+                        <li><strong>Content:</strong> The actual description shown in search results</li>
+                        <li><strong>Length:</strong> 155-160 characters is ideal (Google shows 155-160)</li>
+                    </ul>
+                </div>
+
+                <h2>Why Meta Tags Matter</h2>
+                <div class="highlight-box">
+                    <strong>Meta tags are essential because:</strong> They improve search engine ranking, increase click-through rates from search results, control how content appears on social media, ensure proper page rendering across devices, and help browsers understand your content. Good SEO starts with proper meta tags.
+                </div>
+
+                <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="background: #10b981; color: white; padding: 12px; border-radius: 4px; margin: -20px -20px 15px -20px; font-weight: 700; font-size: 1.05rem;">Key Takeaways</div>
+                    <ul style="margin: 0; padding-left: 15px;">
+                        <li style="padding: 8px 0; color: #555;">Meta tags go in the <code>&lt;head&gt;</code> section</li>
+                        <li style="padding: 8px 0; color: #555;">Use <code>&lt;meta charset="UTF-8"&gt;</code> for character encoding</li>
+                        <li style="padding: 8px 0; color: #555;">Viewport tag: <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></li>
+                        <li style="padding: 8px 0; color: #555;">Description: 155-160 characters, appears in search results</li>
+                        <li style="padding: 8px 0; color: #555;">Keywords: 5-10 relevant terms (less critical for ranking)</li>
+                        <li style="padding: 8px 0; color: #555;">Open Graph tags control social media preview</li>
+                        <li style="padding: 8px 0; color: #555;">Title tag: Critical for SEO and browser display</li>
+                        <li style="padding: 8px 0; color: #555;">Every page should have unique title and description</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f97316; color: white; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">✓ Ready for Lesson 14?</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Next up: Audio & Video – Embed media in your webpages!</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-12.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-14.html" class="btn">Next Lesson →</a>
+                </div>
             </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a well-optimized page with:</p>
-                <ol>
-                    <li>All essential meta tags</li>
-                    <li>A descriptive title and description</li>
-                    <li>Relevant keywords for your content</li>
-                    <li>Author information</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-html-12.html" class="nav-button">← Previous</a>
-                <a href="lesson-html-14.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

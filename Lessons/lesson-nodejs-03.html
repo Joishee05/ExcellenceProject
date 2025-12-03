@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 23: Your First Server - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
+        .navbar { position: relative !important; flex-shrink: 0; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
+        .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; }
+        .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s; }
+        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
+        .sidebar a.active { background: #ecf0ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
+        .main-content { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin: 0 0 20px 0; border-radius: 8px; border-left: 4px solid #8b5cf6; }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
+        .lesson-meta { font-size: 0.9rem; color: #999; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; margin: 0 0 20px 0; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
+        .content-area h2:first-of-type { margin-top: 0; }
+        .content-area p { color: #555; margin-bottom: 15px; line-height: 1.6; }
+        .code-block { background: #2d2d2d; color: #e8e8e8; padding: 15px; border-radius: 6px; margin: 15px 0; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: 100%; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
+        </div>
+    </nav>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-title">JavaScript</div>
+            <a href="lesson-js-01.html">1. What is JavaScript?</a>
+            <a href="lesson-js-02.html">2. Variables</a>
+            <a href="lesson-js-03.html">3. Operators</a>
+            <a href="lesson-js-04.html">4. Conditionals</a>
+            <a href="lesson-js-05.html">5. Loops</a>
+            <a href="lesson-js-06.html">6. Functions</a>
+            <a href="lesson-js-07.html">7. Arrays</a>
+            <a href="lesson-js-08.html">8. Objects</a>
+            <a href="lesson-js-09.html">9. DOM</a>
+            <a href="lesson-js-10.html">10. Events</a>
+            <a href="lesson-js-11.html">11. ES6</a>
+            <a href="lesson-js-12.html">12. Async</a>
+            <a href="lesson-js-13.html">13. Modules</a>
+            <a href="lesson-js-14.html">14. Error Handling</a>
+            <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title">Node.js</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setup</a>
+            <a href="lesson-nodejs-03.html" class="active">23. Your First Server</a>
+        </aside>
+        <main class="main-content">
+            <div class="lesson-header">
+                <h1>Building Your First Server</h1>
+                <div class="lesson-meta">Lesson 23 of 23</div>
+            </div>
+            <div class="content-area">
+                <h2>Congratulations! You're Ready to Build Your Server</h2>
+                <p>You've learned about Node.js, installed it, and set up your development environment. Now comes the exciting part: building your first HTTP server! This is where server-side JavaScript becomes real. You'll create a server that listens for requests from clients and sends back responses.</p>
+
+                <h2>Understanding the Request-Response Cycle</h2>
+                <p>Before we build a server, let's understand how web communication works:</p>
+                <ol>
+                    <li><strong>Client makes request:</strong> A browser or application sends an HTTP request (GET, POST, etc.) to a server address</li>
+                    <li><strong>Request travels:</strong> The request travels through the internet to the server's IP address and port</li>
+                    <li><strong>Server processes:</strong> The server (your Node.js code) receives and processes the request</li>
+                    <li><strong>Server sends response:</strong> The server sends back a response with status code (200 for success, 404 for not found, etc.) and data</li>
+                    <li><strong>Client receives:</strong> The client receives the response and displays it (usually in a browser)</li>
+                </ol>
+
+                <h2>The Node.js http Module</h2>
+                <p>Node.js includes a built-in <code>http</code> module that makes creating servers simple. You don't need to install anything extra—it's part of Node.js itself.</p>
+                <p>The http module provides:</p>
+                <ul>
+                    <li><strong>http.createServer():</strong> Creates an HTTP server</li>
+                    <li><strong>Server.listen():</strong> Makes the server listen on a specific port</li>
+                    <li><strong>Request object:</strong> Contains information about incoming requests</li>
+                    <li><strong>Response object:</strong> Used to send responses back to clients</li>
+                </ul>
+
+                <h2>Creating Your First Server</h2>
+                <p>Let's build a simple HTTP server. Create a file called <code>server.js</code> in your project directory:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello from Node.js!');
+});
+
+server.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
+                </div>
+
+                <h2>Line-by-Line Explanation</h2>
+                <p><strong>Line 1:</strong> <code>const http = require('http');</code></p>
+                <ul>
+                    <li>Imports the built-in http module</li>
+                    <li><code>require()</code> is how Node.js loads modules</li>
+                </ul>
+                <p><strong>Lines 3-6:</strong> <code>http.createServer((req, res) => { ... })</code></p>
+                <ul>
+                    <li>Creates an HTTP server with a callback function</li>
+                    <li><code>req</code> (request) contains information about the incoming request</li>
+                    <li><code>res</code> (response) is used to send data back to the client</li>
+                    <li>This callback runs every time someone makes a request to your server</li>
+                </ul>
+                <p><strong>Line 4:</strong> <code>res.writeHead(200, {'Content-Type': 'text/plain'});</code></p>
+                <ul>
+                    <li>Sets the HTTP status code (200 = OK, success)</li>
+                    <li>Sets headers: tells the client the response is plain text</li>
+                    <li>Other common status codes: 404 (not found), 500 (server error)</li>
+                </ul>
+                <p><strong>Line 5:</strong> <code>res.end('Hello from Node.js!');</code></p>
+                <ul>
+                    <li>Sends the response body to the client</li>
+                    <li><code>end()</code> finalizes the response (must be called)</li>
+                </ul>
+                <p><strong>Line 8:</strong> <code>server.listen(3000, () => { ... })</code></p>
+                <ul>
+                    <li>Tells the server to listen on port 3000</li>
+                    <li>The callback runs when the server starts successfully</li>
+                </ul>
+
+                <h2>Running Your Server</h2>
+                <p>To start your server, open a terminal, navigate to your project directory, and run:</p>
+                <div class="code-block">
+node server.js
+                </div>
+                <p>You should see:</p>
+                <div class="code-block">
+Server is running on http://localhost:3000
+                </div>
+                <p>Now open your browser and visit <strong>http://localhost:3000</strong>. You should see: "Hello from Node.js!"</p>
+
+                <h2>Stopping Your Server</h2>
+                <p>To stop the server, press <strong>Ctrl+C</strong> in your terminal (or <strong>Cmd+C</strong> on macOS). The server will stop listening for requests.</p>
+
+                <h2>What's a Port?</h2>
+                <p>A port is like a channel that your server listens on. Think of an IP address as a building and a port as a specific room in that building. Common ports:</p>
+                <ul>
+                    <li><strong>Port 80:</strong> Default HTTP port (web browsers)</li>
+                    <li><strong>Port 443:</strong> Default HTTPS port (secure web)</li>
+                    <li><strong>Port 3000:</strong> Common development port</li>
+                    <li><strong>Port 8000/8080:</strong> Also commonly used in development</li>
+                    <li><strong>Ports 1-1023:</strong> Reserved for system services</li>
+                </ul>
+
+                <h2>Making Your Server Dynamic with Routes</h2>
+                <p>Your current server sends the same response for all requests. Let's make it smarter by handling different URLs:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  if (req.url === '/') {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Welcome to the homepage!');
+  } else if (req.url === '/about') {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('This is the about page.');
+  } else {
+    res.writeHead(404, {'Content-Type': 'text/plain'});
+    res.end('Page not found!');
+  }
+});
+
+server.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
+});
+                </div>
+                <p>Now you have:</p>
+                <ul>
+                    <li><strong>http://localhost:3000/</strong> → "Welcome to the homepage!"</li>
+                    <li><strong>http://localhost:3000/about</strong> → "This is the about page."</li>
+                    <li><strong>http://localhost:3000/anything-else</strong> → "Page not found!" (404 status)</li>
+                </ul>
+
+                <h2>Serving HTML Content</h2>
+                <p>Servers typically send HTML instead of plain text. Here's how to send an HTML response:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  if (req.url === '/') {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    const htmlResponse = `
+      &lt;!DOCTYPE html&gt;
+      &lt;html&gt;
+      &lt;head&gt;
+        &lt;title&gt;My Server&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;h1&gt;Welcome to My Node.js Server!&lt;/h1&gt;
+        &lt;p&gt;This HTML is being served from Node.js&lt;/p&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    `;
+    res.end(htmlResponse);
+  }
+});
+
+server.listen(3000);
+                </div>
+
+                <h2>Understanding the Request Object</h2>
+                <p>The <code>req</code> object contains useful information about incoming requests:</p>
+                <ul>
+                    <li><strong>req.url:</strong> The path the client requested (e.g., "/about")</li>
+                    <li><strong>req.method:</strong> The HTTP method (GET, POST, PUT, DELETE, etc.)</li>
+                    <li><strong>req.headers:</strong> Headers sent with the request (browser info, cookies, etc.)</li>
+                    <li><strong>req.connection.remoteAddress:</strong> The client's IP address</li>
+                </ul>
+                <p>Example: Log the URL and method of each request:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  console.log(`Request: ${req.method} ${req.url}`);
+  res.end('OK');
+});
+
+server.listen(3000);
+                </div>
+
+                <h2>Error Handling in Servers</h2>
+                <p>A good server handles errors gracefully:</p>
+                <div class="code-block">
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  try {
+    if (req.url === '/') {
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end('Hello!');
+    } else {
+      res.writeHead(404, {'Content-Type': 'text/plain'});
+      res.end('Not Found');
+    }
+  } catch (error) {
+    console.error('Server error:', error);
+    res.writeHead(500, {'Content-Type': 'text/plain'});
+    res.end('Internal Server Error');
+  }
+});
+
+server.listen(3000, () => {
+  console.log('Server running');
+});
+                </div>
+
+                <h2>Common Server Patterns</h2>
+                <p><strong>Listening for a specific URL:</strong></p>
+                <div class="code-block">
+if (req.url === '/users' && req.method === 'GET') {
+  // Handle GET /users
+}
+                </div>
+                <p><strong>Sending JSON responses:</strong></p>
+                <div class="code-block">
+res.writeHead(200, {'Content-Type': 'application/json'});
+res.end(JSON.stringify({ message: 'Hello', status: 'ok' }));
+                </div>
+                <p><strong>Redirecting to another URL:</strong></p>
+                <div class="code-block">
+res.writeHead(301, { 'Location': '/new-url' });
+res.end();
+                </div>
+
+                <h2>What You've Accomplished</h2>
+                <p>Congratulations! You've now:</p>
+                <ul>
+                    <li>Created a functional HTTP server with Node.js</li>
+                    <li>Understood how HTTP requests and responses work</li>
+                    <li>Learned to handle different routes and send different responses</li>
+                    <li>Served HTML and JSON content</li>
+                    <li>Handled basic error scenarios</li>
+                </ul>
+
+                <h2>Next Steps in Your Node.js Journey</h2>
+                <p>You now have the foundation to build more complex servers. Here are some directions to explore:</p>
+                <ul>
+                    <li><strong>Express.js:</strong> A popular framework that makes building servers easier and more structured</li>
+                    <li><strong>Databases:</strong> Learn MongoDB or MySQL to store and retrieve data</li>
+                    <li><strong>REST APIs:</strong> Build APIs that serve data to frontend applications</li>
+                    <li><strong>WebSockets:</strong> Enable real-time communication between server and client</li>
+                    <li><strong>Authentication:</strong> Implement user login and session management</li>
+                    <li><strong>Testing:</strong> Write tests for your server code to ensure reliability</li>
+                </ul>
+
+                <h2>Best Practices for Server Development</h2>
+                <ul>
+                    <li><strong>Always handle errors:</strong> Use try-catch blocks and send appropriate error responses</li>
+                    <li><strong>Log requests:</strong> Log important events to help debug issues</li>
+                    <li><strong>Use appropriate status codes:</strong> 200 (success), 404 (not found), 500 (server error)</li>
+                    <li><strong>Set correct headers:</strong> Tell clients what type of data you're sending (HTML, JSON, etc.)</li>
+                    <li><strong>Keep servers simple initially:</strong> Start with small, focused servers before scaling</li>
+                    <li><strong>Consider security:</strong> Validate all incoming data and be careful with user input</li>
+                </ul>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Node.js's http module allows you to create web servers with just a few lines of code</li>
+                    <li>Every request follows the pattern: client → request → server → response → client</li>
+                    <li>Routes allow your server to respond differently to different URLs</li>
+                    <li>The <code>req</code> object contains request data; the <code>res</code> object sends responses</li>
+                    <li>Status codes tell clients the outcome of their request (200=success, 404=not found)</li>
+                    <li>Servers can serve HTML, JSON, or plain text responses</li>
+                    <li>You've completed the course! You now understand HTML, CSS, JavaScript, and Node.js—the building blocks of full-stack web development</li>
+                </ul>
+                <div class="nav-footer">
+                    <a href="lesson-nodejs-02.html" class="btn btn-secondary">Previous</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

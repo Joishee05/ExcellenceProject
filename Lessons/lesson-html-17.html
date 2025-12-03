@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Lesson 17: Core HTMX Attributes - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
+        .navbar { position: relative !important; flex-shrink: 0; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
+        .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
+        .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
+        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
+        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
+        .lesson-meta { font-size: 0.9rem; color: #999; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
+        .content-area h2:first-of-type { margin-top: 0; }
+        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
+        .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #3b82f6; }
+        .attribute-table { width: 100%; border-collapse: collapse; margin: 15px 0; background: white; }
+        .attribute-table th, .attribute-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+        .attribute-table th { background: #f9fafb; font-weight: 700; color: #1a1a1a; }
+        .attribute-table tr:nth-child(even) { background: #fafafa; }
+        .attribute-table code { background: #e8f1ff; color: #3b82f6; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
+                <li><a href="../project-walkthrough.html">Project</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-title">HTML Lessons</div>
+            <a href="lesson-html-01.html">1. What is HTML?</a>
+            <a href="lesson-html-02.html">2. HTML Structure</a>
+            <a href="lesson-html-03.html">3. Headings & Paragraphs</a>
+            <a href="lesson-html-04.html">4. Text Formatting</a>
+            <a href="lesson-html-05.html">5. Links</a>
+            <a href="lesson-html-06.html">6. Images</a>
+            <a href="lesson-html-07.html">7. Lists</a>
+            <a href="lesson-html-08.html">8. Tables</a>
+            <a href="lesson-html-09.html">9. Forms</a>
+            <a href="lesson-html-10.html">10. Semantic HTML</a>
+            <a href="lesson-html-11.html">11. HTML Entities</a>
+            <a href="lesson-html-12.html">12. Comments</a>
+            <a href="lesson-html-13.html">13. Meta Tags & SEO</a>
+            <a href="lesson-html-14.html">14. Audio & Video</a>
+            <a href="lesson-html-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html" class="active">17. Core Attributes</a>
+            <a href="lesson-html-18.html">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
+        </aside>
+
+        <main class="main-content">
+            <div class="lesson-header">
+                <h1>Core HTMX Attributes</h1>
+                <p class="lesson-meta">Lesson 17 of 18</p>
+            </div>
+
+            <div class="content-area">
+                <p>HTMX provides a powerful set of attributes that you add to HTML elements to create dynamic interactions. These attributes tell HTMX what to do, when to do it, and where to put the response.</p>
+
+                <h2>The Essential Attributes</h2>
+
+                <h3>Request Attributes</h3>
+                <p>These attributes specify what HTTP request to make:</p>
+                <table class="attribute-table">
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>hx-get</code></td>
+                        <td>Make a GET request to the specified URL</td>
+                        <td><code>hx-get="/data"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-post</code></td>
+                        <td>Make a POST request to the specified URL</td>
+                        <td><code>hx-post="/submit"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-put</code></td>
+                        <td>Make a PUT request to the specified URL</td>
+                        <td><code>hx-put="/update/1"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-delete</code></td>
+                        <td>Make a DELETE request to the specified URL</td>
+                        <td><code>hx-delete="/remove/1"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-patch</code></td>
+                        <td>Make a PATCH request to the specified URL</td>
+                        <td><code>hx-patch="/modify/1"</code></td>
+                    </tr>
+                </table>
+
+                <h3>Targeting Attributes</h3>
+                <p>These attributes specify where to insert the response:</p>
+                <table class="attribute-table">
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>hx-target</code></td>
+                        <td>Specify which element receives the response (CSS selector)</td>
+                        <td><code>hx-target="#results"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-select</code></td>
+                        <td>Select a specific part of the response to use</td>
+                        <td><code>hx-select=".user-card"</code></td>
+                    </tr>
+                </table>
+
+                <h3>Swap Attributes</h3>
+                <p>These attributes specify how to insert the response:</p>
+                <table class="attribute-table">
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td><code>hx-swap="innerHTML"</code></td>
+                        <td>Replace the inner HTML (default behavior)</td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-swap="outerHTML"</code></td>
+                        <td>Replace the entire element</td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-swap="beforebegin"</code></td>
+                        <td>Insert before the element</td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-swap="afterbegin"</code></td>
+                        <td>Insert as first child of element</td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-swap="beforeend"</code></td>
+                        <td>Insert as last child of element</td>
+                    </tr>
+                    <tr>
+                        <td><code>hx-swap="afterend"</code></td>
+                        <td>Insert after the element</td>
+                    </tr>
+                </table>
+
+                <h3>Trigger Attributes</h3>
+                <p>These attributes specify when to make the request:</p>
+                <table class="attribute-table">
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>hx-trigger</code></td>
+                        <td>Specify which event triggers the request (default: click for buttons, change for inputs)</td>
+                        <td><code>hx-trigger="keyup"</code></td>
+                    </tr>
+                </table>
+
+                <h2>Practical Examples</h2>
+
+                <h3>Example 1: Search Results</h3>
+                <div class="code-block">&lt;input type="text" 
+       placeholder="Search users..." 
+       hx-get="/search" 
+       hx-trigger="keyup" 
+       hx-target="#results"
+/&gt;
+&lt;div id="results"&gt;&lt;/div&gt;</div>
+
+                <p>This searches as the user types, updates results in real-time without a submit button!</p>
+
+                <h3>Example 2: Delete with Confirmation</h3>
+                <div class="code-block">&lt;button hx-delete="/user/123"
+        hx-target="closest .user-card"
+        hx-swap="outerHTML"
+        onclick="return confirm('Are you sure?')"&gt;
+  Delete User
+&lt;/button&gt;</div>
+
+                <p>This deletes a user and removes the entire card from the page.</p>
+
+                <h3>Example 3: Load More Button</h3>
+                <div class="code-block">&lt;button hx-get="/more-posts?page=2"
+        hx-target="#posts"
+        hx-swap="beforeend"&gt;
+  Load More Posts
+&lt;/button&gt;
+&lt;div id="posts"&gt;...existing posts...&lt;/div&gt;</div>
+
+                <p>This loads additional posts and appends them to the existing list.</p>
+
+                <h2>Common Patterns</h2>
+
+                <h3>Form Submission</h3>
+                <div class="code-block">&lt;form hx-post="/login" hx-target="#auth"&gt;
+  &lt;input type="email" name="email" required/&gt;
+  &lt;input type="password" name="password" required/&gt;
+  &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;
+&lt;div id="auth"&gt;&lt;/div&gt;</div>
+
+                <p>HTMX automatically captures form data and sends it as the request body.</p>
+
+                <h3>Conditional Requests</h3>
+                <div class="code-block">&lt;button hx-get="/data"
+        hx-trigger="click"
+        hx-target="#content"&gt;
+  Refresh Data
+&lt;/button&gt;</div>
+
+                <div style="background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                    <div style="background: #10b981; color: white; padding: 10px; margin: -15px -15px 10px -15px; border-radius: 4px 4px 0 0; font-weight: 700;">Key Takeaways</div>
+                    <ul style="margin: 0; padding-left: 15px;">
+                        <li style="padding: 8px 0; color: #555;"><code>hx-get/post/put/delete</code> - Specify the HTTP request method and URL</li>
+                        <li style="padding: 8px 0; color: #555;"><code>hx-target</code> - Specify where to put the response</li>
+                        <li style="padding: 8px 0; color: #555;"><code>hx-swap</code> - Specify how to insert the response (innerHTML, outerHTML, etc.)</li>
+                        <li style="padding: 8px 0; color: #555;"><code>hx-trigger</code> - Specify when to make the request (click, keyup, change, etc.)</li>
+                        <li style="padding: 8px 0; color: #555;">These attributes work together to create powerful dynamic interactions</li>
+                    </ul>
+                </div>
+
+                <div style="background: #e8f1ff; color: #1e40af; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Ready for Lesson 18?</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Next up: Practical Examples – Build real-world HTMX applications!</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-16.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-18.html" class="btn">Next Lesson →</a>
+                </div>
+            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

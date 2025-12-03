@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 6: Images - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
         .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #3b82f6; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #3b82f6cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -48,9 +51,9 @@
             <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../html-tutorials.html" class="active">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
-                <li><a href="../js-tutorials.html" >JavaScript</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
         </div>
@@ -73,6 +76,15 @@
             <a href="lesson-html-13.html">13. Meta Tags & SEO</a>
             <a href="lesson-html-14.html">14. Audio & Video</a>
             <a href="lesson-html-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">HTMX Lessons</div>
+            <a href="lesson-html-16.html">16. What is HTMX?</a>
+            <a href="lesson-html-17.html">17. Core Attributes</a>
+            <a href="lesson-html-18.html">18. Practical Examples</a>
+            <a href="lesson-html-19.html">19. Getting Started</a>
+            <a href="lesson-html-20.html">20. Request Attributes</a>
+            <a href="lesson-html-21.html">21. Targets & Swapping</a>
+            <a href="lesson-html-22.html">22. Events & Triggers</a>
+            <a href="lesson-html-23.html">23. Building Your First App</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,69 +92,214 @@
                 <div class="lesson-meta">Lesson 6 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 6 of 15</div>
-                <h1>Images</h1>
-            </div>
-            <div class="lesson-text">
-                <p>Images make your website visually appealing. Let's learn how to add them!</p>
-                <h3>The Image Tag:</h3>
-                <pre><code>&lt;img src="image.jpg" alt="Description"&gt;</code></pre>
-                <div class="info-box"><p><strong>Important:</strong> The <code>&lt;img&gt;</code> tag is self-closing (no closing tag needed)!</p></div>
-                <h3>Image Attributes:</h3>
-                <ul>
-                    <li><code>src</code> - Image source (URL or file path) - <strong>Required</strong></li>
-                    <li><code>alt</code> - Alternative text (for accessibility) - <strong>Required</strong></li>
-                    <li><code>width</code> - Image width in pixels</li>
-                    <li><code>height</code> - Image height in pixels</li>
-                    <li><code>title</code> - Tooltip on hover</li>
-                </ul>
-                <h3>Image Sources:</h3>
-                <ul>
-                    <li><strong>Local:</strong> <code>src="images/photo.jpg"</code></li>
-                    <li><strong>Online:</strong> <code>src="https://example.com/image.jpg"</code></li>
-                </ul>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<body>
-    <h1>My Photo Gallery</h1>
-    <img src="https://via.placeholder.com/300x200/4CAF50/ffffff?text=Nature" 
-         alt="Beautiful nature landscape" width="300">
-    <p>A beautiful landscape photo</p>
-    <img src="https://via.placeholder.com/300x200/2196F3/ffffff?text=Ocean" 
-         alt="Ocean view" width="300" title="Click to see more">
-    <p>Ocean waves at sunset</p>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+                <p><strong>Images make websites visually engaging and convey information quickly.</strong> The <code>&lt;img&gt;</code> tag embeds images into your HTML. Unlike the <code>&lt;a&gt;</code> tag, the <code>&lt;img&gt;</code> tag is self-closing (no closing tag needed).</p>
+
+                <h2>The Image Tag (&lt;img&gt;)</h2>
+                <p>The <code>&lt;img&gt;</code> tag inserts an image into your webpage. It has two essential attributes that you should always include: <code>src</code> (the image file path) and <code>alt</code> (alternative text describing the image).</p>
+                
+                <h3>Basic Image Syntax:</h3>
+                <div class="code-block">&lt;img src="image.jpg" alt="Description of image"&gt;<br>&lt;img src="../images/photo.png" alt="A scenic mountain landscape"&gt;<br>&lt;img src="https://example.com/pic.jpg" alt="Product photo"&gt;</div>
+
+                <h2>Essential Image Attributes</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                        <!-- src attribute -->
+                        <div style="border-left: 4px solid #3b82f6; padding-left: 15px;">
+                            <h3 style="color: #3b82f6; font-size: 1.1rem; margin-bottom: 10px;"><code>src</code> Attribute</h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 10px;"><strong>Purpose:</strong> Specifies the path to the image file (REQUIRED)</p>
+                            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85rem;"><code>&lt;img src="logo.jpg" alt="..."&gt;</code></div>
+                            <p style="font-size: 0.9rem; color: #666;">Can be relative path or absolute URL</p>
+                        </div>
+
+                        <!-- alt attribute -->
+                        <div style="border-left: 4px solid #10b981; padding-left: 15px;">
+                            <h3 style="color: #10b981; font-size: 1.1rem; margin-bottom: 10px;"><code>alt</code> Attribute</h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 10px;"><strong>Purpose:</strong> Describes image for accessibility (REQUIRED)</p>
+                            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85rem;"><code>&lt;img src="..." alt="Product photo"&gt;</code></div>
+                            <p style="font-size: 0.9rem; color: #666;">Displays if image fails to load, helps screen readers</p>
+                        </div>
+
+                        <!-- width/height -->
+                        <div style="border-left: 4px solid #f97316; padding-left: 15px;">
+                            <h3 style="color: #f97316; font-size: 1.1rem; margin-bottom: 10px;"><code>width</code> & <code>height</code></h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 10px;"><strong>Purpose:</strong> Sets image dimensions in pixels</p>
+                            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85rem;"><code>&lt;img ... width="300" height="200"&gt;</code></div>
+                            <p style="font-size: 0.9rem; color: #666;">Improves page loading and prevents layout shift</p>
+                        </div>
+
+                        <!-- title -->
+                        <div style="border-left: 4px solid #8b5cf6; padding-left: 15px;">
+                            <h3 style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 10px;"><code>title</code> Attribute</h3>
+                            <p style="font-size: 0.95rem; color: #555; margin-bottom: 10px;"><strong>Purpose:</strong> Shows tooltip on hover</p>
+                            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85rem;"><code>&lt;img ... title="Hover text"&gt;</code></div>
+                            <p style="font-size: 0.9rem; color: #666;">Additional context displayed on mouseover</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
+
+                <h2>Why Alt Text Matters</h2>
+                <p>Alt text (alternative text) is critical for web accessibility and SEO. Here's why it's so important:</p>
+                <ul>
+                    <li><strong>Accessibility:</strong> Screen reader users depend on alt text to understand images</li>
+                    <li><strong>Broken Images:</strong> If an image fails to load, alt text displays instead</li>
+                    <li><strong>SEO:</strong> Search engines use alt text to understand image content</li>
+                    <li><strong>Performance:</strong> Users on slow connections see alt text while images load</li>
+                    <li><strong>Mobile Optimization:</strong> Alt text helps users who disable image loading</li>
+                </ul>
+
+                <h2>Writing Good Alt Text</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Bad Alt Text -->
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding-left: 15px;">
+                            <p style="font-weight: 600; color: #856404; margin-bottom: 8px;">❌ Poor Alt Text</p>
+                            <div style="background: white; border: 1px solid #ffe69c; padding: 10px; border-radius: 4px; margin-bottom: 8px;">
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;"><code>&lt;img src="pic.jpg" alt="image"&gt;</code></p>
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;"><code>&lt;img src="pic.jpg" alt="picture"&gt;</code></p>
+                                <p style="font-size: 0.9rem;"><code>&lt;img src="pic.jpg" alt=""&gt;</code></p>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #856404;">Too vague or empty – doesn't describe what's in the image</p>
+                        </div>
+
+                        <!-- Good Alt Text -->
+                        <div style="background: #d4edda; border-left: 4px solid #28a745; padding-left: 15px;">
+                            <p style="font-weight: 600; color: #155724; margin-bottom: 8px;">✓ Good Alt Text</p>
+                            <div style="background: white; border: 1px solid #c3e6cb; padding: 10px; border-radius: 4px; margin-bottom: 8px;">
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;"><code>&lt;img src="..." alt="Smiling dog on grass"&gt;</code></p>
+                                <p style="font-size: 0.9rem; margin-bottom: 5px;"><code>&lt;img src="..." alt="React logo"&gt;</code></p>
+                                <p style="font-size: 0.9rem;"><code>&lt;img src="..." alt="Mountain landscape at sunset"&gt;</code></p>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #155724;">Descriptive – clearly describes image content</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Image Formats and File Types</h2>
+                <p>Different image formats are optimized for different purposes. Choosing the right format improves website performance:</p>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <!-- JPG -->
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 6px; padding: 12px;">
+                            <p style="font-family: monospace; color: #3b82f6; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">JPG / JPEG</p>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 8px;"><strong>Best for:</strong> Photos, complex images with many colors</p>
+                            <p style="font-size: 0.85rem; color: #999;">Good compression, smaller file sizes</p>
+                        </div>
+
+                        <!-- PNG -->
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 6px; padding: 12px;">
+                            <p style="font-family: monospace; color: #3b82f6; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">PNG</p>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 8px;"><strong>Best for:</strong> Graphics, logos, images with transparency</p>
+                            <p style="font-size: 0.85rem; color: #999;">Supports transparency, lossless compression</p>
+                        </div>
+
+                        <!-- GIF -->
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 6px; padding: 12px;">
+                            <p style="font-family: monospace; color: #3b82f6; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">GIF</p>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 8px;"><strong>Best for:</strong> Animations, simple graphics</p>
+                            <p style="font-size: 0.85rem; color: #999;">Supports animations, limited colors</p>
+                        </div>
+
+                        <!-- WebP -->
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 6px; padding: 12px;">
+                            <p style="font-family: monospace; color: #3b82f6; font-weight: 600; font-size: 0.95rem; margin-bottom: 8px;">WebP</p>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 8px;"><strong>Best for:</strong> Modern web, smaller file sizes</p>
+                            <p style="font-size: 0.85rem; color: #999;">Better compression, newer format</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Responsive Images</h2>
+                <p>Images should adapt to different screen sizes. You can make images responsive in several ways:</p>
+
+                <h3>1. Width and Percentage</h3>
+                <div class="code-block">&lt;img src="photo.jpg" alt="Photo" width="100%" style="max-width: 600px;"&gt;</div>
+
+                <h3>2. Srcset for Different Resolutions</h3>
+                <div class="code-block">&lt;img src="photo.jpg" alt="Photo"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;srcset="photo-small.jpg 480w,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;photo-medium.jpg 800w,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;photo-large.jpg 1200w"&gt;</div>
+
+                <h2>Image in Context: &lt;figure&gt; and &lt;figcaption&gt;</h2>
+                <p>For important images, use <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> tags to provide semantic context:</p>
+                
+                <div class="code-block">&lt;figure&gt;<br>&nbsp;&nbsp;&lt;img src="sunset.jpg" alt="Beautiful sunset over ocean"&gt;<br>&nbsp;&nbsp;&lt;figcaption&gt;A sunset over the Pacific Ocean&lt;/figcaption&gt;<br>&lt;/figure&gt;</div>
+
+                <p style="margin-top: 15px;"><strong>Benefits of this approach:</strong></p>
+                <ul>
+                    <li>Groups image with caption semantically</li>
+                    <li>Screen readers announce the figure element</li>
+                    <li>Easier to style with CSS</li>
+                    <li>Clearer content structure</li>
+                </ul>
+
+                <h2>Image Best Practices</h2>
+                
+                <div style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Do -->
+                        <div style="background: white; border: 2px solid #10b981; border-radius: 6px; padding: 15px;">
+                            <div style="background: #10b981; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✓ DO</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Always include alt text</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Optimize image file sizes</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use appropriate formats (JPG, PNG, WebP)</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Specify width/height attributes</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use responsive image techniques</li>
+                            </ul>
+                        </div>
+
+                        <!-- Don't -->
+                        <div style="background: white; border: 2px solid #ef4444; border-radius: 6px; padding: 15px;">
+                            <div style="background: #ef4444; color: white; padding: 10px; border-radius: 4px; margin: -15px -15px 10px -15px; font-weight: 600;">✗ DON'T</div>
+                            <ul style="margin: 0; padding-left: 15px; list-style: none;">
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Skip alt text</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use giant unoptimized images</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use images for text (use HTML text)</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Rely on browser to resize huge images</li>
+                                <li style="padding: 6px 0; font-size: 0.9rem; color: #555;">Use broken image links</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Real-World Image Examples</h2>
+                <div class="code-block">&lt;!-- Simple image with alt text --&gt;<br>&lt;img src="logo.png" alt="Company logo" width="200"&gt;<br><br>&lt;!-- Product image with figure caption --&gt;<br>&lt;figure&gt;<br>&nbsp;&nbsp;&lt;img src="product.jpg" alt="Blue coffee mug" width="300"&gt;<br>&nbsp;&nbsp;&lt;figcaption&gt;Premium ceramic coffee mug - $24.99&lt;/figcaption&gt;<br>&lt;/figure&gt;<br><br>&lt;!-- Responsive hero image --&gt;<br>&lt;img src="hero.jpg" alt="Mountain landscape" width="100%" style="max-width: 1200px;"&gt;</div>
+
+                <h2>Why Images Matter</h2>
+                <div class="highlight-box">
+                    <strong>Understanding images is crucial because:</strong> Images significantly impact user engagement, page aesthetics, and website functionality. Proper image implementation with descriptive alt text ensures your site is accessible to all users, improves SEO rankings, and enhances page performance. Images are one of the most commonly used HTML elements in modern web design.
+                </div>
+
+                <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <div style="background: #10b981; color: white; padding: 12px; border-radius: 4px; margin: -20px -20px 15px -20px; font-weight: 700; font-size: 1.05rem;">Key Takeaways</div>
+                    <ul style="margin: 0; padding-left: 15px;">
+                        <li style="padding: 8px 0; color: #555;">The &lt;img&gt; tag is self-closing (no closing tag)</li>
+                        <li style="padding: 8px 0; color: #555;">src attribute is required – specifies image file path</li>
+                        <li style="padding: 8px 0; color: #555;">alt attribute is required – describes image for accessibility</li>
+                        <li style="padding: 8px 0; color: #555;">Alt text improves accessibility and SEO</li>
+                        <li style="padding: 8px 0; color: #555;">Always write descriptive, meaningful alt text</li>
+                        <li style="padding: 8px 0; color: #555;">Choose the right image format: JPG, PNG, GIF, or WebP</li>
+                        <li style="padding: 8px 0; color: #555;">Use responsive images with srcset or CSS width</li>
+                        <li style="padding: 8px 0; color: #555;">Use &lt;figure&gt; and &lt;figcaption&gt; for semantic image grouping</li>
+                    </ul>
+                </div>
+
+                <div style="background: #8b5cf6; color: white; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">✓ Ready for Lesson 7?</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Next up: Lists – Learn how to organize content with unordered and ordered lists!</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-html-05.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-html-07.html" class="btn">Next Lesson →</a>
+                </div>
             </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a simple photo gallery with:</p>
-                <ol>
-                    <li>A heading for your gallery</li>
-                    <li>Three different placeholder images</li>
-                    <li>A caption (paragraph) under each image</li>
-                    <li>Meaningful alt text for each image</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-html-05.html" class="nav-button">← Previous</a>
-                <a href="lesson-html-07.html" class="nav-button">Next Lesson →</a>
-            </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>
