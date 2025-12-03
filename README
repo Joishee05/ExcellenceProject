@@ -1,0 +1,31 @@
+To run the SLU LearnCode project on your local machine, make sure you have Python 3.6 or higher installed, along with a modern web browser. Start by cloning or downloading the repository, then open a terminal and navigate to the LearnHTMLCssJS directory. Once inside the project folder, you can launch a local server using one of the following options:
+
+  python3 -m http.server 8080
+    -This starts a quick Python HTTP server on port 8080.
+  python3 python_server.py
+    -This runs the dedicated server script, which typically starts on port 8001.
+
+After starting the server, open your web browser and go to:
+http://localhost:8080
+or
+http://localhost:8001 (if using the python_server.py script)
+
+The SLU LearnCode homepage should appear with all styling and branding correctly applied.
+
+The project is organized into several main directories. Individual lesson files are located in the Lessons folder. All CSS styling files can be found in styles, and JavaScript utilities are stored in scripts. The primary pages you will interact with include:
+
+index.html (homepage)
+
+html-tutorials.html
+
+css-tutorials.html
+
+js-tutorials.html
+
+Additional documentation pages such as project-guide.html, advanced-guide.html, and docs-hub.html are available at the root of the project.
+
+If you run into issues, such as a port already being in use, you can choose another port by running a command like:
+
+python3 -m http.server 8888
+
+If lessons do not load correctly, confirm that the Lessons directory is in the same location as index.html. If the site styling looks incorrect, clear your browser cache or open the project in an incognito window to force a fresh reload of all files.
