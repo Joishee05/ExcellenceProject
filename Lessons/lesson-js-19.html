@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 19: Working with APIs & JSON - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
+        .navbar { position: relative !important; flex-shrink: 0; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
+        .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
+        .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
+        .sidebar a:hover { background: #f5f5f5; color: #06b6d4; }
+        .sidebar a.active { background: #ecf0ff; color: #06b6d4; border-left-color: #06b6d4; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #06b6d4; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
+        .lesson-meta { font-size: 0.9rem; color: #999; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
+        .content-area h2:first-of-type { margin-top: 0; }
+        .content-area h3 { font-size: 1.15rem; color: #06b6d4; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
+        .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #ecf0ff; border-left: 4px solid #06b6d4; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #06b6d4; }
+        .example-box { background: #f0f9ff; border-left: 4px solid #0284c7; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .example-box strong { color: #0284c7; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #06b6d4; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #06b6d4; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #06b6d4; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../html-tutorials.html">HTML</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
+                <li><a href="../js-tutorials.html" class="active">JavaScript</a></li>
+                <li><a href="../project-walkthrough.html">Project</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-title">JavaScript Lessons</div>
+            <a href="lesson-js-01.html">1. What is JavaScript?</a>
+            <a href="lesson-js-02.html">2. Variables & Data Types</a>
+            <a href="lesson-js-03.html">3. Operators</a>
+            <a href="lesson-js-04.html">4. Conditionals</a>
+            <a href="lesson-js-05.html">5. Loops</a>
+            <a href="lesson-js-06.html">6. Functions</a>
+            <a href="lesson-js-07.html">7. Arrays</a>
+            <a href="lesson-js-08.html">8. Objects</a>
+            <a href="lesson-js-09.html">9. DOM Manipulation</a>
+            <a href="lesson-js-10.html">10. Events</a>
+            <a href="lesson-js-11.html">11. ES6 Features</a>
+            <a href="lesson-js-12.html">12. Async & Promises</a>
+            <a href="lesson-js-13.html">13. Modules & Imports</a>
+            <a href="lesson-js-14.html">14. Error Handling</a>
+            <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Advanced Topics</div>
+            <a href="lesson-js-19.html" class="active">19. APIs & JSON</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Node.js Lessons</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setting Up Node.js</a>
+            <a href="lesson-nodejs-03.html">23. Building Your First Server</a>
+        </aside>
+        <main class="main-content">
+            <div class="lesson-header">
+                <h1>Working with APIs & JSON</h1>
+                <div class="lesson-meta">Lesson 19 of 23</div>
+            </div>
+            <div class="content-area">
+                <h2>What is an API?</h2>
+                <p>An <strong>API</strong> (Application Programming Interface) is like a waiter in a restaurant. You (the client) tell the waiter (the API) what you want, and the waiter goes to the kitchen (the server) to fetch it. APIs let your JavaScript code communicate with servers to request and receive data.</p>
+
+                <h3>Real-World Example: Digital Bones Box</h3>
+                <p>In the Digital Bones Box project, the frontend JavaScript communicates with a Node.js backend API to fetch bone data. When a user selects a bone, the app makes an API request like:</p>
+                <div class="code-block">http://127.0.0.1:8000/api/bone-data/?boneId=bony_pelvis</div>
+                <p>The server responds with JSON data about that bone, including descriptions and images.</p>
+
+                <h2>Understanding JSON</h2>
+                <p><strong>JSON</strong> (JavaScript Object Notation) is a lightweight format for storing and exchanging data. It looks like JavaScript objects but is just text.</p>
+
+                <h3>JSON Structure</h3>
+                <p>JSON has two main structures:</p>
+                <ul>
+                    <li><strong>Objects:</strong> Collections of key-value pairs enclosed in <code>{}</code></li>
+                    <li><strong>Arrays:</strong> Ordered lists of values enclosed in <code>[]</code></li>
+                </ul>
+
+                <h3>JSON Example</h3>
+                <div class="code-block">{
+  "id": "bony_pelvis",
+  "name": "Bony Pelvis",
+  "description": "The bony framework that protects pelvic organs",
+  "bones": ["ilium", "ischium", "pubis"],
+  "anatomicalFeatures": [
+    {
+      "name": "Iliac Crest",
+      "location": "Superior border of the ilium",
+      "image": "iliac_crest.jpg"
+    },
+    {
+      "name": "Ischial Tuberosity",
+      "location": "Inferior part of the ischium",
+      "image": "ischial_tuberosity.jpg"
+    }
+  ]
+}</div>
+
+                <p>Notice how it looks just like a JavaScript object, but it's pure text!</p>
+
+                <h2>Making API Requests with Fetch</h2>
+                <p>The <code>fetch()</code> function lets you make requests to APIs. You've already learned about it in the Async lesson, so let's dive deeper.</p>
+
+                <h3>Basic Fetch Syntax</h3>
+                <div class="code-block">fetch(url)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));</div>
+
+                <h3>Step-by-Step Breakdown</h3>
+                <ol>
+                    <li><code>fetch(url)</code> - Sends a GET request to the server</li>
+                    <li><code>.then(response => response.json())</code> - Parse the response as JSON</li>
+                    <li><code>.then(data => console.log(data))</code> - Work with the parsed data</li>
+                    <li><code>.catch(error => ...)</code> - Handle any errors</li>
+                </ol>
+
+                <h2>Real Example from Digital Bones Box</h2>
+                <p>Here's how the Digital Bones Box app fetches bone data:</p>
+                <div class="code-block">// From api.js in Digital Bones Box
+export async function fetchBoneData(boneId) {
+    if (!boneId) return null;
+
+    const url = `http://127.0.0.1:8000/api/bone-data/?boneId=${encodeURIComponent(boneId)}`;
+    
+    try {
+        const response = await fetch(url);
+        
+        // Check if the response is OK (status 200-299)
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        // Parse the JSON response
+        const data = await response.json();
+        return data;
+        
+    } catch (error) {
+        console.error(`Error fetching bone data for ${boneId}:`, error);
+        return null;
+    }
+}</div>
+
+                <h3>What's Happening?</h3>
+                <ul>
+                    <li><code>encodeURIComponent()</code> - Safely encodes the bone ID for the URL</li>
+                    <li><code>response.ok</code> - Checks if the HTTP status was successful (200-299)</li>
+                    <li><code>response.json()</code> - Converts the response body to a JavaScript object</li>
+                    <li><code>try/catch</code> - Handles network errors gracefully</li>
+                </ul>
+
+                <h2>Query Parameters</h2>
+                <p>Notice the <code>?boneId=bony_pelvis</code> part of the URL. These are <strong>query parameters</strong> that tell the server what data to return.</p>
+
+                <h3>Query Parameter Syntax</h3>
+                <div class="code-block">// Single parameter
+https://api.example.com/data?id=123
+
+// Multiple parameters (joined with &)
+https://api.example.com/search?query=pelvis&type=bone&limit=10</div>
+
+                <example-box>
+                    <strong>Example:</strong> In Digital Bones Box, when fetching bone data:
+                    <ul style="margin-top: 10px;">
+                        <li><code>http://127.0.0.1:8000/api/bone-data/?boneId=ilium</code> - Fetches ilium bone</li>
+                        <li><code>http://127.0.0.1:8000/api/bone-data/?boneId=ischium</code> - Fetches ischium bone</li>
+                    </ul>
+                </example-box>
+
+                <h2>HTTP Status Codes</h2>
+                <p>When a request is made, the server responds with a status code indicating what happened:</p>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <tr style="background: #06b6d4; color: white;">
+                        <th style="border: 1px solid #ddd; padding: 12px; text-align: left; font-weight: 600;">Code</th>
+                        <th style="border: 1px solid #ddd; padding: 12px; text-align: left; font-weight: 600;">Meaning</th>
+                        <th style="border: 1px solid #ddd; padding: 12px; text-align: left; font-weight: 600;">Example</th>
+                    </tr>
+                    <tr style="background: #f0f9ff;">
+                        <td style="border: 1px solid #ddd; padding: 12px;"><code>200</code></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">OK - Request succeeded</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Data returned successfully</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><code>404</code></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Not Found - Resource doesn't exist</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Requested bone doesn't exist</td>
+                    </tr>
+                    <tr style="background: #f0f9ff;">
+                        <td style="border: 1px solid #ddd; padding: 12px;"><code>500</code></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Server Error</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Server crashed or had an error</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><code>403</code></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Forbidden - Access denied</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">You don't have permission</td>
+                    </tr>
+                </table>
+
+                <h2>Parsing and Using JSON Data</h2>
+                <p>Once you fetch data, you can use it just like a regular JavaScript object:</p>
+
+                <div class="code-block">fetch('http://api.example.com/bone-data?boneId=ilium')
+  .then(response => response.json())
+  .then(data => {
+    // data is now a JavaScript object!
+    console.log(data.name);              // "Ilium"
+    console.log(data.description);       // "Upper part of the pelvis"
+    console.log(data.images[0]);         // First image
+    console.log(data.images.length);     // Number of images
+    
+    // Update the page with the data
+    document.getElementById('bone-name').textContent = data.name;
+    document.getElementById('bone-desc').textContent = data.description;
+  });</div>
+
+                <h2>Common API Patterns</h2>
+
+                <h3>GET - Retrieve Data</h3>
+                <p>Used to fetch data from the server (the default fetch behavior):</p>
+                <div class="code-block">fetch('/api/bones')
+  .then(res => res.json())
+  .then(bones => console.log(bones));</div>
+
+                <h3>POST - Send Data</h3>
+                <p>Used to send data to the server (like uploading annotations):</p>
+                <div class="code-block">fetch('/api/annotations', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    boneId: 'ilium',
+    annotation: 'Important feature location',
+    coordinates: [100, 200]
+  })
+})
+.then(res => res.json())
+.then(data => console.log('Saved:', data));</div>
+
+                <h2>Error Handling Best Practices</h2>
+                <p>Always handle errors when making API requests:</p>
+
+                <div class="code-block">async function getBoneData(boneId) {
+  try {
+    // Check if boneId exists
+    if (!boneId) {
+      throw new Error('Bone ID is required');
+    }
+    
+    const response = await fetch(`/api/bone-data?boneId=${boneId}`);
+    
+    // Check HTTP status
+    if (!response.ok) {
+      throw new Error(`Server returned ${response.status}`);
+    }
+    
+    // Parse JSON
+    const data = await response.json();
+    
+    // Check if data is what we expect
+    if (!data.id || !data.images) {
+      throw new Error('Invalid data format from server');
+    }
+    
+    return data;
+    
+  } catch (error) {
+    console.error('Failed to fetch bone data:', error.message);
+    // Show user-friendly error
+    document.getElementById('error-message').textContent = 
+      'Could not load bone data. Please try again.';
+    return null;
+  }
+}</div>
+
+                <h2>Digital Bones Box API Structure</h2>
+                <p>Here are the main API endpoints used in Digital Bones Box:</p>
+
+                <ul>
+                    <li><code>GET /api/combined-data</code> - Fetches all bones and sub-bones</li>
+                    <li><code>GET /api/bone-data/?boneId=...&format=json</code> - Fetches specific bone with images</li>
+                    <li><code>GET /api/description/?boneId=...</code> - Fetches bone description only</li>
+                    <li><code>GET /api/search?query=...</code> - Searches for bones by name</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <strong>Key Takeaway:</strong>
+                    <p style="margin: 10px 0;">APIs are how frontend applications communicate with servers to fetch and send data. JSON is the standard format for this communication. Understanding how to make fetch requests, parse JSON, handle errors, and work with query parameters are essential skills for building modern web applications like Digital Bones Box.</p>
+                </div>
+
+                <div class="nav-footer">
+                    <a href="lesson-js-15.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="lesson-js-20.html" class="btn">Next Lesson →</a>
+                </div>
+            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
+        </main>
+    </div>
+    <script>
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
+</body>
+</html>

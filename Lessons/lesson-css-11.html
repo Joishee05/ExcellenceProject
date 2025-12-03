@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Lesson 11: Media Queries - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5004">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
@@ -17,30 +17,30 @@
         .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
-        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
         .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
         .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
         .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
         .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
         .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
-        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #3b82f6; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
         .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
-        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
-        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .btn-secondary { background: #e5e7eb; color: #666; }
         .btn-secondary:hover { background: #d1d5db; }
         .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
         footer p { margin: 0.3rem 0; }
         @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
@@ -68,13 +68,13 @@
             <a href="lesson-css-04.html">4. Box Model</a>
             <a href="lesson-css-05.html">5. Layout & Display</a>
             <a href="lesson-css-06.html">6. Flexbox</a>
-            <a href="lesson-css-07.html">7. Grid</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
             <a href="lesson-css-08.html">8. Positioning</a>
             <a href="lesson-css-09.html">9. Transitions & Animations</a>
             <a href="lesson-css-10.html">10. Responsive Design</a>
             <a href="lesson-css-11.html" class="active">11. Media Queries</a>
             <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
-            <a href="lesson-css-13.html">13. Variables & Functions</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
             <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
@@ -86,77 +86,264 @@
             </div>
 
             <div class="content-area">
-                <div class="lesson-header">
-                <h1>What is CSS? - Responsive Design</h1>
-                <div class="lesson-meta">Lesson 11 of 15</div>
-            </div>
-            <div class="content-area">
-                <h2>Introduction to HTML</h2>
-                <p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard markup language used to create web pages. Every website you visit on the internet is built with HTML at its core.</p>
-                <p>HTML works with two other technologies to create complete web experiences:</p>
+                <h2>What You'll Learn</h2>
+                <p>In this lesson, you will master media queriesthe CSS feature that enables responsive design. You will learn to target different screen sizes, device types, and user preferences.</p>
+
+                <h2>What are Media Queries?</h2>
+                <p>Media queries are CSS rules that apply styles based on device characteristics. They are the foundation of responsive design.</p>
+
+                <div class="code-block">@media (condition) {
+  /* Styles applied when condition is true */
+}</div>
+
+                <h2>Basic Media Query Syntax</h2>
+
+                <h3>Breakpoint-Based Media Query</h3>
+                <div class="code-block">/* All screens 768px and wider */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/* Screens 767px and narrower */
+@media (max-width: 767px) {
+  .container {
+    width: 100%;
+  }
+}</div>
+
+                <p><strong>What This Does:</strong></p>
                 <ul>
-                    <li><strong>CSS</strong> - Handles styling and visual appearance</li>
-                    <li><strong>JavaScript</strong> - Adds interactivity and dynamic behavior</li>
+                    <li><strong>@media (min-width: 768px) { }</strong> - "Only apply these styles if screen is at least 768px wide". Like a conditional in programming</li>
+                    <li><strong>Inside the braces { }:</strong> CSS that only applies if condition is true</li>
+                    <li><strong>width: 750px;</strong> - On tablets and desktops (768px+), make container 750px wide</li>
+                    <li><strong>@media (max-width: 767px) { }</strong> - "Only apply if screen is 767px or narrower". For phones</li>
+                    <li><strong>width: 100%;</strong> - On phones, make container full width (100% of available space)</li>
                 </ul>
-                <div class="highlight-box">
-                    <strong>Key Concept:</strong> HTML provides the structure and content of web pages. Think of HTML as the skeleton of a building - it creates the basic framework that everything else is built upon.
+
+                <h3>Range Media Query</h3>
+                <div class="code-block">/* Between 768px and 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    width: 720px;
+  }
+}</div>
+
+                <h2>Common Media Query Features</h2>
+
+                <h3>Width and Height</h3>
+                <div class="code-block">@media (min-width: 600px) { }    /* Viewport at least 600px wide */
+@media (max-width: 599px) { }    /* Viewport at most 599px wide */
+@media (min-height: 400px) { }   /* Viewport at least 400px tall */
+@media (max-height: 399px) { }   /* Viewport at most 399px tall */</div>
+
+                <p><strong>What These Do:</strong></p>
+                <ul>
+                    <li><strong>(min-width: 600px):</strong> "Is the screen at least 600 pixels wide?" If YES, apply these styles</li>
+                    <li><strong>(max-width: 599px):</strong> "Is the screen 599 pixels or narrower?" If YES, apply these styles</li>
+                    <li><strong>Typical breakpoints:</strong> 480px (phones), 768px (tablets), 1024px (desktops)</li>
+                    <li><strong>(min-height):</strong> Check if viewport is tall enough. (max-height): Check if it's not too tall</li>
+                    <li><strong>Why useful:</strong> Different designs for different screen sizes. Phones need narrow layouts, desktops can use 3 columns</li>
+                </ul>
+
+                <h3>Device Type</h3>
+                <div class="code-block">@media screen { }     /* Any screen device */
+@media print { }      /* Printing/print preview */
+@media (display-mode: fullscreen) { }  /* Fullscreen mode */</div>
+
+                <h3>Orientation</h3>
+                <div class="code-block">@media (orientation: portrait) {
+  /* Viewport height greater than width */
+}
+
+@media (orientation: landscape) {
+  /* Viewport width greater than height */
+}</div>
+
+                <h2>Advanced Media Query Features</h2>
+
+                <h3>Color and Color Gamut</h3>
+                <div class="code-block">@media (color) {
+  /* Color-capable device */
+}
+
+@media (color-gamut: srgb) {
+  /* Standard color range */
+}
+
+@media (color-gamut: p3) {
+  /* Wide color range */
+}</div>
+
+                <h3>Hover and Pointer</h3>
+                <div class="code-block">/* Device supports hover (desktop with mouse) */
+@media (hover: hover) {
+  button:hover {
+    background: #10b981;
+  }
+}
+
+/* Device doesn't support hover (touchscreen) */
+@media (hover: none) {
+  button {
+    background: #10b981;  /* Show active state by default */
+  }
+}
+
+/* Pointer type */
+@media (pointer: fine) {
+  /* Mouse or stylus - precise pointer */
+}
+
+@media (pointer: coarse) {
+  /* Touchscreen - larger touch targets */
+}</div>
+
+                <h2>Prefers Reduced Motion</h2>
+                <p>Respect user accessibility preferences for reduced animations.</p>
+
+                <div class="code-block">/* Default animation */
+.animated-box {
+  animation: spin 2s infinite;
+}
+
+/* Respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .animated-box {
+    animation: none;
+  }
+}</div>
+
+                <h2>Dark Mode Media Query</h2>
+                <p>Detect if user prefers dark theme.</p>
+
+                <div class="code-block">/* Light mode (default) */
+body {
+  background: white;
+  color: #333;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1a1a1a;
+    color: #f0f0f0;
+  }
+  a {
+    color: #64b5f6;
+  }
+}</div>
+
+                <h2>Logical Operators in Media Queries</h2>
+
+                <h3>AND Operator</h3>
+                <div class="code-block">/* Both conditions must be true */
+@media (min-width: 768px) and (orientation: landscape) {
+  /* Large screen AND landscape */
+}</div>
+
+                <h3>OR Operator (Comma)</h3>
+                <div class="code-block">/* Any condition can be true */
+@media (max-width: 600px), (orientation: portrait) {
+  /* Mobile OR portrait orientation */
+}</div>
+
+                <h3>NOT Operator</h3>
+                <div class="code-block">@media not screen {
+  /* Not a screen (e.g., print) */
+}</div>
+
+                <h2>Common Responsive Patterns</h2>
+
+                <h3>Mobile-First CSS</h3>
+                <div class="code-block">/* Mobile first (no media query) */
+.container {
+  display: block;
+  width: 100%;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .container {
+    width: 1000px;
+  }
+}</div>
+
+                <h3>Responsive Columns</h3>
+                <div class="code-block">/* Mobile: 1 column */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}</div>
+
+                <h3>Conditional Navigation</h3>
+                <div class="code-block">/* Mobile: Hamburger menu */
+.nav {
+  display: none;  /* Hidden by default */
+}
+
+.hamburger {
+  display: block;
+}
+
+/* Tablet and up: Horizontal menu */
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+    gap: 30px;
+  }
+  .hamburger {
+    display: none;
+  }
+}</div>
+
+                <h2>Media Query Best Practices</h2>
+                <ul>
+                    <li><strong>Mobile-first:</strong> Start with mobile styles, enhance for larger screens</li>
+                    <li><strong>Logical breakpoints:</strong> Choose breakpoints where content needs to shift, not device sizes</li>
+                    <li><strong>Test thoroughly:</strong> Check all breakpoints and edge cases</li>
+                    <li><strong>Avoid too many breakpoints:</strong> 2-4 breakpoints usually sufficient</li>
+                    <li><strong>Use readable breakpoint values:</strong> Stick to common sizes (480px, 768px, 1024px, 1280px)</li>
+                </ul>
+
+                <h2>Browser Support</h2>
+                <p>Media queries have excellent support in all modern browsers. Older versions of Internet Explorer 8 and below have no support.</p>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Next: Pseudo-Classes and Pseudo-Elements</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 12, you will master pseudo-classes like :hover and pseudo-elements like ::before for advanced styling techniques.</p>
                 </div>
-                <h2>What Does HTML Do?</h2>
-                <p>HTML tells web browsers how to structure and display content. Browsers like Chrome, Firefox, Safari, and Edge read HTML code and convert it into the visual web pages you see.</p>
-                <p>HTML does several important things:</p>
-                <ul>
-                    <li>Organizes content into logical sections</li>
-                    <li>Defines the meaning of different content types</li>
-                    <li>Creates links between pages</li>
-                    <li>Embeds images, audio, and video</li>
-                    <li>Creates forms for user input</li>
-                    <li>Provides metadata about the page</li>
-                </ul>
-                <h2>HTML Tags and Elements</h2>
-                <p>HTML uses tags to mark up content. Tags are keywords surrounded by angle brackets.</p>
-                <div class="code-block">&lt;tagname&gt;content&lt;/tagname&gt;</div>
-                <p>Most tags come in pairs:</p>
-                <ul>
-                    <li><strong>Opening tag</strong> - Example: <code>&lt;h1&gt;</code></li>
-                    <li><strong>Closing tag</strong> - Example: <code>&lt;/h1&gt;</code></li>
-                    <li><strong>Content</strong> - The text or elements between the tags</li>
-                </ul>
-                <h3>Example:</h3>
-                <div class="code-block">&lt;h1&gt;Welcome to Web Development&lt;/h1&gt;<br/>&lt;p&gt;This is my first web page.&lt;/p&gt;</div>
-                <div class="highlight-box">
-                    <strong>Important:</strong> The forward slash in the closing tag is what tells the browser where the element ends.
-                </div>
-                <h2>Why Learn HTML?</h2>
-                <ul>
-                    <li><strong>Foundation of Web:</strong> HTML is the foundation of all websites</li>
-                    <li><strong>Easy to Learn:</strong> HTML is simple and beginner-friendly</li>
-                    <li><strong>Gateway to Web Development:</strong> You need HTML to learn CSS and JavaScript</li>
-                    <li><strong>In-Demand Skill:</strong> HTML skills are valuable in the job market</li>
-                    <li><strong>Creative Expression:</strong> Build and publish your own web content</li>
-                </ul>
-                <h2>What You Will Learn</h2>
-                <p>In this 15-lesson course, we'll cover:</p>
-                <ul>
-                    <li>HTML structure and best practices</li>
-                    <li>Common HTML tags and their uses</li>
-                    <li>Text formatting and semantic HTML</li>
-                    <li>Links, images, and media</li>
-                    <li>Forms and user input</li>
-                    <li>Tables and data organization</li>
-                    <li>Accessibility and SEO</li>
-                </ul>
-                <div class="highlight-box">
-                    <strong>Next Lesson:</strong> In Lesson 2, we'll explore the basic structure of an HTML document and create our first web page.
-                </div>
-                <div class="nav-footer">
-                    <button class="btn btn-secondary" disabled>Previous Lesson</button>
-                    <a href="lesson-css-02.html" class="btn">Next Lesson</a>
-                </div>
-            </div>
+
                 <div class="nav-footer">
                     <a href="lesson-css-10.html" class="btn btn-secondary">← Previous Lesson</a>
                     <a href="lesson-css-12.html" class="btn">Next Lesson →</a>
                 </div>
+
+                
             </div>
             <footer>
                 <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
@@ -164,9 +351,8 @@
             </footer>
         </main>
     </div>
-
     <script>
-        // Prevent caching - add timestamp to all resource requests
+        // Prevent caching
         const timestamp = new Date().getTime();
         document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
             const href = link.getAttribute('href');

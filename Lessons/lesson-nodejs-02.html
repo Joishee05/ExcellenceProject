@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 22: Setting Up Node.js - SLU LearnCode</title>
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
+        .navbar { position: relative !important; flex-shrink: 0; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
+        .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; }
+        .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s; }
+        .sidebar a:hover { background: #f5f5f5; color: #8b5cf6; }
+        .sidebar a.active { background: #ecf0ff; color: #8b5cf6; border-left-color: #8b5cf6; font-weight: 600; }
+        .main-content { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin: 0 0 20px 0; border-radius: 8px; border-left: 4px solid #8b5cf6; }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
+        .lesson-meta { font-size: 0.9rem; color: #999; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; margin: 0 0 20px 0; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
+        .content-area h2:first-of-type { margin-top: 0; }
+        .content-area h3 { font-size: 1.2rem; color: #333; margin-top: 15px; margin-bottom: 10px; font-weight: 600; }
+        .content-area p { color: #555; margin-bottom: 15px; line-height: 1.6; }
+        .code-block { background: #2d2d2d; color: #e8e8e8; padding: 15px; border-radius: 6px; margin: 15px 0; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #8b5cf6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: 100%; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><span class="logo-bracket">&lt;</span><span class="logo-text">SLU LearnCode</span><span class="logo-bracket">/&gt;</span></a>
+        </div>
+    </nav>
+    <div class="page-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-title">JavaScript</div>
+            <a href="lesson-js-01.html">1. What is JavaScript?</a>
+            <a href="lesson-js-02.html">2. Variables</a>
+            <a href="lesson-js-03.html">3. Operators</a>
+            <a href="lesson-js-04.html">4. Conditionals</a>
+            <a href="lesson-js-05.html">5. Loops</a>
+            <a href="lesson-js-06.html">6. Functions</a>
+            <a href="lesson-js-07.html">7. Arrays</a>
+            <a href="lesson-js-08.html">8. Objects</a>
+            <a href="lesson-js-09.html">9. DOM</a>
+            <a href="lesson-js-10.html">10. Events</a>
+            <a href="lesson-js-11.html">11. ES6</a>
+            <a href="lesson-js-12.html">12. Async</a>
+            <a href="lesson-js-13.html">13. Modules</a>
+            <a href="lesson-js-14.html">14. Error Handling</a>
+            <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title">Node.js</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html" class="active">22. Setup</a>
+            <a href="lesson-nodejs-03.html">23. Your First Server</a>
+        </aside>
+        <main class="main-content">
+            <div class="lesson-header">
+                <h1>Setting Up Node.js</h1>
+                <div class="lesson-meta">Lesson 22 of 23</div>
+            </div>
+            <div class="content-area">
+                <h2>Installation</h2>
+                <p>Node.js can be installed on Windows, macOS, and Linux. Visit nodejs.org and download the LTS (Long Term Support) version.</p>
+                <h3>Windows</h3>
+                <p>Download the installer from nodejs.org, run it, and follow the setup wizard.</p>
+                <h3>macOS</h3>
+                <p>Use Homebrew: brew install node</p>
+                <h3>Linux</h3>
+                <p>Use your package manager. Ubuntu: sudo apt-get install nodejs npm</p>
+                <h2>Verification</h2>
+                <p>Check that Node.js was installed correctly by running:</p>
+                <div class="code-block">node --version<br>npm --version</div>
+                <h2>Key Takeaways</h2>
+                <p>Node.js comes with npm, the package manager. Verify your installation before moving forward. You're now ready to start building Node.js applications.</p>
+                <div class="nav-footer">
+                    <a href="lesson-nodejs-01.html" class="btn btn-secondary">Previous</a>
+                    <a href="lesson-nodejs-03.html" class="btn">Next</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

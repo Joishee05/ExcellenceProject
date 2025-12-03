@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Lesson 10: Responsive Design - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5004">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
@@ -17,30 +17,30 @@
         .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
-        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
         .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
         .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
         .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
         .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
         .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
-        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #3b82f6; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
         .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
-        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
-        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .btn-secondary { background: #e5e7eb; color: #666; }
         .btn-secondary:hover { background: #d1d5db; }
         .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
         footer p { margin: 0.3rem 0; }
         @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
@@ -68,13 +68,13 @@
             <a href="lesson-css-04.html">4. Box Model</a>
             <a href="lesson-css-05.html">5. Layout & Display</a>
             <a href="lesson-css-06.html">6. Flexbox</a>
-            <a href="lesson-css-07.html">7. Grid</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
             <a href="lesson-css-08.html">8. Positioning</a>
             <a href="lesson-css-09.html">9. Transitions & Animations</a>
             <a href="lesson-css-10.html" class="active">10. Responsive Design</a>
             <a href="lesson-css-11.html">11. Media Queries</a>
             <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
-            <a href="lesson-css-13.html">13. Variables & Functions</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
             <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
@@ -86,106 +86,237 @@
             </div>
 
             <div class="content-area">
-                <div class="lesson-header">
-                <div class="lesson-number">Lesson 10 of 10</div>
-                <h1>Transitions & Animations</h1>
-            </div>
-            <div class="lesson-text">
-                <p>Add motion and interactivity to your website with transitions and animations!</p>
-                <h3>Transitions:</h3>
-                <p>Smooth changes between property values:</p>
+                <h2>What You'll Learn</h2>
+                <p>In this lesson, you will master responsive designcreating layouts that adapt beautifully to any screen size. You will learn mobile-first approach, flexible units, and media queries.</p>
+
+                <h2>What is Responsive Design?</h2>
+                <p>Responsive design ensures your website works well on all devices: phones, tablets, and desktops. Instead of building separate websites for different sizes, one responsive website adapts to its container.</p>
+
+                <h2>Mobile-First Approach</h2>
+                <p>Design for mobile first, then enhance for larger screens. This ensures core functionality works everywhere.</p>
+
+                <div class="code-block">/* Mobile styles (base) */
+.container {
+  width: 100%;
+  padding: 10px;
+}
+
+.column {
+  width: 100%;  /* Full width on mobile */
+  margin-bottom: 20px;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .column {
+    width: 50%;
+    margin-bottom: 0;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .column {
+    width: 33.33%;
+  }
+}</div>
+
+                <h2>Flexible Units</h2>
+                <p>Use relative units instead of fixed pixels for flexible layouts.</p>
+
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Unit</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">What It Means</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Use Case</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>%</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Percentage of parent</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Container widths, flexible columns</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>em</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Relative to parent font size</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Font sizes, line-height</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>rem</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Relative to root font size</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Consistent sizing throughout</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>vw/vh</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">1% of viewport width/height</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Full-screen sections, responsive font</td>
+                    </tr>
+                </table>
+
+                <h3>Using Flexible Units</h3>
+                <div class="code-block">body {
+  font-size: 16px;  /* Base font size (16px = 1rem) */
+}
+
+h1 {
+  font-size: 2rem;  /* 32px on base size */
+}
+
+.container {
+  max-width: 1200px;  /* Max width, but flexible below */
+  margin: 0 auto;
+  padding: 0 5%;  /* 5% padding on sides */
+}
+
+.column {
+  width: 50%;  /* Half of parent */
+  padding: 1rem;  /* Flexible padding */
+}</div>
+
+                <h2>Viewport Meta Tag</h2>
+                <p>Always include the viewport meta tag in your HTML head for proper mobile rendering.</p>
+
+                <div class="code-block"><meta name="viewport" content="width=device-width, initial-scale=1.0"></div>
+
+                <h3>What This Does</h3>
                 <ul>
-                    <li><code>transition-property</code> - What to animate</li>
-                    <li><code>transition-duration</code> - How long</li>
-                    <li><code>transition-timing-function</code> - ease, linear, ease-in, ease-out</li>
+                    <li><strong>width=device-width:</strong> Sets viewport width to device width (prevents zooming out on mobile)</li>
+                    <li><strong>initial-scale=1.0:</strong> Sets initial zoom level to 100%</li>
                 </ul>
-                <h3>Shorthand:</h3>
-                <pre><code>transition: all 0.3s ease;</code></pre>
-                <h3>Animations:</h3>
-                <p>Create complex, repeating animations with keyframes!</p>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <p>Hover over the boxes to see the effects!</p>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    .box {
-        width: 150px;
-        height: 150px;
-        margin: 20px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        border-radius: 10px;
-        color: white;
-    }
-    
-    .transition-box {
-        background-color: #3498db;
-        transition: all 0.3s ease;
-    }
-    
-    .transition-box:hover {
-        background-color: #e74c3c;
-        transform: scale(1.2) rotate(5deg);
-    }
-    
-    .animate-box {
-        background-color: #2ecc71;
-        animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
-    
-    .slide-box {
-        background-color: #9b59b6;
-        animation: slide 3s ease-in-out infinite;
-    }
-    
-    @keyframes slide {
-        0%, 100% { transform: translateX(0); }
-        50% { transform: translateX(50px); }
-    }
-</style>
-</head>
-<body style="padding: 20px; text-align: center;">
-    <div class="box transition-box">Hover Me!</div>
-    <div class="box animate-box">Pulse</div>
-    <div class="box slide-box">Slide</div>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+
+                <h2>Responsive Typography</h2>
+                <p>Text should be readable on all screen sizes. Adjust font sizes for different devices.</p>
+
+                <div class="code-block">/* Mobile - default */
+h1 {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+  p {
+    font-size: 18px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 40px;
+  }
+  p {
+    font-size: 20px;
+  }
+}</div>
+
+                <h2>Responsive Images</h2>
+                <p>Images should scale with their containers to prevent overflow.</p>
+
+                <div class="code-block">img {
+  max-width: 100%;  /* Never wider than container */
+  height: auto;     /* Maintain aspect ratio */
+  display: block;   /* Remove bottom spacing */
+}</div>
+
+                <h3>Picture Element for Different Images</h3>
+                <div class="code-block"><picture>
+  <source media="(max-width: 600px)" srcset="image-small.jpg">
+  <source media="(max-width: 1024px)" srcset="image-medium.jpg">
+  <img src="image-large.jpg" alt="Description">
+</picture></div>
+
+                <h2>Common Breakpoints</h2>
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Device</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Breakpoint</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Mobile</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">0px - 600px</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Tablet</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">601px - 1024px</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Desktop</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">1025px+</td>
+                    </tr>
+                </table>
+
+                <h2>Responsive Layout Examples</h2>
+
+                <h3>Responsive Two-Column Layout</h3>
+                <div class="code-block">/* Mobile: Stack vertically */
+.main {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.sidebar {
+  width: 100%;
+}
+
+/* Tablet and up: Side by side */
+@media (min-width: 768px) {
+  .main {
+    width: 70%;
+    float: left;
+  }
+  .sidebar {
+    width: 30%;
+    float: right;
+  }
+}</div>
+
+                <h3>Responsive Navigation Menu</h3>
+                <div class="code-block">/* Mobile: Hidden by default */
+.nav-menu {
+  display: none;
+}
+
+.hamburger {
+  display: block;
+}
+
+/* Tablet and up: Show menu */
+@media (min-width: 768px) {
+  .nav-menu {
+    display: flex;
+    gap: 30px;
+  }
+  .hamburger {
+    display: none;
+  }
+}</div>
+
+                <h2>Testing Responsive Design</h2>
+                <ul>
+                    <li><strong>Browser DevTools:</strong> Use device emulation (F12 or right-click > Inspect)</li>
+                    <li><strong>Real Devices:</strong> Test on actual phones and tablets</li>
+                    <li><strong>Responsive Design Checklist:</strong> Touch targets 44x44px minimum, readable text at arm's length, fast load times</li>
+                </ul>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Next: Media Queries</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 11, you will go deeper into media queries, learning all the conditions you can test and advanced responsive techniques.</p>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
-            </div>
-            <div class="challenge">
-                <h3>Final Challenge:</h3>
-                <p>Create a button with:</p>
-                <ol>
-                    <li>A transition that changes color on hover</li>
-                    <li>A scale transform on hover</li>
-                    <li>Smooth transition (0.3s)</li>
-                    <li>Bonus: Add a box-shadow on hover</li>
-                </ol>
-                <p><strong>🎉 Congratulations!</strong> You've completed the CSS course!</p>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-css-09.html" class="nav-button">← Previous</a>
-                <a href="../js-tutorials.html" class="nav-button">Start JavaScript Course →</a>
-            </div>
+
                 <div class="nav-footer">
                     <a href="lesson-css-09.html" class="btn btn-secondary">← Previous Lesson</a>
                     <a href="lesson-css-11.html" class="btn">Next Lesson →</a>
                 </div>
+
+                
             </div>
             <footer>
                 <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
@@ -193,9 +324,8 @@
             </footer>
         </main>
     </div>
-
     <script>
-        // Prevent caching - add timestamp to all resource requests
+        // Prevent caching
         const timestamp = new Date().getTime();
         document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
             const href = link.getAttribute('href');

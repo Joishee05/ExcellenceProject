@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 11: ES6 Features - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #f97316; }
         .sidebar a.active { background: #e8f1ff; color: #f97316; border-left-color: #f97316; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
         .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #f97316; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
@@ -37,9 +37,9 @@
         .btn-secondary { background: #ddd; color: #666; }
         .btn-secondary:hover { background: #ccc; }
         .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #f97316; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        footer { background: #f97316; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: 100%; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
     </style>
 </head>
 <body>
@@ -73,6 +73,13 @@
             <a href="lesson-js-13.html">13. Modules & Imports</a>
             <a href="lesson-js-14.html">14. Error Handling</a>
             <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs & JSON</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Node.js Lessons</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setting Up Node.js</a>
+            <a href="lesson-nodejs-03.html">23. Building Your First Server</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,221 +87,90 @@
                 <div class="lesson-meta">Lesson 11 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 11 of 12</div>
-                <h1>JavaScript Events</h1>
-            </div>
-
             <div class="lesson-text">
-                <p>Events are actions that happen in the browser, like clicking a button, moving the mouse, or pressing a key. JavaScript allows you to respond to these events.</p>
+                <p>ES6 (ECMAScript 6) introduced modern syntax that makes JavaScript easier to write and read.</p>
 
-                <h2>What are Events?</h2>
-                <p>Events are things that happen to HTML elements. Common events include:</p>
-                <ul>
-                    <li><strong>click</strong> - User clicks an element</li>
-                    <li><strong>mouseover</strong> - Mouse moves over an element</li>
-                    <li><strong>mouseout</strong> - Mouse leaves an element</li>
-                    <li><strong>keydown</strong> - User presses a key</li>
-                    <li><strong>submit</strong> - Form is submitted</li>
-                    <li><strong>change</strong> - Input value changes</li>
-                    <li><strong>load</strong> - Page finishes loading</li>
-                </ul>
+                <h2>Let and Const</h2>
+                <p>Block-scoped variable declarations:</p>
+                <pre><code>// var (old way - avoid)
+var x = 10;
 
-                <h2>addEventListener()</h2>
-                <p>The modern way to handle events:</p>
-                <pre><code>// HTML: &lt;button id="myButton"&gt;Click Me&lt;/button&gt;
+// let (can be reassigned)
+let y = 10;
+y = 20;  // OK
 
-let button = document.getElementById("myButton");
+// const (cannot be reassigned)
+const z = 10;
+z = 20;  // ERROR!</code></pre>
 
-button.addEventListener("click", function() {
-    console.log("Button was clicked!");
-});
+                <h2>Template Literals</h2>
+                <p>String interpolation with backticks:</p>
+                <pre><code>let name = "Alice";
+let age = 25;
 
-// Can also use arrow functions
-button.addEventListener("click", () => {
-    console.log("Clicked with arrow function!");
-});</code></pre>
+// Old way
+let msg1 = "My name is " + name + " and I'm " + age;
 
-                <h2>Click Events</h2>
-                <pre><code>let button = document.querySelector("#actionButton");
-let counter = 0;
+// Modern way
+let msg2 = `My name is ${name} and I'm ${age}`;
 
-button.addEventListener("click", function() {
-    counter++;
-    console.log("Button clicked " + counter + " times");
-    
-    // Change button text
-    button.textContent = "Clicked " + counter + " times";
-});
+console.log(msg2);</code></pre>
 
-// Multiple elements
-let buttons = document.querySelectorAll(".btn");
-buttons.forEach(function(btn) {
-    btn.addEventListener("click", function() {
-        console.log("A button was clicked!");
-    });
-});</code></pre>
+                <h2>Arrow Functions</h2>
+                <p>Shorter function syntax:</p>
+                <pre><code>// Traditional
+const square = function(x) {
+    return x * x;
+};
 
-                <h2>Mouse Events</h2>
-                <pre><code>let box = document.querySelector(".box");
+// Arrow function
+const square2 = x => x * x;
 
-// Mouse over
-box.addEventListener("mouseover", function() {
-    box.style.backgroundColor = "lightblue";
-    console.log("Mouse entered!");
-});
+console.log(square2(5)); // 25</code></pre>
 
-// Mouse out
-box.addEventListener("mouseout", function() {
-    box.style.backgroundColor = "white";
-    console.log("Mouse left!");
-});
+                <h2>Destructuring</h2>
+                <p>Unpack values from arrays/objects:</p>
+                <pre><code>let arr = [1, 2, 3];
+let [a, b, c] = arr;
+console.log(a); // 1
 
-// Mouse move (tracks position)
-box.addEventListener("mousemove", function(event) {
-    console.log("X: " + event.clientX + ", Y: " + event.clientY);
-});</code></pre>
+let obj = { name: "Bob", age: 30 };
+let { name, age } = obj;
+console.log(name); // "Bob"</code></pre>
 
-                <h2>Keyboard Events</h2>
-                <pre><code>let input = document.querySelector("#textInput");
-
-// Key down
-input.addEventListener("keydown", function(event) {
-    console.log("Key pressed: " + event.key);
-});
-
-// Specific key detection
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        console.log("Enter key pressed!");
+                <h2>Classes</h2>
+                <p>Create objects with a blueprint:</p>
+                <pre><code>class Person {
+    constructor(name) {
+        this.name = name;
     }
     
-    if (event.key === "Escape") {
-        console.log("Escape key pressed!");
+    greet() {
+        console.log("Hello, I'm " + this.name);
     }
-});
-
-// Key up
-input.addEventListener("keyup", function() {
-    console.log("Current value: " + input.value);
-});</code></pre>
-
-                <h2>Form Events</h2>
-                <pre><code>let form = document.querySelector("#myForm");
-let emailInput = document.querySelector("#email");
-
-// Form submit
-form.addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent page reload
-    
-    console.log("Form submitted!");
-    // Process form data here
-});
-
-// Input change
-emailInput.addEventListener("change", function() {
-    console.log("Email changed to: " + emailInput.value);
-});
-
-// Input (fires on every keystroke)
-emailInput.addEventListener("input", function() {
-    console.log("Current input: " + emailInput.value);
-});</code></pre>
-
-                <h2>Event Object</h2>
-                <p>Event handlers receive an event object with information about the event:</p>
-                <pre><code>button.addEventListener("click", function(event) {
-    // What element was clicked?
-    console.log(event.target);
-    
-    // What type of event?
-    console.log(event.type); // "click"
-    
-    // Mouse position
-    console.log("X: " + event.clientX);
-    console.log("Y: " + event.clientY);
-    
-    // Prevent default behavior
-    event.preventDefault();
-    
-    // Stop event from bubbling
-    event.stopPropagation();
-});</code></pre>
-
-                <h2>Event Delegation</h2>
-                <p>Handle events on parent elements to catch events from children:</p>
-                <pre><code>// Instead of adding listeners to each button:
-let list = document.querySelector("#itemList");
-
-list.addEventListener("click", function(event) {
-    // Check if a list item was clicked
-    if (event.target.tagName === "LI") {
-        console.log("Clicked: " + event.target.textContent);
-        event.target.classList.toggle("selected");
-    }
-});
-
-// This works for dynamically added items too!</code></pre>
-
-                <h2>Removing Event Listeners</h2>
-                <pre><code>// Named function required for removal
-function handleClick() {
-    console.log("Button clicked!");
 }
 
-let button = document.querySelector("button");
+let p = new Person("Alice");
+p.greet();</code></pre>
 
-// Add listener
-button.addEventListener("click", handleClick);
+                <h2>Key Takeaways</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Use const by default, let when needed</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Template literals make strings clearer</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Arrow functions are shorter to write</li>
+                    <li style="padding: 8px 0;">Classes organize code with objects</li>
+                </ul>
 
-// Remove listener
-button.removeEventListener("click", handleClick);</code></pre>
-
-                <div class="info-box">
-                    <p><strong>Tip:</strong> Use <code>event.preventDefault()</code> to stop default behaviors like form submissions or link navigation. Use <code>event.stopPropagation()</code> to prevent events from bubbling up to parent elements.</p>
-                </div>
-
-                <h2>Try It Yourself</h2>
-                <p>Practice handling events with these interactive demos:</p>
-                
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span>Interactive Demo</span>
-                    </div>
-                    <div class="preview-area">
-                        <div id="event-demo" style="padding: 20px;">
-                            <button id="clickBtn" style="background: #0033A0; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Click Me</button>
-                            <button id="hoverBtn" style="background: #0033A0; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Hover Me</button>
-                            <div id="output" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 4px; min-height: 50px;"></div>
-                            <input type="text" id="keyInput" placeholder="Type something..." style="margin-top: 15px; padding: 10px; width: 100%; border: 1px solid #dee2e6; border-radius: 4px;">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="challenge">
-                    <h3>Challenge</h3>
-                    <p>Create event handlers for these scenarios:</p>
-                    <ul>
-                        <li>A button that changes color when clicked</li>
-                        <li>A div that shows its coordinates when you move the mouse over it</li>
-                        <li>An input field that displays character count as you type</li>
-                        <li>A form that validates email format before submission</li>
-                        <li>A "dark mode" toggle button that changes page colors</li>
-                        <li>A list where clicking items toggles a "completed" style</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="lesson-navigation">
-                <a href="lesson-js-10.html" class="nav-button">← Previous Lesson</a>
-                <a href="lesson-js-12.html" class="nav-button">Next Lesson →</a>
+                <div class="nav-footer">
+                <a href="lesson-js-10.html" class="btn btn-secondary">← Previous Lesson</a>
+                <a href="lesson-js-12.html" class="btn">Next Lesson →</a>
             </div>
             </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

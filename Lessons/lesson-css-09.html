@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Lesson 9: Transitions & Animations - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5004">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
@@ -17,30 +17,30 @@
         .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
-        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
         .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
         .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
         .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
         .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
         .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
-        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #3b82f6; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
         .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
-        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
-        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .btn-secondary { background: #e5e7eb; color: #666; }
         .btn-secondary:hover { background: #d1d5db; }
         .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
         footer p { margin: 0.3rem 0; }
         @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
@@ -68,13 +68,13 @@
             <a href="lesson-css-04.html">4. Box Model</a>
             <a href="lesson-css-05.html">5. Layout & Display</a>
             <a href="lesson-css-06.html">6. Flexbox</a>
-            <a href="lesson-css-07.html">7. Grid</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
             <a href="lesson-css-08.html">8. Positioning</a>
             <a href="lesson-css-09.html" class="active">9. Transitions & Animations</a>
             <a href="lesson-css-10.html">10. Responsive Design</a>
             <a href="lesson-css-11.html">11. Media Queries</a>
             <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
-            <a href="lesson-css-13.html">13. Variables & Functions</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
             <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
@@ -86,101 +86,286 @@
             </div>
 
             <div class="content-area">
-                <div class="lesson-header">
-                <div class="lesson-number">Lesson 9 of 10</div>
-                <h1>Positioning</h1>
-            </div>
-            <div class="lesson-text">
-                <p>CSS positioning controls exactly where elements appear on the page.</p>
-                <h3>Position Values:</h3>
+                <h2>What You'll Learn</h2>
+                <p>In this lesson, you will master CSS transitions and animations to create smooth, engaging visual effects. You will learn how to animate property changes, use timing functions, and create complex keyframe animations.</p>
+
+                <h2>CSS Transitions</h2>
+                <p>Transitions smoothly animate property changes from one value to another over a specified duration.</p>
+
+                <h3>Transition Properties</h3>
+                <div class="code-block">transition-property: background-color;  /* Which property to animate (change smoothly) */
+transition-duration: 0.5s;              /* How long in seconds the animation takes */
+transition-timing-function: ease;       /* How the animation moves (slow, fast, linear) */
+transition-delay: 0.2s;                 /* Wait this long before starting the animation */
+
+/* Shorthand - all properties in one line */
+transition: background-color 0.5s ease 0.2s;</div>
+
+                <p><strong>What Each Part Does:</strong></p>
                 <ul>
-                    <li><code>static</code> - Default, follows normal flow</li>
-                    <li><code>relative</code> - Positioned relative to normal position</li>
-                    <li><code>absolute</code> - Positioned relative to nearest positioned ancestor</li>
-                    <li><code>fixed</code> - Positioned relative to viewport (stays on scroll)</li>
-                    <li><code>sticky</code> - Switches between relative and fixed</li>
+                    <li><strong>transition-property:</strong> Tells CSS which property to smoothly animate. Change from blue to red? Use background-color. Change size? Use width or height</li>
+                    <li><strong>transition-duration: 0.5s:</strong> The animation takes 0.5 seconds (half a second). Longer times = slower, smoother animations</li>
+                    <li><strong>transition-timing-function: ease:</strong> Starts slow, speeds up in middle, slows at end (feels natural). "linear" is constant speed</li>
+                    <li><strong>transition-delay: 0.2s:</strong> Wait 0.2 seconds BEFORE starting. Good for animations that should happen one after another</li>
                 </ul>
-                <h3>Position Properties:</h3>
-                <p>Use with positioning: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code></p>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    .container {
-        position: relative;
-        width: 300px;
-        height: 300px;
-        background-color: #ecf0f1;
-        margin: 20px auto;
-        border: 2px solid #34495e;
-    }
-    
-    .box {
-        width: 80px;
-        height: 80px;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-    }
-    
-    .relative {
-        position: relative;
-        background-color: #3498db;
-        top: 20px;
-        left: 20px;
-    }
-    
-    .absolute {
-        position: absolute;
-        background-color: #e74c3c;
-        top: 10px;
-        right: 10px;
-    }
-    
-    .absolute-bottom {
-        position: absolute;
-        background-color: #2ecc71;
-        bottom: 10px;
-        left: 10px;
-    }
-</style>
-</head>
-<body>
-    <div class="container">
-        <div class="box relative">Relative</div>
-        <div class="box absolute">Absolute Top</div>
-        <div class="box absolute-bottom">Absolute Bottom</div>
-    </div>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+
+                <p><strong>Real Example:</strong> When you hover over a button and it smoothly changes color instead of switching instantly - that's a transition!</p>
+
+                <h2>Transition Property</h2>
+                <p>Specify which CSS properties animate.</p>
+
+                <div class="code-block">transition-property: color;                    /* Single property */
+transition-property: color, background-color;  /* Multiple */
+transition-property: all;                      /* All animatable properties */</div>
+
+                <h3>Animatable Properties</h3>
+                <p>Not all properties can be animated. Animatable properties include: color, background-color, width, height, padding, margin, transform, opacity, border, box-shadow, and many others. Non-animatable properties like display or font-family change instantly.</p>
+
+                <h2>Transition Duration</h2>
+                <p>The transition-duration specifies how long the animation takes.</p>
+
+                <div class="code-block">transition-duration: 0.3s;  /* 300 milliseconds */
+transition-duration: 1s;    /* 1 second */
+transition-duration: 200ms; /* 200 milliseconds */</div>
+
+                <h2>Transition Timing Functions</h2>
+                <p>Timing functions control the acceleration and deceleration of animations.</p>
+
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Function</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Description</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>linear</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Constant speed throughout</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>ease</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Slow start, fast middle, slow end (default)</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>ease-in</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Slow start, fast end</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>ease-out</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Fast start, slow end</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>ease-in-out</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Slow start and end, fast middle</td>
+                    </tr>
+                </table>
+
+                <h3>Cubic Bezier Curves</h3>
+                <p>For precise timing control, use cubic-bezier function.</p>
+                <div class="code-block">transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);</div>
+
+                <h2>Practical Transition Examples</h2>
+
+                <h3>Button Hover Effect</h3>
+                <div class="code-block">button {
+  background-color: #10b981;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #059669;
+}</div>
+
+                <h3>Smooth Background Color Change</h3>
+                <div class="code-block">.box {
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+  transition: background-color 0.5s ease;
+}
+
+.box:hover {
+  background-color: red;
+}</div>
+
+                <h3>Multiple Property Transition</h3>
+                <div class="code-block">.card {
+  padding: 20px;
+  background: white;
+  border: 2px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: #10b981;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+  transform: translateY(-5px);
+}</div>
+
+                <h2>CSS Keyframe Animations</h2>
+                <p>Keyframes allow more complex animations with multiple stages. Define animation with @keyframes rule.</p>
+
+                <div class="code-block">@keyframes slidein {
+  from {
+    left: -300px;
+  }
+  to {
+    left: 0;
+  }
+}
+
+.element {
+  animation-name: slidein;
+  animation-duration: 1s;
+}</div>
+
+                <h2>Animation Properties</h2>
+
+                <h3>Complete Animation Syntax</h3>
+                <div class="code-block">animation-name: slidein;              /* Animation name */
+animation-duration: 1s;             /* How long to run */
+animation-timing-function: ease;    /* Timing curve */
+animation-delay: 0.5s;              /* Delay before start */
+animation-iteration-count: 1;       /* How many times (or infinite) */
+animation-direction: normal;        /* forward, backward, alternate, etc */
+animation-fill-mode: forwards;      /* Keep end state */
+
+/* Shorthand */
+animation: slidein 1s ease 0.5s infinite alternate forwards;</div>
+
+                <h2>Keyframe Syntax</h2>
+                <p>Define animation stages using percentages or from/to keywords.</p>
+
+                <div class="code-block">/* Using percentages */
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Using from/to */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}</div>
+
+                <h2>Animation Examples</h2>
+
+                <h3>Spinning Loader</h3>
+                <div class="code-block">@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #10b981;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}</div>
+
+                <h3>Fade In Text</h3>
+                <div class="code-block">@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-text {
+  animation: fadeIn 2s ease-in;
+}</div>
+
+                <h3>Pulse Effect</h3>
+                <div class="code-block">@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse-element {
+  animation: pulse 2s ease-in-out infinite;
+}</div>
+
+                <h2>Animation Fill Mode</h2>
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Value</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Behavior</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>none</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Default - revert to initial styles after animation</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>forwards</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Keep final animation state</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>backwards</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Apply first frame styles before animation starts</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>both</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Apply both forwards and backwards</td>
+                    </tr>
+                </table>
+
+                <h2>Performance Tips</h2>
+                <ul>
+                    <li><strong>Use transform and opacity:</strong> These are GPU-accelerated and performant</li>
+                    <li><strong>Avoid animating:</strong> width, height, left, top (use transform instead)</li>
+                    <li><strong>Keep animations short:</strong> 200-500ms for UI feedback, 2-3s for longer effects</li>
+                    <li><strong>Reduce motion:</strong> Respect prefers-reduced-motion media query</li>
+                </ul>
+
+                <h2>Respecting User Preferences</h2>
+                <div class="code-block">@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}</div>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Next: Responsive Design</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 10, you will learn responsive design principles and how to create layouts that adapt to different screen sizes.</p>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
-            </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a card with:</p>
-                <ol>
-                    <li>A relative positioned container</li>
-                    <li>An absolute positioned badge in the top-right corner</li>
-                    <li>Try different positioning values</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-css-08.html" class="nav-button">← Previous</a>
-                <a href="lesson-css-10.html" class="nav-button">Next Lesson →</a>
-            </div>
+
                 <div class="nav-footer">
                     <a href="lesson-css-08.html" class="btn btn-secondary">← Previous Lesson</a>
                     <a href="lesson-css-10.html" class="btn">Next Lesson →</a>
                 </div>
+
+                
             </div>
             <footer>
                 <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
@@ -188,9 +373,8 @@
             </footer>
         </main>
     </div>
-
     <script>
-        // Prevent caching - add timestamp to all resource requests
+        // Prevent caching
         const timestamp = new Date().getTime();
         document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
             const href = link.getAttribute('href');

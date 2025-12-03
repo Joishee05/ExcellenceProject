@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Lesson 15: Advanced Techniques - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5004">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
@@ -17,30 +17,30 @@
         .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
-        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
         .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
         .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
         .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
         .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
         .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
-        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #3b82f6; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
         .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
-        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
-        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .btn-secondary { background: #e5e7eb; color: #666; }
         .btn-secondary:hover { background: #d1d5db; }
         .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
         footer p { margin: 0.3rem 0; }
         @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
@@ -68,13 +68,13 @@
             <a href="lesson-css-04.html">4. Box Model</a>
             <a href="lesson-css-05.html">5. Layout & Display</a>
             <a href="lesson-css-06.html">6. Flexbox</a>
-            <a href="lesson-css-07.html">7. Grid</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
             <a href="lesson-css-08.html">8. Positioning</a>
             <a href="lesson-css-09.html">9. Transitions & Animations</a>
             <a href="lesson-css-10.html">10. Responsive Design</a>
             <a href="lesson-css-11.html">11. Media Queries</a>
             <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
-            <a href="lesson-css-13.html">13. Variables & Functions</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
             <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html" class="active">15. Advanced Techniques</a>
         </aside>
@@ -86,77 +86,336 @@
             </div>
 
             <div class="content-area">
-                <div class="lesson-header">
-                <h1>What is CSS? - Advanced Techniques</h1>
-                <div class="lesson-meta">Lesson 15 of 15</div>
-            </div>
-            <div class="content-area">
-                <h2>Introduction to HTML</h2>
-                <p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard markup language used to create web pages. Every website you visit on the internet is built with HTML at its core.</p>
-                <p>HTML works with two other technologies to create complete web experiences:</p>
+                <h2>What You'll Learn</h2>
+                <p>In this final lesson, you will master advanced CSS techniques for creating sophisticated visual effects. You will learn filters, blend modes, clip-path, masks, and other creative effects.</p>
+
+                <h2>CSS Filters</h2>
+                <p>Filters apply visual effects to elements. They are performant and easy to use.</p>
+
+                <h3>Available Filters</h3>
+                <div class="code-block">/* Blur effect - makes things fuzzy */
+filter: blur(5px);  /* 5px blur radius - higher numbers = blurrier */
+
+/* Brightness adjustment */
+filter: brightness(150%);  /* 150% = 50% brighter than normal */
+filter: brightness(50%);   /* 50% = half brightness (darker) */
+
+/* Contrast adjustment - makes light lighter and dark darker */
+filter: contrast(150%);    /* 150% = more dramatic contrast */
+
+/* Grayscale - removes color (makes black & white) */
+filter: grayscale(100%);   /* 100% = completely black & white */
+filter: grayscale(50%);    /* 50% = halfway to black & white (muted colors) */</div>
+
+                <p><strong>What Each Filter Does:</strong></p>
                 <ul>
-                    <li><strong>CSS</strong> - Handles styling and visual appearance</li>
-                    <li><strong>JavaScript</strong> - Adds interactivity and dynamic behavior</li>
+                    <li><strong>blur(5px):</strong> Makes the element blurry. Bigger number = more blur. Great for background images</li>
+                    <li><strong>brightness(150%):</strong> Makes brighter or darker. 100% is normal, below 100% is darker, above is brighter</li>
+                    <li><strong>contrast(150%):</strong> Increases the difference between light and dark. Makes images pop more</li>
+                    <li><strong>grayscale(100%):</strong> Removes all color. Perfect for hover effects - gray on normal, color on hover</li>
+                    <li><strong>Most Important:</strong> Filters are VISUAL EFFECTS ONLY. They don't change the actual image - just how it looks</li>
                 </ul>
-                <div class="highlight-box">
-                    <strong>Key Concept:</strong> HTML provides the structure and content of web pages. Think of HTML as the skeleton of a building - it creates the basic framework that everything else is built upon.
+
+                <p><strong>Easy Example:</strong> Hover over an image and it changes from grayscale to color. That's smooth and professional looking!</p>
+
+                <h3>Combining Filters</h3>
+                <div class="code-block">/* Multiple filters */
+filter: brightness(110%) contrast(120%) saturate(130%);
+
+/* On images */
+img {
+  transition: filter 0.3s ease;
+}
+
+img:hover {
+  filter: brightness(110%) saturate(120%);
+}</div>
+
+                <h3>Grayscale Hover Effect</h3>
+                <div class="code-block">img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+img:hover {
+  filter: grayscale(0%);
+}</div>
+
+                <h2>Blend Modes</h2>
+                <p>Blend modes define how an element blends with elements behind it.</p>
+
+                <h3>Common Blend Modes</h3>
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Mode</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Effect</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">normal</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Default - no blending</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">multiply</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Darkens by multiplying colors</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">screen</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Lightens like light projection</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">overlay</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Combines multiply and screen</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">darken</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Keeps darker pixels</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">lighten</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Keeps lighter pixels</td>
+                    </tr>
+                </table>
+
+                <h3>Blend Mode Example</h3>
+                <div class="code-block">.image-overlay {
+  position: relative;
+  background-image: url('image.jpg');
+}
+
+.overlay-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(16, 185, 129, 0.5);
+  mix-blend-mode: multiply;
+}</div>
+
+                <h2>Clip-Path</h2>
+                <p>Clip-path creates complex shapes by clipping elements to a specified path.</p>
+
+                <h3>Basic Shapes</h3>
+                <div class="code-block">/* Circle */
+clip-path: circle(50%);
+
+/* Ellipse */
+clip-path: ellipse(40% 30%);
+
+/* Polygon */
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+/* Inset */
+clip-path: inset(10% 20% 30% 40%);</div>
+
+                <h3>Clip-Path Examples</h3>
+                <div class="code-block">/* Circle image */
+img.circle {
+  clip-path: circle(50%);
+}
+
+/* Triangle */
+.triangle {
+  width: 200px;
+  height: 200px;
+  background: #10b981;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+/* Star shape */
+.star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}</div>
+
+                <h2>CSS Masks</h2>
+                <p>Masks define which parts of an element are visible using an image or gradient.</p>
+
+                <h3>Mask Image</h3>
+                <div class="code-block">/* Using an image as mask */
+-webkit-mask-image: url('mask.png');
+mask-image: url('mask.png');
+
+/* Fade mask (gradient) */
+-webkit-mask-image: linear-gradient(to right, transparent, black);
+mask-image: linear-gradient(to right, transparent, black);</div>
+
+                <h3>Mask Examples</h3>
+                <div class="code-block">/* Fade image sides */
+.fade-sides {
+  -webkit-mask-image: linear-gradient(to right, 
+    transparent, 
+    black 20%, 
+    black 80%, 
+    transparent);
+  mask-image: linear-gradient(to right, 
+    transparent, 
+    black 20%, 
+    black 80%, 
+    transparent);
+}
+
+/* Radial fade mask */
+.fade-radial {
+  -webkit-mask-image: radial-gradient(circle, black 60%, transparent);
+  mask-image: radial-gradient(circle, black 60%, transparent);
+}</div>
+
+                <h2>Transform Perspective</h2>
+                <p>Create 3D effects using perspective.</p>
+
+                <div class="code-block">/* Perspective container */
+.container {
+  perspective: 1000px;
+}
+
+/* 3D transform */
+.card {
+  transform: rotateY(45deg) rotateX(10deg);
+}
+
+/* Skew effect */
+.skew {
+  transform: skewX(20deg);
+}
+
+/* 3D rotation */
+.rotate-3d {
+  transform: rotateX(45deg) rotateY(45deg) rotateZ(45deg);
+}</div>
+
+                <h3>3D Card Flip</h3>
+                <div class="code-block">.card-container {
+  perspective: 1000px;
+  width: 300px;
+  height: 300px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card-container:hover .card {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}</div>
+
+                <h2>Backdrop Filter</h2>
+                <p>Apply filters to the area behind an element.</p>
+
+                <div class="code-block">/* Frosted glass effect */
+.frosted {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Navigation with blur */
+nav {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}</div>
+
+                <h2>Combining Advanced Effects</h2>
+
+                <h3>Creative Image Hover Effect</h3>
+                <div class="code-block">img {
+  filter: grayscale(100%) brightness(80%);
+  clip-path: circle(40%);
+  transition: all 0.3s ease;
+}
+
+img:hover {
+  filter: grayscale(0%) brightness(100%);
+  clip-path: circle(50%);
+  transform: scale(1.05);
+}</div>
+
+                <h3>Frosted Glass Card</h3>
+                <div class="code-block">.glassmorphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}</div>
+
+                <h2>Browser Support</h2>
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Feature</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Browser Support</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">CSS Filters</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">All modern browsers</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Blend Modes</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">All modern browsers</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Clip-Path</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">All modern browsers</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">CSS Masks</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Chrome, Firefox, Safari (with prefix)</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Backdrop Filter</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Chrome, Safari (with prefix)</td>
+                    </tr>
+                </table>
+
+                <h2>Congratulations!</h2>
+                <p>You have completed all 15 CSS lessons. You now have comprehensive knowledge of CSS from fundamentals to advanced techniques. Here is what you have learned:</p>
+                <ul>
+                    <li>Lesson 1: CSS Fundamentals and syntax</li>
+                    <li>Lesson 2: Selectors and specificity</li>
+                    <li>Lesson 3: Colors and typography</li>
+                    <li>Lesson 4: Box model and spacing</li>
+                    <li>Lesson 5: Layout and display properties</li>
+                    <li>Lesson 6: Flexbox layouts</li>
+                    <li>Lesson 7: CSS Grid layouts</li>
+                    <li>Lesson 8: Positioning and z-index</li>
+                    <li>Lesson 9: Transitions and animations</li>
+                    <li>Lesson 10: Responsive design principles</li>
+                    <li>Lesson 11: Media queries and conditions</li>
+                    <li>Lesson 12: Pseudo-classes and pseudo-elements</li>
+                    <li>Lesson 13: CSS variables and theming</li>
+                    <li>Lesson 14: Best practices and organization</li>
+                    <li>Lesson 15: Advanced techniques and effects</li>
+                </ul>
+
+                <p>Continue practicing CSS by building projects, experimenting with new techniques, and staying updated with CSS specifications. Happy coding!</p>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Course Complete</strong>
+                    <p style="margin: 10px 0 0 0;">You have successfully completed the comprehensive CSS learning course. Use these skills to build beautiful, responsive websites and applications.</p>
                 </div>
-                <h2>What Does HTML Do?</h2>
-                <p>HTML tells web browsers how to structure and display content. Browsers like Chrome, Firefox, Safari, and Edge read HTML code and convert it into the visual web pages you see.</p>
-                <p>HTML does several important things:</p>
-                <ul>
-                    <li>Organizes content into logical sections</li>
-                    <li>Defines the meaning of different content types</li>
-                    <li>Creates links between pages</li>
-                    <li>Embeds images, audio, and video</li>
-                    <li>Creates forms for user input</li>
-                    <li>Provides metadata about the page</li>
-                </ul>
-                <h2>HTML Tags and Elements</h2>
-                <p>HTML uses tags to mark up content. Tags are keywords surrounded by angle brackets.</p>
-                <div class="code-block">&lt;tagname&gt;content&lt;/tagname&gt;</div>
-                <p>Most tags come in pairs:</p>
-                <ul>
-                    <li><strong>Opening tag</strong> - Example: <code>&lt;h1&gt;</code></li>
-                    <li><strong>Closing tag</strong> - Example: <code>&lt;/h1&gt;</code></li>
-                    <li><strong>Content</strong> - The text or elements between the tags</li>
-                </ul>
-                <h3>Example:</h3>
-                <div class="code-block">&lt;h1&gt;Welcome to Web Development&lt;/h1&gt;<br/>&lt;p&gt;This is my first web page.&lt;/p&gt;</div>
-                <div class="highlight-box">
-                    <strong>Important:</strong> The forward slash in the closing tag is what tells the browser where the element ends.
-                </div>
-                <h2>Why Learn HTML?</h2>
-                <ul>
-                    <li><strong>Foundation of Web:</strong> HTML is the foundation of all websites</li>
-                    <li><strong>Easy to Learn:</strong> HTML is simple and beginner-friendly</li>
-                    <li><strong>Gateway to Web Development:</strong> You need HTML to learn CSS and JavaScript</li>
-                    <li><strong>In-Demand Skill:</strong> HTML skills are valuable in the job market</li>
-                    <li><strong>Creative Expression:</strong> Build and publish your own web content</li>
-                </ul>
-                <h2>What You Will Learn</h2>
-                <p>In this 15-lesson course, we'll cover:</p>
-                <ul>
-                    <li>HTML structure and best practices</li>
-                    <li>Common HTML tags and their uses</li>
-                    <li>Text formatting and semantic HTML</li>
-                    <li>Links, images, and media</li>
-                    <li>Forms and user input</li>
-                    <li>Tables and data organization</li>
-                    <li>Accessibility and SEO</li>
-                </ul>
-                <div class="highlight-box">
-                    <strong>Next Lesson:</strong> In Lesson 2, we'll explore the basic structure of an HTML document and create our first web page.
-                </div>
-                <div class="nav-footer">
-                    <button class="btn btn-secondary" disabled>Previous Lesson</button>
-                    <a href="lesson-css-02.html" class="btn">Next Lesson</a>
-                </div>
-            </div>
+
                 <div class="nav-footer">
                     <a href="lesson-css-14.html" class="btn btn-secondary">← Previous Lesson</a>
                     <button class="btn" disabled>Next Lesson →</button>
                 </div>
+
+                
             </div>
             <footer>
                 <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
@@ -164,9 +423,8 @@
             </footer>
         </main>
     </div>
-
     <script>
-        // Prevent caching - add timestamp to all resource requests
+        // Prevent caching
         const timestamp = new Date().getTime();
         document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
             const href = link.getAttribute('href');

@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Lesson 12: Pseudo-Classes & Elements - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5004">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
@@ -17,30 +17,30 @@
         .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
-        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
         .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
         .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
         .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
         .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
         .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
-        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #3b82f6; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
         .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
-        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
-        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .btn-secondary { background: #e5e7eb; color: #666; }
         .btn-secondary:hover { background: #d1d5db; }
         .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
         footer p { margin: 0.3rem 0; }
         @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
@@ -68,13 +68,13 @@
             <a href="lesson-css-04.html">4. Box Model</a>
             <a href="lesson-css-05.html">5. Layout & Display</a>
             <a href="lesson-css-06.html">6. Flexbox</a>
-            <a href="lesson-css-07.html">7. Grid</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
             <a href="lesson-css-08.html">8. Positioning</a>
             <a href="lesson-css-09.html">9. Transitions & Animations</a>
             <a href="lesson-css-10.html">10. Responsive Design</a>
             <a href="lesson-css-11.html">11. Media Queries</a>
             <a href="lesson-css-12.html" class="active">12. Pseudo-Classes & Elements</a>
-            <a href="lesson-css-13.html">13. Variables & Functions</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
             <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
@@ -86,77 +86,332 @@
             </div>
 
             <div class="content-area">
-                <div class="lesson-header">
-                <h1>What is CSS? - Variables & Functions</h1>
-                <div class="lesson-meta">Lesson 12 of 15</div>
-            </div>
-            <div class="content-area">
-                <h2>Introduction to HTML</h2>
-                <p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard markup language used to create web pages. Every website you visit on the internet is built with HTML at its core.</p>
-                <p>HTML works with two other technologies to create complete web experiences:</p>
+                <h2>What You'll Learn</h2>
+                <p>In this lesson, you will master pseudo-classes and pseudo-elementspowerful CSS selectors for targeting specific element states and adding virtual content to your designs.</p>
+
+                <h2>Pseudo-Classes vs Pseudo-Elements</h2>
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Type</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Syntax</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Purpose</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>Pseudo-Class</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">:selector</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Target element state or position</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><strong>Pseudo-Element</strong></td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">::selector</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Add virtual elements</td>
+                    </tr>
+                </table>
+
+                <h2>Common Pseudo-Classes</h2>
+
+                <h3>User Interaction</h3>
+                <div class="code-block">a:hover {
+  /* Element is hovered */
+  color: #10b981;
+}
+
+button:active {
+  /* Element is being clicked */
+  opacity: 0.8;
+}
+
+input:focus {
+  /* Input has keyboard focus */
+  border-color: #10b981;
+  outline: none;
+}
+
+input:disabled {
+  /* Input is disabled */
+  opacity: 0.5;
+}</div>
+
+                <p><strong>What These Do:</strong></p>
                 <ul>
-                    <li><strong>CSS</strong> - Handles styling and visual appearance</li>
-                    <li><strong>JavaScript</strong> - Adds interactivity and dynamic behavior</li>
+                    <li><strong>a:hover { }</strong> - Styles the link when mouse hovers over it. Colon ":" means pseudo-class</li>
+                    <li><strong>color: #10b981;</strong> - Changes link color to green when hovered. Great for user feedback!</li>
+                    <li><strong>button:active { }</strong> - Styles button WHILE it's being clicked (mouse pressed down)</li>
+                    <li><strong>opacity: 0.8;</strong> - Makes button 80% visible (slightly transparent) to show it's being pressed</li>
+                    <li><strong>input:focus { }</strong> - Styles input field when user clicks in it to type</li>
+                    <li><strong>input:disabled { }</strong> - Styles disabled form fields (grayed out/less visible)</li>
                 </ul>
-                <div class="highlight-box">
-                    <strong>Key Concept:</strong> HTML provides the structure and content of web pages. Think of HTML as the skeleton of a building - it creates the basic framework that everything else is built upon.
+
+                <h3>Form States</h3>
+                <div class="code-block">input:valid {
+  /* Input value is valid */
+  border-color: green;
+}
+
+input:invalid {
+  /* Input value is invalid */
+  border-color: red;
+}
+
+input:checked {
+  /* Checkbox or radio is checked */
+  background: #10b981;
+}
+
+textarea:focus {
+  /* Textarea has focus */
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}</div>
+
+                <h3>Structural Pseudo-Classes</h3>
+                <div class="code-block">li:first-child {
+  /* First child element */
+  border-top: none;
+}
+
+li:last-child {
+  /* Last child element */
+  border-bottom: none;
+}
+
+li:nth-child(2) {
+  /* Second child */
+}
+
+li:nth-child(odd) {
+  /* Every odd-numbered child (1st, 3rd, 5th) */
+  background: #f5f5f5;
+}
+
+li:nth-child(even) {
+  /* Every even-numbered child (2nd, 4th, 6th) */
+}
+
+p:nth-child(3n) {
+  /* Every third child */
+}</div>
+
+                <h3>Type Pseudo-Classes</h3>
+                <div class="code-block">div:only-of-type {
+  /* Only div among its siblings */
+}
+
+p:empty {
+  /* No content or whitespace */
+  display: none;
+}</div>
+
+                <h2>Practical Pseudo-Class Examples</h2>
+
+                <h3>Styled Buttons</h3>
+                <div class="code-block">button {
+  background: #10b981;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}</div>
+
+                <h3>Form Styling</h3>
+                <div class="code-block">input {
+  border: 2px solid #ddd;
+  padding: 8px;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #10b981;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+input:invalid {
+  border-color: red;
+}</div>
+
+                <h3>Alternating Row Colors</h3>
+                <div class="code-block">tr:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+tr:nth-child(even) {
+  background: white;
+}</div>
+
+                <h2>Pseudo-Elements</h2>
+                <p>Pseudo-elements create new elements using CSS without adding HTML.</p>
+
+                <h3>::before and ::after</h3>
+                <div class="code-block">p::before {
+  content: "Note: ";  /* content property is required */
+  font-weight: bold;
+  color: #10b981;
+}
+
+p::after {
+  content: " (end)";
+}</div>
+
+                <h2>Common Pseudo-Elements</h2>
+
+                <h3>::before and ::after</h3>
+                <p>Add content before or after an element.</p>
+                <div class="code-block">/* Add quotation marks */
+blockquote::before {
+  content: "";
+  margin-right: 10px;
+}
+
+blockquote::after {
+  content: "";
+  margin-left: 10px;
+}
+
+/* Decorative border */
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: #10b981;
+  transition: width 0.3s ease;
+}
+
+.card:hover::after {
+  width: 100%;
+}</div>
+
+                <h3>::first-line and ::first-letter</h3>
+                <div class="code-block">p::first-line {
+  /* Styles the first line of text */
+  font-weight: bold;
+}
+
+p::first-letter {
+  /* Styles the first letter */
+  font-size: 2em;
+  font-weight: bold;
+  float: left;
+  margin-right: 5px;
+}</div>
+
+                <h3>::selection</h3>
+                <div class="code-block">/* Style selected text */
+p::selection {
+  background: #10b981;
+  color: white;
+}</div>
+
+                <h3>::placeholder</h3>
+                <div class="code-block">/* Style input placeholder */
+input::placeholder {
+  color: #999;
+  font-style: italic;
+}</div>
+
+                <h2>Advanced Pseudo-Element Examples</h2>
+
+                <h3>Decorative Icon with ::before</h3>
+                <div class="code-block">.check::before {
+  content: "¹3";  /* Unicode checkmark */
+  color: #10b981;
+  margin-right: 8px;
+  font-weight: bold;
+}</div>
+
+                <h3>Gradient Border with ::after</h3>
+                <div class="code-block">.button::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(to right, #10b981, #059669);
+  transition: width 0.3s ease;
+}
+
+.button:hover::after {
+  width: 100%;
+}</div>
+
+                <h3>Loading Animation with ::after</h3>
+                <div class="code-block">.loader::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #10b981;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}</div>
+
+                <h2>Content Property Values</h2>
+                <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+                    <tr style="background: #f0f0f0;">
+                        <th style="border: 1px solid #ddd; padding: 12px;">Value</th>
+                        <th style="border: 1px solid #ddd; padding: 12px;">Example</th>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Text</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><code>content: "Hello";</code></td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Unicode</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><code>content: "¹3";</code></td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">URL/Image</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><code>content: url("icon.png");</code></td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Attribute</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><code>content: attr(data-label);</code></td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Empty</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;"><code>content: "";</code></td>
+                    </tr>
+                </table>
+
+                <h2>Browser Support</h2>
+                <p>Pseudo-classes and pseudo-elements have excellent support in all modern browsers. Most features work in all versions of Chrome, Firefox, Safari, and Edge.</p>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Next: CSS Variables</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 13, you will learn CSS variables (custom properties) for creating maintainable, flexible stylesheets with reusable values.</p>
                 </div>
-                <h2>What Does HTML Do?</h2>
-                <p>HTML tells web browsers how to structure and display content. Browsers like Chrome, Firefox, Safari, and Edge read HTML code and convert it into the visual web pages you see.</p>
-                <p>HTML does several important things:</p>
-                <ul>
-                    <li>Organizes content into logical sections</li>
-                    <li>Defines the meaning of different content types</li>
-                    <li>Creates links between pages</li>
-                    <li>Embeds images, audio, and video</li>
-                    <li>Creates forms for user input</li>
-                    <li>Provides metadata about the page</li>
-                </ul>
-                <h2>HTML Tags and Elements</h2>
-                <p>HTML uses tags to mark up content. Tags are keywords surrounded by angle brackets.</p>
-                <div class="code-block">&lt;tagname&gt;content&lt;/tagname&gt;</div>
-                <p>Most tags come in pairs:</p>
-                <ul>
-                    <li><strong>Opening tag</strong> - Example: <code>&lt;h1&gt;</code></li>
-                    <li><strong>Closing tag</strong> - Example: <code>&lt;/h1&gt;</code></li>
-                    <li><strong>Content</strong> - The text or elements between the tags</li>
-                </ul>
-                <h3>Example:</h3>
-                <div class="code-block">&lt;h1&gt;Welcome to Web Development&lt;/h1&gt;<br/>&lt;p&gt;This is my first web page.&lt;/p&gt;</div>
-                <div class="highlight-box">
-                    <strong>Important:</strong> The forward slash in the closing tag is what tells the browser where the element ends.
-                </div>
-                <h2>Why Learn HTML?</h2>
-                <ul>
-                    <li><strong>Foundation of Web:</strong> HTML is the foundation of all websites</li>
-                    <li><strong>Easy to Learn:</strong> HTML is simple and beginner-friendly</li>
-                    <li><strong>Gateway to Web Development:</strong> You need HTML to learn CSS and JavaScript</li>
-                    <li><strong>In-Demand Skill:</strong> HTML skills are valuable in the job market</li>
-                    <li><strong>Creative Expression:</strong> Build and publish your own web content</li>
-                </ul>
-                <h2>What You Will Learn</h2>
-                <p>In this 15-lesson course, we'll cover:</p>
-                <ul>
-                    <li>HTML structure and best practices</li>
-                    <li>Common HTML tags and their uses</li>
-                    <li>Text formatting and semantic HTML</li>
-                    <li>Links, images, and media</li>
-                    <li>Forms and user input</li>
-                    <li>Tables and data organization</li>
-                    <li>Accessibility and SEO</li>
-                </ul>
-                <div class="highlight-box">
-                    <strong>Next Lesson:</strong> In Lesson 2, we'll explore the basic structure of an HTML document and create our first web page.
-                </div>
-                <div class="nav-footer">
-                    <button class="btn btn-secondary" disabled>Previous Lesson</button>
-                    <a href="lesson-css-02.html" class="btn">Next Lesson</a>
-                </div>
-            </div>
+
                 <div class="nav-footer">
                     <a href="lesson-css-11.html" class="btn btn-secondary">← Previous Lesson</a>
                     <a href="lesson-css-13.html" class="btn">Next Lesson →</a>
                 </div>
+
+                
             </div>
             <footer>
                 <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
@@ -164,9 +419,8 @@
             </footer>
         </main>
     </div>
-
     <script>
-        // Prevent caching - add timestamp to all resource requests
+        // Prevent caching
         const timestamp = new Date().getTime();
         document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
             const href = link.getAttribute('href');

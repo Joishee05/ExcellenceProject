@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Lesson 15: Best Practices - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #f97316; }
         .sidebar a.active { background: #e8f1ff; color: #f97316; border-left-color: #f97316; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #f97316; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #f97316; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
-        .content-area { background: white; padding: 30px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); line-height: 1.8; }
-        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+        .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
+        .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
         .content-area h3 { font-size: 1.15rem; color: #f97316; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
-        .content-area ul, .content-area ol { margin-bottom: 15px; padding-left: 25px; }
+        .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
-        .content-area code { background: #f5f5f5; padding: 2px 5px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; }
-        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; margin: 15px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
-        .highlight-box { background: #e8f4f8; border-left: 4px solid #f97316; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #f97316; padding: 15px; margin: 15px 0; border-radius: 4px; }
         .highlight-box strong { color: #f97316; }
-        .nav-footer { display: flex; gap: 10px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #ddd; justify-content: space-between; }
-        .btn { padding: 10px 15px; background: #f97316; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s ease; }
-        .btn:hover { background: #f97316cc; opacity: 0.9; }
-        .btn-secondary { background: #ddd; color: #666; }
-        .btn-secondary:hover { background: #ccc; }
-        .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #f97316; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
+        .btn { padding: 10px 20px; background: #f97316; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #f97316; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-secondary { background: #e5e7eb; color: #666; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
+        footer { background: #f97316; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
@@ -49,7 +52,7 @@
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../html-tutorials.html">HTML</a></li>
-                <li><a href="../css-tutorials.html" >CSS</a></li>
+                <li><a href="../css-tutorials.html">CSS</a></li>
                 <li><a href="../js-tutorials.html" class="active">JavaScript</a></li>
                 <li><a href="../project-walkthrough.html">Project</a></li>
             </ul>
@@ -73,86 +76,375 @@
             <a href="lesson-js-13.html">13. Modules & Imports</a>
             <a href="lesson-js-14.html">14. Error Handling</a>
             <a href="lesson-js-15.html" class="active">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs & JSON</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Node.js Lessons</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setting Up Node.js</a>
+            <a href="lesson-nodejs-03.html">23. Building Your First Server</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
-                <h1>Best Practices</h1>
+                <h1>JavaScript Best Practices</h1>
                 <div class="lesson-meta">Lesson 15 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <h1>What is JavaScript? - Best Practices</h1>
-                <div class="lesson-meta">Lesson 15 of 15</div>
-            </div>
-            <div class="content-area">
-                <h2>Introduction to HTML</h2>
-                <p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard markup language used to create web pages. Every website you visit on the internet is built with HTML at its core.</p>
-                <p>HTML works with two other technologies to create complete web experiences:</p>
+                <h2>What You'll Learn</h2>
+                <p>In this final JavaScript lesson, you will learn professional best practices that experienced developers use to write clean, maintainable, and efficient code. These practices will make you a better programmer and prepare you for real-world development. By the end of this lesson, you'll understand how to write professional-quality JavaScript.</p>
+
+                <h2>Why Best Practices Matter</h2>
+                <p>Best practices are guidelines that help you write better code. They make code:</p>
                 <ul>
-                    <li><strong>CSS</strong> - Handles styling and visual appearance</li>
-                    <li><strong>JavaScript</strong> - Adds interactivity and dynamic behavior</li>
+                    <li><strong>Easier to Read:</strong> Other developers (and future you!) can understand it quickly</li>
+                    <li><strong>Easier to Maintain:</strong> Bugs are easier to find and fix</li>
+                    <li><strong>More Reliable:</strong> Code is less likely to break or produce unexpected results</li>
+                    <li><strong>More Secure:</strong> Vulnerable code patterns are avoided</li>
+                    <li><strong>More Efficient:</strong> Performance problems are prevented</li>
+                    <li><strong>Team Compatible:</strong> Everyone follows the same standards</li>
                 </ul>
-                <div class="highlight-box">
-                    <strong>Key Concept:</strong> HTML provides the structure and content of web pages. Think of HTML as the skeleton of a building - it creates the basic framework that everything else is built upon.
-                </div>
-                <h2>What Does HTML Do?</h2>
-                <p>HTML tells web browsers how to structure and display content. Browsers like Chrome, Firefox, Safari, and Edge read HTML code and convert it into the visual web pages you see.</p>
-                <p>HTML does several important things:</p>
+
+                <h2>Naming Conventions</h2>
+                <p>Use clear, descriptive names for variables, functions, and classes. Good names make code self-documenting:</p>
+
+                <h3>Good Naming Examples</h3>
+                <div class="code-block">// Good naming - clear and descriptive
+let userEmail = 'user@example.com';
+let isLoggedIn = true;
+let totalPrice = 99.99;
+
+function calculateTotalPrice(items) {
+  return items.reduce((sum, item) => sum + item.price, 0);
+}
+
+class UserProfile {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+}</div>
+
+                <h3>Bad Naming Examples</h3>
+                <div class="code-block">// Bad naming - unclear and confusing
+let x = 'user@example.com';
+let a = true;
+let p = 99.99;
+
+function calc(arr) {
+  return arr.reduce((s, i) => s + i.p, 0);
+}
+
+class u {
+  constructor(n, e) {
+    this.n = n;
+    this.e = e;
+  }
+}</div>
+
+                <h3>Naming Conventions</h3>
                 <ul>
-                    <li>Organizes content into logical sections</li>
-                    <li>Defines the meaning of different content types</li>
-                    <li>Creates links between pages</li>
-                    <li>Embeds images, audio, and video</li>
-                    <li>Creates forms for user input</li>
-                    <li>Provides metadata about the page</li>
+                    <li><strong>camelCase</strong> for variables and functions: <code>getUserName</code>, <code>isVisible</code></li>
+                    <li><strong>PascalCase</strong> for classes: <code>UserProfile</code>, <code>ApiClient</code></li>
+                    <li><strong>UPPER_SNAKE_CASE</strong> for constants: <code>MAX_ATTEMPTS = 3</code></li>
+                    <li><strong>Use meaningful prefixes:</strong>
+                        <ul>
+                            <li><code>is</code> for booleans: <code>isActive</code>, <code>isValid</code></li>
+                            <li><code>has</code> for booleans: <code>hasChildren</code>, <code>hasPermission</code></li>
+                            <li><code>get</code> for getters: <code>getUsername</code></li>
+                            <li><code>set</code> for setters: <code>setPassword</code></li>
+                        </ul>
+                    </li>
                 </ul>
-                <h2>HTML Tags and Elements</h2>
-                <p>HTML uses tags to mark up content. Tags are keywords surrounded by angle brackets.</p>
-                <div class="code-block">&lt;tagname&gt;content&lt;/tagname&gt;</div>
-                <p>Most tags come in pairs:</p>
+
+                <h2>Code Organization</h2>
+                <p>Organize your code into logical sections. This makes projects easy to navigate and maintain:</p>
+
+                <h3>Recommended File Structure</h3>
+                <div class="code-block">project/
+├── index.html              // Main HTML file
+├── styles/
+│   └── main.css            // All CSS
+├── js/
+│   ├── main.js             // Entry point
+│   ├── utils/
+│   │   ├── validators.js   // Validation functions
+│   │   └── formatters.js   // String/date formatters
+│   ├── modules/
+│   │   ├── user.js         // User management
+│   │   └── api.js          // API calls
+│   └── components/
+│       ├── header.js       // Header component
+│       └── footer.js       // Footer component
+└── README.md               // Documentation</div>
+
+                <h3>Single Responsibility Principle</h3>
+                <p>Each function should do ONE thing and do it well:</p>
+                <div class="code-block">// Good - each function has one responsibility
+function validateEmail(email) {
+  return email.includes('@') && email.includes('.');
+}
+
+function validatePassword(password) {
+  return password.length >= 8;
+}
+
+function validateUser(email, password) {
+  return validateEmail(email) && validatePassword(password);
+}
+
+// Bad - function does too much
+function validate(email, password) {
+  // Handles both email AND password validation
+  if (!email.includes('@')) return false;
+  if (email.length === 0) return false;
+  if (password.length < 8) return false;
+  if (!password.includes('special')) return false;
+  // Many more checks...
+  return true;
+}</div>
+
+                <h2>Keep Functions Small and Focused</h2>
+                <p>Functions should be small (10-20 lines max). Smaller functions are easier to understand and test:</p>
+
+                <div class="code-block">// Good - small, focused function
+function formatUserName(firstName, lastName) {
+  return `${firstName} ${lastName}`.trim();
+}
+
+// Bad - function does too much
+function processUser(data) {
+  // Validates data
+  if (!data.firstName) return null;
+  if (!data.lastName) return null;
+  
+  // Formats data
+  let name = `${data.firstName} ${data.lastName}`.trim();
+  
+  // Saves to database
+  saveToDatabase(name);
+  
+  // Sends email
+  sendEmail(name);
+  
+  // Logs activity
+  logActivity(name);
+  
+  return name;
+}</div>
+
+                <h2>Variable Declaration Best Practices</h2>
+
+                <h3>Use const by Default</h3>
+                <div class="code-block">// Good - use const for values that don't change
+const MAX_ATTEMPTS = 3;
+const USER_ROLES = ['admin', 'user', 'guest'];
+const user = { name: 'John', email: 'john@example.com' };
+
+// Use let only when variable will be reassigned
+let counter = 0;
+counter++;
+counter++;
+
+// Avoid var - it has confusing scope rules
+var oldStyle = 'outdated';  // Don't use this</div>
+
+                <h3>Why Prefer const?</h3>
                 <ul>
-                    <li><strong>Opening tag</strong> - Example: <code>&lt;h1&gt;</code></li>
-                    <li><strong>Closing tag</strong> - Example: <code>&lt;/h1&gt;</code></li>
-                    <li><strong>Content</strong> - The text or elements between the tags</li>
+                    <li><strong>Prevents Accidents:</strong> Can't accidentally reassign the variable</li>
+                    <li><strong>Shows Intent:</strong> Makes it clear the value won't change</li>
+                    <li><strong>Better Performance:</strong> JavaScript engines can optimize const better</li>
+                    <li><strong>Encourages Good Design:</strong> Leads to more predictable code</li>
                 </ul>
-                <h3>Example:</h3>
-                <div class="code-block">&lt;h1&gt;Welcome to Web Development&lt;/h1&gt;<br/>&lt;p&gt;This is my first web page.&lt;/p&gt;</div>
-                <div class="highlight-box">
-                    <strong>Important:</strong> The forward slash in the closing tag is what tells the browser where the element ends.
-                </div>
-                <h2>Why Learn HTML?</h2>
+
+                <h2>Comments and Documentation</h2>
+                <p>Write comments for complex logic, but keep them brief and useful:</p>
+
+                <h3>Good Comments</h3>
+                <div class="code-block">// Calculate compound interest for monthly deposits
+// Formula: A = P(1 + r/n)^(nt)
+function calculateCompoundInterest(principal, rate, years) {
+  const n = 12;  // compounds monthly
+  return principal * Math.pow(1 + rate / n, n * years);
+}
+
+// Filter users who haven't logged in for 30+ days
+const inactiveUsers = users.filter(user => {
+  const daysSinceLogin = (Date.now() - user.lastLogin) / (1000 * 60 * 60 * 24);
+  return daysSinceLogin > 30;
+});</div>
+
+                <h3>Bad Comments</h3>
+                <div class="code-block">// Add one to counter
+let counter = 1;
+counter++;  // Now counter is 2
+
+// Loop through all items
+for (let i = 0; i < items.length; i++) {
+  // Add item to list
+  list.push(items[i]);
+}</div>
+
+                <h2>Error Handling</h2>
+                <p>Always handle errors gracefully. Don't let your program crash unexpectedly:</p>
+
+                <div class="code-block">// Good - handles errors
+function fetchUserData(userId) {
+  try {
+    const user = getUserFromDatabase(userId);
+    if (!user) {
+      throw new Error(`User ${userId} not found`);
+    }
+    return user;
+  } catch (error) {
+    console.log('Error fetching user:', error.message);
+    return null;
+  }
+}
+
+// Bad - ignores errors
+function fetchUserData(userId) {
+  const user = getUserFromDatabase(userId);
+  return user;
+}</div>
+
+                <h2>Input Validation</h2>
+                <p>Always validate user input before using it. Never trust user data:</p>
+
+                <div class="code-block">// Good - validates input
+function createUser(email, password) {
+  // Validate email
+  if (!email || typeof email !== 'string') {
+    throw new Error('Invalid email');
+  }
+  
+  // Validate password
+  if (!password || password.length < 8) {
+    throw new Error('Password must be at least 8 characters');
+  }
+  
+  // Safe to use validated data
+  return saveUser(email, password);
+}
+
+// Bad - uses input without validation
+function createUser(email, password) {
+  return saveUser(email, password);  // What if email or password are wrong type?
+}</div>
+
+                <h2>Performance Best Practices</h2>
+
+                <h3>Cache DOM Queries</h3>
+                <div class="code-block">// Good - query once, use multiple times
+const button = document.getElementById('myButton');
+button.addEventListener('click', handleClick);
+button.style.color = 'blue';
+
+// Bad - queries DOM each time
+document.getElementById('myButton').addEventListener('click', handleClick);
+document.getElementById('myButton').style.color = 'blue';</div>
+
+                <h3>Avoid Nested Loops</h3>
+                <div class="code-block">// Good - O(n) complexity
+const userIds = users.map(user => user.id);
+const activeUserIds = userIds.filter(id => isActive(id));
+
+// Bad - O(n²) complexity - much slower!
+for (let i = 0; i < users.length; i++) {
+  for (let j = 0; j < otherUsers.length; j++) {
+    if (users[i].id === otherUsers[j].id) {
+      // Do something
+    }
+  }
+}</div>
+
+                <h3>Use Array Methods</h3>
+                <div class="code-block">// Good - modern, clean, fast
+const adults = users
+  .filter(user => user.age >= 18)
+  .map(user => user.name);
+
+// Bad - verbose, harder to read
+const adults = [];
+for (let i = 0; i < users.length; i++) {
+  if (users[i].age >= 18) {
+    adults.push(users[i].name);
+  }
+}</div>
+
+                <h2>Security Best Practices</h2>
+
+                <h3>Don't Use eval()</h3>
+                <div class="code-block">// Good - parse JSON properly
+const data = JSON.parse(jsonString);
+
+// Bad - eval is dangerous!
+const data = eval('(' + jsonString + ')');  // NEVER do this</div>
+
+                <h3>Sanitize User Input</h3>
+                <div class="code-block">// Good - escape HTML special characters
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+const userName = escapeHtml(userInput);
+element.innerHTML = `Hello, ${userName}!`;
+
+// Bad - allows HTML injection attacks
+element.innerHTML = `Hello, ${userInput}!`;</div>
+
+                <h2>Testing and Debugging</h2>
                 <ul>
-                    <li><strong>Foundation of Web:</strong> HTML is the foundation of all websites</li>
-                    <li><strong>Easy to Learn:</strong> HTML is simple and beginner-friendly</li>
-                    <li><strong>Gateway to Web Development:</strong> You need HTML to learn CSS and JavaScript</li>
-                    <li><strong>In-Demand Skill:</strong> HTML skills are valuable in the job market</li>
-                    <li><strong>Creative Expression:</strong> Build and publish your own web content</li>
+                    <li><strong>Test happy paths and edge cases</strong> - Test both normal and unusual inputs</li>
+                    <li><strong>Use console methods effectively</strong> - <code>console.log()</code>, <code>console.error()</code>, <code>console.table()</code></li>
+                    <li><strong>Use browser DevTools</strong> - Debugger, Network tab, Console</li>
+                    <li><strong>Write unit tests</strong> - Test individual functions in isolation</li>
+                    <li><strong>Check browser compatibility</strong> - Test in different browsers</li>
                 </ul>
-                <h2>What You Will Learn</h2>
-                <p>In this 15-lesson course, we'll cover:</p>
+
+                <h2>Code Style and Formatting</h2>
                 <ul>
-                    <li>HTML structure and best practices</li>
-                    <li>Common HTML tags and their uses</li>
-                    <li>Text formatting and semantic HTML</li>
-                    <li>Links, images, and media</li>
-                    <li>Forms and user input</li>
-                    <li>Tables and data organization</li>
-                    <li>Accessibility and SEO</li>
+                    <li><strong>Use consistent indentation</strong> - 2 or 4 spaces (pick one and stick with it)</li>
+                    <li><strong>Use semicolons</strong> - Prevents unexpected behavior</li>
+                    <li><strong>Use meaningful whitespace</strong> - Separate logical sections</li>
+                    <li><strong>Keep lines reasonable length</strong> - Under 80-100 characters when possible</li>
+                    <li><strong>Use a linter</strong> - Tools like ESLint catch style issues automatically</li>
                 </ul>
-                <div class="highlight-box">
-                    <strong>Next Lesson:</strong> In Lesson 2, we'll explore the basic structure of an HTML document and create our first web page.
-                </div>
+
+                <h2>Summary of JavaScript Best Practices</h2>
+                <ul>
+                    <li><strong>Use clear, descriptive names</strong> - Make code self-documenting</li>
+                    <li><strong>Keep functions small and focused</strong> - One responsibility per function</li>
+                    <li><strong>Use const by default</strong> - Only use let when variable will change</li>
+                    <li><strong>Handle errors gracefully</strong> - Use try-catch and never ignore errors</li>
+                    <li><strong>Validate all input</strong> - Never trust user data</li>
+                    <li><strong>Write meaningful comments</strong> - Explain WHY, not WHAT</li>
+                    <li><strong>Organize code logically</strong> - Use modules and folder structure</li>
+                    <li><strong>Test thoroughly</strong> - Write tests for critical functionality</li>
+                    <li><strong>Performance matters</strong> - Cache, avoid nested loops, use efficient algorithms</li>
+                    <li><strong>Security is critical</strong> - Sanitize input, avoid eval(), follow secure coding practices</li>
+                </ul>
+
                 <div class="nav-footer">
-                    <button class="btn btn-secondary" disabled>Previous Lesson</button>
-                    <a href="lesson-js-02.html" class="btn">Next Lesson</a>
+                    <a href="lesson-js-14.html" class="btn btn-secondary">← Previous Lesson</a>
+                    <a href="../js-tutorials.html" class="btn">Back to JavaScript →</a>
                 </div>
             </div>
-            </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
+    <script>
+        const timestamp = new Date().getTime();
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('?')) {
+                link.setAttribute('href', href + '?t=' + timestamp);
+            }
+        });
+    </script>
 </body>
 </html>

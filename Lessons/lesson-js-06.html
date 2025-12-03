@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 6: Functions - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5000">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5014">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #333; display: flex; flex-direction: column; }
         .navbar { position: relative !important; flex-shrink: 0; }
-        .page-wrapper { display: flex; flex-shrink: 0; }
-        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: auto; }
+        .page-wrapper { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
         .sidebar a:hover { background: #f5f5f5; color: #f97316; }
         .sidebar a.active { background: #e8f1ff; color: #f97316; border-left-color: #f97316; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
         .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 6px; border-left: 4px solid #f97316; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
@@ -37,9 +37,9 @@
         .btn-secondary { background: #ddd; color: #666; }
         .btn-secondary:hover { background: #ccc; }
         .btn:disabled { background: #ddd; color: #999; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #f97316; color: white; padding: 0.75rem 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; position: relative; }
-        footer p { margin: 0.2rem 0; }
-        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
+        footer { background: #f97316; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer p { margin: 0.3rem 0; }
+        @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: 100%; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } }
     </style>
 </head>
 <body>
@@ -73,6 +73,13 @@
             <a href="lesson-js-13.html">13. Modules & Imports</a>
             <a href="lesson-js-14.html">14. Error Handling</a>
             <a href="lesson-js-15.html">15. Best Practices</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Advanced Topics</div>
+            <a href="lesson-js-19.html">19. APIs & JSON</a>
+            <a href="lesson-js-20.html">20. Dynamic Forms</a>
+            <div class="sidebar-title" style="margin-top: 20px;">Node.js Lessons</div>
+            <a href="lesson-nodejs-01.html">21. What is Node.js?</a>
+            <a href="lesson-nodejs-02.html">22. Setting Up Node.js</a>
+            <a href="lesson-nodejs-03.html">23. Building Your First Server</a>
         </aside>
         <main class="main-content">
             <div class="lesson-header">
@@ -80,237 +87,70 @@
                 <div class="lesson-meta">Lesson 6 of 15</div>
             </div>
             <div class="content-area">
-<div class="lesson-header">
-                <div class="lesson-number">Lesson 6 of 12</div>
-                <h1>Conditional Statements</h1>
-            </div>
-
             <div class="lesson-text">
-                <p>Conditional statements allow your code to make decisions and execute different code based on conditions.</p>
+                <p>Functions are reusable blocks of code that perform a specific task. They help organize your code and avoid repetition.</p>
 
-                <h2>If Statement</h2>
-                <p>The <code>if</code> statement executes code only if a condition is true:</p>
-                <pre><code>let age = 20;
-
-if (age >= 18) {
-    console.log("You are an adult.");
-}
-// Output: "You are an adult."
-
-let temperature = 15;
-
-if (temperature < 0) {
-    console.log("It's freezing!");
-}
-// No output (condition is false)</code></pre>
-
-                <h2>If...Else Statement</h2>
-                <p>Execute one block if condition is true, another if false:</p>
-                <pre><code>let score = 85;
-
-if (score >= 60) {
-    console.log("You passed!");
-} else {
-    console.log("You failed.");
-}
-// Output: "You passed!"
-
-let hour = 14;
-
-if (hour < 12) {
-    console.log("Good morning!");
-} else {
-    console.log("Good afternoon!");
-}
-// Output: "Good afternoon!"</code></pre>
-
-                <h2>If...Else If...Else</h2>
-                <p>Test multiple conditions in sequence:</p>
-                <pre><code>let grade = 85;
-
-if (grade >= 90) {
-    console.log("Grade: A");
-} else if (grade >= 80) {
-    console.log("Grade: B");
-} else if (grade >= 70) {
-    console.log("Grade: C");
-} else if (grade >= 60) {
-    console.log("Grade: D");
-} else {
-    console.log("Grade: F");
-}
-// Output: "Grade: B"</code></pre>
-
-                <h3>Multiple Conditions Example</h3>
-                <pre><code>let age = 20;
-let hasLicense = true;
-
-if (age >= 18 && hasLicense) {
-    console.log("You can drive!");
-} else if (age >= 18 && !hasLicense) {
-    console.log("You need to get a license first.");
-} else {
-    console.log("You're too young to drive.");
-}
-// Output: "You can drive!"</code></pre>
-
-                <h2>Switch Statement</h2>
-                <p>The <code>switch</code> statement is useful when checking a variable against many values:</p>
-                <pre><code>let day = 3;
-let dayName;
-
-switch (day) {
-    case 1:
-        dayName = "Monday";
-        break;
-    case 2:
-        dayName = "Tuesday";
-        break;
-    case 3:
-        dayName = "Wednesday";
-        break;
-    case 4:
-        dayName = "Thursday";
-        break;
-    case 5:
-        dayName = "Friday";
-        break;
-    case 6:
-        dayName = "Saturday";
-        break;
-    case 7:
-        dayName = "Sunday";
-        break;
-    default:
-        dayName = "Invalid day";
+                <h2>Function Declaration</h2>
+                <p>The traditional way to create a function:</p>
+                <pre><code>function greet() {
+    console.log("Hello, World!");
 }
 
-console.log(dayName); // "Wednesday"</code></pre>
+// Call the function
+greet(); // Outputs: "Hello, World!"</code></pre>
 
-                <div class="info-box">
-                    <p><strong>Important:</strong> Don't forget the <code>break</code> statement! Without it, the code will continue executing the next cases (called "fall-through").</p>
-                </div>
-
-                <h3>Switch with Strings</h3>
-                <pre><code>let fruit = "apple";
-
-switch (fruit) {
-    case "banana":
-        console.log("Bananas are $0.50");
-        break;
-    case "apple":
-        console.log("Apples are $0.75");
-        break;
-    case "orange":
-        console.log("Oranges are $0.60");
-        break;
-    default:
-        console.log("We don't have that fruit");
-}
-// Output: "Apples are $0.75"</code></pre>
-
-                <h2>Ternary Operator</h2>
-                <p>A shorthand for simple if...else statements:</p>
-                <pre><code>// Syntax: condition ? valueIfTrue : valueIfFalse
-
-let age = 20;
-let status = age >= 18 ? "adult" : "minor";
-console.log(status); // "adult"
-
-// Traditional if...else equivalent:
-let status2;
-if (age >= 18) {
-    status2 = "adult";
-} else {
-    status2 = "minor";
+                <h2>Functions with Parameters</h2>
+                <p>Parameters allow you to pass data into functions:</p>
+                <pre><code>function greetUser(name) {
+    console.log("Hello, " + name + "!");
 }
 
-// Another example
-let score = 85;
-let result = score >= 60 ? "Pass" : "Fail";
-console.log(result); // "Pass"</code></pre>
+greetUser("Alice");  // "Hello, Alice!"
+greetUser("Bob");    // "Hello, Bob!"</code></pre>
 
-                <h2>Nested Conditionals</h2>
-                <p>You can put if statements inside other if statements:</p>
-                <pre><code>let age = 20;
-let hasTicket = true;
-
-if (age >= 18) {
-    if (hasTicket) {
-        console.log("Welcome to the concert!");
-    } else {
-        console.log("You need to buy a ticket.");
-    }
-} else {
-    console.log("You must be 18 or older.");
-}
-// Output: "Welcome to the concert!"</code></pre>
-
-                <h2>Try It Yourself</h2>
-                <p>Practice using conditional statements:</p>
-                
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span>JavaScript Editor</span>
-                        <button class="run-button" onclick="runCode()">Run Code</button>
-                    </div>
-                    <textarea class="code-input" id="codeInput">// If...else example
-let temperature = 25;
-
-if (temperature > 30) {
-    console.log("It's hot!");
-} else if (temperature > 20) {
-    console.log("It's nice!");
-} else {
-    console.log("It's cold!");
+                <h2>Return Values</h2>
+                <p>Functions can return values using the return keyword:</p>
+                <pre><code>function add(a, b) {
+    return a + b;
 }
 
-// Switch statement
-let semester = 2;
+let result = add(5, 3);
+console.log(result); // 8</code></pre>
 
-switch (semester) {
-    case 1:
-        console.log("First semester");
-        break;
-    case 2:
-        console.log("Second semester");
-        break;
-    default:
-        console.log("Invalid semester");
-}
+                <h2>Function Expressions</h2>
+                <p>Store functions in variables:</p>
+                <pre><code>const multiply = function(a, b) {
+    return a * b;
+};
 
-// Ternary operator
-let gpa = 3.8;
-let honors = gpa >= 3.5 ? "Yes" : "No";
-console.log("Dean's List:", honors);</textarea>
-                    <div class="preview-area">
-                        <div id="console-output" style="font-family: monospace; white-space: pre-wrap;"></div>
-                    </div>
-                </div>
+console.log(multiply(4, 5)); // 20</code></pre>
 
-                <div class="challenge">
-                    <h3>Challenge</h3>
-                    <p>Write conditional statements for the following scenarios:</p>
-                    <ul>
-                        <li>Check if a number is positive, negative, or zero</li>
-                        <li>Determine ticket price based on age: children (< 12) = $5, adults = $10, seniors (>= 65) = $7</li>
-                        <li>Use a switch statement to convert a number (1-12) to a month name</li>
-                        <li>Use a ternary operator to check if a number is even or odd</li>
-                        <li>Check if a student passes (score >= 60) AND has good attendance (>= 75%)</li>
-                    </ul>
-                </div>
-            </div>
+                <h2>Arrow Functions</h2>
+                <p>Shorter syntax for functions (ES6+):</p>
+                <pre><code>const square = (x) => x * x;
+const add = (a, b) => a + b;
 
-            <div class="lesson-navigation">
-                <a href="lesson-js-05.html" class="nav-button">← Previous Lesson</a>
-                <a href="lesson-js-07.html" class="nav-button">Next Lesson →</a>
+console.log(square(5)); // 25
+console.log(add(3, 4)); // 7</code></pre>
+
+                <h2>Key Takeaways</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Functions organize and reuse code</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Parameters pass data into functions</li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">Return keyword sends values back</li>
+                    <li style="padding: 8px 0;">Arrow functions use shorter syntax</li>
+                </ul>
+
+                <div class="nav-footer">
+                <a href="lesson-js-05.html" class="btn btn-secondary">← Previous Lesson</a>
+                <a href="lesson-js-07.html" class="btn">Next Lesson →</a>
             </div>
             </div>
+            <footer>
+                <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
+                <p>A helpful aid for Students working on the Digital Bones Box project</p>
+            </footer>
         </main>
     </div>
-    <footer>
-        <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
-        <p>A helpful aid for Students working on the Digital Bones Box project</p>
-    </footer>
 </body>
 </html>

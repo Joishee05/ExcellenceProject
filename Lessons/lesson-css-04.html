@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Lesson 4: Box Model - SLU LearnCode</title>
-    <link rel="stylesheet" href="../styles/tutorial.css?v=5004">
+    <link rel="stylesheet" href="../styles/tutorial.css?v=5012">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
@@ -17,30 +17,30 @@
         .sidebar { width: 280px; background: white; border-right: 1px solid #ddd; padding: 20px 0; overflow-y: auto; flex-shrink: 0; height: 100%; }
         .sidebar-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #999; padding: 0 15px; margin-bottom: 10px; letter-spacing: 0.5px; }
         .sidebar a { display: block; padding: 10px 15px; color: #666; text-decoration: none; font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.2s ease; }
-        .sidebar a:hover { background: #f5f5f5; color: #3b82f6; }
-        .sidebar a.active { background: #e8f1ff; color: #3b82f6; border-left-color: #3b82f6; font-weight: 600; }
-        .main-content { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; }
-        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .sidebar a:hover { background: #f5f5f5; color: #10b981; }
+        .sidebar a.active { background: #f0fdf4; color: #10b981; border-left-color: #10b981; font-weight: 600; }
+        .main-content { flex: 1; padding: 0; overflow-y: auto; display: flex; flex-direction: column; }
+        .lesson-header { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .lesson-header h1 { font-size: 2rem; color: #1a1a1a; margin-bottom: 5px; font-weight: 700; }
         .lesson-meta { font-size: 0.9rem; color: #999; }
         .content-area { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); line-height: 1.8; }
         .content-area h2 { font-size: 1.5rem; color: #1a1a1a; margin-top: 25px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; font-weight: 700; }
         .content-area h2:first-of-type { margin-top: 0; }
-        .content-area h3 { font-size: 1.15rem; color: #3b82f6; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        .content-area h3 { font-size: 1.15rem; color: #10b981; margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
         .content-area p { color: #555; margin-bottom: 15px; line-height: 1.8; }
         .content-area ul, .content-area ol { margin-bottom: 15px; margin-left: 20px; }
         .content-area li { margin-bottom: 10px; color: #555; line-height: 1.7; }
         .content-area code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; color: #d4464f; font-family: 'Courier New', monospace; font-size: 0.9em; }
         .code-block { background: #2d2d2d; color: #f8f8f2; padding: 20px; margin: 20px 0; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.8; overflow-x: auto; border: 1px solid #444; word-break: break-word; white-space: pre-wrap; }
-        .highlight-box { background: #e8f1ff; border-left: 4px solid #3b82f6; padding: 15px; margin: 15px 0; border-radius: 4px; }
-        .highlight-box strong { color: #3b82f6; }
+        .highlight-box { background: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .highlight-box strong { color: #10b981; }
         .nav-footer { display: flex; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; justify-content: space-between; }
-        .btn { padding: 10px 20px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
-        .btn:hover { background: #3b82f6; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn { padding: 10px 20px; background: #10b981; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; }
+        .btn:hover { background: #10b981; filter: brightness(0.9); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .btn-secondary { background: #e5e7eb; color: #666; }
         .btn-secondary:hover { background: #d1d5db; }
         .btn:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; opacity: 0.6; }
-        footer { background: #3b82f6; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
+        footer { background: #10b981; color: white; padding: 1rem; text-align: center; border-top: 1px solid #ddd; font-size: 0.85rem; flex-shrink: 0; }
         footer p { margin: 0.3rem 0; }
         @media (max-width: 768px) { .page-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #ddd; } .main-content { padding: 15px; } .content-area { padding: 15px; } .lesson-header h1 { font-size: 1.5rem; } }
     </style>
@@ -68,13 +68,13 @@
             <a href="lesson-css-04.html" class="active">4. Box Model</a>
             <a href="lesson-css-05.html">5. Layout & Display</a>
             <a href="lesson-css-06.html">6. Flexbox</a>
-            <a href="lesson-css-07.html">7. Grid</a>
+            <a href="lesson-css-07.html">7. CSS Grid</a>
             <a href="lesson-css-08.html">8. Positioning</a>
             <a href="lesson-css-09.html">9. Transitions & Animations</a>
             <a href="lesson-css-10.html">10. Responsive Design</a>
             <a href="lesson-css-11.html">11. Media Queries</a>
             <a href="lesson-css-12.html">12. Pseudo-Classes & Elements</a>
-            <a href="lesson-css-13.html">13. Variables & Functions</a>
+            <a href="lesson-css-13.html">13. CSS Variables</a>
             <a href="lesson-css-14.html">14. Best Practices</a>
             <a href="lesson-css-15.html">15. Advanced Techniques</a>
         </aside>
@@ -86,94 +86,178 @@
             </div>
 
             <div class="content-area">
-                <div class="lesson-header">
-                <div class="lesson-number">Lesson 4 of 10</div>
-                <h1>Text Styling</h1>
-            </div>
-            <div class="lesson-text">
-                <p>CSS provides many properties to style text and make it look professional.</p>
-                <h3>Common Text Properties:</h3>
+                <h2>What You'll Learn</h2>
+                <p>In this fundamental lesson, you will master the CSS box modelthe core concept for understanding layout in CSS. You will learn how elements are sized and spaced using margin, border, padding, and content.</p>
+
+                <h2>What is the Box Model?</h2>
+                <p>Every HTML element is surrounded by a box. The CSS box model describes this box, which consists of four layers from inside out: content, padding, border, and margin. Understanding the box model is essential for controlling spacing and layout.</p>
+
+                <h2>The Four Layers of the Box Model</h2>
+
+                <h3>1. Content</h3>
+                <p>The innermost layer where the actual content (text, images, etc.) appears. Its size is controlled by the width and height properties.</p>
+
+                <h3>2. Padding</h3>
+                <p>The space inside the element, between the content and the border. Padding is inside the element and uses the element's background color.</p>
+                <div class="code-block">padding: 20px;              /* All sides */
+padding: 10px 20px;         /* Top/Bottom 10px, Left/Right 20px */
+padding: 10px 15px 10px 20px; /* Top, Right, Bottom, Left */
+padding-top: 10px;
+padding-right: 15px;
+padding-bottom: 10px;
+padding-left: 20px;</div>
+
+                <p><strong>What Padding Does:</strong></p>
                 <ul>
-                    <li><code>font-family</code> - Font type</li>
-                    <li><code>font-size</code> - Size of text</li>
-                    <li><code>font-weight</code> - Boldness (normal, bold, 100-900)</li>
-                    <li><code>font-style</code> - Italic or normal</li>
-                    <li><code>text-align</code> - left, center, right, justify</li>
-                    <li><code>text-decoration</code> - underline, line-through, none</li>
-                    <li><code>text-transform</code> - uppercase, lowercase, capitalize</li>
-                    <li><code>line-height</code> - Space between lines</li>
-                    <li><code>letter-spacing</code> - Space between letters</li>
+                    <li><strong>padding: 20px;</strong> - Adds 20 pixels of space on all 4 sides (top, right, bottom, left)</li>
+                    <li><strong>padding: 10px 20px;</strong> - Shorthand. Top and bottom get 10px, left and right get 20px</li>
+                    <li><strong>padding: 10px 15px 10px 20px;</strong> - Four values: top, right, bottom, left (clockwise order)</li>
+                    <li><strong>padding-top: 10px;</strong> - Target just one side. Useful when you need different values</li>
+                    <li><strong>Inside vs Outside:</strong> Padding is INSIDE the box so the background color fills the padding area too</li>
                 </ul>
-            </div>
-            <div class="interactive-section">
-                <h3>Try It Yourself:</h3>
-                <div class="code-editor">
-                    <div class="editor-header"><span>HTML + CSS</span><button class="run-button" onclick="runCode()">Run Code</button></div>
-                    <textarea class="code-input" id="code-input" spellcheck="false"><!DOCTYPE html>
-<html>
-<head>
-<style>
-    .title {
-        font-family: Arial, sans-serif;
-        font-size: 32px;
-        font-weight: bold;
-        text-align: center;
-        color: #2c3e50;
-    }
-    
-    .subtitle {
-        font-family: Georgia, serif;
-        font-size: 20px;
-        font-style: italic;
-        text-align: center;
-        color: #7f8c8d;
-    }
-    
-    .paragraph {
-        font-size: 16px;
-        line-height: 1.6;
-        text-align: justify;
-    }
-    
-    .uppercase {
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: bold;
-    }
-</style>
-</head>
-<body>
-    <h1 class="title">Beautiful Typography</h1>
-    <p class="subtitle">Making text look amazing</p>
-    <p class="paragraph">
-        This is a paragraph with good line height and justified text.
-        CSS makes it easy to create professional-looking text layouts.
-    </p>
-    <p class="uppercase">This text is uppercase</p>
-    <script src="../scripts/practice.js?v=1000"></script>
-</body>
-</html></textarea>
+
+                <h3>3. Border</h3>
+                <p>The border goes around the padding and creates a visible outline around the element.</p>
+                <div class="code-block">border: 1px solid #ddd;           /* Width, Style, Color */
+border: 2px dashed red;           /* Dashed border */
+border: 3px double black;         /* Double border */
+border-top: 1px solid #333;       /* Top border only */
+border-radius: 8px;               /* Rounded corners */</div>
+
+                <p><strong>What Border Does:</strong></p>
+                <ul>
+                    <li><strong>border: 1px solid #ddd;</strong> - Three parts: 1px (width), solid (style), #ddd (light gray color). Creates a thin solid line</li>
+                    <li><strong>1px:</strong> The thickness of the border in pixels</li>
+                    <li><strong>solid:</strong> Style of line. Can be: solid, dashed, dotted, double, groove, ridge, etc.</li>
+                    <li><strong>border: 2px dashed red;</strong> - Creates a dashed red border 2 pixels thick</li>
+                    <li><strong>border-top: 1px solid #333;</strong> - Target just one side for selective borders</li>
+                    <li><strong>border-radius: 8px;</strong> - Rounds the corners. Bigger number = rounder corners</li>
+                </ul>
+
+                <h3>4. Margin</h3>
+                <p>The space outside the element, between its border and adjacent elements. Margin is outside the element and is transparent (doesn't inherit background color).</p>
+                <div class="code-block">margin: 20px;               /* All sides */
+margin: 10px 20px;          /* Top/Bottom 10px, Left/Right 20px */
+margin: 10px 15px 10px 20px; /* Top, Right, Bottom, Left */
+margin-top: 10px;
+margin-right: 15px;
+margin-bottom: 10px;
+margin-left: 20px;</div>
+
+                <p><strong>What Margin Does:</strong></p>
+                <ul>
+                    <li><strong>margin: 20px;</strong> - Adds 20 pixels of space on all 4 sides (OUTSIDE the element)</li>
+                    <li><strong>Padding vs Margin:</strong> Padding = inside the box (colors the background). Margin = outside (space between elements)</li>
+                    <li><strong>margin: 10px 20px;</strong> - Top and bottom get 10px, left and right get 20px</li>
+                    <li><strong>margin: 10px 15px 10px 20px;</strong> - Top, right, bottom, left (clockwise starting from top)</li>
+                    <li><strong>margin-top: 10px;</strong> - Target just one side. Useful for fine control</li>
+                    <li><strong>Why it matters:</strong> Margin controls how close elements get to each other. Large margin = lots of space</li>
+                </ul>
+
+                <h2>Box Model Diagram</h2>
+                <p>Here is a visual representation of the box model layers:</p>
+                <div class="code-block">+------------------------------------------+
+|           MARGIN (outside)              |
+|  +------------------------------------+  |
+|  |    BORDER (outline)               |  |
+|  |  +-----------------------------+ |  |
+|  |  | PADDING (inside)           | |  |
+|  |  |  +---------------------+   | |  |
+|  |  |  | CONTENT (text/img) |   | |  |
+|  |  |  +---------------------+   | |  |
+|  |  +-----------------------------+ |  |
+|  +------------------------------------+  |
++------------------------------------------+</div>
+
+                <h2>Box-Sizing Property</h2>
+                <p>By default, the width and height properties only apply to the content area, not including padding and border. The box-sizing property changes this behavior.</p>
+
+                <h3>Content-Box (Default)</h3>
+                <div class="code-block">/* Default behavior */
+box-sizing: content-box;
+
+/* A box with width: 200px and padding: 20px */
+/* Total width on page = 200px (content) + 40px (padding) = 240px */</div>
+
+                <h3>Border-Box (Recommended)</h3>
+                <div class="code-block">/* Include padding and border in width */
+box-sizing: border-box;
+
+/* A box with width: 200px and padding: 20px */
+/* Total width on page = 200px (includes padding and border) */</div>
+
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li><strong>box-sizing: border-box;</strong> - Changes how width is calculated. Makes sizing more predictable</li>
+                    <li><strong>With border-box:</strong> width: 200px = 200px total INCLUDING padding and border</li>
+                    <li><strong>Why easier:</strong> You say "I want 200px width" and it stays 200px no matter the padding. No math needed!</li>
+                    <li><strong>content-box (default):</strong> width: 200px + padding: 20px = 240px actual size. Confusing for beginners!</li>
+                    <li><strong>Best practice:</strong> Put "* { box-sizing: border-box; }" at the top of your CSS. Every element will behave intuitively</li>
+                </ul>
+
+                <h2>Margin Collapse</h2>
+                <p>An important concept: when two block elements have margins that touch, only the larger margin is used, not both added together. This is called margin collapse.</p>
+                <div class="code-block">/* Two paragraphs */
+p {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+/* Between two p elements, spacing is 20px (not 40px)
+   because margins collapse. Only the larger margin is used. */</div>
+
+                <h2>Practical Box Model Examples</h2>
+
+                <h3>Creating a Card Component</h3>
+                <div class="code-block">.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;            /* Space inside card */
+  margin: 15px;             /* Space around card */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin-top: 0;            /* Remove top margin from heading */
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 0;                /* Reset default paragraph margins */
+}</div>
+
+                <h3>Centering Content with Margin</h3>
+                <div class="code-block">.container {
+  width: 1200px;
+  margin: 0 auto;           /* Center horizontally: 0 top/bottom, auto left/right */
+  padding: 20px;            /* Space inside container */
+}</div>
+
+                <h2>Box Model Best Practices</h2>
+                <ul>
+                    <li><strong>Use border-box:</strong> Apply box-sizing: border-box globally for easier sizing</li>
+                    <li><strong>Reset Defaults:</strong> Remove unwanted default margins from elements like p, h1-h6, ul, ol</li>
+                    <li><strong>Be Consistent:</strong> Use consistent spacing values throughout your design</li>
+                    <li><strong>Understand Margin Collapse:</strong> Remember that adjacent margins collapse</li>
+                    <li><strong>Use Padding for Inside Space:</strong> Use padding to create space within an element</li>
+                    <li><strong>Use Margin for Outside Space:</strong> Use margin to create space between elements</li>
+                </ul>
+
+                <h2>Debugging Box Model Issues</h2>
+                <p>In your browser's developer tools (F12), use the Inspect Element feature. The Elements panel shows the box model diagram for any element, letting you see exact padding, border, and margin values.</p>
+
+                <div class="highlight-box" style="background: #f0fdf4; border-left-color: #10b981; margin-top: 20px;">
+                    <strong style="color: #10b981;">Ready for Layouts?</strong>
+                    <p style="margin: 10px 0 0 0;">In Lesson 5, you will explore the display property and layout basicsblock, inline, inline-block, and introduction to Flexbox and Grid.</p>
                 </div>
-                <div class="preview-area"><iframe class="output-frame" id="output-frame"></iframe></div>
-            </div>
-            <div class="challenge">
-                <h3>Challenge:</h3>
-                <p>Create a styled quote with:</p>
-                <ol>
-                    <li>Italic font style</li>
-                    <li>Larger font size (24px)</li>
-                    <li>Centered text</li>
-                    <li>A subtle color of your choice</li>
-                </ol>
-            </div>
-            <div class="lesson-navigation">
-                <a href="lesson-css-03.html" class="nav-button">← Previous</a>
-                <a href="lesson-css-05.html" class="nav-button">Next Lesson →</a>
-            </div>
+
                 <div class="nav-footer">
                     <a href="lesson-css-03.html" class="btn btn-secondary">← Previous Lesson</a>
                     <a href="lesson-css-05.html" class="btn">Next Lesson →</a>
                 </div>
+
+                
             </div>
             <footer>
                 <p><strong>SLU LearnCode</strong> - Web Development Tutorials</p>
@@ -181,9 +265,8 @@
             </footer>
         </main>
     </div>
-
     <script>
-        // Prevent caching - add timestamp to all resource requests
+        // Prevent caching
         const timestamp = new Date().getTime();
         document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
             const href = link.getAttribute('href');
